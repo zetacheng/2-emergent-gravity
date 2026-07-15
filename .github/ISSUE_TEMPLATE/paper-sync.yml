@@ -1,0 +1,37 @@
+name: Paper synchronization
+description: Track an accepted paper-source synchronization task
+title: "paper: "
+labels: ["paper-sync"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Paper version
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source and provenance
+    validations:
+      required: true
+  - type: textarea
+    id: accepted-results
+    attributes:
+      label: Accepted gates or results reflected
+      description: List accepted gates, or state that this is a provenance-only import.
+    validations:
+      required: true
+  - type: textarea
+    id: reviewer
+    attributes:
+      label: Reviewer and Principal Investigator authorization
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope confirmation
+      options:
+        - label: This change contains Paper 2 material only.
+          required: true

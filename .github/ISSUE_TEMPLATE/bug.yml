@@ -1,0 +1,31 @@
+name: Reproducibility or infrastructure bug
+description: Report a defect without changing a scientific conclusion
+title: "fix: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem
+      description: Describe the observed and expected behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and commit
+    validations:
+      required: true
+  - type: input
+    id: related-gate
+    attributes:
+      label: Related gate
+      description: Enter the gate ID or N/A.
+    validations:
+      required: true
