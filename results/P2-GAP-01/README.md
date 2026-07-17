@@ -28,6 +28,27 @@ spread at `n=128` is `3.2e-6`. Extrapolated value `≈ 0.08539`, uncertainty
 `±2e-5` dominated by residual grid drift — a systematic bound, not a formal
 error.
 
+## Resolution of the `I_0` comparison (follow-up)
+
+The first report flagged a ≈1.2% gap between this repo's `I_0 = 0.08539` and the
+paper's `0.0844`. **It was a definition difference, now resolved and the
+"disagreement" withdrawn.** The paper evaluates `I_0` with the Wilson term
+`W = m + Σ(1−cos p)` at a small reference fermion mass `ma = 0.02` (its quoted
+"`0.0845 at ma=0.02 on 64⁴`", line 1346), not in the strict massless limit. At
+matched convention:
+
+| Quantity | This repo (`ma=0.02`) | Paper v2.15 | Agreement |
+|---|---|---|---|
+| `I_0` (inf-vol) | `0.084341` | `0.0844` (line 1229) | `<0.1%` |
+| `I_0` (`64⁴`) | `0.084465` | `0.0845` (line 1346) | `<0.1%` |
+| `G_c` | `5.928` | `5.93` (lines 1229, 1351) | `<0.1%` |
+
+This repo's massless value `0.08539` and the paper's `0.0844` are the same
+integral at two evaluation masses (`m=0` vs `m=0.02`); the reference mass lowers
+`I_0` by ≈1.2%. The under-convergence hypothesis is **not** the cause (coarse
+grids do not cleanly reproduce `0.0844`); the evaluation mass is. This is a
+correction to the *first report*, not to the paper.
+
 ## Which criticality
 
 Gap-equation (leading-order effective-potential) criticality — the tadpole

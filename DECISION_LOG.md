@@ -136,6 +136,44 @@ entry above. That entry is preserved, not deleted.
 
 `results/comparison/PAPER_COMPARISON.md`, `derivations/P2-NORM-01_normalization_chain.md`.
 
+## 2026-07-17 — Resolve the `I_0` comparison (evaluation mass, not disagreement)
+
+### Decision
+
+Withdraw the first report's D2 (lattice `I_0` ≈1.2% "disagreement"). At matched
+convention the recomputation **agrees** with Paper 2 v2.15.
+
+### Reason
+
+The paper evaluates `I_0` with the Wilson term `W = m + Σ(1−cos p)` at a small
+reference fermion mass `ma = 0.02` (its "`0.0845 at ma=0.02 on 64⁴`", line 1346),
+not in the strict massless limit used in the first report. The reference mass
+lowers `I_0` by ≈1.2%.
+
+### Evidence
+
+`scripts/gap_criticality.py` `reference_mass_evaluation`: `I_0(ma=0.02) =
+0.084341` (inf-vol), `0.084465` (`64⁴`), `G_c = 5.928` — vs paper `0.0844`,
+`0.0845`, `5.93` (`<0.1%`). The under-convergence hypothesis was tested and
+rejected (coarse grids do not cleanly reproduce `0.0844`).
+
+### Consequences
+
+`P2-C6` moves from `INCONCLUSIVE` to `SUPPORTED`. `P2-GAP-01` status → `PASS`.
+This is a correction to the first report, not to the paper.
+
+### Supersedes
+
+The `I_0`/`G_c` disagreement (D2) in the 2026-07-17 verification-outcome entry.
+
+### Related gate
+
+`P2-GAP-01`.
+
+### Related branch and files
+
+`scripts/gap_criticality.py`, `results/P2-GAP-01/`.
+
 ## Entry template
 
 ```markdown
