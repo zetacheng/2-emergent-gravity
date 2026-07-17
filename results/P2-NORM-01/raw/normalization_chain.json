@@ -1,0 +1,42 @@
+{
+  "R_Z_factor_between_conventions": 2.0,
+  "step_where_2_enters": "definition of Z: coefficient of R in the action (here) vs axis-TT kinetic slope per unit 4N (paper); uniform across species",
+  "species_betas": {
+    "scalar_min": {
+      "here": 0.0005277144981371759,
+      "paper_conv": 0.00026385724906858796,
+      "ratio_here_over_paper": 2.0
+    },
+    "dirac": {
+      "here": 0.0010554289962743518,
+      "paper_conv": 0.0005277144981371759,
+      "ratio_here_over_paper": 2.0
+    },
+    "proca": {
+      "here": 0.0015831434944115277,
+      "paper_conv": 0.0007915717472057639,
+      "ratio_here_over_paper": 2.0
+    }
+  },
+  "ratios_convention_independent": {
+    "beta_F/beta_B": 2.0,
+    "beta_V/beta_B": -3.0
+  },
+  "four_Gc_betaF": {
+    "here_convention": 0.3333333333333333,
+    "paper_convention": 0.16666666666666666,
+    "paper_quoted": 0.16666666666666666
+  },
+  "physics_conclusion": {
+    "here_1_3": {
+      "prefactor": 0.3333333333333333,
+      "xi_ind_at_L=5": -0.6666666666666666,
+      "survival_mmin_over_Lambda": 0.2865047968601901
+    },
+    "paper_1_6": {
+      "prefactor": 0.16666666666666666,
+      "xi_ind_at_L=5": -0.3333333333333333,
+      "survival_mmin_over_Lambda": 0.36787944117144233
+    }
+  }
+}
