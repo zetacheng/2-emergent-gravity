@@ -51,6 +51,8 @@ REQUIRED_NESTED_PATHS = {
     "derivations/P2-HK-01_heat_kernel_species.md",
     "derivations/P2-GAP-01_gap_criticality.md",
     "derivations/P2-BETA-01_lattice_mass_scan.md",
+    "derivations/P2-NORM-01_normalization_chain.md",
+    "derivations/betav_discriminating_power.md",
     "docs/BRANCHING_POLICY.md",
     "docs/RESEARCH_WORKFLOW.md",
     "docs/RESULT_SCHEMA.md",
@@ -63,7 +65,10 @@ REQUIRED_NESTED_PATHS = {
     "results/P2-HK-01/raw/hk_species.json",
     "results/P2-GAP-01/raw/gap_criticality.json",
     "results/P2-BETA-01/raw/lattice_beta_scan.json",
+    "results/P2-NORM-01/raw/normalization_chain.json",
+    "results/P2-BETAV-CIRC-01/raw/betav_discriminating.json",
     "results/comparison/PAPER_COMPARISON.md",
+    "paper/emergent_gr_paper_v2_15.tex",
     "reviews/README.md",
     "reviews/chatgpt/.gitkeep",
     "reviews/claude/.gitkeep",
@@ -72,6 +77,8 @@ REQUIRED_NESTED_PATHS = {
     "scripts/hk_species.py",
     "scripts/gap_criticality.py",
     "scripts/lattice_beta_scan.py",
+    "scripts/normalization_chain.py",
+    "scripts/betav_discriminating.py",
     "tests/README.md",
     "tests/test_repository_structure.py",
 }
@@ -108,7 +115,7 @@ def _cited_gate_ids() -> set:
     for line in text.splitlines():
         if not line.strip().startswith("|"):
             continue
-        for tok in re.findall(r"P2-[A-Z]+-\d+", line):
+        for tok in re.findall(r"P2-[A-Z]+(?:-[A-Z]+)*-\d+", line):
             ids.add(tok)
     return ids
 
@@ -116,7 +123,8 @@ def _cited_gate_ids() -> set:
 def _gate_headings() -> set:
     """Gate IDs that have a '## <ID>' heading in GATES.md."""
     text = (ROOT / "GATES.md").read_text(encoding="utf-8")
-    return set(re.findall(r"^##\s+(P2-[A-Z]+-\d+)", text, flags=re.MULTILINE))
+    pattern = r"^##\s+(P2-[A-Z]+(?:-[A-Z]+)*-\d+)"
+    return set(re.findall(pattern, text, flags=re.MULTILINE))
 
 
 def test_every_cited_gate_id_has_a_gates_heading() -> None:

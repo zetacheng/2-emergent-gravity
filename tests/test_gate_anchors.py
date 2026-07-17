@@ -12,9 +12,11 @@ import math
 import pytest
 import sympy as sp
 
+from scripts import betav_discriminating as bvd
 from scripts import gap_criticality as gap
 from scripts import hk_species as hk
 from scripts import lattice_beta_scan as lbs
+from scripts import normalization_chain as norm
 
 PI = sp.pi
 
@@ -135,3 +137,48 @@ def test_beta_scan_full_systematics():
     # volume trend converges toward the infinite-volume value
     vt = res["volume_trend"]
     assert abs(vt["L48"] - vt["Linf"]) < abs(vt["L24"] - vt["Linf"])
+
+
+# ===========================================================================
+# P2-GAP-01 — I_0 resolution at the paper's reference mass
+# ===========================================================================
+def test_gap_I0_reference_mass_matches_paper():
+    # At ma=0.02 the untraced bubble drops to ~0.0843 (paper 0.0844), resolving
+    # the first report's D2. Massless value (~0.0854) is a different definition.
+    i0_ref = gap.lattice_I0(n=96, m=0.02)
+    i0_massless = gap.lattice_I0(n=96, m=0.0)
+    assert i0_ref == pytest.approx(0.08434, abs=2e-4)
+    # Companion: the reference-mass value is genuinely BELOW the massless one
+    # (the effect that resolves D2), by clearly more than numerical scatter.
+    assert i0_massless - i0_ref > 5e-4
+
+
+# ===========================================================================
+# P2-NORM-01 — uniform factor 2 in Z
+# ===========================================================================
+def test_norm_factor_two_is_uniform():
+    res = norm.results_dict()
+    for s, d in res["species_betas"].items():
+        assert d["ratio_here_over_paper"] == pytest.approx(2.0, abs=1e-9), s
+
+
+def test_norm_four_Gc_betaF_conventions():
+    assert norm.four_Gc_betaF("paper") == pytest.approx(1.0 / 6.0, rel=1e-9)
+    assert norm.four_Gc_betaF("here") == pytest.approx(1.0 / 3.0, rel=1e-9)
+    # Companion: the two conventions are genuinely a factor 2 apart, not equal.
+    assert abs(norm.four_Gc_betaF("here") - norm.four_Gc_betaF("paper")) > 0.1
+
+
+# ===========================================================================
+# P2-BETAV-CIRC-01 — discriminating power (structure-dependent target)
+# ===========================================================================
+def test_betav_ratio_is_structure_dependent():
+    assert float(bvd.ratio_V_over_B(1)) == pytest.approx(-3.0, abs=1e-9)
+    assert float(bvd.ratio_V_over_B(2)) == pytest.approx(-4.0, abs=1e-9)
+    assert float(bvd.ratio_V_over_B(3)) == pytest.approx(-5.0, abs=1e-9)
+
+
+def test_betav_mutation_not_degenerate():
+    # Mutation-detection companion: if the target were "-3 regardless" the test
+    # would be circular. It is not: k=1 and k=2 give different ratios.
+    assert float(bvd.ratio_V_over_B(1)) != float(bvd.ratio_V_over_B(2))

@@ -30,14 +30,13 @@ Run bare::
 from __future__ import annotations
 
 import json
-from fractions import Fraction
 from pathlib import Path
 
 import sympy as sp
 
 # Per-factor Seeley-DeWitt data (see derivations/P2-HK-01):
-#   vector 1-form:  dim=4, tr E/R = 1  -> tr a_1/R = 4/6 - 1 = -1/3, prefactor +1/2
-#   scalar:         dim=1, tr E/R = 0  -> tr a_1/R = 1/6,           prefactor -1/2 per power
+#   vector 1-form: dim=4, tr E/R=1 -> tr a_1/R = 4/6 - 1 = -1/3, prefactor +1/2
+#   scalar:        dim=1, tr E/R=0 -> tr a_1/R = 1/6,  prefactor -1/2 per power
 K = sp.Rational(1, 16) / sp.pi**2
 VEC_TRA1 = sp.Rational(4, 6) - 1     # -1/3
 SCAL_TRA1 = sp.Rational(1, 6)
