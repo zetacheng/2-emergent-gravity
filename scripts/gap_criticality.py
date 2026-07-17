@@ -134,7 +134,8 @@ def main() -> None:
     print("=" * 56)
     print("Continuum (sharp 4-ball):")
     print(f"  I_0 = {c['I0']:.8f}  = {c['I0_exact']}")
-    print(f"  G_c = {c['Gc']:.6f}  = {c['Gc_exact']}  (c = {c['c_in_c_pi2_over_Lambda2']:.6f})")
+    cval = c["c_in_c_pi2_over_Lambda2"]
+    print(f"  G_c = {c['Gc']:.6f}  = {c['Gc_exact']}  (c = {cval:.6f})")
     print("Lattice (Wilson r=1):")
     for n, v in lat["convergence"].items():
         cells = "  ".join(f"{k}={val:.6f}" for k, val in v.items())

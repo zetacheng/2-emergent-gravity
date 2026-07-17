@@ -7,7 +7,11 @@ name = "emergent-gravity-research"
 version = "0.0.0"
 description = "Research infrastructure for Paper 2"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "sympy>=1.12",
+]
 
 [project.optional-dependencies]
 dev = [
@@ -20,6 +24,12 @@ packages = []
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
+markers = [
+  "slow: full-resolution recomputations (run with `make test-slow`)",
+]
+# Skip slow tests by default; `make test-slow` overrides with `-m slow`.
+addopts = "-m 'not slow'"
 
 [tool.ruff]
 target-version = "py311"

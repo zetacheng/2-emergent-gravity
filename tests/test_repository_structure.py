@@ -1,5 +1,11 @@
-"""Verify the research repository's required foundation."""
+"""Verify the research repository's required foundation.
 
+Includes a dangling-reference check: every gate ID cited in the ``Gate`` column
+of ``CLAIMS.md`` must have a matching ``## <ID>`` heading in ``GATES.md`` (this
+defect occurred in ``3-vector-sector``).
+"""
+
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,6 +21,7 @@ REQUIRED_TOP_LEVEL_FILES = {
     "HANDOFF.md",
     "LICENSE",
     "Makefile",
+    "MIGRATION.md",
     "PROGRESS.md",
     "README.md",
     "ROADMAP.md",
@@ -41,6 +48,9 @@ REQUIRED_NESTED_PATHS = {
     ".github/workflows/ci.yml",
     "archive/README.md",
     "derivations/README.md",
+    "derivations/P2-HK-01_heat_kernel_species.md",
+    "derivations/P2-GAP-01_gap_criticality.md",
+    "derivations/P2-BETA-01_lattice_mass_scan.md",
     "docs/BRANCHING_POLICY.md",
     "docs/RESEARCH_WORKFLOW.md",
     "docs/RESULT_SCHEMA.md",
@@ -50,10 +60,18 @@ REQUIRED_NESTED_PATHS = {
     "results/figures/.gitkeep",
     "results/processed/.gitkeep",
     "results/raw/.gitkeep",
+    "results/P2-HK-01/raw/hk_species.json",
+    "results/P2-GAP-01/raw/gap_criticality.json",
+    "results/P2-BETA-01/raw/lattice_beta_scan.json",
+    "results/comparison/PAPER_COMPARISON.md",
     "reviews/README.md",
     "reviews/chatgpt/.gitkeep",
     "reviews/claude/.gitkeep",
     "scripts/README.md",
+    "scripts/__init__.py",
+    "scripts/hk_species.py",
+    "scripts/gap_criticality.py",
+    "scripts/lattice_beta_scan.py",
     "tests/README.md",
     "tests/test_repository_structure.py",
 }
@@ -78,3 +96,35 @@ def test_required_nested_paths_exist() -> None:
         path for path in REQUIRED_NESTED_PATHS if not (ROOT / path).is_file()
     )
     assert not missing, f"Missing required repository paths: {missing}"
+
+
+# ---------------------------------------------------------------------------
+# Gate-ID cross-reference (dangling-reference defect guard)
+# ---------------------------------------------------------------------------
+def _cited_gate_ids() -> set:
+    """Gate IDs appearing in the 'Gate' column of the CLAIMS.md table."""
+    text = (ROOT / "CLAIMS.md").read_text(encoding="utf-8")
+    ids = set()
+    for line in text.splitlines():
+        if not line.strip().startswith("|"):
+            continue
+        for tok in re.findall(r"P2-[A-Z]+-\d+", line):
+            ids.add(tok)
+    return ids
+
+
+def _gate_headings() -> set:
+    """Gate IDs that have a '## <ID>' heading in GATES.md."""
+    text = (ROOT / "GATES.md").read_text(encoding="utf-8")
+    return set(re.findall(r"^##\s+(P2-[A-Z]+-\d+)", text, flags=re.MULTILINE))
+
+
+def test_every_cited_gate_id_has_a_gates_heading() -> None:
+    cited = _cited_gate_ids()
+    headings = _gate_headings()
+    assert cited, "No gate IDs found in CLAIMS.md; parser or table changed."
+    dangling = sorted(cited - headings)
+    assert not dangling, (
+        f"CLAIMS.md cites gate IDs with no '## <ID>' heading in GATES.md: "
+        f"{dangling}"
+    )
