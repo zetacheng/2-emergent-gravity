@@ -19,30 +19,34 @@ regulator; Wilson `r=1` lattice; heat-kernel `Δ=−∇²+E`, `a_1=(1/6)R−E`.
 ## Do not reopen
 
 - The closed recomputation gates, unless a concrete numerical inconsistency is
-  documented. The `β_F` factor-2 (Dirac vs Weyl) is a *recorded disagreement
-  awaiting reviewer adjudication*, not an open bug to silently patch.
+  documented. D1 (`β_F` Weyl-vs-Dirac) and D2 (`I_0` gap) are **withdrawn** and
+  must not be re-raised as disagreements — they were convention-mismatch
+  artifacts.
 
 ## Required next input
 
-- `paper/emergent_gr_paper_v2_15.tex` (for a direct textual comparison).
-- A reviewer verdict on the `β_F` (Dirac vs Weyl) and lattice `I_0`/`G_c`
-  disagreements recorded in `results/comparison/PAPER_COMPARISON.md`.
+- A reviewer verdict on `P2-NORM-01` (accept the `Z` normalization mapping that
+  makes `4G_cβ_F = 1/6` the paper's self-consistent value).
+- A decision on whether to schedule the `P2-BETAV-CIRC-01` full lattice Proca
+  reproduction.
 
 ## Expected Codex output
 
 Reproducible gate scripts, frozen raw results, regression anchors with mutation
-detection — all present. No paper `.tex` was edited.
+detection, and the imported paper source — all present. No paper `.tex` content
+was edited (import only).
 
 ## Questions for ChatGPT
 
-Is Paper 2's fermion content intended to be 4-component Dirac or 2-component
-Weyl? The paper's `β_F = 1/(192π²)` matches Weyl; a Dirac fermion gives
-`1/(96π²)` and shifts the survival window.
+For `P2-BETAV-CIRC-01`: is the paper's longitudinal-artifact hypothesis
+(heavy-mass windows drifting "to ratios near −5", i.e. the `k=3` value)
+consistent with a compensating-power contamination of the Proca structure?
 
 ## Questions for Claude
 
-Adjudicate: (1) the `β_F` factor-2 disagreement and its propagation to
-`4G_cβ_F` and the survival window; (2) the ≈1.2% lattice `I_0`/`G_c` gap.
+Adjudicate `P2-NORM-01` outcome (a): accept that the `β`/`G` factor 2 is a `Z`
+definition and that the paper is self-consistent; confirm the physics conclusion
+(`ξ_ind<0` for `L≫1`) is unaffected.
 
 ## Role boundaries
 
