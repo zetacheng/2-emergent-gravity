@@ -1,0 +1,28 @@
+{
+  "closed_form_ratio": "-k - 2",
+  "proca_k1_ratio": -3.0,
+  "table_over_k": {
+    "0": {
+      "beta_V_over_beta_B": "-2",
+      "float": -2.0
+    },
+    "1": {
+      "beta_V_over_beta_B": "-3",
+      "float": -3.0
+    },
+    "2": {
+      "beta_V_over_beta_B": "-4",
+      "float": -4.0
+    },
+    "3": {
+      "beta_V_over_beta_B": "-5",
+      "float": -5.0
+    },
+    "1/2": {
+      "beta_V_over_beta_B": "-5/2",
+      "float": -2.5
+    }
+  },
+  "discriminating": true,
+  "note": "Target ratio depends on the determinant structure k; an extraction returning -3 for k!=1 would be circular."
+}

@@ -52,6 +52,19 @@ present in the repository, the comparison is performed against the specific
 numerical claims transcribed from the paper into the task specification, and
 that substitution is recorded in `results/comparison/PAPER_COMPARISON.md`.
 
+## Cross-repository flag (do not edit the other repository)
+
+Gate `P2-BETAV-CIRC-01` audits whether Paper 2's Finding 5 lattice test of
+`β_V/β_B = −3` has discriminating power. The companion vector-sector repository
+`3-vector-sector` (claim `P3-C-004`, status `VERIFIED`) quotes
+`β_V/β_B = −3.2(5)` in its abstract. **If `P2-BETAV-CIRC-01` ever fires** (the
+lattice extraction found to return `−3` regardless of the determinant
+structure), that quotation is affected and `P3-C-004` would need review. This is
+a **flag only**: `3-vector-sector` is not read from or written to here. The
+analytic layer of `P2-BETAV-CIRC-01` finds the target ratio *is*
+structure-dependent (`−(k+2)`), so the test is not degenerate; the full lattice
+reproduction remains `OPEN`.
+
 ## Consequence for claim statuses
 
 Because there is no reviewer record and no archived provenance yet:
