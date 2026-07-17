@@ -94,6 +94,48 @@ None (extends the 2026-07-15 repository-scope decision).
 `claude/paper-2-independent-verification-dysdp0`; `scripts/`, `derivations/`,
 `results/`, `CLAIMS.md`, `GATES.md`, `results/comparison/PAPER_COMPARISON.md`.
 
+## 2026-07-17 — Retract D1 (Weyl-vs-Dirac `β_F` "disagreement")
+
+### Decision
+
+Withdraw the first report's headline disagreement D1. Supersede the
+`INCONCLUSIVE` `β_F` claim; the recomputation **agrees** with Paper 2 v2.15.
+
+### Reason
+
+Comparison across normalizations. The paper source
+(`paper/emergent_gr_paper_v2_15.tex`) — unavailable at the first comparison —
+states `β_B^cont = 1/(384π²)` (eq. `betaB`) and `β_F = 2β_B = 1/(192π²)`
+(line 1155). The paper's `β_F/β_B = 2`, identical to this repo's. The
+"factor 2" is a *uniform* normalization of `Z` (coefficient of `R` in the action
+vs axis-TT slope per unit `4N`), not a species-content (Weyl-vs-Dirac)
+difference: this repo's `β_B` is *also* `2×` the paper's, so species content
+cannot explain it. Consequently the `1/6` vs `1/3` for `4G_cβ_F` was an artifact
+of mixing this repo's `Z` (for `β_F`) with the paper's `G_c` — retracted.
+
+### Evidence
+
+`scripts/normalization_chain.py` (gate `P2-NORM-01`): `R_Z = 2` uniformly across
+scalar, Dirac, Proca; `4G_cβ_F = 1/6` in the paper's convention.
+
+### Consequences
+
+`P2-C2` and `P2-C8` move from `INCONCLUSIVE` to `SUPPORTED`. The physics is
+unchanged: `ξ_ind < 0` for `L ≫ 1` in either convention.
+
+### Supersedes
+
+The `β_F`/`4G_cβ_F` disagreement recorded in the 2026-07-17 verification-outcome
+entry above. That entry is preserved, not deleted.
+
+### Related gate
+
+`P2-NORM-01`, `P2-HK-01`.
+
+### Related branch and files
+
+`results/comparison/PAPER_COMPARISON.md`, `derivations/P2-NORM-01_normalization_chain.md`.
+
 ## Entry template
 
 ```markdown

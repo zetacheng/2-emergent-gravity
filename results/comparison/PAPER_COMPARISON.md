@@ -1,127 +1,75 @@
-# Paper 2 v2.15 — independent recomputation vs. paper claims
+# Paper 2 v2.15 — independent recomputation vs the source
 
-**Gate scripts (all committed before this comparison):** `P2-HK-01`,
-`P2-GAP-01`, `P2-BETA-01`. This file is the Task-6 comparison and is a
-*separate, later* commit than the gates, per pre-registration discipline.
+**Source now imported:** `paper/emergent_gr_paper_v2_15.tex` (1833 lines). Every
+"Paper 2 v2.15" cell below is a quotation from that file with its equation or
+line label — no longer an inference. This supersedes the first comparison, which
+was made without the source and contained an inference error (see "Retractions").
 
-**Paper source.** `paper/emergent_gr_paper_v2_15.tex` was **not supplied** in
-this repository at comparison time (only `paper/README.md` and
-`paper/figures/` are present). The comparison is therefore made against the
-specific numerical claims of Paper 2 v2.15 as transcribed into the task
-specification and the reviewer-confirmed algebra. This substitution is recorded
-here and in `DECISION_LOG.md`; if the `.tex` is later imported, the table
-should be re-checked against it directly.
+## Retractions (read first)
 
----
+- **D1 (Weyl vs Dirac `β_F`) is WITHDRAWN.** It was an artifact of comparing the
+  paper's `β_F` against *this repo's* `β_B`, which are in different `Z`
+  normalizations. The paper states `β_B^cont = 1/(384π²)` (eq. `betaB`) and
+  `β_F = 2β_B = 1/(192π²)` (line 1155): **`β_F/β_B = 2`, identical to this
+  repo's.** There is no species-content disagreement. The real effect is a
+  *uniform* factor 2 in the definition of `Z` (see gate `P2-NORM-01`).
+- **D2 (lattice `I_0` ≈1.2% gap) is WITHDRAWN.** It compared this repo's
+  *massless* `I_0` against the paper's value at reference mass `ma=0.02`. At
+  matched mass they agree to `<0.1%` (see gate `P2-GAP-01` below).
+- The earlier "Agree: `β_B` continuum exact" row was **wrong**: it compared this
+  repo's lattice `β_B` to this repo's own continuum value (an internal check),
+  not to the paper. Corrected below.
 
-## ⚠️ DISAGREEMENTS (stated first)
+## Block I — convention-independent quantities (comparable as they stand)
 
-### D1 — `β_F` differs by exactly a factor of 2 (Dirac vs Weyl). LOAD-BEARING.
+| Quantity | Paper 2 v2.15 (quoted) | This repository | Agreement |
+|---|---|---|---|
+| `β_F/β_B` | `β_F = 2β_B` (line 1155) → `2` | `2` (exact) | **agree** |
+| `β_V/β_B` (analytic) | `−3` (eq. `betaVlat`; `β_V=−3β_B`, line 1287) | `−3` (exact) | **agree** |
+| `β_B(ξ)/β_B` | `β_B(ξ)=(1−6ξ)/(384π²)` (line 1171) → `1−6ξ` | `1−6ξ` (exact) | **agree** |
+| `I_0` lattice (Wilson `r=1`, `ma=0.02`) | `0.0844` (line 1229); `0.0845` at `ma=0.02` on `64⁴` (line 1346) | `0.084341` (inf-vol), `0.084465` (`64⁴`) | **agree (<0.1%)** |
+| `a_1` bundle traces | (used implicitly) scalar `+R/6`, Dirac `−R/3`, vector `−R/3` | same | **agree** |
+| survival structure | `ξ_eff>1/6 ⟹ L<2 ⟹ m>e⁻¹Λ` (lines 1238–1240) | `L<2 ⟹ m>0.368Λ` (paper conv.) | **agree** |
 
-Independent heat-kernel computation (`P2-HK-01`), for a standard **4-component
-Dirac** fermion:
+## Block II — convention-dependent quantities (comparable only in one stated `Z` normalization)
 
-```
-β_F = −1/(96 π²)   (magnitude 1.055e-3),   β_F/β_B = 2.
-```
+The paper's `Z` is "the axis-TT induced kinetic coefficient per unit `4N`"
+(lines 1209–1210). This repo's `Z` is the coefficient of `∫√g R` in the action
+(`=1/(16πG_ind)`). They differ by a uniform factor `R_Z=2` (gate `P2-NORM-01`).
+Rows below are shown in **both** normalizations.
 
-Paper 2 v2.15 uses `β_F = 1/(192 π²)` (magnitude 5.277e-4), i.e. `β_F/β_B = 1`.
-The two disagree by **exactly a factor of 2**.
-
-- **The disagreement:** the Seeley–DeWitt `a_1` trace for a Dirac operator is
-  `tr a_1 = −R/3` (`dim = 4`, `E = R/4·𝟙₄`), giving `β_F = −1/(96π²) = 2 β_B`.
-  This is unambiguous for a 4-component Dirac fermion.
-- **Candidate reconciliation (recorded separately, not adopted):** the paper's
-  value equals the contribution of a single **2-component Weyl** fermion
-  (`dim = 2`, `tr a_1 = −R/6`, `β = −1/(192π²) = β_B`). If Paper 2's "fermion"
-  and its "per unit 4N" normalization count 2-component (Weyl) fields, the
-  paper value follows. The physical model ("lattice fermion fields", Wilson) is
-  naturally 4-component Dirac, which would make the paper's `β_F` too small by
-  2. **Reviewer must adjudicate the intended fermion content.**
-
-**Downstream propagation of D1 (this is why it is load-bearing):**
-
-| Quantity | Paper (Weyl `β_F`) | This repo (Dirac `β_F`) |
-|---|---|---|
-| `4 G_c β_F` (continuum, `G_c=8π²`) | `1/6` | `1/3` |
-| `4 G_c β_F` (lattice, `G_c=5.86`) | `0.0125` | `0.0247` |
-| survival `ξ_ind = 4G_cβ_F(3−L) > 1/6` ⟹ | `L < 2` ⟹ `m > 0.368 Λ` | `L < 2.5` ⟹ `m > 0.287 Λ` |
-
-The paper's headline **survival window** (`m > e⁻¹Λ ≈ 0.368 Λ`) depends on
-`4G_cβ_F = 1/6`, which holds only with the Weyl-normalized `β_F`. With a Dirac
-fermion the window widens to `m > 0.287 Λ`. The reviewer-confirmed *algebra*
-(`4G_cβ_F = 1/6 ⟹ L < 2`) is correct; what it consumes — the value of `β_F` —
-is what disagrees.
-
-### D2 — lattice `I_0` (and hence lattice `G_c`) differ by ≈1.2%.
-
-```
-I_0^lat  = 0.085388 ± 0.00002   (this repo)   vs   0.0844   (paper)   → +1.17%
-G_c^lat  = 5.8556               (this repo)   vs   5.924    (paper)   → −1.15%
-```
-
-My value is numerically robust (grid refinement `n=64,96,128`; straight-vs-
-offset-grid spread `3e-6`), so the ≈1.2% gap is **outside** my numerical
-uncertainty. It is small and plausibly a minor integrand-definition or
-numerical-precision difference in the paper (which itself quotes agreement "at
-the 1% level"), but it is a genuine, recorded disagreement, not a match.
-
----
-
-## Comparison table
-
-| Quantity | Paper 2 v2.15 | This repository | Agreement | Notes |
+| Quantity | Paper 2 v2.15 (quoted) | This repo (own `Z`) | This repo (paper `Z`, ÷2) | Agreement |
 |---|---|---|---|---|
-| `β_B` (continuum, magnitude) | `1/(192π²)=5.28e-4` | `1/(192π²)=5.28e-4` (exact) | **agree** | exact; tol = exact rational |
-| `β_B` (lattice) | "5% of continuum" | `5.44e-4` (`+3.1%` of continuum) | **agree** | within my `±9%` fit systematics; better than paper's 5% |
-| `β_F/β_B` | `1` (from `β_F=1/192π²`) | `2` | **DISAGREE** | see D1; Dirac vs Weyl factor 2 |
-| `β_V/β_B` (analytic) | `−3` | `−3` (exact) | **agree** | exact; Proca det structure |
-| `β_V/β_B` (lattice) | `−3.2(5)` | not tested | **not tested** | see "Not computed" below |
-| `β_B(ξ)` | (not transcribed) | `−(1−6ξ)/(192π²)`, ratio `1−6ξ` | **not tested** | paper number not available; conformal null at `ξ=1/6` |
-| `G_c` (continuum) | `8π²/Λ²` (implied) | `8π²/Λ²`, `c=8` (exact) | **agree** | exact under `1=2G_cI_0` |
-| `G_c` (lattice) | `5.924` | `5.8556` | **DISAGREE (≈1.2%)** | see D2 |
-| `I_0` (lattice) | `0.0844` | `0.085388(20)` | **DISAGREE (≈1.2%)** | see D2; tol = my numeric unc. `2e-5` |
-| `I_0` (continuum) | (only lattice given) | `1/(16π²)=6.33e-3` | **not tested** | consistent with derivation |
-| `4 G_c β_F` (continuum) | `1/6` | `1/3` (Dirac) / `1/6` (Weyl) | **DISAGREE** | inherits D1 factor 2 |
-| `4 G_c β_F` (lattice) | `0.0125` | `0.0247` (Dirac) / `0.0124` (Weyl) | **DISAGREE** | inherits D1 factor 2 |
-| `ξ_ind` survival window | `m > 0.368 Λ` | `m > 0.287 Λ` (Dirac) / `0.368 Λ` (Weyl) | **DISAGREE** | inherits D1 factor 2 |
+| `β_B` continuum | `1/(384π²)=2.64e-4` (eq. `betaB`) | `1/(192π²)=5.28e-4` | `2.64e-4` | **agree** (same in paper `Z`) |
+| `β_B` lattice | `+2.50(13)e-4` (eq. `betaB`) | `5.44e-4` | `2.72e-4` | **agree** (`~5%` vs paper's cont., matching its own `5%`) |
+| `β_F` | `1/(192π²)=5.28e-4` (line 1155) | `1/(96π²)=1.06e-3` | `5.28e-4` | **agree** |
+| `β_V` (analytic) | `−3β_B=−1/(128π²)=−7.92e-4` (line 1287) | `1/(64π²)=1.58e-3` | `−7.92e-4` | **agree** (same in paper `Z`) |
+| `G_c` continuum | `8π²/Λ²` (line 1221) | `8π²/Λ²` | (`Z`-independent) | **agree** |
+| `G_c` lattice | `5.93` (lines 1229, 1351) | `5.928` (at `ma=0.02`) | (`Z`-independent) | **agree** |
+| `4G_cβ_F` continuum | `1/6` (line 1222) | `1/3` | `1/6` | **agree** in paper `Z` |
+| `4G_cβ_F` lattice | `0.013` (line 1230) | `0.025` | `0.012` | **agree** in paper `Z` |
+| `ξ_ind` survival | `m>0.37Λ` (line 1239) | `m>0.287Λ` | `m>0.368Λ` | **agree** in paper `Z` |
 
-### Tolerance justifications
+Tolerance justifications: Block-I exact rows are symbolic equality; `I_0` matched
+to `<0.1%` (this repo's numerical scatter `2e-5`); `β_B` lattice compared as a
+`~few-%` extraction. Block-II rows agree exactly once expressed in the paper's
+`Z` normalization; the apparent "`1/3` vs `1/6`" is entirely the `R_Z=2`
+convention, not physics.
 
-- **Exact rows** (`β_B` cont., `β_V/β_B`, `G_c` cont., `β_F/β_B`): symbolic;
-  agreement means exact equality of rationals, disagreement means unequal
-  rationals. No numerical tolerance.
-- **`I_0`/`G_c` lattice:** tolerance = my own numerical uncertainty `2e-5`
-  (`0.02%`), from grid refinement + offset-grid spread. The paper values lie
-  `~1.2%` away, i.e. `~50σ` outside — recorded as disagreement.
-- **`β_B` lattice:** tolerance = my own fit-systematics spread `±0.5e-4`
-  (`±9%`), from window/ansatz variation. The continuum value lies `+3.1%`
-  inside — recorded as agreement.
-- None of these tolerances was chosen to make a paper number land inside; each
-  is derived from this repository's numerics.
+## Not computed this sweep
 
-## Agreements (summary)
+- **Lattice `β_V/β_B = −3.2(5)`** (eq. `betaVlat`): not reproduced. Its
+  *discriminating power* is analyzed in gate `P2-BETAV-CIRC-01` (the target
+  ratio is structure-dependent `−(k+2)`, so the test is not degenerate; full
+  lattice reproduction is `OPEN`).
 
-`β_B` (continuum, exact), `β_B` (lattice, few-percent), `β_V/β_B = −3` (exact),
-`G_c` continuum (`c=8`, exact). The bosonic sector reproduces the paper
-cleanly.
+## Bottom line (corrected)
 
-## Not computed this sweep (see gate `P2-BETAV-01`)
-
-- **Lattice `β_V/β_B` (`−3.2(5)`).** A genuine lattice extraction requires
-  putting a massive vector on the lattice and reading the induced graviton
-  coefficient from a curved/weak-field background including the longitudinal
-  (Stueckelberg) modes — where the paper reports lattice artifacts. A flat-space
-  tadpole would only re-derive the analytic `−3` by construction (the flat-space
-  loop integral is species-independent; the ratio lives entirely in the exact
-  `a_1` traces), adding nothing. Deferred as a separate sweep. Evidence status:
-  "paper text only, no archived provenance."
-
-## Bottom line
-
-The **bosonic** inputs (`β_B`, `β_V/β_B`, continuum `G_c`) reproduce Paper 2
-cleanly. The **fermionic** input `β_F` disagrees by exactly a factor of 2
-(Dirac vs Weyl), and because `β_F` feeds `4G_cβ_F` and the survival window,
-that factor of 2 propagates into the paper's headline structural claim. The
-lattice `I_0`/`G_c` differ at the `~1.2%` level. These disagreements are left
-for reviewer adjudication; no convention was retrofitted to erase them.
+The independent recomputation **confirms Paper 2 v2.15** across the board once
+normalizations and the `I_0` evaluation mass are matched: every
+convention-independent quantity agrees (ratios, `I_0`, survival structure), and
+every convention-dependent quantity agrees in the paper's own `Z` normalization.
+The two open items are **bookkeeping** (the `R_Z=2` `Z`-definition, `P2-NORM-01`)
+and a **methodological audit** (the `β_V` discriminating-power / circularity
+question, `P2-BETAV-CIRC-01`) — neither disturbs the paper's central negative
+conclusion that the minimal model fails its own survival condition.
