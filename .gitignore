@@ -11,3 +11,6 @@ build/
 Thumbs.db
 .idea/
 .vscode/
+
+# Regenerated (non-authoritative) gate outputs; raw/ is authoritative and committed
+results/*/regen/
