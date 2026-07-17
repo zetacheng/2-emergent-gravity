@@ -1,0 +1,30 @@
+{
+  "relation": "G_c = 1/(2 I_0), I_0 = untraced scalar bubble at chiral point",
+  "continuum": {
+    "I0": 0.006332573977646111,
+    "I0_exact": "Lambda^2/(16 pi^2)",
+    "Gc": 78.95683520871486,
+    "Gc_exact": "8 pi^2 / Lambda^2",
+    "c_in_c_pi2_over_Lambda2": 8.0
+  },
+  "lattice": {
+    "integrand": "1/(sum_mu sin^2 p_mu + (sum_mu (1-cos p_mu))^2)",
+    "convergence": {
+      "64": {
+        "shift_0.0": 0.08537317362850502,
+        "shift_0.25": 0.08538607432970619
+      },
+      "96": {
+        "shift_0.0": 0.08538273444702879,
+        "shift_0.25": 0.08538845793088061
+      },
+      "128": {
+        "shift_0.0": 0.08538607432970612,
+        "shift_0.25": 0.08538929179207777
+      }
+    },
+    "I0": 0.08538768306089195,
+    "I0_straight_vs_offset_spread": 3.2174623716546558e-06,
+    "Gc": 5.85564547574664
+  }
+}
