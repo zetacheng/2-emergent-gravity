@@ -1,0 +1,35 @@
+{
+  "convention": "beta_s = -p_s (4pi)^-2 (tr a_1 / R); K = 1/(16 pi^2)",
+  "beta": {
+    "scalar_min": {
+      "tr_a1_over_R": "1/6",
+      "beta_exact": "-1/(192*pi**2)",
+      "beta_as_c_over_pi2": "-1/192",
+      "beta_float": -0.0005277144981371759
+    },
+    "scalar_xi": {
+      "tr_a1_over_R": "1/6 - xi",
+      "beta_exact": "(6*xi - 1)/(192*pi**2)",
+      "beta_as_c_over_pi2": null,
+      "beta_float": null
+    },
+    "dirac": {
+      "tr_a1_over_R": "-1/3",
+      "beta_exact": "-1/(96*pi**2)",
+      "beta_as_c_over_pi2": "-1/96",
+      "beta_float": -0.0010554289962743518
+    },
+    "proca": {
+      "tr_a1_over_R": "-1/6",
+      "beta_exact": "1/(64*pi**2)",
+      "beta_as_c_over_pi2": "1/64",
+      "beta_float": 0.0015831434944115277
+    }
+  },
+  "ratios": {
+    "beta_F/beta_B": "2",
+    "beta_V/beta_B": "-3",
+    "beta_B(xi)/beta_B": "1 - 6*xi"
+  },
+  "proper_time_log_coefficient": "1"
+}
