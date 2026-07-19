@@ -174,6 +174,65 @@ The `I_0`/`G_c` disagreement (D2) in the 2026-07-17 verification-outcome entry.
 
 `scripts/gap_criticality.py`, `results/P2-GAP-01/`.
 
+## 2026-07-19 — Accept the Paper 2 normalization/gap/βV-circularity follow-up
+
+### Decision
+
+Accept the Paper 2 normalization, gap, and βV-circularity follow-up at the
+statuses currently recorded.
+
+### Reason
+
+Independent review confirmed:
+
+* D1 correctly retracted as convention mixing;
+* `P2-NORM-01` correctly resolves the factor of two as uniform `Z`-normalization
+  bookkeeping (`R_Z = 2`; paper `4 G_c β_F = 1/6` internally consistent);
+* `P2-GAP-01` correctly resolves the approximately `1.2%` discrepancy as a
+  matched-mass issue;
+* the analytic layer of `P2-BETAV-CIRC-01` is genuinely discriminating, with
+  `R(k) = -(k + 2)`;
+* the full lattice discrimination test has not been run, so the gate correctly
+  remains OPEN;
+* regression/mutation anchors are live;
+* the complete suite passes.
+
+### Evidence
+
+* `reviews/claude/2026-07-19-paper2-followup.md`;
+* branch `claude/paper-2-independent-verification-dysdp0` at
+  `de754ea6d7aff94c253b29bb80aea9ebb70cd54f`;
+* the relevant derivations, scripts, gate records, raw/processed results, and
+  tests already committed on that branch.
+
+### Consequences
+
+* the follow-up conclusions may be cited at their current statuses;
+* D1 must not be revived as a physical factor-of-two discrepancy;
+* `P2-BETAV-CIRC-01` remains OPEN;
+* Paper 3's numerical βV dependency remains unresolved/suspended;
+* `P3-C-004` remains unaffected;
+* nothing becomes VERIFIED;
+* the next scientific gate is the full lattice Proca discrimination run for
+  `k ≠ 1`.
+
+### Supersedes
+
+None, except that the D1 discrepancy is explicitly withdrawn by the
+already-recorded D1 retraction (the 2026-07-17 "Retract D1" entry above).
+
+### Related gate
+
+`P2-NORM-01`, `P2-BETAV-CIRC-01`, `P2-GAP-01`; and the D1 retraction recorded in
+the 2026-07-17 "Retract D1 (Weyl-vs-Dirac `β_F` \"disagreement\")" DECISION_LOG
+entry (no separate gate ID exists for D1).
+
+### Related branch and files
+
+`claude/paper-2-independent-verification-dysdp0`;
+`reviews/claude/2026-07-19-paper2-followup.md`, `DECISION_LOG.md`,
+`PROGRESS.md`, `HANDOFF.md`.
+
 ## Entry template
 
 ```markdown

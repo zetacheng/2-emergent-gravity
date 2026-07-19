@@ -6,7 +6,7 @@ Paper 2 — Emergent Gravity from Lattice Fermion Fields.
 
 ## Current version
 
-v2.15 (paper `.tex` not yet imported; see `MIGRATION.md` and
+v2.15 (paper `.tex` imported; see `MIGRATION.md` and
 `results/comparison/PAPER_COMPARISON.md`).
 
 ## Current scientific status
@@ -15,6 +15,11 @@ Independent verification sweep completed and, after importing the paper source,
 **re-adjudicated**: gates `P2-HK-01`, `P2-GAP-01`, `P2-BETA-01`, `P2-NORM-01`
 (PASS) and `P2-BETAV-CIRC-01` (OPEN). The recomputation **confirms Paper 2
 v2.15** once conventions are matched. No legacy source exists (`MIGRATION.md`).
+
+The normalization/gap/circularity follow-up has **one independent reviewer
+record and is accepted** (`reviews/claude/2026-07-19-paper2-followup.md`,
+`DECISION_LOG.md` 2026-07-19). Acceptance does not promote anything to
+`VERIFIED`. `P2-BETAV-CIRC-01` **remains OPEN**.
 
 ## Verified results
 
@@ -31,8 +36,12 @@ available (see `DECISION_LOG.md`). Superseded entries preserved.
 
 ## Active work
 
-`P2-BETAV-CIRC-01`: the full curved-background lattice Proca reproduction
-(discriminating-power / circularity of Finding 5) remains `OPEN`.
+The **full curved-background lattice Proca discrimination test with `k ≠ 1`**
+(the decisive `P2-BETAV-CIRC-01` layer: does the actual lattice extraction
+return `-(k+2)` or stay fixed near `-3`?) is the active/open scientific work.
+`P2-BETAV-CIRC-01` remains `OPEN`. Paper 3's numerical βV dependency remains
+unresolved/suspended (not cleared) until this test is completed;
+`P3-C-004` (`C_6 = -G_V/2`) is structurally independent and unaffected.
 
 ## Blocked items
 
@@ -41,9 +50,9 @@ available (see `DECISION_LOG.md`). Superseded entries preserved.
 
 ## Next administrative action
 
-Reviewer verdict on `P2-NORM-01` (accept the `Z` normalization mapping) and on
-whether to schedule the `P2-BETAV-CIRC-01` lattice reproduction.
+Schedule the full lattice Proca `k ≠ 1` discrimination run for
+`P2-BETAV-CIRC-01`.
 
 ## Last updated
 
-2026-07-17
+2026-07-19
