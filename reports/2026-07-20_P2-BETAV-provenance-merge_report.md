@@ -130,14 +130,31 @@ or altered during the merge.
 lattice value `−3.2(5)`.** That value remains unreproduced and without
 provenance; it must not be cited as validated numerical evidence.
 
-## 16. Merge execution record (filled after merge)
+## 16. Merge execution record
 
-- Reviewed scientific HEAD: `e6c9f5b`
-- Report-only successor HEAD (source branch): _to be recorded (§ finalize)_
-- Merge command: `git merge --no-ff gate/p2-betav-circ`
-- Merge commit SHA: _to be recorded_
-- Post-merge `main` SHA: _to be recorded_
-- Post-merge test count: _to be recorded_
-- Final `git status`: _to be recorded_
-- Remote branch state: _to be recorded_
-- Source branch intact: _to be recorded_
+- Reviewed scientific HEAD (source): `e6c9f5b9d8f7917966ec534095afb55a78ce5b19`
+- Report-only successor HEAD (source branch): `ca334fe0361d76fadb68e1866f71f0c40a4ed858`
+- Merge command used: `git checkout main && git pull --ff-only origin main &&
+  git merge --no-ff gate/p2-betav-circ -m "merge: land the Paper 2 betaV
+  provenance adjudication"` (no squash)
+- Merge commit SHA: `30062c4cace7918173d7f44a558fb84a37392b57`
+- Post-merge `main` SHA (at merge): `30062c4cace7918173d7f44a558fb84a37392b57`
+  (this report's own finalize commit is a report-only successor on top of it;
+  its SHA is the resulting `main` HEAD, reported in the terminal summary).
+- Post-merge test count: **22 passed, 2 deselected** (`python -m pytest tests
+  -q`; the 2 deselected are `@pytest.mark.slow`).
+- Final `git status`: clean (`git status --porcelain` empty).
+- Remote branch state after push:
+  `main` = the finalize-commit HEAD; `gate/p2-betav-circ` = `ca334fe`
+  (**intact, not deleted**); `claude/paper-2-independent-verification-dysdp0`
+  and `sea-ice/gate-stubs` unchanged.
+- Source branch intact: yes — `gate/p2-betav-circ` is preserved at `ca334fe`.
+- No PR opened.
+
+### Post-merge gate statuses on `main` (verified)
+
+- `P2-BETAV-CIRC-01` = `SUSPENDED`
+- `P2-BETAV-ASSEMBLY-01` = `PASS`
+- `P2-BETAV-RECON-01` = `PROPOSED`
+- `β_V/β_B = −3.2(5)` labelled an unreproduced paper value; not presented as
+  validated numerical evidence.
