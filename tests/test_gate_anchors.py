@@ -182,3 +182,33 @@ def test_betav_mutation_not_degenerate():
     # Mutation-detection companion: if the target were "-3 regardless" the test
     # would be circular. It is not: k=1 and k=2 give different ratios.
     assert float(bvd.ratio_V_over_B(1)) != float(bvd.ratio_V_over_B(2))
+
+
+# ===========================================================================
+# P2-BETAV-ASSEMBLY-01 — determinant bookkeeping regression (NOT the CIRC test)
+# ===========================================================================
+from scripts import betav_assembly as bva  # noqa: E402
+
+
+def test_assembly_ratio_reads_k_and_C_cancels():
+    # For an arbitrary shared C the ratio is -(k+2), independent of C (the
+    # shared integral cancels). Two different C's must give the same ratio.
+    for k, want in ((0.0, -2.0), (1.0, -3.0), (2.0, -4.0), (3.0, -5.0)):
+        r1 = bva.ratio(6.3e-3, k)
+        r2 = bva.ratio(9.9e-3, k)
+        assert r1 == pytest.approx(want, abs=1e-12)
+        assert r1 == pytest.approx(r2, abs=1e-12)  # C cancels -> grid-independent
+
+
+def test_assembly_mutation_freezes_to_minus3():
+    # Mutation on the scalar determinant POWER (the projection analogue):
+    # freezing it to 1 collapses every k to -3, so the k-scan anchor fails.
+    for k in (0.0, 2.0, 3.0, 0.5):
+        assert bva.ratio(6.3e-3, k, freeze_scalar_power=True) == pytest.approx(
+            -3.0, abs=1e-12
+        )
+    # Companion: the mutated value differs from the true target for k != 1,
+    # proving the anchor discriminates a hardcoded projection.
+    assert bva.ratio(6.3e-3, 2.0, freeze_scalar_power=True) != pytest.approx(
+        -4.0, abs=1e-6
+    )

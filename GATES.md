@@ -393,6 +393,73 @@ in `MIGRATION.md`, that repo not edited.
 ### Date closed
 Open.
 
+## P2-BETAV-ASSEMBLY-01 — Determinant-bookkeeping regression (does NOT close CIRC-01)
+
+Status: PASS (implementation regression only; does not test the historical projection)
+
+### Scientific question
+Given the shared scalar lattice tadpole integral and the Proca determinant
+powers, does the assembly code preserve the `k`-dependence correctly, with no
+hardcoded `−3`? **This is an implementation-regression gate, not a
+discrimination test, and it does NOT close `P2-BETAV-CIRC-01`.**
+
+### Scope
+The `k`-generalized determinant assembly `det^{−1/2}(Δ^{(1)})·det^{+1/2}(Δ^{(0)})^k`
+realized on the one shared scalar lattice tadpole `⟨φ²⟩_lat`.
+
+### Locked assumptions
+`CONVENTIONS.md`; `P2-HK-01` per-factor `a_1` traces; `P2-BETA-01` tadpole.
+
+### Inputs
+Shared tadpole log coefficient `C`; determinant exponent `k∈{0,1,2,3,½}`.
+
+### Analytic anchors
+`β_B=−C/12`, `β_V(k)=C(2+k)/12`, `R_k=−(k+2)` (`C` cancels).
+
+### Regression anchors
+`scripts/betav_assembly.py`: `ratio(C,k)=−(k+2)` for all `k`, ratio variant
+spread `≤9e-16`; mutation `freeze_scalar_power=True` collapses every `R_k→−3`.
+
+### Kill criterion
+Assembly returns a `k`-independent ratio (e.g. hardcoded `−3`) for the
+un-mutated code ⟹ implementation bug. (This gate cannot pass/fail the
+*historical* circularity question — that is `P2-BETAV-CIRC-01`.)
+
+### Required computations
+`k`-scan on the shared lattice integral + mutation. Done.
+
+### Required deliverables
+`derivations/P2-BETAV-ASSEMBLY-01_bookkeeping_regression.md`,
+`scripts/betav_assembly.py`, `results/P2-BETAV-ASSEMBLY-01/`.
+
+### Result
+`R_k=−(k+2)` exactly (`k=2→−4`), ratio variant spread `≤9e-16` because the
+shared integral `C` cancels (fully correlated numerator/denominator). Mutation
+(freeze scalar power=1) collapses every `R_k` to `−3`. **Explicit caveat:** the
+`C`-cancellation is precisely why this construction has no power to test the
+historical Finding 5 projection; it verifies only that the code reads `k`.
+
+### Reviewer verdict
+Pending. PASS on its own (implementation-only) terms. Does **not** close
+`P2-BETAV-CIRC-01` and does **not** show any real pipeline is non-circular.
+
+### Consequences
+None for the historical circularity question; that remains `SUSPENDED`.
+
+### Repository branch
+`gate/p2-betav-circ`
+
+### Relevant files
+`scripts/betav_assembly.py`,
+`derivations/P2-BETAV-ASSEMBLY-01_bookkeeping_regression.md`,
+`results/P2-BETAV-ASSEMBLY-01/`.
+
+### Date opened
+2026-07-19
+
+### Date closed
+2026-07-19 (implementation regression; `P2-BETAV-CIRC-01` remains SUSPENDED)
+
 ## Sea–Ice programme gate stubs (PROPOSED)
 
 The gates below are **stubs** created from the programme Sea–Ice research map

@@ -31,7 +31,7 @@ matched.
 | P2-C8 | `4G_cβ_F = 1/6` (paper `Z` convention) and `ξ_ind<0` for `L≫1` | SUPPORTED | `P2-NORM-01`; `1/6` in paper `Z`; the report's `1/3` was convention-mixing | P2-NORM-01 | survival condition | 2026-07-17 |
 | P2-C9 | `β_V/β_B = −3.2(5)` lattice (Finding 5 value) | PROPOSED | not computed this sweep; paper text only, no archived provenance | P2-BETAV-CIRC-01 | Finding 5 (lattice Proca) | 2026-07-17 |
 | P2-C10 | the `β`/`G` factor 2 is a uniform (`R_Z=2`) `Z` normalization, not physics | SUPPORTED | `P2-NORM-01`; `R_Z=2` for scalar/Dirac/Proca | P2-NORM-01 | Findings 3–4 | 2026-07-17 |
-| P2-C11 | Finding 5's `β_V` extraction target is structure-dependent `−(k+2)` (so the test is not degenerate) | SUPPORTED | `P2-BETAV-CIRC-01`; analytic layer | P2-BETAV-CIRC-01 | Finding 5 | 2026-07-17 |
+| P2-C11 | the `k`-generalized determinant assembly preserves `k`-dependence on the shared lattice tadpole (`R_k=−(k+2)`, no hardcoded `−3`) — bookkeeping, NOT a test of the historical projection | SUPPORTED | `P2-BETAV-ASSEMBLY-01`; `C` cancels, ratio spread `≤9e-16`; mutation collapses to `−3` | P2-BETAV-ASSEMBLY-01 | Finding 5 | 2026-07-19 |
 | P2-C12 | whether the paper's *lattice* `β_V` pipeline tracks the structure (non-circular) | PROPOSED | full curved-lattice Proca reproduction OPEN; not run | P2-BETAV-CIRC-01 | Finding 5 | 2026-07-17 |
 
 ## Notes
