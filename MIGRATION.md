@@ -1,12 +1,37 @@
 # Migration Record
 
-## There is no legacy source
+## Rescope (2026-07-20): the gravity-kernel engine is recovered
+
+**Update.** The original blanket statement below — "Paper 2 has no legacy
+repository, no archived script … nothing can be re-run" — is now **partially
+superseded**. The PI recovered the historical lattice **gravity-kernel engine**
+(fermion/scalar/⟨TT⟩) in 2026; it is landed verbatim in
+`scripts/recovered_2026/`, it **runs**, and it **reproduces** Paper 2's Finding
+4 sign structure (`Z_h>0`, `ξ_ind<0`) and the light-cone universality numbers
+(`speed_check`, quantitatively) — see gate `P2-GRAV-ENGINE-RECOVERED-01` and
+`results/recovered-2026/REPRODUCTION.md`.
+
+**Scope of the rescope:** the recovery covers the **gravity-kernel sector only**
+(fermion/scalar/TT graviton kernel, induced `Z_h`/`M_Pl²`, light-cone). It does
+**not** cover **βV** (the Proca sector): the historical `proca_loop.py` is
+incomplete (missing its `mlog_coeff` dependency), is not part of this recovery,
+and `P2-BETAV-CIRC-01` remains `SUSPENDED`. The heat-kernel/gap/`I_0`/`β_B`
+quantities were separately established by independent recomputation (this
+repository's earlier gates), not by the recovered engine.
+
+**Honesty note:** the recovery **enables** verification; it does **not** by
+itself upgrade or downgrade any historical claim. No verdict is changed by the
+act of recovery.
+
+## There is no legacy source (original statement, now scoped by the rescope above)
 
 This file exists to state plainly, and to place on the permanent record, a fact
 that distinguishes Paper 2 from the other papers in the programme:
 
 **Paper 2 has no legacy repository, no archived script, no stored result file,
-and no reproducible provenance for its headline numbers.**
+and no reproducible provenance for its headline numbers.** *(Scoped 2026-07-20:
+true as originally written, except that the gravity-kernel engine has since been
+recovered and re-runs — see the rescope above. βV remains without provenance.)*
 
 Papers 3, 4, and 5 were populated by *migrating* a pre-existing legacy code
 base: their numbers could be traced to a script and re-run. Paper 2 cannot.

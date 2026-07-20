@@ -839,6 +839,96 @@ cosmology (`P4-SEA-ICE-01` onward). FAIL terminates the simplest framework
 ### Date closed
 Open (PROPOSED stub).
 
+## P2-GRAV-ENGINE-RECOVERED-01 — Recovered historical gravity engine (Class A)
+
+Status: PASS (recovered originals run and reproduce the paper's sign structure
+and light-cone numbers within the stated tolerance below)
+
+### Scientific question
+Do the historical lattice gravity-engine files, recovered by the PI in 2026
+(previously believed lost), run and reproduce Paper 2's Finding 3/4 numbers —
+so they count as genuine provenance, not just "a file"?
+
+### Scope
+The five Class-A **runnable** originals in `scripts/recovered_2026/`:
+`seagull_check.py` (root engine), `boson_loop.py`, `tt_check.py`,
+`speed_check.py`, `structure_decomp.py`. The Class-B `proca_loop.py` (βV,
+incomplete) is **excluded** and unaffected.
+
+### Locked assumptions
+Files landed **verbatim** (unedited, hash-pinned); reproduction targets
+pre-registered from `paper/emergent_gr_paper_v2_15.tex` before running; nothing
+tuned to match.
+
+### Inputs / sha256
+- `seagull_check.py` `6ec034e5a30e24d205c43c7dd0ea39c90a89f67c9db0da6e734a68862acefd90`
+- `boson_loop.py` `32d6a4e0b9cca8ec4debb80758f77d0574d98a299492cb1ab9cfe2fdd26c08c2`
+- `tt_check.py` `a40592a3b320cd9f118b3d96bd61abb10d5b20087d6b7a201dae5deabf90ba00`
+- `speed_check.py` `8a374601161dd324795c2f1c9f7cc9d48031d83c5cc05e9896ae1e2814b1044c`
+- `structure_decomp.py` `87d311fa4d86bb1c6862ace85bdd2c4a232db4f44e1662696f46c7226675fb9a`
+
+### Analytic anchors
+`speed_check`: `c_χ²−1≈0` (dim-4 protected), `ξ_χ=−0.078`, `ξ_f=−0.250`,
+`Δξ=+0.17` (Case A); `c_χ²={1.22,1.42,2.44,3.77}` (Case B).
+`seagull_check`/`tt_check`/`boson_loop`: `Z_h>0`, `xi_h<0` (Finding 4).
+
+### Regression anchors
+`scripts/recovered_2026/reproduce_check.py`; `results/recovered-2026/REPRODUCTION.md`.
+
+### Kill criterion
+A recovered file fails to run, or a checked quantity has the wrong sign vs the
+paper ⟹ that file recorded as "recovered but unverified" (not silently landed).
+
+### Required computations
+Run each file's `run()`/`part_A`/`part_B` at a representative grid; compare to
+pre-registered targets. Done.
+
+### Required deliverables
+`scripts/recovered_2026/` (files + `PROVENANCE.md` + `reproduce_check.py`),
+`results/recovered-2026/REPRODUCTION.md`.
+
+### Result / reproduction (with stated tolerance)
+- **`speed_check` — reproduces quantitatively.** Case A to machine precision
+  (`c_χ²−1=−5.46e-13`; `ξ_χ=−0.0777`, `ξ_f=−0.250`, `Δξ=+0.172`); Case B to
+  `≤2.6%` (`1.251,1.421,2.438,3.774` vs `1.22,1.42,2.44,3.77`). Tolerance: `<1%`
+  (Case A dim-6), `≤5%` (Case B, finite-`n`).
+- **`seagull_check` — reproduces Finding 4 sign structure.** `Z_h=+1.48e-3>0`;
+  `xi_h<0`, converging to `−1/6` (`n=8→−0.109`, `n=16→−0.142`). Residual: `~15%`
+  finite-`n` gap to exact `−0.167` at `n≤16` (recorded, trend-consistent). The
+  paper itself flags the `Λ²`-level `Z_h`/`c₂` as scheme-dependent and `c₂>0` as
+  a defining assumption (lines 722–739); the reproduced content is the
+  sign/structure.
+- **`tt_check`** (bubble-only): `Z_h>0`, exact isotropy, `ξ_f=−0.250`.
+- **`boson_loop`**: `Z_cov^B>0`, internal const-`h` validation to `~1e-8`.
+- **`structure_decomp`**: decomposition tool; imports and its projector basis
+  computes (no standalone `run()`).
+- A full βV/Finding-3 β-coefficient mass-scan **through these engines** is not
+  performed here (β is covered by `P2-BETA-01`); the engines are consistent with
+  it. No file was "recovered but unverified".
+
+### Reviewer verdict
+Pending. `PASS`: all Class-A originals run and reproduce the paper's sign
+structure; `speed_check` reproduces quantitatively. Residual finite-`n` gap on
+`seagull_check`'s `xi_h` magnitude to `−1/6` recorded, not hidden.
+
+### Consequences
+Provides genuine, runnable provenance for the gravity-kernel sector. Partially
+supersedes `MIGRATION.md`'s "nothing can be re-run" (gravity sector only); does
+not touch βV (`P2-BETAV-CIRC-01` stays `SUSPENDED`). No historical claim
+upgraded/downgraded by the recovery itself.
+
+### Repository branch
+`recover/lattice-gravity-engine`
+
+### Relevant files
+`scripts/recovered_2026/`, `results/recovered-2026/REPRODUCTION.md`, `MIGRATION.md`.
+
+### Date opened
+2026-07-20
+
+### Date closed
+2026-07-20 (recovery + reproduction; reviewer adjudication pending).
+
 ## Gate template
 
 ```markdown
