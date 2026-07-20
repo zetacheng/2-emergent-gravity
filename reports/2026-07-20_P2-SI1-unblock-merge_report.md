@@ -114,14 +114,33 @@ This task authorizes **SI-1 governance progression only**. It does **not**
 authorize SI-2 numerical execution, which stays gated on `P2-BETAV-RECON-01 =
 PASS` or a frozen pre-registered Paper 3 analytic vector path.
 
-## 19. Merge execution record (filled after merge)
+## 19. Merge execution record
 
-- Merge command: `git merge --no-ff gate/p2-si1-unblock -m "merge: land the
-  SI-1 operational dependency clarification"`
-- Merge commit SHA: _to be recorded_
-- Post-merge `main` SHA: _to be recorded_
-- Post-merge test results: _to be recorded_
-- Final `git status`: _to be recorded_
-- Source branch HEAD / remote SHA / intact: _to be recorded_
-- `--no-ff` used / no PR / no scientific file changed during merge: _to be recorded_
-- SI-1 operationally unblocked on main / SI-2 still blocked: _to be recorded_
+- Merge command used: `git checkout main && git pull --ff-only origin main &&
+  git merge --no-ff gate/p2-si1-unblock -m "merge: land the SI-1 operational
+  dependency clarification"` (no squash).
+- Merge commit SHA: `dc4ab9e7dfb21ddb0428d688bb257f2178da7f0a`
+  (two parents: `23f8b79` main + `c1f1bec` source — a genuine `--no-ff` merge).
+- Post-merge `main` SHA (at merge): `dc4ab9e7dfb21ddb0428d688bb257f2178da7f0a`
+  (this report's finalize commit is a report-only successor on top; its SHA is
+  the resulting `main` HEAD, reported in the terminal summary).
+- Post-merge test results: `python -m pytest tests -q` → **31 passed, 2
+  deselected**; `-m "slow or not slow"` → **33 passed**. Counts unchanged from
+  the source branch (no new tests on main).
+- Final `git status`: clean (`git status --porcelain` empty).
+- Source branch HEAD: `c1f1bec27085335b077dbdd26cb460f994acffd6`; remote
+  `origin/gate/p2-si1-unblock` = `c1f1bec` (identical). **Source branch remains
+  intact — not deleted.**
+- `--no-ff` used: yes. **No PR opened.** No scientific file (`scripts/`,
+  `results/*/raw/`, `paper/`, `CLAIMS.md`) was changed during the merge task.
+- **SI-1 is now operationally unblocked on `main`.** **SI-2 numerical execution
+  remains blocked** pending `P2-BETAV-RECON-01 = PASS`, or a frozen
+  pre-registered Paper 3 analytic vector path
+  (`P3-C-001` / `P3-FIERZ-01` @ `8c363ef08368f5c022278ea5f36e01496be3d5ca`).
+
+### Post-merge gate statuses on `main` (verified)
+
+- `P2-BETAV-CIRC-01` = `SUSPENDED`
+- `P2-BETAV-RECON-01` = `PROPOSED`
+- `β_V/β_B = −3.2(5)` — unreproduced, quarantined, not validated evidence.
+- No `CLAIMS.md` row is `VERIFIED`; no historical claim upgraded or downgraded.
