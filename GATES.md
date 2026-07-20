@@ -393,6 +393,235 @@ in `MIGRATION.md`, that repo not edited.
 ### Date closed
 Open.
 
+## Sea–Ice programme gate stubs (PROPOSED)
+
+The gates below are **stubs** created from the programme Sea–Ice research map
+(`0-programme:sea-ice/SEA_ICE_RESEARCH_MAP.md`, snapshot 2026-07-19,
+re-confirmed against this `GATES.md` before creation — no ID collision with
+`P2-HK-01`, `P2-GAP-01`, `P2-BETA-01`, `P2-BETAV-01`, `P2-NORM-01`,
+`P2-BETAV-CIRC-01`). Each is the real, paper-owned object behind a Sea–Ice
+`SI-x` routing alias; the programme repo owns no evidence.
+
+**CLAIMS↔GATES note.** These gate IDs have **no** claim rows in `CLAIMS.md`
+yet, and none is added here. A claim appears only when a gate is actually
+run. The CLAIMS↔GATES guard (`tests/test_repository_structure.py ::
+test_every_cited_gate_id_has_a_gates_heading`) checks the CLAIMS→GATES
+direction only — every gate ID *cited in* `CLAIMS.md` must have a heading
+here — so a gate with no backing claim is tolerated and the guard is not
+weakened.
+
+## P2-CHANNEL-FREEZE-01 — Freeze the HS/Fierz channel basis + SI-2 metrics
+
+Status: PROPOSED
+
+### Sea–Ice alias
+SI-1 (pre-requisite freeze). Owner: Paper 2.
+
+### Scientific question
+Freeze the complete Hubbard–Stratonovich / Fierz channel basis and the SI-2
+CLEAN-PASS metric before any multiphase scan. This is a **freeze, not a
+test** — there is no PASS/FAIL — but `P2-MULTIPHASE-GRAV-01` (SI-2) may not
+run until this freeze is committed with a hash.
+
+### Scope
+The complete independent bilinear basis (scalar, pseudoscalar, vector, axial,
+tensor as the interaction's symmetry dictates), the Fierz identities relating
+them, the channels included in / excluded from `K_ij` (with reason), and the
+pre-registered SI-2 CLEAN-PASS metric (parameter space, measure, minimum
+healthy volume, perturbation magnitude). Per pre-registration policy §1 and §3.
+
+### Locked assumptions
+`CONVENTIONS.md`; the fixed four-fermion interaction of the existing
+lattice-fermion theory (verbatim in the freeze document).
+
+### Inputs
+The original four-fermion interaction; the complete bilinear basis; the Fierz
+identities.
+
+### Dependency
+Depends on `P2-BETAV-CIRC-01` (SI-0). Feeds `P2-PHASE-01` (SI-1) and
+`P2-MULTIPHASE-GRAV-01` (SI-2).
+
+### Kill criterion
+None (a freeze, not a test). Operational rule: `P2-MULTIPHASE-GRAV-01` is not
+admissible evidence until this freeze is committed first (policy §1). After
+the freeze, adding a channel is an extension (AE-4), not a continuation.
+
+### Required computations
+(not started)
+
+### Required deliverables
+The channel/metric freeze document, committed with a commit hash (policy §1,
+§3), before the SI-2 scan.
+
+### Result
+(not started)
+
+### Reviewer verdict
+(not started)
+
+### Consequences
+Fixes the `∀`-phase quantifier for the SI-2 death gate; without it SI-2 can
+be postponed indefinitely by appending one more channel.
+
+### Repository branch
+`sea-ice/gate-stubs`
+
+### Relevant files
+`0-programme:sea-ice/SEA_ICE_RESEARCH_MAP.md`,
+`0-programme:sea-ice/SEA_ICE_PREREGISTRATION_POLICY.md`.
+
+### Date opened
+2026-07-20
+
+### Date closed
+Open (PROPOSED stub).
+
+## P2-PHASE-01 — Admissible stable condensed phase (the Ice)
+
+Status: PROPOSED
+
+### Sea–Ice alias
+SI-1. Owner: Paper 2.
+
+### Scientific question
+Does the fixed lattice-fermion theory possess ≥1 physically admissible stable
+condensed phase (the Ice)?
+
+### Scope
+Stationary solutions `δΓ/δΦ_i = 0` of the full effective action, with all
+condensates drawn from the frozen channels, at finite density / `μ`, within
+the pre-registered microscopic parameter domain (policy §2, §4).
+
+### Locked assumptions
+`CONVENTIONS.md`; the frozen channel basis and parameter domain from
+`P2-CHANNEL-FREEZE-01`.
+
+### Inputs
+Frozen channels; `Γ[Φ_i]`; finite density / `μ`.
+
+### Dependency
+Depends on `P2-CHANNEL-FREEZE-01`. Feeds `P2-MULTIPHASE-GRAV-01` (SI-2).
+
+### Kill criterion
+No admissible phase anywhere in the frozen space → the simplest Sea–Ice
+framework terminates.
+
+### Required computations
+(not started)
+
+### Required deliverables
+(not started)
+
+### Result
+(not started)
+
+### Reviewer verdict
+(not started)
+
+### Consequences
+Supplies the admissible-phase list scanned by the SI-2 death gate.
+
+### Repository branch
+`sea-ice/gate-stubs`
+
+### Relevant files
+`0-programme:sea-ice/SEA_ICE_RESEARCH_MAP.md`.
+
+### Date opened
+2026-07-20
+
+### Date closed
+Open (PROPOSED stub).
+
+## P2-MULTIPHASE-GRAV-01 — Programme-death: does any phase give healthy gravity?
+
+Status: PROPOSED
+
+### Sea–Ice alias
+SI-2 (**programme-death gate**). Owner: Paper 2 (primary), Paper 3
+(dependency).
+
+### Scientific question
+Does *any* admissible stable phase produce healthy gravity?
+
+### Scope
+Every phase from `P2-PHASE-01`; the full `K_ij(p)` including all
+frozen-channel mixing; Paper 3 vector input. Verdict is one of three
+pre-registered tiers (below).
+
+### Locked assumptions
+`CONVENTIONS.md`; the frozen channel basis, parameter domain, and CLEAN-PASS
+metric from `P2-CHANNEL-FREEZE-01` (registered before the scan, per AE-3).
+
+### Inputs
+Every admissible phase from `P2-PHASE-01`; full `K_ij(p)` incl. all
+frozen-channel mixing; **Paper 3 vector input to `K_ij`** (constrained
+interaction sector, not a rescue branch).
+
+### Dependency
+Depends on `P2-PHASE-01` (and the `P2-CHANNEL-FREEZE-01` freeze). Paper 3
+enters only as an interaction input to `K_ij(p)`. Feeds `P4-SEA-ICE-01`
+(SI-3).
+
+### PASS classification (verbatim from the research map)
+`P2-MULTIPHASE-GRAV-01` returns one of three verdicts; the distinguishing
+thresholds are themselves pre-registered.
+
+- **CLEAN PASS** — a healthy phase exists on a parameter region of
+  **positive volume** under the *pre-registered measure*, at least the
+  *pre-registered minimum healthy volume*, and stable under small parameter
+  perturbation. Only CLEAN PASS supports continuing into Sea–Ice cosmology.
+- **CONDITIONAL PASS (fine-tuned)** — a healthy phase exists only at an
+  isolated point, on a zero-measure surface, in a tuning band narrower than
+  the registered minimum, or requires fine cancellation. Permits technical
+  follow-up; **must not** be written as a theoretical success.
+- **FAIL** — every admissible phase is gravitationally pathological
+  (negative Newtonian coupling, negative-residue physical pole, unavoidable
+  ghost or tachyon, or no viable long-range mode). Hard consequence per AE-1.
+
+### Kill criterion
+`∀ Φ: ¬HealthyGravity(Φ)` → **simplest lattice-fermion Sea–Ice programme
+terminated** (FAIL tier above).
+
+### Honest prior
+SI-2 does not start neutral. The minimal single-channel induced-gravity
+result gives `ξ_ind < 0` for `L ≫ 1`, and the one computed vector channel is
+repulsive (`G_ω = -G/N`, Paper 3 `P3-C-001`). A repulsive vector entering
+the graviton kernel is a **headwind** for a healthy Newtonian limit, not a
+help: SI-2 is more likely to fail than to pass.
+
+### Required computations
+(not started)
+
+### Required deliverables
+(not started)
+
+### Result
+(not started)
+
+### Reviewer verdict
+(not started)
+
+### Consequences
+CLEAN PASS is the only verdict that supports continuing into Sea–Ice
+cosmology (`P4-SEA-ICE-01` onward). FAIL terminates the simplest framework
+(AE-1).
+
+### Repository branch
+`sea-ice/gate-stubs`
+
+### Relevant files
+`0-programme:sea-ice/SEA_ICE_RESEARCH_MAP.md`,
+`0-programme:sea-ice/SEA_ICE_PHYSICAL_FRAMEWORK.md`,
+`0-programme:sea-ice/SEA_ICE_PREREGISTRATION_POLICY.md`.
+
+### Date opened
+2026-07-20
+
+### Date closed
+Open (PROPOSED stub).
+
 ## Gate template
 
 ```markdown
