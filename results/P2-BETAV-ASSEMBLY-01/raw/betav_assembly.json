@@ -1,0 +1,49 @@
+{
+  "gate": "P2-BETAV-ASSEMBLY-01",
+  "does_not_close": "P2-BETAV-CIRC-01",
+  "shared_tadpole_C_per_variant": [
+    0.0065095494167996025,
+    0.006523951291118808,
+    0.006512192151278231
+  ],
+  "beta_B_per_variant": [
+    -0.0005424624513999668,
+    -0.000543662607593234,
+    -0.0005426826792731859
+  ],
+  "per_k": {
+    "0.0": {
+      "R_k_mean": -2.0,
+      "R_k_ratio_variant_spread": 0.0,
+      "target_minus_k_plus_2": -2.0
+    },
+    "1.0": {
+      "R_k_mean": -3.0,
+      "R_k_ratio_variant_spread": 0.0,
+      "target_minus_k_plus_2": -3.0
+    },
+    "2.0": {
+      "R_k_mean": -4.0,
+      "R_k_ratio_variant_spread": 0.0,
+      "target_minus_k_plus_2": -4.0
+    },
+    "3.0": {
+      "R_k_mean": -5.0,
+      "R_k_ratio_variant_spread": 8.881784197001252e-16,
+      "target_minus_k_plus_2": -5.0
+    },
+    "0.5": {
+      "R_k_mean": -2.5,
+      "R_k_ratio_variant_spread": 0.0,
+      "target_minus_k_plus_2": -2.5
+    }
+  },
+  "mutation_freeze_scalar_power_1": {
+    "0.0": -3.0,
+    "1.0": -3.0,
+    "2.0": -3.0,
+    "3.0": -3.0,
+    "0.5": -3.0
+  },
+  "note": "R_k = -(k+2) with ~machine-zero ratio spread because the shared integral C cancels (fully correlated num/den). This is bookkeeping realized on the lattice integral; it verifies the code reads k and does not hardcode -3. It does NOT test the historical Finding 5 projection and does NOT close P2-BETAV-CIRC-01."
+}

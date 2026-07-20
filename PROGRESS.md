@@ -13,20 +13,27 @@ v2.15 (paper `.tex` imported; see `MIGRATION.md` and
 
 Independent verification sweep completed and, after importing the paper source,
 **re-adjudicated**: gates `P2-HK-01`, `P2-GAP-01`, `P2-BETA-01`, `P2-NORM-01`
-(PASS) and `P2-BETAV-CIRC-01` (OPEN). The recomputation **confirms Paper 2
-v2.15** once conventions are matched. No legacy source exists (`MIGRATION.md`).
+(PASS), `P2-BETAV-ASSEMBLY-01` (PASS, implementation only), `P2-BETAV-CIRC-01`
+(**SUSPENDED**, blocked by provenance) and `P2-BETAV-RECON-01` (PROPOSED). The
+recomputation **confirms Paper 2 v2.15** once conventions are matched. No legacy
+source exists (`MIGRATION.md`).
 
 The normalization/gap/circularity follow-up has **one independent reviewer
 record and is accepted** (`reviews/claude/2026-07-19-paper2-followup.md`,
 `DECISION_LOG.md` 2026-07-19). Acceptance does not promote anything to
-`VERIFIED`. `P2-BETAV-CIRC-01` **remains OPEN**.
+`VERIFIED`. `P2-BETAV-CIRC-01` is now **SUSPENDED**: the historical Finding 5
+lattice pipeline is **NOT LOCATED** in the repository
+(`results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md`), so the circularity question
+cannot be tested directly and is neither demonstrated nor ruled out.
 
 ## Verified results
 
 None. No claim is `VERIFIED` (no reviewer record, no archived provenance).
 `SUPPORTED`: `β_F/β_B=2`, `β_V/β_B=−3`, `β_B(ξ)/β_B=1−6ξ`, continuum `G_c`
 (`c=8`), lattice `I_0` (at `ma=0.02`), the `Z` factor-2 normalization
-(`P2-NORM-01`), and the structure-dependence of the `β_V` target. See `CLAIMS.md`.
+(`P2-NORM-01`), and the determinant-bookkeeping regression (`R_k=−(k+2)`,
+`P2-BETAV-ASSEMBLY-01` — implementation only, does **not** test the historical
+projection). See `CLAIMS.md`.
 
 ## Failed or retired routes
 
@@ -36,22 +43,23 @@ available (see `DECISION_LOG.md`). Superseded entries preserved.
 
 ## Active work
 
-The **full curved-background lattice Proca discrimination test with `k ≠ 1`**
-(the decisive `P2-BETAV-CIRC-01` layer: does the actual lattice extraction
-return `-(k+2)` or stay fixed near `-3`?) is the active/open scientific work.
-`P2-BETAV-CIRC-01` remains `OPEN`. Paper 3's numerical βV dependency remains
-unresolved/suspended (not cleared) until this test is completed;
-`P3-C-004` (`C_6 = -G_V/2`) is structurally independent and unaffected.
+The **clean-room curved-background lattice Proca reconstruction with `k ≠ 1`**
+(`P2-BETAV-RECON-01`, PROPOSED — a *new* pipeline, explicitly distinct from the
+absent historical one) is the next scientific work; if built and faithful it
+would inform, but not close, `P2-BETAV-CIRC-01`. Paper 3's numerical βV
+dependency remains unresolved/suspended (not cleared); `P3-C-004`
+(`C_6 = -G_V/2`) is structurally independent and unaffected.
 
 ## Blocked items
 
-- `P2-BETAV-CIRC-01` full lattice pipeline — substantial implementation, not run.
+- `P2-BETAV-CIRC-01` — `SUSPENDED`, blocked by provenance (historical pipeline
+  NOT LOCATED); cannot be tested directly.
+- `P2-BETAV-RECON-01` full lattice pipeline — substantial implementation, not run.
 - `P2-BETAV-01` (reproduce `−3.2(5)`) — deferred.
 
 ## Next administrative action
 
-Schedule the full lattice Proca `k ≠ 1` discrimination run for
-`P2-BETAV-CIRC-01`.
+Scope and schedule `P2-BETAV-RECON-01` (clean-room Proca reconstruction).
 
 ## Last updated
 
