@@ -6,7 +6,9 @@ The Paper 2 normalization/gap/βV-circularity follow-up is **reviewed and
 accepted** (`reviews/claude/2026-07-19-paper2-followup.md`). There is **no
 current merge blocker** from D1, the normalization factor 2, or the `I_0` gap —
 all resolved. **βV circularity remains unresolved at the full lattice level**
-(`P2-BETAV-CIRC-01` = OPEN). Nothing is promoted to `VERIFIED`.
+(`P2-BETAV-CIRC-01` = **SUSPENDED**, blocked by provenance — the historical
+Finding 5 lattice pipeline is not in the repository). Nothing is promoted to
+`VERIFIED`.
 
 ## Scientific question
 
@@ -28,9 +30,10 @@ regulator; Wilson `r=1` lattice; heat-kernel `Δ=−∇²+E`, `a_1=(1/6)R−E`.
 
 ## Required next input
 
-- The **curved-background lattice Proca extraction for a `k ≠ 1` structure**
-  (the decisive `P2-BETAV-CIRC-01` test): does it return `-(k+2)` or stay fixed
-  near `-3`? This is the next scientific input.
+- `P2-BETAV-RECON-01`: a **clean-room** curved-background lattice Proca
+  reconstruction for a `k ≠ 1` structure (a new pipeline, explicitly distinct
+  from the absent historical one). It would inform, not close,
+  `P2-BETAV-CIRC-01`. This is the next scientific input.
 
 ## Expected Codex output
 

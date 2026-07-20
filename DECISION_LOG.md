@@ -233,6 +233,67 @@ entry (no separate gate ID exists for D1).
 `reviews/claude/2026-07-19-paper2-followup.md`, `DECISION_LOG.md`,
 `PROGRESS.md`, `HANDOFF.md`.
 
+## 2026-07-19 — `P2-BETAV-CIRC-01` blocked by provenance; the honest A/B split
+
+### Decision
+
+Set `P2-BETAV-CIRC-01` to `SUSPENDED` (blocked by provenance). Register two
+honest, separately-labelled substitutes: `P2-BETAV-ASSEMBLY-01` (implementation
+regression, `PASS` on its own terms) and `P2-BETAV-RECON-01` (clean-room
+reconstruction, `PROPOSED`). Neither closes the circularity question.
+
+### Reason
+
+The circularity question is about the *historical Finding 5 lattice pipeline's*
+projection/normalization. That pipeline is **not in the repository** — a
+provenance search (`results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md`, verdict NOT
+LOCATED) found no lattice 1-form operator, no Stueckelberg determinant, no
+metric perturbation, no `h`-derivative/projection code, and no raw artifact.
+`scripts/lattice_beta_scan.py` is the scalar `P2-BETA-01` tadpole and must not
+be substituted for it. A pipeline that does not exist cannot be tested for
+circularity.
+
+The determinant-bookkeeping construction returns `−(k+2)` **by construction**:
+the shared scalar integral cancels in the numerator/denominator ratio, so it has
+no power to expose a circular historical projection. It is therefore recorded as
+an implementation regression (`P2-BETAV-ASSEMBLY-01`), not as an answer to the
+circularity question.
+
+### Evidence
+
+`results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md`; `scripts/betav_assembly.py`
+(ratio variant spread `≤9e-16`, `C` cancels); `MIGRATION.md` ("no legacy
+source").
+
+### Consequences
+
+* `P2-BETAV-CIRC-01` = `SUSPENDED` (the non-standard `OPEN` label is corrected to
+  the allowed `SUSPENDED`); circularity neither demonstrated nor ruled out.
+* `P2-BETAV-ASSEMBLY-01` = `PASS` (implementation only; does not close CIRC-01).
+* `P2-BETAV-RECON-01` = `PROPOSED` (reconstruction ≠ historical test).
+* Finding 5's `−3.2(5)` remains an unreproduced paper value.
+* `3-vector-sector` `P3-C-004` rests on the `C_6 = −G_V/2` sign structure, not on
+  `−3.2(5)`, and is unaffected; the `MIGRATION.md` flag stays as-is (that repo
+  not read or edited).
+* Nothing is promoted to `VERIFIED`.
+* Next scientific gate: the full lattice Proca `k ≠ 1` discrimination run
+  (`P2-BETAV-RECON-01`, or a located historical pipeline).
+
+### Supersedes
+
+The `OPEN`/`analytic-layer-discriminating` framing of `P2-BETAV-CIRC-01` in the
+2026-07-17 gate record (it overstated the analytic bookkeeping's power). The
+earlier entries are preserved.
+
+### Related gate
+
+`P2-BETAV-CIRC-01`, `P2-BETAV-ASSEMBLY-01`, `P2-BETAV-RECON-01`.
+
+### Related branch and files
+
+`gate/p2-betav-circ`; `results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md`,
+`scripts/betav_assembly.py`, `derivations/P2-BETAV-*`.
+
 ## Entry template
 
 ```markdown

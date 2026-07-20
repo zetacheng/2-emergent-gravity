@@ -325,7 +325,12 @@ D1 withdrawn; `P2-C2`, `P2-C8` → `SUPPORTED`. Bookkeeping gate; not physics.
 
 ## P2-BETAV-CIRC-01 — Does the lattice `β_V` test discriminate?
 
-Status: OPEN (analytic layer PASS; full lattice reproduction not run)
+Status: SUSPENDED (blocked by provenance — the historical Finding 5 pipeline is
+not in this repository; see `results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md`).
+Honest substitutes: `P2-BETAV-ASSEMBLY-01` (bookkeeping verified, does not close
+this gate) and `P2-BETAV-RECON-01` (reconstruction path, PROPOSED). The
+`OPEN` label previously used here is not an allowed status and is corrected to
+`SUSPENDED`.
 
 ### Scientific question
 Can Paper 2 Finding 5's lattice extraction distinguish `β_V/β_B=−3` from
@@ -345,53 +350,123 @@ Modified structure `det^{−1/2}(Δ^{(1)}+m²)·det^{+1/2}(Δ^{(0)}+m²)^k`.
 `β_V(k)/β_B = −(k+2)` (`k=1→−3`, `k=2→−4`, `k=3→−5`).
 
 ### Regression anchors
-`scripts/betav_discriminating.py`: closed form `−(k+2)`; `k=1→−3`;
-discriminating (`k=1≠k=2`).
+None here — the bookkeeping anchor lives in `P2-BETAV-ASSEMBLY-01`
+(`scripts/betav_assembly.py`), which explicitly does not close this gate.
 
 ### Kill criterion
-Feed the paper's *lattice* extraction the `k≠1` structure. **If it returns `−3`
-regardless, the extraction is circular and Finding 5's lattice confirmation is
-withdrawn.** If it returns `−(k+2)`, it discriminates.
+Feed the *historical* lattice extraction the `k≠1` structure. **If it returns
+`−3` regardless, the extraction is circular and Finding 5's lattice confirmation
+is withdrawn.** If it returns `−(k+2)`, it discriminates. (Requires the
+historical pipeline, which is absent — hence `SUSPENDED`.)
 
 ### Required computations
-Analytic discriminating test: done (target is structure-dependent, so not
-degenerate). Full curved-background lattice Proca with numerical `h`-derivatives:
-**not run** — a substantial implementation. Blocks: reproducing `√g g⁻¹⊗g⁻¹`
-metric-coupled lattice Proca operator, numerical `h`-derivative extraction, and
-the longitudinal-artifact model.
+The decisive test — feed the *historical* curved-background lattice Proca
+extraction a `k≠1` structure and see whether it returns `−(k+2)` or stays fixed
+near `−3` — **cannot be run**: that pipeline is not in the repository
+(provenance NOT LOCATED). It must not be faked with the scalar `P2-BETA-01`
+tadpole, which implements none of the required machinery (1-form operator,
+Stueckelberg determinant, metric perturbation, `h`-derivative, projection).
 
 ### Required deliverables
-`derivations/betav_discriminating_power.md`, `scripts/betav_discriminating.py`,
-`results/P2-BETAV-CIRC-01/`; full lattice pipeline pending.
+`results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md` (done). The circularity verdict
+itself is deferred to a located or reconstructed pipeline.
 
 ### Result
-Analytic layer: the target `β_V/β_B` is structure-dependent `−(k+2)`, so the
-extraction is **not** degenerate/circular at the coefficient level; Finding 5 is
-a legitimate numerical-vs-analytic cross-check *given* the Proca structure. It
-does not independently establish the structure. Note: the paper's own heavy-mass
-drift "to ratios near `−5`" equals the `k=3` value — consistent with a
-longitudinal artifact mimicking an extra compensating power.
+**Blocked by provenance.** The historical Finding 5 pipeline that produced
+`−3.2(5)` is absent; its projection/normalization cannot be exercised, so
+circularity can be neither demonstrated nor ruled out. The determinant
+bookkeeping is structure-dependent `−(k+2)` (`P2-BETAV-ASSEMBLY-01`), but that
+shares the integral in numerator and denominator (it cancels) and has no power
+over the historical projection. Finding 5's `−3.2(5)` remains an **unreproduced
+paper value**.
 
 ### Reviewer verdict
-Not closed by assertion in either direction; `OPEN` pending the full lattice
-reproduction.
+`SUSPENDED`. Not closed by assertion in either direction. The next scientific
+step is the located-or-reconstructed pipeline (`P2-BETAV-RECON-01`).
 
 ### Consequences
-Cross-repo: `3-vector-sector` (`P3-C-004`, `VERIFIED`) quotes `−3.2(5)`; flagged
-in `MIGRATION.md`, that repo not edited.
+Cross-repo: `3-vector-sector` `P3-C-004` rests on the `C_6 = −G_V/2` sign
+structure, **not** on `−3.2(5)`, so it is unaffected; the flag in `MIGRATION.md`
+stays as-is (that repo not read from or edited).
 
 ### Repository branch
-`claude/paper-2-independent-verification-dysdp0`
+`gate/p2-betav-circ`
 
 ### Relevant files
-`scripts/betav_discriminating.py`, `derivations/betav_discriminating_power.md`,
-`results/P2-BETAV-CIRC-01/`, `MIGRATION.md`.
+`results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md`,
+`derivations/betav_discriminating_power.md`,
+`derivations/P2-BETAV-RECON-01_cleanroom_reconstruction.md`, `MIGRATION.md`.
 
 ### Date opened
 2026-07-17
 
 ### Date closed
-Open.
+SUSPENDED 2026-07-19 (blocked by provenance; not closed).
+
+## P2-BETAV-RECON-01 — Clean-room curved-background Proca reconstruction
+
+Status: PROPOSED (not run; distinct from the historical circularity question)
+
+### Scientific question
+Build a *new* metric-coupled lattice Proca extraction and check whether it
+tracks `β_V/β_B = −(k+2)`. **Scope label: a 2026 reconstructed pipeline, NOT a
+test of the historical Finding 5 implementation.** A faithful reconstruction
+returning `−(k+2)` shows only that the reconstruction is correct; it does not
+show the historical pipeline was non-circular.
+
+### Scope
+1-form operator `Δ^{(1)}[g,h]` + compensating scalar `Δ^{(0)}[g,h]` on a
+weak-field background; `Γ_k=½logdetΔ^{(1)}−(k/2)logdetΔ^{(0)}`; numerical
+`h`-derivatives at the determinant/eigenvalue level; fixed axis-TT projection;
+vary only `k∈{0,1,2,3,½}`.
+
+### Locked assumptions
+`CONVENTIONS.md`; historical-vs-reconstructed distinction kept explicit in every
+artifact.
+
+### Inputs
+Metric-coupled lattice Proca operator; `h`-derivative step + Richardson check;
+pre-registered projection (targets kept out of code/tests).
+
+### Analytic anchors
+`β_V/β_B = −(k+2)` (from `P2-HK-01`), compared only at the end.
+
+### Regression anchors
+None yet (proposed).
+
+### Kill criterion
+For the reconstruction itself: stuck at `−3` ∀k ⟹ the new pipeline is degenerate
+(a bug); drift toward `−5` at heavy mass ⟹ longitudinal artifact. None of these
+closes `P2-BETAV-CIRC-01`.
+
+### Required computations
+Full curved-background lattice Proca with numerical `h`-derivatives — a
+substantial implementation, **not run** this sweep.
+
+### Required deliverables
+`derivations/P2-BETAV-RECON-01_cleanroom_reconstruction.md` (done); pipeline +
+pre-reg note pending.
+
+### Result
+Not run.
+
+### Reviewer verdict
+`PROPOSED`.
+
+### Consequences
+Provides the honest path to eventually inform (not close) `P2-BETAV-CIRC-01`.
+
+### Repository branch
+`gate/p2-betav-circ`
+
+### Relevant files
+`derivations/P2-BETAV-RECON-01_cleanroom_reconstruction.md`.
+
+### Date opened
+2026-07-19
+
+### Date closed
+Open (proposed).
 
 ## P2-BETAV-ASSEMBLY-01 — Determinant-bookkeeping regression (does NOT close CIRC-01)
 

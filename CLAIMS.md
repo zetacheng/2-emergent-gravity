@@ -29,10 +29,11 @@ matched.
 | P2-C6 | lattice `I_0` (Wilson `r=1`, `ma=0.02`) equals the paper's | SUPPORTED | `P2-GAP-01`; `0.084341`/`0.084465` vs paper `0.0844`/`0.0845` (<0.1%); D2 withdrawn | P2-GAP-01 | lattice criticality | 2026-07-17 |
 | P2-C7 | `β_B` lattice mass scan agrees with continuum at the few-% level | SUPPORTED | `P2-BETA-01`; `+3%` (this repo) / `5%` (paper, line 1148) | P2-BETA-01 | lattice β_B extraction | 2026-07-17 |
 | P2-C8 | `4G_cβ_F = 1/6` (paper `Z` convention) and `ξ_ind<0` for `L≫1` | SUPPORTED | `P2-NORM-01`; `1/6` in paper `Z`; the report's `1/3` was convention-mixing | P2-NORM-01 | survival condition | 2026-07-17 |
-| P2-C9 | `β_V/β_B = −3.2(5)` lattice (Finding 5 value) | PROPOSED | not computed this sweep; paper text only, no archived provenance | P2-BETAV-CIRC-01 | Finding 5 (lattice Proca) | 2026-07-17 |
+| P2-C9 | `β_V/β_B = −3.2(5)` lattice (Finding 5 value) | PROPOSED | unreproduced paper value; historical pipeline NOT LOCATED (`PROVENANCE_SEARCH.md`) | P2-BETAV-CIRC-01 | Finding 5 (lattice Proca) | 2026-07-19 |
 | P2-C10 | the `β`/`G` factor 2 is a uniform (`R_Z=2`) `Z` normalization, not physics | SUPPORTED | `P2-NORM-01`; `R_Z=2` for scalar/Dirac/Proca | P2-NORM-01 | Findings 3–4 | 2026-07-17 |
 | P2-C11 | the `k`-generalized determinant assembly preserves `k`-dependence on the shared lattice tadpole (`R_k=−(k+2)`, no hardcoded `−3`) — bookkeeping, NOT a test of the historical projection | SUPPORTED | `P2-BETAV-ASSEMBLY-01`; `C` cancels, ratio spread `≤9e-16`; mutation collapses to `−3` | P2-BETAV-ASSEMBLY-01 | Finding 5 | 2026-07-19 |
-| P2-C12 | whether the paper's *lattice* `β_V` pipeline tracks the structure (non-circular) | PROPOSED | full curved-lattice Proca reproduction OPEN; not run | P2-BETAV-CIRC-01 | Finding 5 | 2026-07-17 |
+| P2-C12 | whether the historical Finding 5 `β_V` lattice pipeline is circular | INCONCLUSIVE | **blocked by provenance** — historical pipeline NOT LOCATED; gate `SUSPENDED`; neither demonstrated nor ruled out | P2-BETAV-CIRC-01 | Finding 5 | 2026-07-19 |
+| P2-C13 | a clean-room curved-background Proca reconstruction (distinct from the historical question) | PROPOSED | not run; substantial implementation; scope-labelled reconstruction ≠ historical test | P2-BETAV-RECON-01 | Finding 5 | 2026-07-19 |
 
 ## Notes
 
@@ -40,6 +41,11 @@ matched.
 - `P2-C2`, `P2-C6`, `P2-C8` were `INCONCLUSIVE` in the first report and are now
   `SUPPORTED` after the corrected, source-based comparison; the superseded
   entries are preserved in `DECISION_LOG.md`.
-- `P2-C11` (structure-dependence, computed) and `P2-C12` (is the lattice
-  pipeline circular, not run) are deliberately separate: the analytic test
-  passes; the numerical audit stays `OPEN` and is not closed by assertion.
+- `P2-C11` (determinant bookkeeping preserves `k`, `P2-BETAV-ASSEMBLY-01`) and
+  `P2-C12` (is the historical pipeline circular?) are deliberately separate: the
+  bookkeeping regression passes but the shared integral cancels in its ratio, so
+  it has no power over the historical projection. `P2-C12` is
+  `INCONCLUSIVE`/blocked by provenance (the historical pipeline is NOT LOCATED —
+  `results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md`); gate `P2-BETAV-CIRC-01` is
+  `SUSPENDED`, not closed by assertion. `P2-C13` (`P2-BETAV-RECON-01`) is the
+  proposed reconstruction path, explicitly distinct from the historical test.
