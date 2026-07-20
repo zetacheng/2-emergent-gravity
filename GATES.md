@@ -389,13 +389,41 @@ Cross-repo: `3-vector-sector` `P3-C-004` rests on the `C_6 = −G_V/2` sign
 structure, **not** on `−3.2(5)`, so it is unaffected; the flag in `MIGRATION.md`
 stays as-is (that repo not read from or edited).
 
+### Operational consequence
+(Governance clarification `P2-SI1-UNBLOCK-01` — not a new scientific verdict;
+status stays `SUSPENDED`.)
+
+`P2-BETAV-CIRC-01` **does not block**:
+- `P2-CHANNEL-FREEZE-01`;
+- `P2-PHASE-01`;
+
+because those gates do not consume the historical Finding 5 numerical value.
+
+It blocks only:
+- treating `−3.2(5)` as validated numerical evidence;
+- using the historical extraction as an operational numerical input.
+
+`P2-MULTIPHASE-GRAV-01` **may not consume** the historical Finding 5 extraction.
+Before the SI-2 numerical graviton-kernel computation, the vector input must be
+one of:
+1. `P2-BETAV-RECON-01` with status `PASS`; **or**
+2. a separately pre-registered **analytic** vector-sector input sourced from
+   Paper 3 `P3-C-001` / `P3-FIERZ-01` at pinned commit
+   `8c363ef08368f5c022278ea5f36e01496be3d5ca`.
+
+If path 2 is used: it must be frozen inside `P2-CHANNEL-FREEZE-01` before SI-2
+computation; its repulsive sign (`G_ω = −G/N`) must be preserved; it must be
+treated as a headwind; and it must **not** be claimed to have lattice
+confirmation from `−3.2(5)`.
+
 ### Repository branch
 `gate/p2-betav-circ`
 
 ### Relevant files
 `results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md`,
 `derivations/betav_discriminating_power.md`,
-`derivations/P2-BETAV-RECON-01_cleanroom_reconstruction.md`, `MIGRATION.md`.
+`derivations/P2-BETAV-RECON-01_cleanroom_reconstruction.md`,
+`derivations/P2-SI1-UNBLOCK-01.md`, `MIGRATION.md`.
 
 ### Date opened
 2026-07-17
@@ -581,8 +609,22 @@ The original four-fermion interaction; the complete bilinear basis; the Fierz
 identities.
 
 ### Dependency
-Depends on `P2-BETAV-CIRC-01` (SI-0). Feeds `P2-PHASE-01` (SI-1) and
-`P2-MULTIPHASE-GRAV-01` (SI-2).
+Updated by governance clarification `P2-SI1-UNBLOCK-01` (2026-07-20): this gate
+**no longer requires `P2-BETAV-CIRC-01` to `PASS`**. `P2-BETAV-CIRC-01` is
+`SUSPENDED` (provenance NOT LOCATED) and does not consume the historical Finding
+5 value, so it does not block the channel freeze. The freeze requires instead
+that the **provenance adjudication is complete** and the historical value
+`−3.2(5)` is **quarantined as unreproduced** (`results/P2-BETAV-CIRC-01/
+PROVENANCE_SEARCH.md`, `results/P2-SI1-DEPENDENCY.md`). Feeds `P2-PHASE-01`
+(SI-1) and `P2-MULTIPHASE-GRAV-01` (SI-2).
+
+This gate must **freeze the selected operational vector-input path**, exactly
+one of:
+- the reconstructed lattice path `P2-BETAV-RECON-01`, **if available and
+  `PASS`**; or
+- the pinned Paper 3 analytic path (`P3-C-001` / `P3-FIERZ-01` at
+  `8c363ef08368f5c022278ea5f36e01496be3d5ca`, repulsive `G_ω = −G/N`, a
+  headwind), which receives **no** validation from `−3.2(5)`.
 
 ### Kill criterion
 None (a freeze, not a test). Operational rule: `P2-MULTIPHASE-GRAV-01` is not
@@ -594,7 +636,8 @@ the freeze, adding a channel is an extension (AE-4), not a continuation.
 
 ### Required deliverables
 The channel/metric freeze document, committed with a commit hash (policy §1,
-§3), before the SI-2 scan.
+§3), before the SI-2 scan. The document must record which vector-input path
+(reconstructed-PASS or pinned-analytic) is frozen.
 
 ### Result
 (not started)
@@ -644,6 +687,10 @@ Frozen channels; `Γ[Φ_i]`; finite density / `μ`.
 
 ### Dependency
 Depends on `P2-CHANNEL-FREEZE-01`. Feeds `P2-MULTIPHASE-GRAV-01` (SI-2).
+Governance clarification `P2-SI1-UNBLOCK-01` (2026-07-20): phase enumeration may
+proceed once the channel freeze is committed, **without consuming** the
+historical Finding 5 value `−3.2(5)` (quarantined as unreproduced). It is not
+blocked by `P2-BETAV-CIRC-01` = `SUSPENDED`.
 
 ### Kill criterion
 No admissible phase anywhere in the frozen space → the simplest Sea–Ice
@@ -723,6 +770,16 @@ cannot silently change what this gate depends on:
 Depends on `P2-PHASE-01` (and the `P2-CHANNEL-FREEZE-01` freeze). Paper 3
 enters only as an interaction input to `K_ij(p)`, pinned at `8c363ef` (above).
 Feeds `P4-SEA-ICE-01` (SI-3).
+
+Governance clarification `P2-SI1-UNBLOCK-01` (2026-07-20): the full numerical
+kernel evaluation requires a **frozen, admissible vector input** (from
+`P2-CHANNEL-FREEZE-01`) and **may not use the historical Finding 5 value**
+`−3.2(5)` (`SUSPENDED`, unreproduced). The frozen vector input must be either
+`P2-BETAV-RECON-01` with status `PASS`, or the pinned Paper 3 analytic input
+(`P3-C-001` / `P3-FIERZ-01` at `8c363ef`). The honest prior stands unchanged:
+the vector channel is **repulsive** (`G_ω = −G/N`) and is a **headwind**, not a
+rescue branch; this clarification does not soften it, and does not alter the
+SI-2 PASS/FAIL criteria.
 
 ### PASS classification (verbatim from the research map)
 `P2-MULTIPHASE-GRAV-01` returns one of three verdicts; the distinguishing
