@@ -65,6 +65,27 @@ analytic layer of `P2-BETAV-CIRC-01` finds the target ratio *is*
 structure-dependent (`−(k+2)`), so the test is not degenerate; the full lattice
 reproduction remains `OPEN`.
 
+## SI-1 dependency clarification (`P2-SI1-UNBLOCK-01`, 2026-07-20)
+
+Governance clarification of the operational dependency graph — **no historical
+claim was upgraded or downgraded, and no numerical value was changed.**
+
+- **Historical Finding 5 status:** `β_V/β_B = −3.2(5)` is **unreproduced**.
+- **Historical audit status:** `P2-BETAV-CIRC-01` = `SUSPENDED` (historical
+  pipeline NOT LOCATED).
+- **Operational replacement path:** `P2-BETAV-RECON-01`, status `PROPOSED` —
+  **not yet run** and **not yet an operational replacement**. Only a *proposed*
+  replacement path; not a completed one.
+- **Alternative operational input path:** the Paper 3 analytic vector input,
+  `P3-C-001` / `P3-FIERZ-01`, pinned at
+  `8c363ef08368f5c022278ea5f36e01496be3d5ca`. Repulsive `G_ω = −G/N`; a
+  headwind; it receives **no** validation from the suspended `−3.2(5)`.
+
+Explicitly: `P2-BETAV-RECON-01` is only a proposed replacement path, not a
+completed replacement; no historical claim was upgraded; no historical claim was
+downgraded; no numerical value was changed; only the operational dependency
+graph was clarified.
+
 ## Consequence for claim statuses
 
 Because there is no reviewer record and no archived provenance yet:
