@@ -117,13 +117,36 @@ Clean (`git status --porcelain` empty) at report time.
 
 ## 17. Commit SHA
 
-Landed by the commit `docs: clarify SI-1 dependency after provenance
-adjudication` on `gate/p2-si1-unblock`; the exact SHA is the branch HEAD after
-this commit (recorded in the terminal summary and via `git log`).
+The governance commit `docs: clarify SI-1 dependency after provenance
+adjudication` is:
+
+`642bb9a72a6356891e8839ffaab925ec177e6606`
+
+on branch `gate/p2-si1-unblock`. That commit carries all the SI-1 dependency
+changes described above. This section is finalized by a separate, later
+**report-only** commit (`docs: finalize the SI-1 unblock canonical report`),
+which changes only this file and no gate, claim, dependency, test logic, or
+scientific file.
 
 ## 18. Remote branch
 
-`gate/p2-si1-unblock` pushed to `origin`. Not merged; no PR opened.
+`gate/p2-si1-unblock` pushed to `origin`.
+
+- Governance commit SHA: `642bb9a72a6356891e8839ffaab925ec177e6606`
+- Remote branch SHA before this finalize commit: `642bb9a72a6356891e8839ffaab925ec177e6606`
+  (identical to local; `origin/gate/p2-si1-unblock` was up to date). After this
+  report-only commit is pushed, the remote branch advances to the finalize
+  commit; the governance commit remains `642bb9a`.
+
+Not merged; no PR opened.
+
+## 18a. This finalize follow-up
+
+- Changes **only** this canonical report (`reports/2026-07-20_P2-SI1-unblock_report.md`).
+- No gate, claim, dependency, test logic, or scientific file was modified.
+- Test result after this report-only update: **31 passed, 2 deselected**
+  (`python -m pytest tests -q`).
+- `git status --porcelain`: clean.
 
 ## 19. Limitations
 
