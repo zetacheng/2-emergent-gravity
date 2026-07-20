@@ -557,12 +557,30 @@ metric from `P2-CHANNEL-FREEZE-01` (registered before the scan, per AE-3).
 ### Inputs
 Every admissible phase from `P2-PHASE-01`; full `K_ij(p)` incl. all
 frozen-channel mixing; **Paper 3 vector input to `K_ij`** (constrained
-interaction sector, not a rescue branch).
+interaction sector, not a rescue branch — see the pinned reference below).
+
+### Paper 3 pinned input
+The Paper 3 vector input is pinned to a fixed result so a later Paper 3 update
+cannot silently change what this gate depends on:
+
+- **Repository / SHA:** `zetacheng/3-vector-sector`, commit
+  `8c363ef08368f5c022278ea5f36e01496be3d5ca` (`8c363ef`, `main` HEAD at
+  re-confirmation via `git ls-remote`).
+- **Claims / gates:** `P3-C-001` (the computed vector channel, repulsive) and
+  `P3-FIERZ-01` (the Fierz/basis identity constraining the vector channel).
+- **Conventions:** the vector channel is **repulsive**, `G_ω = -G/N`; the
+  response saturates/screens — `D_00 = g_0 / (1 + g_0 Π_V) → 1/Π_V` — so
+  increasing the nominal vector coupling does not automatically strengthen
+  anything.
+- **What Paper 3 supplies to `K_ij`:** the vector-channel (ω) contribution to
+  the graviton kernel `K_ij(p)` — i.e. the vector entries of the frozen-channel
+  mixing, entering with the repulsive sign above. Paper 3 is a supporting
+  interaction sector, not an independent rescue branch.
 
 ### Dependency
 Depends on `P2-PHASE-01` (and the `P2-CHANNEL-FREEZE-01` freeze). Paper 3
-enters only as an interaction input to `K_ij(p)`. Feeds `P4-SEA-ICE-01`
-(SI-3).
+enters only as an interaction input to `K_ij(p)`, pinned at `8c363ef` (above).
+Feeds `P4-SEA-ICE-01` (SI-3).
 
 ### PASS classification (verbatim from the research map)
 `P2-MULTIPHASE-GRAV-01` returns one of three verdicts; the distinguishing
