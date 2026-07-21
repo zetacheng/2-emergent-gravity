@@ -342,6 +342,65 @@ entry), which was correct while the pipeline was missing. Preserved above.
 `recover/betav-complete`; `scripts/recovered_2026/`, `results/recovered-2026/`,
 `GATES.md`, `MIGRATION.md`.
 
+## 2026-07-20 — P2-BETAV-CIRC-01 Phase-1 decomposition: DECOMP-NOT-REPRESENTABLE
+
+### Decision
+
+The historical `k`-scan for `P2-BETAV-CIRC-01` **cannot be defined from the
+recovered numerical pipeline alone.** Phase-1 adjudication verdict:
+**DECOMP-NOT-REPRESENTABLE**. No `k`-scan is run.
+
+### Reason
+
+Operator-level analysis of the recovered `proca_loop.py` (evidence:
+`scripts/betav_decomp_check.py`,
+`derivations/P2-BETAV-CIRC-01_determinant-decomposition.md`):
+1. The Proca longitudinal factor is the **ultralocal `m²`** eigenfactor of
+   `M = (ŝ²+m²)δ − a⊗a*` (spread over `p̂²` is `3e-16`), **not** the propagating
+   external scalar `Δ₀ = ŝ²+m²` of `boson_loop.py` (`1/m²` vs `1/(ŝ²+m²)`
+   propagator; different `m²ln m²` content). So an external scalar loop cannot
+   represent a change of compensator power.
+2. The one-graviton vertex `δM` **mixes** transverse and longitudinal
+   (`max|⟨T|δM|L⟩| = 0.17`), so the flat split `det M = m²(ŝ²+m²)³` does **not**
+   lift to an invariant additive determinant decomposition on a curved
+   background. No `Z_Proca + k·Z_scalar` construction reduces pointwise to
+   recovered Proca while deforming the compensator power and avoiding
+   double-count.
+Secondary: every historical extraction step (TT recipes, `/5`, `fit_mlog`, ratio
+by fixed `β_B`) is **linear**, so even the invalid algebraic scan would be
+`LINEAR-ONLY` (bookkeeping, not circularity).
+
+### Evidence
+
+`scripts/betav_decomp_check.py`,
+`results/P2-BETAV-CIRC-01/decomp/regen/decomp_check.json`,
+`derivations/P2-BETAV-CIRC-01_determinant-decomposition.md`,
+`reports/2026-07-20_betav-decomposition-adjudication_report.md`.
+
+### Consequences
+
+- The circularity question must be reformulated as an operator/determinant-
+  identity audit (analytic gauge-fixed identity (d) vs recovered operator (a)),
+  or addressed via `P2-BETAV-RECON-01` (clean-room operator) — **not** a `k`-scan
+  on the recovered code. This is a real result, not a failure.
+- Gate statuses **unchanged**: `P2-BETAV-CIRC-01` = `SPECIFIED`,
+  `P2-BETAV-NUMREPRO-01` = `PROPOSED`, `P2-C9` = `PROPOSED`; the `−3.2(5)`
+  quarantine is untouched.
+
+### Supersedes
+
+None (the withdrawn `Z_V + k·Z_scalar` k-scan draft was never committed; this
+records why it is invalid).
+
+### Related gate
+
+`P2-BETAV-CIRC-01`, `P2-BETAV-RECON-01`.
+
+### Related branch and files
+
+`gate/p2-betav-decomp`; `derivations/P2-BETAV-CIRC-01_determinant-decomposition.md`,
+`scripts/betav_decomp_check.py`, `results/P2-BETAV-CIRC-01/decomp/`.
+
 ## Entry template
 
 ```markdown
