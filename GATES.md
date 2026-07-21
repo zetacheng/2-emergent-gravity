@@ -345,6 +345,12 @@ anything else, or would it return `−3` regardless (circular confirmation)?
 ### Scope
 The discriminating power of the extraction, not reproducing `−3.2(5)`.
 
+**Scope (promotion boundary):** this gate tests only non-circularity /
+discriminating power. A PASS does **not** verify or promote
+`β_V/β_B = −3.2(5)`. Promotion of `P2-C9` requires **both**:
+- `P2-BETAV-CIRC-01 = PASS`; **and**
+- `P2-BETAV-NUMREPRO-01 = PASS`.
+
 ### Locked assumptions
 `CONVENTIONS.md`; Proca determinant structure, generalized to a compensating
 scalar power `k`.
@@ -448,6 +454,67 @@ confirmation from `−3.2(5)`.
 ### Date closed
 Open (`SPECIFIED` 2026-07-20 — pipeline recovered, `k`-scan runnable but not run;
 was `SUSPENDED` 2026-07-19 while the pipeline was missing).
+
+## P2-BETAV-NUMREPRO-01 — Numerical reproduction of `β_V/β_B` at physical `k=1`
+
+Status: PROPOSED (not run)
+
+### Scientific question
+At physical `k=1`, does the recovered `β_V/β_B` converge reproducibly into the
+frozen paper band for `−3.2(5)`, under preregistered grid refinement,
+mass-window, longitudinal-sector, and fit-order stability checks?
+
+### Relation to `P2-BETAV-CIRC-01` (distinct question)
+This is **scientifically distinct** from `P2-BETAV-CIRC-01` (non-circularity /
+discriminating power). Numerical work may be prepared independently, but
+**`P2-C9` promotion requires BOTH `P2-BETAV-CIRC-01 = PASS` AND
+`P2-BETAV-NUMREPRO-01 = PASS`**. Neither gate alone is sufficient.
+
+### Current state
+**Not run.** Current accessible-grid magnitudes do **not** reproduce the paper
+value: `n=12: ≈ −61`, `n=16: ≈ −16` (light window); the heavy-inclusive window
+even flips sign — longitudinal-artifact/grid limited
+(`results/recovered-2026/BETAV_REPRODUCTION.md`). Only the vector `β_V` **sign**
+(and the scalar `β_B`) are reproduced.
+
+### Required preregistration before execution
+Before any execution, freeze and commit:
+- the exact grid sequence;
+- the mass windows;
+- the fit basis and fit orders;
+- the longitudinal-mode prescription;
+- the convergence metric and tolerance;
+- the frozen paper acceptance band for `−3.2(5)`;
+- the treatment of finite-volume / grid artifacts;
+- the PASS, FAIL, and INCONCLUSIVE rules;
+- the computational ceiling and stopping rule.
+
+### Kill criterion
+Under the frozen protocol, the `k=1` result fails to converge, is unstable under
+the registered analysis variations, or converges **outside** the frozen paper
+band.
+
+### Claim consequence
+A PASS is **necessary but not sufficient** by itself to promote `P2-C9`;
+`P2-BETAV-CIRC-01` must **also** PASS.
+
+### Regression anchors
+`scripts/recovered_2026/reproduce_betav.py` (records the current, non-reproducing
+accessible-grid magnitudes).
+
+### Repository branch
+`recover/betav-complete`
+
+### Relevant files
+`scripts/recovered_2026/proca_loop.py`, `scripts/recovered_2026/mlog_coeff.py`,
+`scripts/recovered_2026/reproduce_betav.py`,
+`results/recovered-2026/BETAV_REPRODUCTION.md`.
+
+### Date opened
+2026-07-20
+
+### Date closed
+Open (`PROPOSED` — not run).
 
 ## P2-BETAV-RECON-01 — Clean-room curved-background Proca reconstruction
 

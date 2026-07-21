@@ -77,9 +77,18 @@ report.
 ## 8. What comes next (NOT this task)
 
 The `P2-BETAV-CIRC-01` `k`-scan: vary `k ∈ {0,1,2,3,½}` with `TT_RECIPES` and
-normalization fixed; if `β_V/β_B` tracks `−(k+2)` → PASS (and `−3.2(5)` may be
-promoted); if it stays `−3` → circular (historical extraction impugned). This
-task only makes it runnable.
+normalization fixed.
+
+If `β_V/β_B` tracks `−(k+2)`, `P2-BETAV-CIRC-01` may PASS. **This establishes
+non-circular discriminating power only. It does not numerically reproduce the
+physical `k=1` value and does not promote `P2-C9`.** Promotion of `P2-C9`
+requires the separate gate `P2-BETAV-NUMREPRO-01` to PASS under preregistered
+grid-convergence, mass-window, longitudinal-sector, and fit-order stability
+criteria at `k=1`, with the result landing in the frozen paper band. If the
+ratio stays approximately `−3` independently of `k`, the recovered historical
+extraction is circular or structurally non-discriminating.
+
+This task only makes the `k`-scan runnable.
 
 ## 9. git status / commits / remote
 
