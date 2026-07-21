@@ -28,12 +28,46 @@ def _gate_status(gate_id: str) -> str:
     raise AssertionError(f"no Status line found for {gate_id}")
 
 
-def test_circ01_remains_suspended():
-    assert "SUSPENDED" in _gate_status("P2-BETAV-CIRC-01")
+def test_circ01_is_specified_after_recovery():
+    # The gate left SUSPENDED only because the historical pipeline was RECOVERED
+    # (not because the question was waved away). It is now in the allowed state
+    # SPECIFIED (runnable, not run) -- never PASS/FAIL until the k-scan runs.
+    status = _gate_status("P2-BETAV-CIRC-01")
+    assert "SPECIFIED" in status
+    assert "PASS" not in status and "FAIL" not in status
+    # the recovery must be recorded in the gate body
+    gates = (ROOT / "GATES.md").read_text(encoding="utf-8")
+    assert "recovered" in gates and "runnable but not yet run" in gates
 
 
 def test_recon01_remains_proposed():
     assert "PROPOSED" in _gate_status("P2-BETAV-RECON-01")
+
+
+def test_numrepro01_proposed():
+    # The numerical-reproduction gate exists and is PROPOSED (not run).
+    assert "PROPOSED" in _gate_status("P2-BETAV-NUMREPRO-01")
+
+
+def test_dual_gate_promotion_rule_present():
+    # Promotion of P2-C9 must require BOTH gates to PASS -- neither alone.
+    gates = (ROOT / "GATES.md").read_text(encoding="utf-8")
+    assert "P2-BETAV-CIRC-01 = PASS" in gates
+    assert "P2-BETAV-NUMREPRO-01 = PASS" in gates
+    # both appear together in a promotion-rule context
+    assert "requires" in gates and "P2-C9" in gates
+
+
+def test_circ_pass_alone_does_not_promote():
+    # The CIRC gate's Scope must state a PASS does not verify/promote -3.2(5).
+    gates = (ROOT / "GATES.md").read_text(encoding="utf-8")
+    assert "A PASS does **not** verify or promote" in gates
+    # The betaV report must carry the corrected boundary, not "may be promoted".
+    rep = (ROOT / "reports"
+           / "2026-07-20_betav-complete-recovery_report.md").read_text(
+               encoding="utf-8")
+    assert "does not promote" in rep
+    assert "may be\npromoted" not in rep and "value may be promoted" not in rep
 
 
 def test_assembly01_remains_pass():

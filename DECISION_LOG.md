@@ -294,6 +294,54 @@ earlier entries are preserved.
 `gate/p2-betav-circ`; `results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md`,
 `scripts/betav_assembly.py`, `derivations/P2-BETAV-*`.
 
+## 2026-07-20 — βV pipeline recovered; revive P2-BETAV-CIRC-01 SUSPENDED → SPECIFIED
+
+### Decision
+
+The βV (Proca) pipeline is now complete and runs. Revive `P2-BETAV-CIRC-01`
+from `SUSPENDED` to `SPECIFIED` (the discrimination `k`-scan is runnable but not
+yet run). **No PASS/FAIL verdict is set.** `β_V/β_B = −3.2(5)` is **not**
+promoted — it stays an unpromoted, quarantined paper value.
+
+### Reason
+
+The provenance block is removed: `mlog_coeff.py` (previously missing) is
+recovered, so `proca_loop.py` runs. The pipeline reproduces the scalar `β_B`
+(`+3.0e-4 → +2.82e-4`, converging into `+2.50…2.64e-4`) and the vector `β_V`
+**sign** (`Z_V(m)` rises ⟹ `β_V<0`, Finding 5). The gate can no longer be
+justified as provenance-blocked.
+
+### Evidence
+
+`scripts/recovered_2026/{mlog_coeff.py, proca_loop.py, reproduce_betav.py}`;
+`results/recovered-2026/BETAV_REPRODUCTION.md`.
+
+### Consequences
+
+- `P2-BETAV-CIRC-01` = `SPECIFIED` (runnable, not run; no verdict).
+- The βV *magnitude* at accessible grids is longitudinal-artifact limited
+  (light-window ratio `−61` at `n=12`, `−16` at `n=16`; heavy window flips sign)
+  — recovery does **not** reproduce `−3.2(5)`.
+- `−3.2(5)` is **not** promoted to a verified claim; `P2-C9` stays `PROPOSED`.
+  The quarantine holds until the `k`-scan discrimination test passes.
+- `MIGRATION.md`'s "nothing can be re-run" is now fully superseded for Paper 2's
+  gravity sector.
+- No historical claim upgraded or downgraded by the recovery itself.
+
+### Supersedes
+
+The `SUSPENDED`/provenance-blocked disposition of `P2-BETAV-CIRC-01` (2026-07-19
+entry), which was correct while the pipeline was missing. Preserved above.
+
+### Related gate
+
+`P2-BETAV-CIRC-01`, `P2-GRAV-ENGINE-RECOVERED-01`.
+
+### Related branch and files
+
+`recover/betav-complete`; `scripts/recovered_2026/`, `results/recovered-2026/`,
+`GATES.md`, `MIGRATION.md`.
+
 ## Entry template
 
 ```markdown

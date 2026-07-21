@@ -1,23 +1,27 @@
 # Migration Record
 
-## Rescope (2026-07-20): the gravity-kernel engine is recovered
+## Rescope (2026-07-20): the gravity engine is recovered — now including βV
 
 **Update.** The original blanket statement below — "Paper 2 has no legacy
-repository, no archived script … nothing can be re-run" — is now **partially
-superseded**. The PI recovered the historical lattice **gravity-kernel engine**
-(fermion/scalar/⟨TT⟩) in 2026; it is landed verbatim in
-`scripts/recovered_2026/`, it **runs**, and it **reproduces** Paper 2's Finding
-4 sign structure (`Z_h>0`, `ξ_ind<0`) and the light-cone universality numbers
-(`speed_check`, quantitatively) — see gate `P2-GRAV-ENGINE-RECOVERED-01` and
-`results/recovered-2026/REPRODUCTION.md`.
+repository, no archived script … nothing can be re-run" — is now **fully
+superseded for Paper 2's gravity sector**. The PI recovered the historical
+lattice gravity engine (fermion/scalar/⟨TT⟩) in 2026, and **subsequently the βV
+(Proca) pipeline as well** (`mlog_coeff.py` + `proca_loop.py`). All are landed
+verbatim in `scripts/recovered_2026/`, they **run**, and they **reproduce**:
+Finding 4 sign structure (`Z_h>0`, `ξ_ind<0`), the light-cone universality
+numbers (`speed_check`, quantitatively), the scalar `β_B`, and the vector `β_V`
+**sign** — see gates `P2-GRAV-ENGINE-RECOVERED-01`, `P2-BETAV-CIRC-01`, and
+`results/recovered-2026/REPRODUCTION.md`, `results/recovered-2026/BETAV_REPRODUCTION.md`.
 
-**Scope of the rescope:** the recovery covers the **gravity-kernel sector only**
-(fermion/scalar/TT graviton kernel, induced `Z_h`/`M_Pl²`, light-cone). It does
-**not** cover **βV** (the Proca sector): the historical `proca_loop.py` is
-incomplete (missing its `mlog_coeff` dependency), is not part of this recovery,
-and `P2-BETAV-CIRC-01` remains `SUSPENDED`. The heat-kernel/gap/`I_0`/`β_B`
-quantities were separately established by independent recomputation (this
-repository's earlier gates), not by the recovered engine.
+**Scope / caveats.** The βV *magnitude* `β_V/β_B` at accessible grids is
+longitudinal-artifact limited (not at the paper's `−3.2(5)` precision). Because
+the historical pipeline is recovered, `P2-BETAV-CIRC-01` moves
+`SUSPENDED → SPECIFIED` (the discrimination `k`-scan is now **runnable, not yet
+run**). **`β_V/β_B = −3.2(5)` remains an unpromoted, quarantined, and (at its
+magnitude) still-`unreproduced` paper value: recovery ≠ verification; the
+`k`-scan verdict decides.** The
+heat-kernel/gap/`I_0`/`β_B` quantities were separately established by independent
+recomputation (this repository's earlier gates), not by the recovered engine.
 
 **Honesty note:** the recovery **enables** verification; it does **not** by
 itself upgrade or downgrade any historical claim. No verdict is changed by the
