@@ -325,12 +325,18 @@ D1 withdrawn; `P2-C2`, `P2-C8` → `SUPPORTED`. Bookkeeping gate; not physics.
 
 ## P2-BETAV-CIRC-01 — Does the lattice `β_V` test discriminate?
 
-Status: SUSPENDED (blocked by provenance — the historical Finding 5 pipeline is
-not in this repository; see `results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md`).
-Honest substitutes: `P2-BETAV-ASSEMBLY-01` (bookkeeping verified, does not close
-this gate) and `P2-BETAV-RECON-01` (reconstruction path, PROPOSED). The
-`OPEN` label previously used here is not an allowed status and is corrected to
-`SUSPENDED`.
+Status: SPECIFIED (revived 2026-07-20 — the historical pipeline is recovered;
+the discrimination test is now **runnable but not yet run**. Not `PASS`/`FAIL`.)
+
+**Revival note.** This gate was `SUSPENDED` (provenance-blocked) while the
+historical Finding 5 pipeline was missing. That pipeline is now **recovered**
+(`scripts/recovered_2026/proca_loop.py` body + `mlog_coeff.py` projection), it
+**runs**, and it **reproduces** the scalar `β_B` and the vector `β_V` sign
+(`results/recovered-2026/BETAV_REPRODUCTION.md`). The gate therefore moves
+`SUSPENDED → SPECIFIED`: the historical discrimination test is runnable. The
+**verdict** (PASS/FAIL) is **not** set here — it is the job of the separate
+`k`-scan task. `P2-BETAV-ASSEMBLY-01` (bookkeeping) and `P2-BETAV-RECON-01`
+(clean-room reconstruction, PROPOSED) remain as recorded.
 
 ### Scientific question
 Can Paper 2 Finding 5's lattice extraction distinguish `β_V/β_B=−3` from
@@ -350,39 +356,45 @@ Modified structure `det^{−1/2}(Δ^{(1)}+m²)·det^{+1/2}(Δ^{(0)}+m²)^k`.
 `β_V(k)/β_B = −(k+2)` (`k=1→−3`, `k=2→−4`, `k=3→−5`).
 
 ### Regression anchors
-None here — the bookkeeping anchor lives in `P2-BETAV-ASSEMBLY-01`
-(`scripts/betav_assembly.py`), which explicitly does not close this gate.
+`scripts/recovered_2026/reproduce_betav.py` (pipeline runs; scalar `β_B` and
+vector sign reproduce). The bookkeeping anchor lives in `P2-BETAV-ASSEMBLY-01`.
 
 ### Kill criterion
-Feed the *historical* lattice extraction the `k≠1` structure. **If it returns
-`−3` regardless, the extraction is circular and Finding 5's lattice confirmation
-is withdrawn.** If it returns `−(k+2)`, it discriminates. (Requires the
-historical pipeline, which is absent — hence `SUSPENDED`.)
+Feed the **recovered historical** extraction (`proca_loop.py` +
+`mlog_coeff.TT_RECIPES`) the `k≠1` structure (compensator power `k`), holding
+`TT_RECIPES` and the normalization fixed. **If the extracted `β_V/β_B` returns
+`−3` regardless of `k`, the extraction is circular and Finding 5's lattice
+confirmation is withdrawn.** If it tracks `−(k+2)`, it discriminates.
 
-### Required computations
-The decisive test — feed the *historical* curved-background lattice Proca
-extraction a `k≠1` structure and see whether it returns `−(k+2)` or stays fixed
-near `−3` — **cannot be run**: that pipeline is not in the repository
-(provenance NOT LOCATED). It must not be faked with the scalar `P2-BETA-01`
-tadpole, which implements none of the required machinery (1-form operator,
-Stueckelberg determinant, metric perturbation, `h`-derivative, projection).
+### Required computations (now runnable — not yet run)
+The decisive `k`-scan is now **runnable**: the historical body and projection
+are recovered (`scripts/recovered_2026/`). Vary the compensator power
+`k ∈ {0,1,2,3,½}`, keep `TT_RECIPES` and normalization fixed, and check whether
+`β_V/β_B` tracks `−(k+2)` (faithful) or stays at `−3` (circular). **This gate
+does not run that scan or set a verdict** — that is the separate `k`-scan task.
+
+### Structural hypothesis (to be tested, NOT a verdict)
+`TT_RECIPES` is 5 fixed, unit-normalized, **`k`-independent** TT polarizations
+(identical for fermion/scalar/vector loops), with no mechanism to normalize `k`
+away. This *suggests* the projection cannot by construction force `−3` — i.e.
+the extraction is plausibly discriminating. **This is a hypothesis for the
+`k`-scan to confirm or refute, not a conclusion.**
 
 ### Required deliverables
-`results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md` (done). The circularity verdict
-itself is deferred to a located or reconstructed pipeline.
+`results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md` (historical record);
+`scripts/recovered_2026/` (recovered pipeline); `BETAV_REPRODUCTION.md`. The
+circularity **verdict** is deferred to the `k`-scan task.
 
 ### Result
-**Blocked by provenance.** The historical Finding 5 pipeline that produced
-`−3.2(5)` is absent; its projection/normalization cannot be exercised, so
-circularity can be neither demonstrated nor ruled out. The determinant
-bookkeeping is structure-dependent `−(k+2)` (`P2-BETAV-ASSEMBLY-01`), but that
-shares the integral in numerator and denominator (it cancels) and has no power
-over the historical projection. Finding 5's `−3.2(5)` remains an **unreproduced
-paper value**.
+**Pipeline recovered and reproduces (scalar `β_B`, vector `β_V` sign); the
+discrimination `k`-scan is runnable but not yet run.** No PASS/FAIL here. The
+βV magnitude at accessible grids is longitudinal-artifact limited
+(`BETAV_REPRODUCTION.md`); Finding 5's `−3.2(5)` remains an **unpromoted,
+quarantined** paper value (recovery ≠ verification).
 
 ### Reviewer verdict
-`SUSPENDED`. Not closed by assertion in either direction. The next scientific
-step is the located-or-reconstructed pipeline (`P2-BETAV-RECON-01`).
+`SPECIFIED` — runnable, not run. Not closed by assertion in either direction.
+Next scientific step: the `k`-scan discrimination test.
 
 ### Consequences
 Cross-repo: `3-vector-sector` `P3-C-004` rests on the `C_6 = −G_V/2` sign
@@ -390,8 +402,10 @@ structure, **not** on `−3.2(5)`, so it is unaffected; the flag in `MIGRATION.m
 stays as-is (that repo not read from or edited).
 
 ### Operational consequence
-(Governance clarification `P2-SI1-UNBLOCK-01` — not a new scientific verdict;
-status stays `SUSPENDED`.)
+(Governance clarification `P2-SI1-UNBLOCK-01` — not a new scientific verdict.
+The SI-1 unblock holds independent of this gate's status, now `SPECIFIED`; it
+still does not gate SI-1, and `−3.2(5)` is still quarantined pending the
+`k`-scan verdict.)
 
 `P2-BETAV-CIRC-01` **does not block**:
 - `P2-CHANNEL-FREEZE-01`;
@@ -420,6 +434,9 @@ confirmation from `−3.2(5)`.
 `gate/p2-betav-circ`
 
 ### Relevant files
+`scripts/recovered_2026/proca_loop.py`, `scripts/recovered_2026/mlog_coeff.py`,
+`scripts/recovered_2026/reproduce_betav.py`,
+`results/recovered-2026/BETAV_REPRODUCTION.md`,
 `results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md`,
 `derivations/betav_discriminating_power.md`,
 `derivations/P2-BETAV-RECON-01_cleanroom_reconstruction.md`,
@@ -429,7 +446,8 @@ confirmation from `−3.2(5)`.
 2026-07-17
 
 ### Date closed
-SUSPENDED 2026-07-19 (blocked by provenance; not closed).
+Open (`SPECIFIED` 2026-07-20 — pipeline recovered, `k`-scan runnable but not run;
+was `SUSPENDED` 2026-07-19 while the pipeline was missing).
 
 ## P2-BETAV-RECON-01 — Clean-room curved-background Proca reconstruction
 
