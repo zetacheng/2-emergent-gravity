@@ -44,10 +44,11 @@ Grid/range-stable: mixed `q²` coeff `8.7e-5` (n=10) ↔ `9.1e-5` (n=12).
   (TT+LL ≈ 99.6%); an **exact invariant additive split fails only at the ≈0.4%
   level**.
 
-The seagull is `q`-independent (structural: `δ²M` and the single-propagator
-tadpole carry no external `q`; the recovered slope extractor is bubble-only), so
-it contributes to `Π(0)` only, **not** to the `q²` coefficient — verified, not
-assumed.
+In the recovered implementation used for this slope extraction, the seagull term
+is `q`-independent (the recovered slope extractor is bubble-only; `δ²M` and the
+single-propagator tadpole carry no external `q`) and therefore does not
+contribute to the fitted `q²` coefficient — verified in this implementation, not
+asserted as a general theorem.
 
 ## 3. Neutralized language (Fixes 2–4)
 
