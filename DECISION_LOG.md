@@ -466,6 +466,64 @@ revised).
 `derivations/P2-BETAV-CIRC-01_determinant-decomposition.md`,
 `reports/2026-07-20_betav-decomposition-adjudication_report.md`, `GATES.md`.
 
+## 2026-07-21 — Batch-2 recovery: Solodukhin-quotient object recovered; Ward summary recorded not adopted
+
+### Decision
+
+Record the batch-2 recovery of historical originals (gauge-fixed vector
+`gfvec_loop.py`, the precision driver, Fierz/HS foundations, and the
+Wilson-frame & overlap eras) and add a **dated addendum** to `P2-BETAV-CIRC-01`.
+The addendum notes that the registered operator/determinant-identity audit now
+has a **concrete recovered object** — the Solodukhin quotient
+`Γ_Proca = Γ_minvec − Γ_scalar(m)` in `gfvec_loop.py`. **No gate status changes;
+the Phase-1 verdict token `DECOMP-UNAVAILABLE-AS-RECOVERED` is not altered.**
+Separately record `ward_analysis_summary.txt` as a historical results document
+whose claims are **recorded, not adopted**.
+
+### Reason
+
+The Phase-1 adjudication said a clean-room gauge-fixed construction was "not
+excluded" but unavailable from the then-recovered set. Batch-2 shows such a
+construction existed historically. This does not reopen the verdict (which was
+correct for the additive scan on the then-recovered `proca_loop`/`boson_loop`
+set); it gives the *reformulated* audit an object to run against.
+
+### Evidence
+
+`scripts/recovered_2026/batch2/` (13 originals, sha256 in `PROVENANCE.md`);
+constant-`h` machinery validated to `~1e-7` (`n=6,8`, `m=0.5`) and Fierz
+foundations self-validated
+(`results/recovered-2026/BATCH2_VALIDATION.md`). `precision_campaign.py` **not
+run** (hours; embeds `−2.000`/`−3.000` targets → blind harness required).
+
+### Consequences
+
+- `P2-BETAV-CIRC-01` = `SPECIFIED` (unchanged); audit PASS/FAIL/INCONCLUSIVE
+  rules still to be pre-registered; any β run must use a blind harness.
+- `P2-BETAV-NUMREPRO-01` = `PROPOSED`, `P2-C9` = `PROPOSED`, `−3.2(5)`
+  quarantined — all untouched. `CLAIMS.md` untouched.
+- `ward_analysis_summary.txt` claims (`Z_cov < 0`; positive axis slope entirely
+  the non-covariant `c4` piece) are recorded but **must not be cited as
+  established**; the generating Ward vierbein-link kernel is registered missing
+  (`scripts/recovered_2026/MISSING.md`, item 1).
+
+### Supersedes
+
+Nothing. The Phase-1 entries and their token stand; this only adds an addendum
+and provenance.
+
+### Related gate
+
+`P2-BETAV-CIRC-01` (addendum), `P2-BETAV-NUMREPRO-01`, `P2-BETAV-RECON-01`.
+
+### Related branch and files
+
+`recover/batch2-gfvec-and-foundations`; `scripts/recovered_2026/batch2/`,
+`scripts/recovered_2026/PROVENANCE.md`, `scripts/recovered_2026/MISSING.md`,
+`results/recovered-2026/BATCH2_VALIDATION.md`,
+`results/recovered-2026/ward_analysis_summary.txt`,
+`results/recovered-2026/emergent_gr_paper_v2_7.tex`, `GATES.md`.
+
 ## Entry template
 
 ```markdown
