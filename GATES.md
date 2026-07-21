@@ -577,6 +577,29 @@ even flips sign — longitudinal-artifact/grid limited
 (`results/recovered-2026/BETAV_REPRODUCTION.md`). Only the vector `β_V` **sign**
 (and the scalar `β_B`) are reproduced.
 
+### Historical target configuration pinned — 2026-07-21 (pre-registration input; status unchanged)
+
+The recovered full session log (`results/recovered-2026/session_log_full.md`)
+pins the **historical target configuration(s)** for this reproduction. These are
+**historically reported by the recovered session message, not independently
+verified**; they are recorded here as pre-registration *input*, not as a result.
+See the run-record index in `scripts/recovered_2026/PROVENANCE.md` (rows R7, R10,
+R12, R14). At minimum the index includes:
+
+- **direct Proca extraction:** `n=32`, mass window `m_V a = 0.11–0.20`,
+  `β_V = −7.2×10⁻⁴` vs predicted `−7.9×10⁻⁴` (9%), ratio `−3.2(5)` (subwindows
+  `−2.6`/`−3.4`; wide/heavy window drifts to `−5`);
+- **gfvec/Solodukhin summary:** window `0.125–0.55`, `β_gfvec/β_B ≈ −2.4 … −2.9`
+  (target `−2`), same summary quoting `Proca/B = −3.2(5)`;
+- **boson grid-systematics test:** `n=48` vs `n=32` ratio test for `β_B`.
+
+When this gate's PASS/FAIL/INCONCLUSIVE rules are pre-registered, the
+reproduction **must target this configuration** and **must run through a blind
+harness** — the historical drivers embed the analytic targets (`−2`, `−3`) in
+comments/docstrings and the historical runs were **not blind**. **No status
+change:** the gate stays `PROPOSED` (not run); `P2-C9` and the `−3.2(5)`
+quarantine are untouched.
+
 ### Required preregistration before execution
 Before any execution, freeze and commit:
 - the exact grid sequence;

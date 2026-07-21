@@ -524,6 +524,65 @@ and provenance.
 `results/recovered-2026/ward_analysis_summary.txt`,
 `results/recovered-2026/emergent_gr_paper_v2_7.tex`, `GATES.md`.
 
+## 2026-07-21 — Full session log landed; −3.2(5) provenance pinned (quarantine enforces the programme's own criterion)
+
+### Decision
+
+Land the recovered **complete historical session log**
+(`results/recovered-2026/session_log_full.md`, byte-for-byte, sidecar SHA256)
+and record, in `PROVENANCE.md`, a **run-record index** of every number the log
+reports — each labelled *historically reported, not independently verified*. No
+gate status changes; `P2-C9` and the `−3.2(5)` quarantine are untouched.
+
+### Reason
+
+The log resolves several open provenance questions: it pins the `−3.2(5)` run
+configuration(s), confirms `precision_campaign.py` was never executed, and
+records that the historical runs were not blind (targets `−2`,`−3` were known).
+
+### Evidence
+
+`session_log_full.md` (73853 bytes, SHA256
+`61c54701d7e61f31168aaadd0a6ee70c964f4b2175e92c1d9dd3a02749303a9c`): Proca
+`β_V=−7.2×10⁻⁴` at `n=32`, `m_V a=0.11–0.20`, ratio `−3.2(5)` (L219–220);
+gfvec `−2.4…−2.9` over `0.125–0.55` (L229); `Π_V(0)=+0.297/+0.264/+0.228`
+matching `batch2/calibrate.py`; finite-q `0.500000` validation (script not
+recovered).
+
+### The pre-stated-criterion sentence (recorded as required)
+
+**The historical promotion criterion was pre-stated and never met**: the
+session's own standard was that the scenario upgrades to "lattice-established"
+only if the precision campaign lands both ratios at `−2.00` and `−3.00`, and
+that campaign never ran. **The current `−3.2(5)` quarantine therefore enforces
+the programme's own historical criterion, not a retroactive standard.**
+
+### Consequences
+
+- `precision_results.json` reclassified as the **output of a never-run
+  computation** (`MISSING.md` #2); the `n=32` session item is **resolved on the
+  session side** (#3); a new missing item (#6) is the finite-q validation script.
+- `P2-BETAV-NUMREPRO-01` gains a dated note pinning the historical target
+  configuration as pre-registration input (status stays `PROPOSED`).
+- Any future β run must use a **blind harness** (targets embedded in the
+  historical files and known historically).
+
+### Supersedes
+
+Nothing. Adds provenance and an index; the Phase-1 verdict/token and all gate
+statuses stand.
+
+### Related gate
+
+`P2-BETAV-CIRC-01`, `P2-BETAV-NUMREPRO-01`, `P2-C9` (unchanged).
+
+### Related branch and files
+
+`recover/batch2-gfvec-and-foundations`;
+`results/recovered-2026/session_log_full.md` (+`.sha256`),
+`scripts/recovered_2026/PROVENANCE.md`, `scripts/recovered_2026/MISSING.md`,
+`GATES.md`, `reports/2026-07-21_recovery-batch2_report.md`.
+
 ## Entry template
 
 ```markdown

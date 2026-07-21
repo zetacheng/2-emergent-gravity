@@ -146,3 +146,97 @@ recovered object (the Solodukhin quotient), but no gate status changes, `P2-C9`
 is not promoted, and `−3.2(5)` stays quarantined. The `ward_analysis_summary.txt`
 claims are recorded for the record and **must not** be cited as established until
 their generating computation is recovered or independently reproduced.
+
+---
+
+# Batch-2 addendum (2026-07-21) — recovered full session log
+
+## The landed artifact
+
+The PI recovered the **complete session log** of the historical session that
+designed the βV precision campaign and landed it **byte-for-byte unmodified**:
+
+| Item | Value |
+|---|---|
+| Landed path | `results/recovered-2026/session_log_full.md` |
+| Original filename (PI-supplied) | begins `Claude睇完 paper 2…` (mixed Cantonese/English, ~74 KB) |
+| Recovery date | 2026-07-21 |
+| Source | PI-supplied |
+| Completeness | **complete session** (not an excerpt) — this **RESOLVES** the earlier "full session log still sought" residue for the `n=32`/`−3.2(5)` provenance item |
+| Bytes / SHA256 | 73853 bytes; sidecar `session_log_full.md.sha256` = `61c54701d7e61f31168aaadd0a6ee70c964f4b2175e92c1d9dd3a02749303a9c` |
+
+The log is a **historical assistant/PI dialogue**: it establishes what the
+session *claimed and configured*, **not** independently verified fact. Every
+number below is **historically pinned/reported by the recovered session
+message**, never "independently verified". Line numbers refer to
+`session_log_full.md`.
+
+## Run-record index (historically reported; NOT independently verified)
+
+Each row is a numerical result **as reported in the log**, with grid, window,
+and a locating quote/context. These are historical reports.
+
+| # | Quantity | Reported value | grid `n` | mass window `ma` | Comparison / systematics note | Locate (line, quote-context) |
+|---|---|---|---|---|---|---|
+| R1 | scalar light-cone `c_χ²−1` (H(4) substrate) | `5×10⁻¹³` | `32⁴`, conv. vs `48⁴` | "symmetry-protected zero"; `ξ_χ=−0.078` vs `ξ_f=−0.250`, `Δξ≈0.17` | L42 "c_χ² − 1 = 5×10⁻¹³" |
+| R2 | scalar `c_χ²` (no spacetime symmetry) | `1.22 … 3.77` | cubic-space Hamiltonian | splits as `1/ln(Λ/m)` — reproduces Collins et al. | L44 "c_χ² = 1.22 至 3.77" |
+| R3 | graviton light-cone `Z_h(time)/Z_h(space)` | `1` (10 sig. figs) | across `ma=0.25–1.0` | robust to missing contact terms; `ξ_h=−0.055` | L82 |
+| R4 | bubble `Z_h` (pre-seagull) | `+6.7, +4.9, +2.8 ×10⁻³` /species | 3 masses | Wilson-vertex on/off changes magnitude 8%, not sign; `tt_check.py` n=12/16/20 to 1% | L83–84 |
+| R5 | Ward-complete `Z_cov` (covariant EH coeff) | `−1.29×10⁻³` (negative) | grid-converged | `c₄≈+6.9×10⁻³`; TT weights axis 2/5, face 1/3, body 3/10; closes 3%; overturns R4's sign | L94 (cf. `ward_analysis_summary.txt`) |
+| R6 | machinery checks (Ward) | bubble+seagull vs exact `10⁻⁶`; photon Ward `2×10⁻¹⁴`; `Z_A>0` | — | sign anchor | L92 |
+| R7 | boson `β_B` (`m²ln m²`) | `+2.50(13)×10⁻⁴` | `n=32` ratio test | matches continuum `1/(384π²)` to 5%; `n=48` "too slow", used `n=32` (grid systematics cancel) | L115–117 |
+| R8 | fermion:scalar `m²log` ratio | `2:1` (convention-free) | — | benchmark that pins the extraction; `(1−6ξ)/384π²`, `ξ>1/6` flips sign | L113 |
+| R9 | lattice `G_c` (scalar) | `5.93` | `I₀` extrap `0.0844`, offset-grid 1% | `ξ_ind=(1/6)(3−L)`; `ξ_eff>1/6 ⇒ L<2` (fails) — Finding 4 | L154 |
+| **R10** | **Proca `β_V` (direct, Finding 5)** | **`−7.2×10⁻⁴`** vs pred. `−7.9×10⁻⁴` (9%) | **`n=32`** | **`m_V a = 0.11–0.20`** | **ratio `β_V/β_B = −3.2(5)`; subwindows `−2.6` and `−3.4`; wide/heavy window drifts to `−5` (m⁴ln m² longitudinal artifact)** | **L219–220** |
+| R11 | Proca verification chain | flat eig `{ŝ²+m²×3, m²}` to `10⁻¹⁴`; Sherman–Morrison prop `10⁻¹⁵`; constant-h `10⁻⁸` | — | — | L221 |
+| **R12** | **gfvec `β_gfvec/β_B` (Solodukhin route)** | **`≈ −2.4 … −2.9`** (target `−2`) | (summary) | **`0.125–0.55`** | **same summary quotes `Proca/B = −3.2(5)`; `130 s`/point; 5% needs `ma≈0.05, n=48`** | **L229** |
+| R13 | finite-q gf-seagull validation | position-space full determinant `0.500000` hit | — | `~10⁻⁶` rel. precision | script NOT among recovered files → reported, not re-verified | L227, L229 |
+| R14 | vector-channel criticality `Π_V(0)` | `+0.297 / +0.264 / +0.228` | — | `m_f=0.05/0.2/0.5`; `G_c^V≈3.4–4.4` — **matches `batch2/calibrate.py` `anchors_V`** | L232 |
+| R15 | axial `Π_A(0)` | `≈ −0.19` (negative) | — | axial always heavy ⇒ `n_V=1`; Paper-3 example `m_V≈9 M_Pl, Λ≈66 M_Pl` | L236–237 |
+
+**Corroboration with landed code (not verification of the physics):** R14's
+`Π_V(0)` values are exactly the `anchors_V = {0.05:0.297, 0.2:0.264, 0.5:0.228}`
+hard-coded in `batch2/calibrate.py`; R5's `Z_cov` matches
+`ward_analysis_summary.txt`; R12's "`ma≈0.05, n=48`" campaign matches
+`batch2/precision_campaign.py` (`N=48`, `MASSES=[0.05,…,0.12]`). This shows the
+log and the landed files are the same historical programme; it does **not** make
+any reported number independently verified.
+
+## The five established facts (each historically reported, not verified)
+
+1. **Run configurations are historically pinned — see the run-record index
+   above** (not collapsed into one config). The `−3.2(5)` value has **two**
+   distinct reported windows: the direct Proca extraction (R10, `n=32`,
+   `m_V a=0.11–0.20`, `β_V=−7.2×10⁻⁴` vs `−7.9×10⁻⁴`) and the gfvec/precision
+   summary (R12, window `0.125–0.55`, `gfvec/B≈−2.4…−2.9`), plus the `n=48`
+   boson grid-systematics test (R7). All are historical reports.
+
+2. **`precision_campaign.py` was never executed.** The log shows it was
+   *packaged and handed to the PI to run locally* (L229), and the PI confirms it
+   was **not** run. Therefore `precision_results.json` is reclassified as **the
+   output of a never-run computation**, not a lost historical output.
+
+3. **The gf seagull is reported NOT q-independent.** The session reports that the
+   covariant-divergence gf seagull is not `q`-independent (`J` spans two sites,
+   the locality lemma fails), that it derived the full `q`-dependent placement,
+   and that it validated this end-to-end with a position-space full determinant
+   at finite `q` (**reported**: `0.500000` hit at `~10⁻⁶` relative precision,
+   L227/L229). The script for that finite-q validation is **not** among the
+   recovered files, so the claim is **historically reported, not re-verified**.
+   **Scope clarification (recorded verbatim as required):** *this
+   q-dependent-seagull statement concerns the separate gauge-fixed/minimal-vector
+   `gfvec` construction. It does not contradict the Phase-1 report's
+   implementation-specific statement that the seagull in the recovered
+   `proca_loop` slope extractor is q-independent.*
+
+4. **The historical runs were not blind.** The targets (`−2`, `−3`) were openly
+   known during execution (they appear throughout the log and in the driver
+   docstrings). Recorded as **fact, not accusation** — it is the reason the
+   modern **blind-harness** requirement exists.
+
+5. **The historical promotion criterion was pre-stated and never met.** The
+   session's own standard was that the scenario upgrades to "lattice-established"
+   **only if** the precision campaign lands **both** ratios at `−2.00` and
+   `−3.00` (L239) — and that campaign never ran (fact 2). **The current `−3.2(5)`
+   quarantine therefore enforces the programme's own historical criterion, not a
+   retroactive standard.** (Also recorded in `DECISION_LOG.md`.)
