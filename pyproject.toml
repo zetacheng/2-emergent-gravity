@@ -34,6 +34,13 @@ addopts = "-m 'not slow'"
 [tool.ruff]
 target-version = "py311"
 line-length = 88
+# Recovered historical originals are landed verbatim and must not be edited or
+# reformatted; exclude them from linting so they stay byte-for-byte as recovered.
+extend-exclude = ["scripts/recovered_2026/seagull_check.py",
+                  "scripts/recovered_2026/boson_loop.py",
+                  "scripts/recovered_2026/tt_check.py",
+                  "scripts/recovered_2026/speed_check.py",
+                  "scripts/recovered_2026/structure_decomp.py"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I"]
