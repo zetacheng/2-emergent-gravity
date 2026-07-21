@@ -1,117 +1,142 @@
-# Canonical report — P2-BETAV-CIRC-01 determinant-decomposition adjudication (Phase 1)
+# Canonical report — P2-BETAV-CIRC-01 determinant-decomposition adjudication (Phase 1, revised)
 
-**Date:** 2026-07-20. **Repository:** `zetacheng/2-emergent-gravity`.
+**Date:** 2026-07-20 (revised same day). **Repository:** `zetacheng/2-emergent-gravity`.
 **Branch:** `gate/p2-betav-decomp` (off `main` = `2c396fc`).
-**Type:** derivation/adjudication — **no k-scan run**, no numerical target.
+**Type:** derivation/adjudication — **no k-scan**, no numerical target.
 
 ## 1. Executive summary
 
-Phase-1 adjudication of whether a `k`-scan of `P2-BETAV-CIRC-01` can even be
-*defined* from the recovered code. **Verdict: DECOMP-NOT-REPRESENTABLE.** The
-recovered Proca operator and the recovered scalar operator cannot be combined
-into a compensator-power deformation that reduces to the recovered Proca result
-at the physical point and avoids double-counting. No `k`-scan is scientifically
-defined from the recovered pipeline alone. This is a real result, not a failure;
-gate statuses and the `−3.2(5)` quarantine are unchanged.
+Phase-1 adjudication of whether a `k`-scan of `P2-BETAV-CIRC-01` can be *defined*
+from the recovered code. **Verdict: `DECOMP-UNAVAILABLE-AS-RECOVERED`** — no
+valid compensator-power deformation is available from the recovered
+implementation as-is; the `boson_loop` scalar is not the flat Proca longitudinal
+eigenfactor and cannot be substituted without an extra identity; the original
+additive k-scan is invalid (and would be `LINEAR-ONLY`); **but** a clean-room
+lattice Stueckelberg / gauge-fixed construction is **not excluded**. This
+revision tightened the analysis to the `q²` level and withdrew an over-stated
+mixing claim. Gate statuses and the `−3.2(5)` quarantine are unchanged.
 
-## 2. The determinant `proca_loop.py` computes
+## 2. Corrected transverse–longitudinal analysis (the core of the revision)
 
-Flat kernel `M_{μν} = (ŝ²+m²)δ_{μν} − a_μa_ν*`, `a_μ = e^{ik_μ}−1`,
-`ŝ² = Σ4sin²(k_μ/2) = p̂²`. Spectrum (verified): `{ŝ²+m² (×3 transverse),
-m² (×1 longitudinal)}`, `det M = m²(ŝ²+m²)³`. Loop `Γ = +½⟨ln det M⟩`; `Z` is the
-axis-TT slope via the 5 fixed, `k`-independent `TT_RECIPES`, `/5`, `fit_mlog`.
-Propagator eigenvalues: `1/(ŝ²+m²)` transverse, `1/m²` longitudinal.
+The earlier report measured T–L mixing via a single-momentum vertex off-block
+norm (`0.17`) — the **wrong basis**. Redone correctly (`scripts/betav_decomp_q2.py`):
+projectors built independently from `a(k)` and `a(k+q)`, decomposing the
+recovered axis-TT bubble `Π = Π_TT+Π_TL+Π_LT+Π_LL` and extracting each sector's
+`q²` coefficient (the induced-`Z` contribution) over three q-ranges,
+`n∈{10,12}`, `m=0.3`. Sector `q²` coeffs sum to the total to `<1e-12`.
 
-## 3. Longitudinal `m²` vs external scalar `Δ₀` — different operators
+| sector | `q²` coefficient (n=12) | share | scaling exp `Π−Π(0)~q^p` |
+|---|---|---|---|
+| TT | `+2.12e-2` | `≈96.5%` | `≈1.99` |
+| LL | `+6.8e-4` | `≈3.1%` | `≈1.97` |
+| **TL+LT (mixed)** | **`+9.0e-5`** | **`≈0.4%`** | **`≈1.98` (q²)** |
+| total | `+2.20e-2` | 100% | `≈1.99` |
 
-| | Proca longitudinal | External scalar (`boson_loop`) |
-|---|---|---|
-| kernel factor | `m²` (ultralocal) | `Δ₀ = ŝ²+m²` (propagating) |
-| momentum dependence | none (spread over `p̂²` = `3e-16`) | full |
-| propagator | `1/m²` (drives the `1/m²` artifact) | `1/(ŝ²+m²)` |
-| `m²ln m²` content | momentum-independent `½ln m²` | universal propagating IR log |
+Grid/range-stable: mixed `q²` coeff `8.7e-5` (n=10) ↔ `9.1e-5` (n=12).
 
-**They are not the same operator.** An external minimally-coupled scalar loop
-cannot represent a change in the Proca compensator power.
+**Findings.**
+- The one-graviton vertex mixing `U_TL` **vanishes as `q→0`** (earlier `0.17`
+  figure withdrawn — wrong basis).
+- **But** the mixed **bubble** contributes at `O(q²)` (exp `≈1.98`), exactly the
+  regime that sources an induced kinetic term: the mixed `q²` coefficient is
+  **nonzero** and basis/grid-stable.
+- It is **small** (`≈0.4%` of `Z`). An *approximate* T/L split holds
+  (TT+LL ≈ 99.6%); an **exact invariant additive split fails only at the ≈0.4%
+  level**.
 
-## 4. Metric-variation block-diagonality — FAILS
+The seagull is `q`-independent (structural: `δ²M` and the single-propagator
+tadpole carry no external `q`; the recovered slope extractor is bubble-only), so
+it contributes to `Π(0)` only, **not** to the `q²` coefficient — verified, not
+assumed.
 
-The one-graviton vertex `δM` has nonzero transverse↔longitudinal blocks:
-`max|⟨T|δM|L⟩| = 0.17` (from `scripts/betav_decomp_check.py`). Hence the bubble
-carries genuine mixed terms `G_T δM G_L δM`, `G_L δM G_T δM ≠ 0`, and the flat
-factorization `det M = m²(ŝ²+m²)³` does **not** lift to an additive
-three-transverse-plus-scalar split of the curved induced action. No invariant
-longitudinal `Z` can be assigned.
+## 3. Neutralized language (Fixes 2–4)
 
-## 5. Determinant identities adjudicated
+- The ultralocal `m²` factor is called **"the longitudinal spectral factor of
+  the complete non-minimal Proca operator"** (not "the compensator sector" —
+  whether it *is* the analytic compensator is unresolved absent a lattice
+  Stueckelberg derivation).
+- **"different `m²ln m²` content" downgraded:** their flat spectral factors have
+  different momentum dependence (`m²` ultralocal vs `ŝ²+m²` propagating);
+  therefore equality of their **induced** `m²ln m²` contributions cannot be
+  assumed and would require a full metric-variation identity the recovered code
+  does not provide (the extracted quantity is a second metric variation, not the
+  flat `ln det`).
+- **Continuum Stueckelberg identity softened:** no such gauge-fixed determinant-
+  quotient identity is implemented or demonstrated by the recovered code; the
+  equivalence to the recovered operator remains **unestablished (neither proven
+  nor refuted)**.
 
-(a) complete curved `det M_Proca` — what the code computes; (b) flat spectral
-`m²(ŝ²+m²)³` — `h=0` only, not a curved factorization; (c) external scalar
-`det Δ₀ = ŝ²+m²` — a different operator; (d) continuum gauge-fixed Stueckelberg
-quotient — where the analytic `−3` lives, **not** an operator identity of the
-lattice `M`. The historical `k=1` corresponds to **(a)**; the analytic `−3` to
-**(d)**. Different objects — hence the recovered numerics give `−16`/`−61`
-(grid/artifact limited), not `−3`.
+## 4. The determinant `proca_loop.py` computes
 
-## 6. Derived generalized-`k` expression — or the obstruction
+Flat `M_{μν}=(ŝ²+m²)δ−a_μa_ν*`, spectrum `{ŝ²+m²(×3), m²(×1)}`,
+`det M=m²(ŝ²+m²)³`; `Z` = axis-TT `q²` slope (bubble-only). Longitudinal factor
+ultralocal `m²` (invariant over `p̂²` to `3e-16`); propagators `1/(ŝ²+m²)`
+transverse, `1/m²` longitudinal. Operator checks: `scripts/betav_decomp_check.py`.
 
-No operator-defined compensator-power deformation of `det M_Proca` exists that
-(i) changes the compensator multiplicity, (ii) reduces pointwise to recovered
-Proca at the physical point, and (iii) avoids double-count. The compensator is
-the ultralocal `m²` factor **inside** the same kernel (not a separable
-determinant, §4), and the external `Δ₀` scalar is the **wrong** operator (§3).
-`Γ_Proca + (k−k_phys)Γ_scalar[Δ₀]` reduces only *trivially* at `k=k_phys` (added
-term vanishes) and is a different multi-species theory for `k≠k_phys`. **The
-obstruction is demonstrated, not bypassed.**
+## 5. Longitudinal `m²` vs external scalar `Δ₀` — different operators (support (b))
 
-## 7. Pointwise consistency definition
+`Δ₀ = ŝ²+m²` (propagating, `1/(ŝ²+m²)`) ≠ Proca longitudinal `m²` (ultralocal,
+`1/m²`). The recovered external scalar loop is **not identical** to the flat
+longitudinal eigenfactor and cannot be substituted without an additional
+operator identity. Solid.
 
-`Z_generalized(k=phys, m_i, n) ≡ Z_recovered_Proca(m_i, n)` per grid (i.e. `−16`
-at `n=16`, **not** `−3`). No construction satisfies this while deforming the
-compensator power — see §6.
+## 6. Non-linearity audit (support (a))
 
-## 8. Non-linearity audit
+`TT_RECIPES` (linear), `/5` (linear), `fit_mlog` = linear least squares (linear),
+ratio by fixed `k`-independent `β_B` (linear). Every relevant step is linear ⟹
+the withdrawn additive `Z_V+k·Z_S` scan is `LINEAR-ONLY` (bookkeeping, not
+circularity). A non-linear circular mechanism would require a `k`-dependent
+`β_B`/window/normalization, absent from the recovered pipeline.
 
-`TT_RECIPES` averaging (linear), `/5` (linear), `fit_mlog` = ordinary linear
-least squares (linear), ratio by a **fixed, `k`-independent** `β_B` (linear up to
-constant scale). A non-linear circular mechanism could live only in a
-`k`-dependent `β_B`/window/normalization — which the recovered pipeline does not
-have. **Every relevant step is linear.**
+## 7. Verdict and the supports that hold
 
-## 9. Verdict (exactly one): DECOMP-NOT-REPRESENTABLE
+**`DECOMP-UNAVAILABLE-AS-RECOVERED`.**
+- **(a)** additive `Z_V+k·Z_S` design invalid + `LINEAR-ONLY` — *holds, solid*.
+- **(b)** external `boson_loop` scalar ≠ flat Proca longitudinal eigenfactor —
+  *holds, solid*.
+- **(c)** no **exactly** invariant T/L split (mixed `q²` term nonzero,
+  basis/grid-stable) — *holds, but mild: ≈0.4% of `Z`; approximate split at 99.6%*.
 
-The recovered Proca and scalar operators cannot be combined into a
-compensator-power deformation preserving the physical-point Proca result and
-avoiding double-count (ultralocal `m²` ≠ additive propagating `Δ₀`; inseparable
-T–L mixing). No `k`-scan is defined from the recovered code alone. Secondary:
-even ignoring the operator objection, all steps are linear ⟹ `LINEAR-ONLY`
-(bookkeeping, not circularity). Reformulate the circularity question as an
-operator/determinant-identity audit ((a) vs (d)) or via the clean-room
-`P2-BETAV-RECON-01` — not a `k`-scan.
+Dropped/qualified: the unconditional "no operator-defined deformation can exist"
+and the gross "inseparable mixing (0.17)" claim. Next step (unchanged): an
+operator/determinant-identity audit ((a)-analog vs (d)) or a clean-room
+`P2-BETAV-RECON-01` — **not** the withdrawn k-scan. This is a statement about the
+*design*, not a CIRC verdict.
 
-## 10. Gate statuses unchanged / quarantine held
+## 8. Gate specification updated (not status), quarantine held
 
-`P2-BETAV-CIRC-01` = `SPECIFIED`; `P2-BETAV-NUMREPRO-01` = `PROPOSED`;
-`P2-C9` = `PROPOSED`; `β_V/β_B = −3.2(5)` quarantined/unreproduced. Unchanged by
-this adjudication (`CLAIMS.md` untouched; no claim promoted).
+`GATES.md` `P2-BETAV-CIRC-01` now uses separated fields:
+`Status: SPECIFIED` / `Phase-1 design adjudication: DECOMP-UNAVAILABLE-AS-RECOVERED`
+/ `Previous additive k-scan design: WITHDRAWN` / `Current registered test:
+operator/determinant-identity audit (rules to be pre-registered)`. The CIRC gate
+has **not** passed or failed. `P2-BETAV-NUMREPRO-01` = `PROPOSED`; `P2-C9` =
+`PROPOSED`; `β_V/β_B=−3.2(5)` quarantined/unreproduced. `CLAIMS.md` untouched.
 
-## 11. Commit order (executable before interpretation)
+## 9. Tests, ruff, status (self-contained)
+
+- `python -m pytest tests -q`: **34 passed, 2 deselected** (12 governance tests
+  green, including the quarantine and no-promotion guards).
+- `python -m pytest tests -q -m "slow or not slow"`: **36 passed**.
+- `ruff check .`: **All checks passed.**
+- `git status --porcelain`: **clean** (the `decomp/regen/` outputs are gitignored).
+
+## 10. Commit chronology (this branch, off `main` `2c396fc`)
 
 1. `6fd54d3` derivation: operator-level checks of the recovered Proca determinant (no target)
-2. `82157de` derivation: determinant decomposition for P2-BETAV-CIRC-01 (Phase 1, no scan)
-3. this report + `DECISION_LOG.md` adjudication commit.
+2. `82157de` derivation: determinant decomposition (Phase 1, original)
+3. `3df1476` docs: original adjudication report
+4. `3228656` chore: gitignore nested `results/**/regen`
+5. `aebcf38` derivation: q²-level T/L sector decomposition of the Proca bubble (no target) — **revision, executable, committed before interpretation**
+6. `3ef51cc` docs: tighten adjudication to `DECOMP-UNAVAILABLE-AS-RECOVERED` (derivation + GATES + DECISION_LOG + governance test)
+7. **this report commit** — the branch HEAD (identified by the git ref; see
+   `git ls-remote --heads origin`).
 
-The executable operator-check commit (1) precedes the interpretive commits (2,3).
-
-## 12. Tests / status / remote
-
-Clean-checkout `python -m pytest tests -q`: recorded in the terminal summary.
-`git status --porcelain`, commit hashes, and `git ls-remote --heads origin`:
-terminal summary. No recovered historical source edited.
+Post-adjudication HEAD (before this report commit): `3ef51cc`. The executable
+`q²` check (5) precedes the interpretive commits (6, this report).
 
 ## What comes next (not this task)
 
-Because the outcome is DECOMP-NOT-REPRESENTABLE, the next step is **not** a
-`k`-scan but the reformulated circularity audit (operator/determinant-identity
-(a)-vs-(d)) or the clean-room `P2-BETAV-RECON-01`. `−3.2(5)` promotion stays with
+Because the outcome is `DECOMP-UNAVAILABLE-AS-RECOVERED`, the next step is the
+reformulated operator/determinant-identity circularity audit or the clean-room
+`P2-BETAV-RECON-01` — not a k-scan. `−3.2(5)` promotion stays with
 `P2-BETAV-NUMREPRO-01`, untouched.
