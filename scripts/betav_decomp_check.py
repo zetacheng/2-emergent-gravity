@@ -8,16 +8,25 @@ operators:
 2. the longitudinal eigenvalue is exactly `m²`, invariant under `p̂²`
    (ultralocal), whereas the external scalar operator is `Δ₀ = p̂²+m²`
    (propagating) — so the two are different operators;
-3. the propagator eigenvalues: transverse `1/(p̂²+m²)`, longitudinal `1/m²`;
-4. whether the one-graviton vertex `δM` keeps the flat transverse/longitudinal
-   split block-diagonal (it does not — off-block elements are nonzero).
+3. the propagator eigenvalues: transverse `1/(p̂²+m²)`, longitudinal `1/m²`.
+
+**Deprecated check (opt-in via `--deprecated`).** An earlier same-momentum
+`⟨T|δM|L⟩` off-block norm used the *wrong* momentum basis: it built both
+projectors from `a(k)`, whereas the physical bubble connects `k → k+q` and the
+correct projectors are built independently from `a(k)` and `a(k+q)`. That
+same-basis figure (the withdrawn `0.17`) is **superseded** by
+`scripts/betav_decomp_q2.py`, which performs the transverse/longitudinal sector
+decomposition at the `q²`-coefficient level (the level at which `Z` is
+extracted). The old check is retained only behind `--deprecated` and does not
+run by default; its output is prefixed accordingly.
 
 No numerical target (`−3`, `−(k+2)`) appears here. Outputs go to
 `results/P2-BETAV-CIRC-01/decomp/regen/` (gitignored).
 
 Run::
 
-    python scripts/betav_decomp_check.py
+    python scripts/betav_decomp_check.py               # default checks
+    python scripts/betav_decomp_check.py --deprecated   # + superseded same-basis norm
 """
 
 from __future__ import annotations
@@ -88,6 +97,9 @@ def scalar_vs_longitudinal(m, momenta):
 
 
 def vertex_TL_mixing(m, kv, q, pairs):
+    # DEPRECATED (wrong same-momentum basis): both projectors are built from
+    # a(k), but the bubble connects k -> k+q. Superseded by
+    # scripts/betav_decomp_q2.py, which works at the q^2-coefficient level.
     dJ2, dJ, _, _ = pl.derivsV()
     kk = [np.array([kv[mu]]) for mu in range(4)]
     _, a = _phat2(kv)
@@ -105,26 +117,36 @@ def vertex_TL_mixing(m, kv, q, pairs):
     return {"rows": rows, "max_transverse_longitudinal_mixing": max_mix}
 
 
-def results_dict():
+def results_dict(include_deprecated=False):
     m = 0.3
     momenta = [(0.4, 0, 0, 0), (0.5, 0.7, 0, 0), (1.0, 0.3, 0.9, 0.2),
                (0.2, 0.2, 0.2, 0.2)]
-    from seagull_check import PAIRS
-    return {
+    res = {
         "m": m,
         "note": ("operator-level checks only; NO k-scan, NO numerical target. "
                  "Longitudinal factor is ultralocal m^2, not the propagating "
-                 "scalar Delta0 = phat^2+m^2; graviton vertex mixes T and L."),
+                 "scalar Delta0 = phat^2+m^2. The invariant-split question is "
+                 "adjudicated at the q^2 level by scripts/betav_decomp_q2.py."),
         "proca_eigenstructure": proca_eigenstructure(m, momenta),
         "longitudinal_invariance": longitudinal_invariance(m, momenta),
         "scalar_vs_longitudinal": scalar_vs_longitudinal(m, momenta),
-        "vertex_TL_mixing": vertex_TL_mixing(m, (0.5, 0.7, 0.2, 0.0),
-                                             (0.25, 0, 0, 0), PAIRS),
     }
+    if include_deprecated:
+        from seagull_check import PAIRS
+        res["vertex_TL_mixing_DEPRECATED"] = {
+            "warning": ("DEPRECATED (wrong same-momentum basis; superseded by "
+                        "betav_decomp_q2.py): both projectors from a(k), but "
+                        "the bubble connects k -> k+q."),
+            **vertex_TL_mixing(m, (0.5, 0.7, 0.2, 0.0),
+                               (0.25, 0, 0, 0), PAIRS),
+        }
+    return res
 
 
-def main():
-    res = results_dict()
+def main(argv=None):
+    argv = sys.argv[1:] if argv is None else argv
+    include_deprecated = "--deprecated" in argv
+    res = results_dict(include_deprecated=include_deprecated)
     regen = (_HERE.parent / "results" / "P2-BETAV-CIRC-01" / "decomp" / "regen")
     regen.mkdir(parents=True, exist_ok=True)
     (regen / "decomp_check.json").write_text(
@@ -143,9 +165,13 @@ def main():
           f"proca longitudinal m^2={sv['proca_long_factor_m2']:.4f}  "
           f"(long propagator eig={sv['long_propagator_eig']:.4f} ~ 1/m^2="
           f"{sv['one_over_m2']:.4f})")
-    mx = res["vertex_TL_mixing"]["max_transverse_longitudinal_mixing"]
-    print(f"  max |<T| delta M |L>| (graviton vertex T-L mixing): {mx:.4f}  "
-          f"(nonzero => no invariant split)")
+    print("  invariant-split question: adjudicated at the q^2 level by "
+          "scripts/betav_decomp_q2.py")
+    if include_deprecated:
+        mx = res["vertex_TL_mixing_DEPRECATED"][
+            "max_transverse_longitudinal_mixing"]
+        print(f"  DEPRECATED (wrong same-momentum basis; superseded by "
+              f"betav_decomp_q2.py): max |<T| delta M |L>| = {mx:.4f}")
 
 
 if __name__ == "__main__":
