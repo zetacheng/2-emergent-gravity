@@ -240,3 +240,17 @@ any reported number independently verified.
    `−3.00` (L239) — and that campaign never ran (fact 2). **The current `−3.2(5)`
    quarantine therefore enforces the programme's own historical criterion, not a
    retroactive standard.** (Also recorded in `DECISION_LOG.md`.)
+
+## Convergent evidence, not mutual verification
+
+Two independent lines of reasoning — the historical session's artifact-driven
+design path (this log, which arrived at a gauge-fixed / Stueckelberg
+minimal-vector construction to remove the longitudinal flat band) and the modern
+Phase-1 operator adjudication (`DECOMP-UNAVAILABLE-AS-RECOVERED`, which
+identified the same construction as the object the operator-identity audit
+should run against) — **converged on the same engineering decision**. This is
+**convergent evidence for the design direction, not mutual verification of any
+numerical result.** In particular it does not verify `−3.2(5)` (or any reported
+ratio): the run-record numbers remain historically reported and quarantined, and
+the design agreement is about *which construction to test*, not *what its value
+is*.

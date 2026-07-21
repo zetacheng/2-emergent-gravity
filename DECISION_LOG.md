@@ -539,6 +539,19 @@ gate status changes; `P2-C9` and the `−3.2(5)` quarantine are untouched.
 The log resolves several open provenance questions: it pins the `−3.2(5)` run
 configuration(s), confirms `precision_campaign.py` was never executed, and
 records that the historical runs were not blind (targets `−2`,`−3` were known).
+**The historical programme itself evolved its standards over time: target-aware
+exploration → a designed precision campaign → the present blind preregistration
+and dual-gate discipline. This is recorded as natural maturation of the
+programme's own standards, not as a past-wrong/now-right judgment.**
+
+### Convergent evidence, not mutual verification
+
+Two independent lines of reasoning (the historical session's artifact-driven
+design path and the modern Phase-1 operator adjudication) converged on the same
+engineering decision (a gauge-fixed / Stueckelberg minimal-vector construction).
+**This is convergent evidence for the design direction, not mutual verification
+of any numerical result** — `−3.2(5)` and every other run-record number stay
+historically reported and quarantined.
 
 ### Evidence
 
