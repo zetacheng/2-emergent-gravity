@@ -365,55 +365,94 @@ discriminating power. A PASS does **not** verify or promote
 - `P2-BETAV-NUMREPRO-01 = PASS`.
 
 ### Locked assumptions
-`CONVENTIONS.md`; Proca determinant structure, generalized to a compensating
-scalar power `k`.
+`CONVENTIONS.md`; the **recovered non-minimal Proca operator** `M[h]`
+(`scripts/recovered_2026/proca_loop.py`) as the object under audit. The external
+`boson_loop` scalar (`Δ₀=ŝ²+m²`, propagating) is **not** assumed equivalent to
+the longitudinal spectral factor (`m²`, ultralocal) of `M[h]`; any such
+equivalence must be demonstrated, not assumed.
 
 ### Inputs
-Modified structure `det^{−1/2}(Δ^{(1)}+m²)·det^{+1/2}(Δ^{(0)}+m²)^k`.
+The recovered operator `M[h]` and its metric variations; the continuum
+gauge-fixed / Stueckelberg determinant identity
+`det^{−1/2}(Δ^{(1)}+m²)·det^{+1/2}(Δ^{(0)}+m²)` (where the analytic `−3` lives);
+and any proposed **lattice** realization of that identity to be checked against
+`M[h]`.
 
 ### Analytic anchors
-`β_V(k)/β_B = −(k+2)` (`k=1→−3`, `k=2→−4`, `k=3→−5`).
+The continuum gauge-fixed / Stueckelberg quotient supplies the analytic `−3`
+target; the recovered lattice operator `M[h]` supplies the object it must be
+matched against. (The withdrawn additive `k`-scan's `β_V(k)/β_B=−(k+2)`
+relation is recorded in the superseded block below and is **not** a live anchor.)
 
 ### Regression anchors
 `scripts/recovered_2026/reproduce_betav.py` (pipeline runs; scalar `β_B` and
-vector sign reproduce). The bookkeeping anchor lives in `P2-BETAV-ASSEMBLY-01`.
+vector sign reproduce); `scripts/betav_decomp_check.py` (flat eigenstructure and
+`Δ₀`-vs-`m²` operator comparison); `scripts/betav_decomp_q2.py` (`q²`-level
+sector decomposition). The bookkeeping anchor lives in `P2-BETAV-ASSEMBLY-01`.
 
 ### Kill criterion
-Feed the **recovered historical** extraction (`proca_loop.py` +
-`mlog_coeff.TT_RECIPES`) the `k≠1` structure (compensator power `k`), holding
-`TT_RECIPES` and the normalization fixed. **If the extracted `β_V/β_B` returns
-`−3` regardless of `k`, the extraction is circular and Finding 5's lattice
-confirmation is withdrawn.** If it tracks `−(k+2)`, it discriminates.
+For the **operator/determinant-identity audit** (rules to be pre-registered
+before it runs): the audit fails if no explicit lattice gauge-fixed operator can
+be written down; if there is no consistent Jacobian / ghost determinant for the
+gauge fixing; if the identity fails at the physical point; or if the proposed
+identity cannot reproduce the recovered `M[h]` metric variations.
 
-### Required computations (now runnable — not yet run)
-The decisive `k`-scan is now **runnable**: the historical body and projection
-are recovered (`scripts/recovered_2026/`). Vary the compensator power
-`k ∈ {0,1,2,3,½}`, keep `TT_RECIPES` and normalization fixed, and check whether
-`β_V/β_B` tracks `−(k+2)` (faithful) or stays at `−3` (circular). **This gate
-does not run that scan or set a verdict** — that is the separate `k`-scan task.
-
-### Structural hypothesis (to be tested, NOT a verdict)
-`TT_RECIPES` is 5 fixed, unit-normalized, **`k`-independent** TT polarizations
-(identical for fermion/scalar/vector loops), with no mechanism to normalize `k`
-away. This *suggests* the projection cannot by construction force `−3` — i.e.
-the extraction is plausibly discriminating. **This is a hypothesis for the
-`k`-scan to confirm or refute, not a conclusion.**
+### Required computations
+Pre-register (PASS / FAIL / INCONCLUSIVE rules fixed **before** execution) and
+run the operator/determinant-identity audit: whether an explicit lattice
+gauge-fixed / Stueckelberg operator can be constructed whose determinant
+quotient reproduces the recovered `M[h]` metric variations and carries the
+analytic `−3`. **The original additive `Z_Proca + k·Z_scalar` `k`-scan is
+withdrawn** (`DECOMP-UNAVAILABLE-AS-RECOVERED`) and must not be run on the
+recovered code as a CIRC test.
 
 ### Required deliverables
 `results/P2-BETAV-CIRC-01/PROVENANCE_SEARCH.md` (historical record);
-`scripts/recovered_2026/` (recovered pipeline); `BETAV_REPRODUCTION.md`. The
-circularity **verdict** is deferred to the `k`-scan task.
+`scripts/recovered_2026/` (recovered pipeline); `BETAV_REPRODUCTION.md`;
+`derivations/P2-BETAV-CIRC-01_determinant-decomposition.md` (Phase-1
+adjudication) and its `q²`-level evidence
+(`scripts/betav_decomp_q2.py`). The pre-registered rules and result of the
+operator-identity audit are the remaining deliverables.
 
 ### Result
-**Pipeline recovered and reproduces (scalar `β_B`, vector `β_V` sign); the
-discrimination `k`-scan is runnable but not yet run.** No PASS/FAIL here. The
-βV magnitude at accessible grids is longitudinal-artifact limited
-(`BETAV_REPRODUCTION.md`); Finding 5's `−3.2(5)` remains an **unpromoted,
-quarantined** paper value (recovery ≠ verification).
+**Phase-1 design adjudication completed: `DECOMP-UNAVAILABLE-AS-RECOVERED`.** No
+CIRC PASS/FAIL verdict. The recovered pipeline runs and reproduces the scalar
+`β_B` and the vector `β_V` sign; the βV magnitude at accessible grids is
+longitudinal-artifact limited (`BETAV_REPRODUCTION.md`); Finding 5's `−3.2(5)`
+remains an **unpromoted, quarantined** paper value (recovery ≠ verification).
+The additive `k`-scan design is withdrawn; the next step is the
+operator-identity audit or `P2-BETAV-RECON-01`.
 
 ### Reviewer verdict
-`SPECIFIED` — runnable, not run. Not closed by assertion in either direction.
-Next scientific step: the `k`-scan discrimination test.
+`SPECIFIED` — Phase-1 design adjudication completed
+(`DECOMP-UNAVAILABLE-AS-RECOVERED`); **no CIRC PASS/FAIL** verdict. Not closed by
+assertion in either direction. Next step: the operator/determinant-identity
+audit or `P2-BETAV-RECON-01` — **not** the withdrawn `k`-scan.
+
+### Superseded specification (historical record)
+
+> The following was the original `k`-scan specification. It is **withdrawn**
+> (`DECOMP-UNAVAILABLE-AS-RECOVERED`) and is retained only as a historical
+> record. It is **not** a live specification; do not run it as a CIRC test.
+>
+> - *Locked assumptions (superseded):* `CONVENTIONS.md`; Proca determinant
+>   structure, generalized to a compensating scalar power `k`.
+> - *Inputs (superseded):* modified structure
+>   `det^{−1/2}(Δ^{(1)}+m²)·det^{+1/2}(Δ^{(0)}+m²)^k`.
+> - *Analytic anchors (superseded):* `β_V(k)/β_B = −(k+2)`
+>   (`k=1→−3`, `k=2→−4`, `k=3→−5`).
+> - *Kill criterion (superseded):* feed the recovered extraction the `k≠1`
+>   structure holding `TT_RECIPES` and normalization fixed; if `β_V/β_B` returns
+>   `−3` regardless of `k`, the extraction is circular. This was invalidated
+>   because the external `boson_loop` scalar is not the flat longitudinal
+>   eigenfactor, so the additive deformation is built on the wrong operator; and
+>   the additive scan would in any case be `LINEAR-ONLY`.
+> - *Required computations (superseded):* vary `k ∈ {0,1,2,3,½}` and check
+>   whether `β_V/β_B` tracks `−(k+2)` or stays at `−3`.
+> - *Structural hypothesis (superseded):* `TT_RECIPES` is 5 fixed,
+>   unit-normalized, `k`-independent TT polarizations with no mechanism to
+>   normalize `k` away, suggesting the projection cannot by construction force
+>   `−3`.
 
 ### Consequences
 Cross-repo: `3-vector-sector` `P3-C-004` rests on the `C_6 = −G_V/2` sign
@@ -424,7 +463,8 @@ stays as-is (that repo not read from or edited).
 (Governance clarification `P2-SI1-UNBLOCK-01` — not a new scientific verdict.
 The SI-1 unblock holds independent of this gate's status, now `SPECIFIED`; it
 still does not gate SI-1, and `−3.2(5)` is still quarantined pending the
-`k`-scan verdict.)
+dual-gate promotion rule — `P2-BETAV-NUMREPRO-01` and a future
+operator-identity CIRC verdict, **not** the withdrawn `k`-scan.)
 
 `P2-BETAV-CIRC-01` **does not block**:
 - `P2-CHANNEL-FREEZE-01`;
@@ -465,7 +505,8 @@ confirmation from `−3.2(5)`.
 2026-07-17
 
 ### Date closed
-Open (`SPECIFIED` 2026-07-20 — pipeline recovered, `k`-scan runnable but not run;
+Open (`SPECIFIED` 2026-07-20 — pipeline recovered; Phase-1 design adjudication
+`DECOMP-UNAVAILABLE-AS-RECOVERED`, additive `k`-scan withdrawn, no CIRC PASS/FAIL;
 was `SUSPENDED` 2026-07-19 while the pipeline was missing).
 
 ## P2-BETAV-NUMREPRO-01 — Numerical reproduction of `β_V/β_B` at physical `k=1`
