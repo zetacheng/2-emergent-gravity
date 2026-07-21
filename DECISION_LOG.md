@@ -401,6 +401,71 @@ records why it is invalid).
 `gate/p2-betav-decomp`; `derivations/P2-BETAV-CIRC-01_determinant-decomposition.md`,
 `scripts/betav_decomp_check.py`, `results/P2-BETAV-CIRC-01/decomp/`.
 
+## 2026-07-20 — P2-BETAV-CIRC-01 Phase-1 REVISION: narrow verdict to DECOMP-UNAVAILABLE-AS-RECOVERED
+
+### Decision
+
+Supersede the verdict token of the 2026-07-20 Phase-1 adjudication: replace
+`DECOMP-NOT-REPRESENTABLE` with the narrower, machine-parseable
+**`DECOMP-UNAVAILABLE-AS-RECOVERED`**. The practical conclusion is unchanged
+(do not run the additive k-scan); the supports are tightened.
+
+### Reason
+
+Review found the original inseparability support rested on a transverse–
+longitudinal mixing measured in the wrong (single-momentum) basis. A correct
+`q²`-level sector decomposition in the proper bubble basis
+(`scripts/betav_decomp_q2.py`, `m=0.3`, `n∈{10,12}`, three q-ranges; sectors sum
+to total to `<1e-12`) shows:
+- the one-graviton vertex mixing `U_TL` **vanishes as `q→0`** (earlier 0.17
+  figure withdrawn); **but**
+- the mixed **bubble** contributes at `O(q²)` (scaling exp `≈1.98`): the mixed
+  `q²` coefficient is **nonzero** (`≈+9e-5`) and basis/grid-stable — yet
+  **small**, `≈0.4%` of the total `Z` (TT `≈96.5%`, LL `≈3.1%`).
+So the induced `Z` admits only an *approximate* T/L split; an exact invariant
+additive split fails at the `≈0.4%` level. The seagull is `q`-independent
+(structural) and does not enter the `q²` slope.
+
+The two solid supports are retained: (a) the additive `Z_V+k·Z_S` design is
+invalid and would be `LINEAR-ONLY`; (b) the external `boson_loop` scalar
+(`Δ₀=ŝ²+m²`) is not the flat Proca longitudinal eigenfactor (`m²`) and cannot be
+substituted without an extra identity. Language re-neutralized (no "compensator
+sector" premise; the flat `ln m²`→induced-log inference downgraded; the
+continuum-Stueckelberg equivalence marked **unestablished**, not refuted).
+
+### Evidence
+
+`scripts/betav_decomp_q2.py`,
+`results/P2-BETAV-CIRC-01/decomp/regen/decomp_q2.json`,
+`derivations/P2-BETAV-CIRC-01_determinant-decomposition.md`,
+`reports/2026-07-20_betav-decomposition-adjudication_report.md`.
+
+### Consequences
+
+- Verdict token: `DECOMP-UNAVAILABLE-AS-RECOVERED`. A clean-room lattice
+  Stueckelberg / gauge-fixed construction is **not excluded**.
+- Gate `P2-BETAV-CIRC-01` uses separated fields (Status `SPECIFIED`; design
+  adjudication `DECOMP-UNAVAILABLE-AS-RECOVERED`; additive k-scan `WITHDRAWN`);
+  the CIRC gate has not passed or failed.
+- Unchanged: `P2-BETAV-NUMREPRO-01` = `PROPOSED`, `P2-C9` = `PROPOSED`, `−3.2(5)`
+  quarantined. `CLAIMS.md` untouched.
+
+### Supersedes
+
+The verdict token `DECOMP-NOT-REPRESENTABLE` of the 2026-07-20 Phase-1 entry
+above (that entry is preserved; only the token and the mixing support are
+revised).
+
+### Related gate
+
+`P2-BETAV-CIRC-01`, `P2-BETAV-RECON-01`.
+
+### Related branch and files
+
+`gate/p2-betav-decomp`; `scripts/betav_decomp_q2.py`,
+`derivations/P2-BETAV-CIRC-01_determinant-decomposition.md`,
+`reports/2026-07-20_betav-decomposition-adjudication_report.md`, `GATES.md`.
+
 ## Entry template
 
 ```markdown

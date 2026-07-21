@@ -29,15 +29,18 @@ def _gate_status(gate_id: str) -> str:
 
 
 def test_circ01_is_specified_after_recovery():
-    # The gate left SUSPENDED only because the historical pipeline was RECOVERED
-    # (not because the question was waved away). It is now in the allowed state
-    # SPECIFIED (runnable, not run) -- never PASS/FAIL until the k-scan runs.
+    # The gate left SUSPENDED only because the historical pipeline was RECOVERED.
+    # It is in the allowed state SPECIFIED and has NOT passed or failed. The
+    # Phase-1 design adjudication (DECOMP-UNAVAILABLE-AS-RECOVERED) withdrew the
+    # additive k-scan design; that is a statement about the design, not a CIRC
+    # verdict.
     status = _gate_status("P2-BETAV-CIRC-01")
     assert "SPECIFIED" in status
-    assert "PASS" not in status and "FAIL" not in status
-    # the recovery must be recorded in the gate body
+    assert "PASS" not in status and "FAIL" not in status  # the Status: line only
     gates = (ROOT / "GATES.md").read_text(encoding="utf-8")
-    assert "recovered" in gates and "runnable but not yet run" in gates
+    assert "recovered" in gates
+    assert "DECOMP-UNAVAILABLE-AS-RECOVERED" in gates
+    assert "Previous additive k-scan design: WITHDRAWN" in gates
 
 
 def test_recon01_remains_proposed():

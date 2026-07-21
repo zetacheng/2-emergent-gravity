@@ -325,18 +325,31 @@ D1 withdrawn; `P2-C2`, `P2-C8` → `SUPPORTED`. Bookkeeping gate; not physics.
 
 ## P2-BETAV-CIRC-01 — Does the lattice `β_V` test discriminate?
 
-Status: SPECIFIED (revived 2026-07-20 — the historical pipeline is recovered;
-the discrimination test is now **runnable but not yet run**. Not `PASS`/`FAIL`.)
+Status: SPECIFIED
+Phase-1 design adjudication: DECOMP-UNAVAILABLE-AS-RECOVERED
+Previous additive k-scan design: WITHDRAWN
+Current registered test: operator/determinant-identity audit (PASS/FAIL/
+  INCONCLUSIVE rules to be pre-registered before it runs)
 
-**Revival note.** This gate was `SUSPENDED` (provenance-blocked) while the
-historical Finding 5 pipeline was missing. That pipeline is now **recovered**
-(`scripts/recovered_2026/proca_loop.py` body + `mlog_coeff.py` projection), it
-**runs**, and it **reproduces** the scalar `β_B` and the vector `β_V` sign
-(`results/recovered-2026/BETAV_REPRODUCTION.md`). The gate therefore moves
-`SUSPENDED → SPECIFIED`: the historical discrimination test is runnable. The
-**verdict** (PASS/FAIL) is **not** set here — it is the job of the separate
-`k`-scan task. `P2-BETAV-ASSEMBLY-01` (bookkeeping) and `P2-BETAV-RECON-01`
-(clean-room reconstruction, PROPOSED) remain as recorded.
+**Adjudication note (design, not a CIRC verdict).** This gate was `SUSPENDED`
+while the historical Finding 5 pipeline was missing; the pipeline is now
+**recovered** (`scripts/recovered_2026/proca_loop.py` + `mlog_coeff.py`) and
+**runs**, reproducing the scalar `β_B` and the vector `β_V` sign
+(`results/recovered-2026/BETAV_REPRODUCTION.md`), so the gate is `SPECIFIED`. A
+Phase-1 determinant-decomposition adjudication
+(`derivations/P2-BETAV-CIRC-01_determinant-decomposition.md`) then found the
+originally-proposed additive `Z_Proca + k·Z_scalar` k-scan **invalid as
+recovered** (`DECOMP-UNAVAILABLE-AS-RECOVERED`): the recovered `boson_loop`
+scalar (`Δ₀=ŝ²+m²`, propagating) is **not** the flat Proca longitudinal
+eigenfactor (`m²`, ultralocal) and cannot be substituted without an extra
+operator identity; and the additive scan would in any case be `LINEAR-ONLY`. A
+`q²`-level sector decomposition shows the transverse/longitudinal split is only
+*approximately* invariant (a small, `≈0.4%`, nonzero mixed `q²` term). A
+clean-room lattice Stueckelberg / gauge-fixed construction is **not excluded**.
+The CIRC gate has **not** passed or failed; the next step is an operator/
+determinant-identity audit or `P2-BETAV-RECON-01`, **not** the withdrawn k-scan.
+`P2-BETAV-ASSEMBLY-01` (bookkeeping) and `P2-BETAV-RECON-01` (PROPOSED) remain as
+recorded.
 
 ### Scientific question
 Can Paper 2 Finding 5's lattice extraction distinguish `β_V/β_B=−3` from
