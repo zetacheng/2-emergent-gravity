@@ -351,6 +351,52 @@ determinant-identity audit or `P2-BETAV-RECON-01`, **not** the withdrawn k-scan.
 `P2-BETAV-ASSEMBLY-01` (bookkeeping) and `P2-BETAV-RECON-01` (PROPOSED) remain as
 recorded.
 
+### Addendum — 2026-07-21 (batch-2 recovery; no status change, Phase-1 verdict intact)
+
+The Phase-1 adjudication (`DECOMP-UNAVAILABLE-AS-RECOVERED`) stated that a
+clean-room lattice Stueckelberg / gauge-fixed construction was **not excluded**
+but was **unavailable from the then-recovered set**. The batch-2 recovery shows
+such a construction **existed historically**: `scripts/recovered_2026/batch2/gfvec_loop.py`
+implements a gauge-fixed **minimal** lattice vector via the explicit determinant
+identity `Γ_Proca = Γ_minvec − Γ_scalar(m)` (hence `β_V = β_gfvec − β_B`),
+including a constant-`h` validation harness and a `q`-dependent gauge-fixed
+seagull (v2). Its machinery is validated (constant-`h`: perturbative
+bubble+seagull vs exact `ln det` agree to `~1e-7`, `n=6,8`, `m=0.5`;
+`results/recovered-2026/BATCH2_VALIDATION.md`).
+
+Consequences for the **registered test** (operator/determinant-identity audit):
+
+- it now has a **concrete recovered object** — the Solodukhin determinant
+  quotient as implemented in `gfvec_loop.py`. The audit will examine this
+  identity at the operator level and via the consistency relation
+  `β_proca − (β_gfvec − β_boson) = 0` (pre-encoded in
+  `scripts/recovered_2026/batch2/precision_campaign.py`);
+- **PASS/FAIL/INCONCLUSIVE rules remain to be pre-registered before any run.**
+  Any β-extraction run **must** use a **blind harness**: the historical drivers
+  embed the analytic targets (`−2.000`, `−3.000`, consistency `0`) in
+  comments/docstrings, so the target must be stripped from the driver and the
+  number frozen before any comparison;
+- **this does not reopen or overturn the Phase-1 verdict or its token** — the
+  verdict `DECOMP-UNAVAILABLE-AS-RECOVERED` was correct **for the then-recovered
+  set** (the additive `Z_Proca + k·Z_scalar` scan on `proca_loop`/`boson_loop`).
+  What batch-2 changes is that the *reformulated* operator-identity audit now has
+  an object to run against; the additive k-scan stays **withdrawn**.
+
+Status stays **`SPECIFIED`**; `P2-BETAV-NUMREPRO-01` stays `PROPOSED`; `P2-C9`
+and the `β_V/β_B = −3.2(5)` quarantine are **untouched**.
+
+**Ward summary — recorded, not adopted.** `results/recovered-2026/ward_analysis_summary.txt`
+(the Ward-complete vierbein-link graviton-kernel results document) is recorded
+as a **historical results document whose claims are recorded, not adopted**. Its
+central claims — the covariant kinetic coefficient is **negative**
+(`Z_cov < 0`), and the earlier positive axis slope was **entirely** the
+non-covariant hypercubic `c4` piece — bear directly on the `M_Pl²` sign question
+and SI-2 priors, **but the generating code (the Ward-complete vierbein-link
+kernel) is not recovered and the claims are unverified**
+(`scripts/recovered_2026/MISSING.md`, item 1). **No gate, paper text, or prior
+may cite these as established** until the generating computation is recovered or
+independently reproduced.
+
 ### Scientific question
 Can Paper 2 Finding 5's lattice extraction distinguish `β_V/β_B=−3` from
 anything else, or would it return `−3` regardless (circular confirmation)?
@@ -530,6 +576,29 @@ value: `n=12: ≈ −61`, `n=16: ≈ −16` (light window); the heavy-inclusive 
 even flips sign — longitudinal-artifact/grid limited
 (`results/recovered-2026/BETAV_REPRODUCTION.md`). Only the vector `β_V` **sign**
 (and the scalar `β_B`) are reproduced.
+
+### Historical target configuration pinned — 2026-07-21 (pre-registration input; status unchanged)
+
+The recovered full session log (`results/recovered-2026/session_log_full.md`)
+pins the **historical target configuration(s)** for this reproduction. These are
+**historically reported by the recovered session message, not independently
+verified**; they are recorded here as pre-registration *input*, not as a result.
+See the run-record index in `scripts/recovered_2026/PROVENANCE.md` (rows R7, R10,
+R12, R14). At minimum the index includes:
+
+- **direct Proca extraction:** `n=32`, mass window `m_V a = 0.11–0.20`,
+  `β_V = −7.2×10⁻⁴` vs predicted `−7.9×10⁻⁴` (9%), ratio `−3.2(5)` (subwindows
+  `−2.6`/`−3.4`; wide/heavy window drifts to `−5`);
+- **gfvec/Solodukhin summary:** window `0.125–0.55`, `β_gfvec/β_B ≈ −2.4 … −2.9`
+  (target `−2`), same summary quoting `Proca/B = −3.2(5)`;
+- **boson grid-systematics test:** `n=48` vs `n=32` ratio test for `β_B`.
+
+When this gate's PASS/FAIL/INCONCLUSIVE rules are pre-registered, the
+reproduction **must target this configuration** and **must run through a blind
+harness** — the historical drivers embed the analytic targets (`−2`, `−3`) in
+comments/docstrings and the historical runs were **not blind**. **No status
+change:** the gate stays `PROPOSED` (not run); `P2-C9` and the `−3.2(5)`
+quarantine are untouched.
 
 ### Required preregistration before execution
 Before any execution, freeze and commit:

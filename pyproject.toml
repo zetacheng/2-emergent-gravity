@@ -42,7 +42,8 @@ extend-exclude = ["scripts/recovered_2026/seagull_check.py",
                   "scripts/recovered_2026/speed_check.py",
                   "scripts/recovered_2026/structure_decomp.py",
                   "scripts/recovered_2026/mlog_coeff.py",
-                  "scripts/recovered_2026/proca_loop.py"]
+                  "scripts/recovered_2026/proca_loop.py",
+                  "scripts/recovered_2026/batch2/"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I"]
