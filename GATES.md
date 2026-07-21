@@ -328,8 +328,19 @@ D1 withdrawn; `P2-C2`, `P2-C8` → `SUPPORTED`. Bookkeeping gate; not physics.
 Status: SPECIFIED
 Phase-1 design adjudication: DECOMP-UNAVAILABLE-AS-RECOVERED
 Previous additive k-scan design: WITHDRAWN
-Current registered test: operator/determinant-identity audit (PASS/FAIL/
-  INCONCLUSIVE rules to be pre-registered before it runs)
+Current registered test: operator/determinant-identity audit — **rules now
+  pre-registered** in `derivations/P2-BETAV-CAMPAIGN_prereg.md` §(c1) (three-state
+  PASS/FAIL/INCONCLUSIVE with dimensionless residual `C_cons` and resolving-power
+  ceiling `δ_audit=0.05`), §(c4) (frozen variant table), §(c6)
+  (verdict/diagnostic classification), §(e) (mutation anchors). Object: the
+  Solodukhin quotient `Γ_Proca = Γ_minvec − Γ_scalar` as implemented in
+  `gfvec_loop.py`, via `R_cons = β_proca − β_gfvec + β_boson = 0`. Blind harness
+  built and pilot-validated (`scripts/P2-BETAV-CAMPAIGN/`); **the decisive Arm-P
+  run is a separate, subsequently authorized task.** Scope: an audit PASS
+  establishes the operators obey the claimed determinant identity (correct `−3`
+  multiplicity bookkeeping); per Phase-1 every pipeline step is linear, so it
+  **cannot** establish strong historical non-circularity, and a CIRC audit PASS
+  **alone does not verify or promote** `β_V/β_B = −3.2(5)`.
 
 **Adjudication note (design, not a CIRC verdict).** This gate was `SUSPENDED`
 while the historical Finding 5 pipeline was missing; the pipeline is now
@@ -557,7 +568,16 @@ was `SUSPENDED` 2026-07-19 while the pipeline was missing).
 
 ## P2-BETAV-NUMREPRO-01 — Numerical reproduction of `β_V/β_B` at physical `k=1`
 
-Status: PROPOSED (not run)
+Status: SPECIFIED (rules registered; not run)
+
+Rules registered 2026-07-21 in `derivations/P2-BETAV-CAMPAIGN_prereg.md`: Arm H
+(`n=32`, windows `M_H`/`M_Hs`, `EPS_H`), the interval rules §(c2) (2σ interval
+⊆ band `[−3.7, −2.7]`, no resolving-power ceiling — a larger σ makes PASS
+harder), the frozen variant table §(c4) (window-shift is a VERDICT variant), and
+the blind harness `scripts/P2-BETAV-CAMPAIGN/`. **Not run:** the decisive Arm-H
+run is a separate, subsequently authorized task. A NUMREPRO PASS reproduces a
+historical number and **does not by itself promote `P2-C9`** (see the dual-gate
+rule); the `−3.2(5)` quarantine is untouched.
 
 ### Scientific question
 At physical `k=1`, does the recovered `β_V/β_B` converge reproducibly into the
