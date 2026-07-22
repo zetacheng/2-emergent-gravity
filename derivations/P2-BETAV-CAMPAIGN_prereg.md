@@ -29,6 +29,14 @@ subsequently authorized task.**
   promote `P2-C9`.** Promotion is a separate PI+reviewer decision applying the
   programme's historical criterion, taken only after results are in. The
   `−3.2(5)` quarantine is untouched by this task.
+- **Three distinct recorded outputs (never conflated):** the campaign produces
+  (1) the **CIRC audit verdict**; (2) the **Arm-H NUMREPRO verdict**; and (3) the
+  **Arm-P historical-promotion-criterion outcome**. `P2-BETAV-NUMREPRO-01` refers
+  to output (2) **only**. **CIRC PASS + NUMREPRO PASS is necessary but not
+  sufficient.** **Quarantine release or `P2-C9` promotion requires the registered
+  dual-gate conditions AND explicit consideration of the separately recorded
+  Arm-P historical-promotion outcome, followed by PI+reviewer authorization. No
+  script automatically promotes the claim.**
 - The audit is non-trivial: `β_gfvec` is extracted from an **independent** loop
   over the composite kernel `M_minvec = M_Proca + M_gf` (the gauge-fixing block
   `M_gf = E (a·J)⊗(ā·J)` built independently from the geometry factors `E`,`J`
@@ -85,8 +93,13 @@ the ultralocal factor contributes no propagating log — **NOT** as a pointwise
 
       τ_Z = 1e-10 + 1e-6 · max_m( |Z_v2(m)|, |Z_bubble(m)| )
 
-  Pre-registered expectation: `|Z_v2(m) − Z_bubble(m)| ≤ τ_Z` at every mass (an
-  exploratory n=6 probe found agreement at machine precision, ~1e-14). Also
+  Pre-registered expectation: `|Z_v2(m) − Z_bubble(m)| ≤ τ_Z` at every mass. (An
+  exploratory `n=6` probe suggested agreement at machine precision, `~1e-14`, but
+  that probe is **exploratory, non-canonical — no branch/commit/hash/environment
+  record, not independently reviewed — and is NOT adopted as evidence**; it is
+  retained only as the historical motivating observation for the `τ_Z` diagnostic
+  design. The pre-registered `τ_Z` expectation stands on its own as a hypothesis
+  tested by the frozen harness.) Also
   record the fitted difference `β_v2 − β_bubble` relative to `|β_B^base|`. If the
   decisive configuration departs from the pointwise expectation, the finding is
   labelled **`SEAGULL-SENSITIVITY DETECTED`** — a recorded diagnostic finding
@@ -213,7 +226,12 @@ central value = baseline variant; `σ_H` per (c0). Band `[−3.7, −2.7]`.
   INCONCLUSIVE here would mean the historical configuration cannot distinguish
   `−3` at the pre-registered confidence — a statement about the configuration's
   discriminating power, not a failure of the identity (that is Arm P's job). **No
-  band widening after seeing results.**
+  band widening after seeing results.** (Per ruling A2.2 / the confound statement
+  in (c4), the window-shift deviation that drives this expectation includes a
+  **forced fit-basis component** — its 3-point mass set cannot support the
+  4-column historical basis, so its deviation from baseline mixes window and basis
+  sensitivity. This is accepted and enters `σ_H`; the expectation itself is
+  unchanged.)
 
 ### (c3) Fit and variant validity — frozen numeric definitions
 
@@ -236,35 +254,52 @@ central value = baseline variant; `σ_H` per (c0). Band `[−3.7, −2.7]`.
 `fit_even(order=2)` has 3 columns `{1, ε², ε⁴}`; `fit_mlog(with_m4=True)` has 4
 columns, `with_m4=False` has 3.
 
-| Arm | Variant | Class | eps set | mass set | mass-fit basis | dof (mass fit) |
-|---|---|---|---|---|---|---|
-| P | baseline | VERDICT | EPS_P (4) | M_P (5) | with_m4=True | 1 |
-| P | eps-drop-largest | VERDICT | EPS_P[:3] | M_P | with_m4=True | 1 |
-| P | eps-drop-smallest | VERDICT | EPS_P[1:] | M_P | with_m4=True | 1 |
-| P | fit-order | VERDICT | EPS_P | M_P | with_m4=False | 2 |
-| P | mass-drop-one (×5) | VERDICT | EPS_P | M_P minus one | with_m4=True | 0 (vacuous residual) |
-| P | gfvec-v2 seagull sensitivity | DIAGNOSTIC-ONLY | EPS_P | M_P | with_m4=True | 1 |
-| P | extended-basis `m⁴ln m²` | DIAGNOSTIC-ONLY | EPS_P | M_P | 5-column extended | 0 |
-| H | baseline | VERDICT | EPS_H (4) | M_H (4) | with_m4=True | 0 (vacuous residual) |
-| H | eps-drop-largest | VERDICT | EPS_H[:3] | M_H | with_m4=True | 0 |
-| H | eps-drop-smallest | VERDICT | EPS_H[1:] | M_H | with_m4=True | 0 |
-| H | fit-order | VERDICT | EPS_H | M_H | with_m4=False | 1 |
-| H | mass-drop-one (×4) | VERDICT | EPS_H | M_H minus one | with_m4=False (with_m4=True underdetermined: 3<4) | 0 |
-| H | window-shift | VERDICT | EPS_H | M_Hs (3) | with_m4=False | 0 |
+| Arm | Variant | Class | eps set | mass set | mass-fit basis | dof | Interpretation |
+|---|---|---|---|---|---|---|---|
+| P | baseline | VERDICT | EPS_P (4) | M_P (5) | with_m4=True | 1 | precision primary extraction |
+| P | eps-drop-largest | VERDICT | EPS_P[:3] | M_P | with_m4=True | 1 | pure eps-grid sensitivity |
+| P | eps-drop-smallest | VERDICT | EPS_P[1:] | M_P | with_m4=True | 1 | pure eps-grid sensitivity |
+| P | fit-order | VERDICT | EPS_P | M_P | with_m4=False | 2 | pure mass-fit-basis sensitivity |
+| P | mass-drop-one (×5) | VERDICT | EPS_P | M_P minus one | with_m4=True | 0 (vacuous residual) | mass-window sensitivity (basis fixed) |
+| P | gfvec-v2 seagull sensitivity | DIAGNOSTIC-ONLY | EPS_P | M_P | with_m4=True | 1 | seagull-placement diagnostic |
+| P | extended-basis `m⁴ln m²` | DIAGNOSTIC-ONLY | EPS_P | M_P | 5-column extended | 0 | window-assumption check |
+| H | baseline | VERDICT | EPS_H (4) | M_H (4) | with_m4=True | 0 (vacuous residual) | historical primary extraction |
+| H | eps-drop-largest | VERDICT | EPS_H[:3] | M_H | with_m4=True | 0 | pure eps-grid sensitivity |
+| H | eps-drop-smallest | VERDICT | EPS_H[1:] | M_H | with_m4=True | 0 | pure eps-grid sensitivity |
+| H | fit-order | VERDICT | EPS_H | M_H | with_m4=False | 1 | pure mass-fit-basis sensitivity |
+| H | mass-drop-one (×4) | VERDICT | EPS_H | M_H minus one | with_m4=False | 0 | mixed mass-drop + reduced-basis sensitivity |
+| H | window-shift | VERDICT | EPS_H | M_Hs (3) | with_m4=False | 0 | historical shifted-window extraction; also differs in basis (3 points cannot support with_m4=True) |
 
 Eps-drop variants leave the `fit_even` eps fit exactly determined (3 pts/3 cols):
-valid, `dof=0` recorded. The Arm-H drop-one row's forced `with_m4=False` is a
-frozen consequence of the historical 4-mass window. **Had the (c3) validity rule
-been applied naively, every Arm-H drop-one variant would be invalid and the
-verdict structurally INCONCLUSIVE; the table above is the pre-registered
-resolution.**
+valid, `dof=0` recorded. The Arm-H drop-one and window-shift rows' forced
+`with_m4=False` is a frozen consequence of the historical 3-point mass sets
+(4 columns would be underdetermined: 3<4). **Had the (c3) validity rule been
+applied naively, every Arm-H drop-one variant would be invalid and the verdict
+structurally INCONCLUSIVE; the table above is the pre-registered resolution.**
 
-**Reviewer-flagged decision (ChatGPT to confirm):** the Arm-H **window-shift**
-variant is classified **VERDICT**, not diagnostic-only. It is the dominant
-genuine systematic of the historical extraction (the R10 subwindows `−2.6`/`−3.4`
-are exactly this variation); excluding it from `σ_H` would artificially shrink
-the NUMREPRO uncertainty and hollow out the (c2) honest expectation — the mirror
-image of the diagnostic-leakage error the split exists to prevent.
+**Ruling A2.1 — Arm-H window-shift = VERDICT variant (APPROVED, 2026-07-21).**
+It is the dominant genuine systematic of the historical extraction (the R10
+subwindows `−2.6`/`−3.4` are exactly this variation); excluding it from `σ_H`
+would artificially shrink the NUMREPRO uncertainty and hollow out the (c2) honest
+expectation — the mirror image of the diagnostic-leakage error the split exists
+to prevent.
+
+**Ruling A2.2 — historical `with_m4=True` baseline retained; mixed variants
+explicitly classified (RULED, 2026-07-21).** **Arm H is a reproduction of the
+historical extraction, so its baseline fit basis may not be changed merely to
+make the variation battery orthogonal. The four-column `with_m4=True` baseline is
+retained as the historical primary estimand.** The rejected alternative (a
+uniform `with_m4=False` primary basis, proposed to remove the mass/basis
+confound) is recorded as **considered and rejected** for changing the primary
+estimand. Confound statement (verbatim): **"The mass-drop-one and window-shift
+variants are not pure one-factor perturbations relative to the historical
+baseline, because their three-point mass sets cannot support the four-column
+historical basis. They are conservative mixed variants. Their deviations enter
+σ_H, but may not be attributed uniquely to mass-window sensitivity or fit-basis
+sensitivity. This confounding is accepted and recorded rather than removed by
+changing the historical baseline. A resulting NUMREPRO INCONCLUSIVE verdict is an
+honest statement that the historical extraction lacks sufficient registered
+stability."**
 
 ### (c5) Historical promotion criterion (Arm P, recorded outcome, not an automatic action)
 
@@ -296,6 +331,58 @@ subsequent explicit PI+reviewer step.
 - Rationale: a diagnostic that entered the verdict σ could widen the acceptance
   tolerance and silently flip a FAIL to PASS — a diagnostic must never be able to
   change the verdict it is diagnosing.
+
+### (c7) Comparator-rule clarifications (Amendment 1; the code must implement these)
+
+- **(i) Required-variant validity is not silently dropped.** Any invalid
+  **required verdict variant** forces **INCONCLUSIVE** for NUMREPRO and renders
+  the historical criterion **not-assessable**; invalid variants are **never**
+  silently dropped to shrink σ. σ is computed only when the full required verdict
+  set is valid.
+- **(ii) Uniform denominator validity.** The (c3) denominator rule (magnitude
+  `|β_B^(v)| > τ_denom` **and** sign consistent with baseline) applies **uniformly
+  to every ratio path** — the audit `C_cons`, the Arm-H NUMREPRO ratios, and the
+  Arm-P historical-criterion ratios alike.
+- **(iii) Diagnostics gate the audit, by manifest.** Audit `PASS`/`FAIL` may be
+  emitted **only after all required diagnostics are confirmed executed and
+  valid**. Manifest rule (frozen, verbatim): **"Absence of a diagnostic required
+  by the arm configuration is an execution failure, not 'not applicable'."** Each
+  arm's required diagnostics are declared in a frozen `required_diagnostics`
+  manifest written into the compute-output schema (see the schema addition), and
+  the comparator **iterates the manifest** and validates the corresponding keyed
+  record — it may **never infer completeness** from whichever optional variants
+  happen to be present.
+
+### Compute-output schema addition (Amendment 1): manifest + keyed diagnostics
+
+Per arm the compute-output JSON adds: (1) `required_diagnostics` — the frozen list
+of diagnostic IDs (Arm P and the pilot: `["gfvec-v2-seagull", "extended-basis"]`);
+(2) a structured `diagnostics` mapping keyed by those IDs, each keyed record
+carrying at minimum `executed` (bool), `valid` (bool), and a `record_path`
+locator into the JSON. Frozen rule (verbatim): **"Every ID in
+`required_diagnostics` must be a key in a structured diagnostic-results mapping.
+The comparator iterates the manifest and validates the corresponding keyed
+record; it may not infer completeness merely from optional variants that happen to
+exist."** **Extended-basis components (frozen):** the `extended-basis` record must
+declare and satisfy `required_components = [proca, gfvec, boson, D]` (with
+`D = Z_P − Z_G + Z_B`); each component's extended fit must be finite, full rank,
+within `κ ≤ 1e12`, with its coefficient record present. **"extended-basis valid"
+means all four components valid**, never a subset. The schema version identifier
+is bumped; the output-schema guard is updated. These fields name diagnostics,
+never targets or ratios (no blindness change).
+
+### Exit-code contract (Amendment 1)
+
+The comparison output carries two top-level fields:
+`integrity_status ∈ {VERIFIED, REFUSED}` and
+`scientific_status ∈ {ASSESSABLE, HARNESS_INVALID}`. **Exit 0** requires
+`integrity_status=VERIFIED` **and** `scientific_status=ASSESSABLE`, and covers
+PASS, FAIL, and scientifically-assessable INCONCLUSIVE (insufficient resolving
+power; NUMREPRO interval straddling a band boundary). **Exit non-zero** covers:
+integrity REFUSED; HARNESS INVALID; any required verdict variant invalid; any
+required diagnostic missing/invalid; denominator invalidity making a criterion
+not-assessable; runtime/schema error. Automation must never mistake a
+harness-invalid run for success.
 
 ## (d) Uncertainty/stability battery
 
@@ -354,3 +441,51 @@ treated as repository source files.
   §(c1)/§(c4)/§(c6)/§(e) and the scope statement above.
 - `P2-C9`, `−3.2(5)` quarantine: untouched. A future audit PASS **alone** cannot
   flip the quarantine (dual-gate rule; enforced by the governance suite).
+
+---
+
+## Amendment 1 — 2026-07-22 (audit trail)
+
+This amendment edits the frozen text **in place** above; this section is the
+audit trail listing each change and its reason. **It triggers rule (a4):** all
+pilot artifacts from commit `db002d7` are invalidated (their recorded prereg-doc
+hash no longer matches) and are regenerated under the amended prereg. The
+original campaign report keeps its `2026-07-21` filename (this round appends to
+it); this amendment section carries the actual execution date 2026-07-22.
+
+- **A1 — pilot eps-grid fix (the (a4) trigger) [APPROVED].** `EPS_pilot` is set
+  to **four** points `[0.10, 0.16, 0.22, 0.28]` (identical to `EPS_H`), so the
+  pilot exercises the decisive-shaped eps-drop variants (drop-one → 3 pts / 3
+  cols, `dof=0`, valid). *Reason/defect:* the previous 3-eps grid made both
+  eps-drop verdict variants necessarily underdetermined, so the pilot could only
+  reach `HARNESS INVALID` and never validated the valid-path battery. (The pilot
+  config lives in `harness_compute.py` `CONFIG["pilot"]`; this amendment records
+  the frozen value.)
+- **A2.1 — Arm-H window-shift = VERDICT variant [APPROVED, ruling recorded].**
+  Markers removed; see (c4) ruling A2.1. *Reason:* the R10 `−2.6`/`−3.4` drift is
+  the dominant historical systematic; excluding it would shrink `σ_H` and hollow
+  out the (c2) expectation.
+- **A2.2 — historical `with_m4=True` baseline retained; mixed variants
+  classified [RULED].** The (c4) Arm-H rows are replaced with the ruled table
+  (Interpretation column); the retained-baseline rationale and the confound
+  statement are recorded verbatim; the rejected uniform-`with_m4=False`
+  alternative is recorded as considered and rejected. The (c2) expectation now
+  notes the forced fit-basis component (expectation unchanged).
+- **A3.1 — three-output canonical wording [APPROVED].** Added to the scope
+  statements: three distinct recorded outputs never conflated; "CIRC PASS +
+  NUMREPRO PASS is necessary but not sufficient"; "No script automatically
+  promotes the claim."
+- **A3.2 — n=6 probe downgraded [APPROVED].** The exploratory `n=6` probe is
+  reclassified non-canonical and **not adopted as evidence** (§(a2)); it is
+  retained only as the motivating observation for the `τ_Z` diagnostic design.
+- **A4 — comparator-rule clarifications [APPROVED].** New §(c7): (i)
+  required-variant validity is never silently dropped; (ii) uniform `τ_denom`
+  denominator validity on every ratio path; (iii) diagnostics gate the audit via
+  a frozen `required_diagnostics` manifest ("absence = execution failure, not
+  'not applicable'"). Plus the compute-output schema addition (manifest + keyed
+  `diagnostics`, extended-basis four-component rule, schema-version bump) and the
+  `integrity_status`/`scientific_status` + exit-code contract.
+
+All markers ("ChatGPT to confirm", "reviewer-flagged") are removed from the
+frozen text; the rulings above are now recorded facts. No target numbers, bands,
+or ratios were added to any blind-compute path. Decisive runs remain out of scope.
