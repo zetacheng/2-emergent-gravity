@@ -172,3 +172,123 @@ criterion; hours, may run on the PI's machine with the frozen harness, outputs
 committed via sha256 sidecars per §(f)) — followed by their **comparison**
 commits (compute commit precedes comparison commit). No band widening, no rule
 change after results; `τ_num` is frozen once the decisive compute begins.
+
+---
+
+## Amendment 1 / fix round — 2026-07-22 (appended; the original round above is retained as the audit record)
+
+This fix round implements the Discriminator's rulings and the two-reviewer
+discrepancy notice on branch HEAD `919d930`. It does **not** erase the original
+round: the first pilot's eps-grid defect stays in git history (`db002d7`) as the
+audit record. **No decisive run (Arm H or Arm P) in this round.**
+
+### Discrepancy-notice resolution (v5 layer now present)
+
+The landed prereg had the v4 layer but not the v5 layer. Amendment 1 restores it:
+- **three-output canonical wording** added to the scope statements: three distinct
+  recorded outputs never conflated (CIRC audit / Arm-H NUMREPRO / Arm-P historical
+  criterion); "CIRC PASS + NUMREPRO PASS is necessary but not sufficient"; **"No
+  script automatically promotes the claim."**
+- **n=6 probe downgraded** to a non-canonical, non-adopted motivating note (§(a2));
+  the `τ_Z` expectation now stands on its own as a frozen hypothesis.
+- **the "(c4) ChatGPT-to-confirm marker" resolved** — the window-shift ruling is
+  recorded as issued; all "reviewer-flagged"/"ChatGPT to confirm" markers removed
+  from the frozen text.
+
+### The two rulings, as issued
+
+- **A2.1 — Arm-H window-shift = VERDICT (APPROVED).** Recorded with its rationale;
+  it enters `σ_H`.
+- **A2.2 — historical `with_m4=True` baseline retained; mixed variants
+  classified (RULED).** The (c4) Arm-H table now carries an Interpretation column;
+  the retained-baseline rationale and the confound statement are recorded verbatim;
+  the rejected uniform-`with_m4=False` alternative is recorded as considered and
+  rejected. The (c2) honest expectation notes the forced fit-basis component
+  (expectation unchanged).
+
+### Comparator fixes (Task B) with their negative tests (Task C)
+
+`compare.py` and the compute schema were corrected:
+- **required-variant validity (B.1):** invalid required verdict variants are never
+  silently dropped — NUMREPRO → INCONCLUSIVE, historical criterion → NOT
+  ASSESSABLE, listing the invalid variants; σ is computed only over the full valid
+  required set.
+- **uniform denominator validity (B.2):** the (c3) `τ_denom` magnitude + sign rule
+  applies to every ratio path (audit, Arm-H, Arm-P).
+- **diagnostics gate the audit (B.3):** `audit()` iterates the frozen
+  `required_diagnostics` manifest and validates each keyed record **before** any
+  verdict; a missing/failed diagnostic (or, for `extended-basis`, any of the four
+  components `proca/gfvec/boson/D`) → `HARNESS INVALID / AUDIT INCONCLUSIVE`.
+- **exit contract (B.4):** two top-level fields `integrity_status ∈
+  {VERIFIED,REFUSED}` and `scientific_status ∈ {ASSESSABLE,HARNESS_INVALID}`;
+  exit 0 iff `VERIFIED ∧ ASSESSABLE` (covers PASS/FAIL/assessable-INCONCLUSIVE),
+  non-zero otherwise.
+
+**Schema bump** `…/compute/v1 → …/compute/v2`: adds the frozen
+`required_diagnostics` manifest and the structured keyed `diagnostics` mapping
+(each record: `executed`, `valid`, `record_path`; `extended-basis` declares
+`required_components=[proca,gfvec,boson,D]` and is valid only if all four are).
+The output-schema guard was updated accordingly.
+
+**Negative tests** (`tests/test_betav_campaign_comparator.py`, 9 synthetic-fixture
+tests, no physics): invalid required variant; tiny/sign-flipped denominator;
+seagull failed-to-execute; required diagnostic not-executed; manifest/keyed-record
+absent; extended-basis partial component; mixed Arm-H variant invalid; exit-code
+contract; and **reachability** of PASS / FAIL / INCONCLUSIVE (each mechanically
+demonstrated).
+
+### (a4) regeneration chain
+
+Amendment 1 changed the prereg (hash now
+`0ff2fcef89d24e9dcff32334318f2eea34369326d9521b3f5277ded2c1c64fdb`) and the harness
+(new eps grid + schema), so per **(a4)** the `db002d7` pilot artifacts were
+invalidated (recorded prereg hash no longer matches) and **removed from the
+working tree** (they remain in git history as the audit record). The complete
+pilot was regenerated under the amended prereg. The regenerated
+`pilot_comparison.json` records the (a4) chain via refuse-check "(2) prereg-doc
+hash OK" — the pilot's recorded `prereg_sha256` matches the amended prereg.
+
+### New pilot results (NON-DECISIVE) — full qualification checklist
+
+`EPS_pilot = [0.10, 0.16, 0.22, 0.28]` (4 points == `EPS_H`). Regenerated
+artifacts (sha256 sidecars):
+`pilot.json` = `8db2bb3a666c32f6ed842e15ccdadc6435f2e2e68fbe06b4111bf8cbfb637e85`;
+`pilot_mut_gfvec_scale.json` =
+`efc3a3b0efc0d9994377abf4d0e253ac05805f9fee9885e35c367492dde48b54`.
+
+| Qualification condition | Result |
+|---|---|
+| all required verdict variants valid | ✅ (no invalid variants; the 4-eps grid fixes the eps-drop underdetermination) |
+| all required diagnostics present and valid | ✅ (`gfvec-v2-seagull`, `extended-basis` incl. all four components) |
+| Tier-1↔Tier-2 cross-check passes for every verdict variant | ✅ |
+| both mutation anchors pass | ✅ (anchor1 `−0.1·β_gfvec`, anchor2 `−2·β_boson`, within `τ_num`) |
+| comparator exits 0, `integrity_status=VERIFIED`, `scientific_status=ASSESSABLE` | ✅ |
+| pilot audit **not** `HARNESS INVALID` | ✅ (audit verdict = `INCONCLUSIVE (insufficient resolving power)`) |
+
+The pilot audit verdict is a **NON-DECISIVE** insufficient-resolution INCONCLUSIVE
+(n=16 is far from the asymptotic regime); its numbers may not be cited for any
+gate. What is qualified is the **mechanics**: the valid-path battery, the
+diagnostics gate, the denominator rule, the exit contract, and the mutation
+anchors all execute correctly under the amended, decisive-shaped configuration.
+
+### Guards, tests (clean checkout)
+
+- `python -m pytest tests -q`: **50 passed, 2 deselected**.
+- `tests/test_betav_campaign_guards.py`: **5 passed**;
+  `tests/test_betav_campaign_comparator.py`: **9 passed**;
+  `tests/test_si1_governance.py`: **14 passed**.
+- `ruff check .`: **All checks passed**.
+
+### Commit chronology (Amendment 1 round, continuing off `main` `20f96f1`)
+
+```
+e1a3487 prereg: Amendment 1 (pilot eps fix (a4) trigger; Arm-H rulings; v5 content; comparator clarifications)
+55a7528 fix(compare+schema): manifest, required-variant validity, uniform tau_denom, diagnostics gate audit, exit contract
+abd6137 test: negative fixtures (validity, denominator, manifest-absence, mixed-variant, exit contract, reachability)
+6507757 pilot: full re-qualification under Amendment 1 (4-eps grid; all conditions met; NON-DECISIVE)
+```
+
+Pre-report HEAD: `6507757`. This report update is the next commit; its own SHA is
+in the task response, not embedded. Gate statuses, `P2-C9`, and the `−3.2(5)`
+quarantine remain untouched. Decisive Arm H (then Arm P) remain a separate,
+subsequently authorized task.
