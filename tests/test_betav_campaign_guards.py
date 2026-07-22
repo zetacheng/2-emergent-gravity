@@ -97,13 +97,24 @@ def test_guard3_output_schema():
     raw = PILOT.read_text(encoding="utf-8")
     doc = json.loads(raw)
     required = {"schema_version", "prereg_sha256", "registered_sources",
-                "arm_config", "raw_g2axis", "variants", "compute_git_commit"}
+                "arm_config", "raw_g2axis", "variants", "compute_git_commit",
+                "required_diagnostics", "diagnostics"}
     assert required <= set(doc), f"missing keys: {required - set(doc)}"
+    assert doc["schema_version"].endswith("/v2"), doc["schema_version"]
     # no ratio/verdict/target fields anywhere
     forbidden_keys = {"ratio", "verdict", "target", "band", "promote",
-                      "c_cons", "r_h"}
+                      "c_cons", "r_h", "integrity_status", "scientific_status"}
     present = {k.lower() for k in _walk_keys(doc)}
     assert not (present & forbidden_keys), (present & forbidden_keys)
+    # manifest: every required-diagnostic ID has a keyed record; extended-basis
+    # declares its four components
+    for did in doc["required_diagnostics"]:
+        assert did in doc["diagnostics"], f"manifest id {did} has no record"
+        rec = doc["diagnostics"][did]
+        assert "executed" in rec and "valid" in rec and "record_path" in rec
+    if "extended-basis" in doc["diagnostics"]:
+        comps = doc["diagnostics"]["extended-basis"].get("components", {})
+        assert {"proca", "gfvec", "boson", "D"} <= set(comps), comps
     # self-reference rule: the file's own sha256 must not appear inside it
     sidecar = Path(str(PILOT) + ".sha256").read_text().split()[0]
     assert sidecar not in raw, "JSON contains its own hash (self-reference)"

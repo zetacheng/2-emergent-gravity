@@ -30,7 +30,15 @@ from pathlib import Path
 
 import numpy as np
 
-SCHEMA_VERSION = "p2-betav-campaign/compute/v1"
+SCHEMA_VERSION = "p2-betav-campaign/compute/v2"
+
+# Per-arm frozen required-diagnostics manifest (prereg §(c7) / schema addition).
+# Audit-shaped arms (P, pilot) require both diagnostics; Arm H requires none.
+REQUIRED_DIAGNOSTICS = {
+    "P": ["gfvec-v2-seagull", "extended-basis"],
+    "pilot": ["gfvec-v2-seagull", "extended-basis"],
+    "H": [],
+}
 
 _HERE = Path(__file__).resolve().parent
 _ROOT = _HERE.parents[1]
@@ -81,7 +89,7 @@ CONFIG = {
     "pilot": {
         "n": 16,
         "species": ["proca", "gfvec", "boson"],
-        "eps": [0.10, 0.18, 0.26],
+        "eps": [0.10, 0.16, 0.22, 0.28],  # Amendment 1 (A1): 4 pts == EPS_H
         "masses_baseline": [0.10, 0.12, 0.14, 0.17, 0.20],
         "masses_shift": [],
     },
@@ -306,10 +314,14 @@ def compute(arm, mutate="none"):
                                    "mass_fit": mfit}
         variants_out[var["name"]] = vres
 
+    required_diags, diagnostics = _build_diagnostics(arm, variants_out)
+
     doc = {
         "schema_version": SCHEMA_VERSION,
         "arm": arm,
         "mutation": mutate,
+        "required_diagnostics": required_diags,
+        "diagnostics": diagnostics,
         "compute_git_commit": _git_head(),
         "python_version": platform.python_version(),
         "numpy_version": np.__version__,
@@ -328,6 +340,58 @@ def compute(arm, mutate="none"):
         "variants": variants_out,
     }
     return doc
+
+
+def _build_diagnostics(arm, variants_out):
+    """Frozen required-diagnostics manifest + structured keyed records
+    (prereg §(c7) / schema addition). Comparator iterates the manifest."""
+    req = list(REQUIRED_DIAGNOSTICS.get(arm, []))
+    diags = {}
+    for did in req:
+        if did == "gfvec-v2-seagull":
+            v = variants_out.get("gfvec-v2-seagull")
+            executed = v is not None and "gfvec_v2" in v.get("species", {})
+            valid = bool(executed and v["species"]["gfvec_v2"]["mass_fit"]
+                         .get("valid", False))
+            diags[did] = {
+                "executed": bool(executed), "valid": valid,
+                "record_path": "variants.gfvec-v2-seagull.species.gfvec_v2"}
+        elif did == "extended-basis":
+            v = variants_out.get("extended-basis")
+            executed = v is not None
+            comps = {}
+            if executed:
+                masses = v["masses"]
+                for sp in ("proca", "gfvec", "boson"):
+                    mf = v["species"].get(sp, {}).get("mass_fit", {})
+                    comps[sp] = {
+                        "valid": bool(mf.get("valid", False)),
+                        "record_path":
+                            f"variants.extended-basis.species.{sp}.mass_fit"}
+                # the D = Z_P - Z_G + Z_B component, extended (5-column) fit
+                try:
+                    zc = {s: [v["species"][s]["Z"][repr(m)] for m in masses]
+                          for s in ("proca", "gfvec", "boson")}
+                    dz = [zc["proca"][i] - zc["gfvec"][i] + zc["boson"][i]
+                          for i in range(len(masses))]
+                    dfit = _mass_fit(masses, dz, "ext5")
+                    comps["D"] = {"valid": bool(dfit.get("valid", False)),
+                                  "mass_fit": dfit,
+                                  "record_path":
+                                  "diagnostics.extended-basis.components.D"}
+                except Exception as exc:  # pragma: no cover
+                    comps["D"] = {"valid": False, "error": str(exc),
+                                  "record_path":
+                                  "diagnostics.extended-basis.components.D"}
+            allv = bool(executed and all(
+                comps.get(c, {}).get("valid", False)
+                for c in ("proca", "gfvec", "boson", "D")))
+            diags[did] = {
+                "executed": bool(executed), "valid": allv,
+                "record_path": "variants.extended-basis",
+                "required_components": ["proca", "gfvec", "boson", "D"],
+                "components": comps}
+    return req, diags
 
 
 def _out_paths(arm, mutate):
