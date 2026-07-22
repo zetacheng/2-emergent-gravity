@@ -47,13 +47,18 @@ def test_recon01_remains_proposed():
     assert "PROPOSED" in _gate_status("P2-BETAV-RECON-01")
 
 
-def test_numrepro01_specified_not_run():
-    # After the campaign pre-registration, NUMREPRO is SPECIFIED (rules frozen)
-    # and has NOT run (no PASS/FAIL). The dual-gate promotion rule is unchanged.
+def test_numrepro01_run_verdict_recorded_separately():
+    # The decisive Arm-H run executed: Status: RUN, with the verdict carried in
+    # a SEPARATE `Verdict:` field (never folded into the status). A NUMREPRO
+    # verdict alone promotes nothing; the dual-gate rule is unchanged.
     status = _gate_status("P2-BETAV-NUMREPRO-01")
-    assert "SPECIFIED" in status
-    assert "PASS" not in status and "FAIL" not in status
-    assert "not run" in status.lower()
+    assert "RUN" in status
+    assert "PASS" not in status and "FAIL" not in status  # verdict is separate
+    gates = (ROOT / "GATES.md").read_text(encoding="utf-8")
+    block = gates.split("## P2-BETAV-NUMREPRO-01", 1)[1].split("\n## ", 1)[0]
+    assert re.search(r"^Verdict:", block, re.M), "verdict must be its own field"
+    assert re.search(r"^Artifact:", block, re.M), "artifact digest field"
+    assert "does not by itself promote `P2-C9`" in block
 
 
 def test_campaign_prereg_and_harness_present():
