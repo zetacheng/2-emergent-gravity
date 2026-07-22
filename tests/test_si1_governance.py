@@ -47,9 +47,34 @@ def test_recon01_remains_proposed():
     assert "PROPOSED" in _gate_status("P2-BETAV-RECON-01")
 
 
-def test_numrepro01_proposed():
-    # The numerical-reproduction gate exists and is PROPOSED (not run).
-    assert "PROPOSED" in _gate_status("P2-BETAV-NUMREPRO-01")
+def test_numrepro01_specified_not_run():
+    # After the campaign pre-registration, NUMREPRO is SPECIFIED (rules frozen)
+    # and has NOT run (no PASS/FAIL). The dual-gate promotion rule is unchanged.
+    status = _gate_status("P2-BETAV-NUMREPRO-01")
+    assert "SPECIFIED" in status
+    assert "PASS" not in status and "FAIL" not in status
+    assert "not run" in status.lower()
+
+
+def test_campaign_prereg_and_harness_present():
+    # The pre-registration doc and the blind harness/comparison exist.
+    for rel in ("derivations/P2-BETAV-CAMPAIGN_prereg.md",
+                "scripts/P2-BETAV-CAMPAIGN/harness_compute.py",
+                "scripts/P2-BETAV-CAMPAIGN/compare.py"):
+        assert (ROOT / rel).is_file(), rel
+
+
+def test_audit_pass_alone_does_not_promote_c9():
+    # A future CIRC operator-identity audit PASS, on its own, must not flip the
+    # -3.2(5) quarantine: promotion still requires BOTH gates, and P2-C9 stays
+    # PROPOSED. This guards the dual-gate rule against the new audit path.
+    gates = (ROOT / "GATES.md").read_text(encoding="utf-8")
+    assert "alone does not verify or promote" in gates
+    assert "does not by itself promote `P2-C9`" in gates
+    claims = (ROOT / "CLAIMS.md").read_text(encoding="utf-8")
+    row = next(ln for ln in claims.splitlines()
+               if ln.strip().startswith("| P2-C9 "))
+    assert "PROPOSED" in row and "VERIFIED" not in row
 
 
 def test_dual_gate_promotion_rule_present():
