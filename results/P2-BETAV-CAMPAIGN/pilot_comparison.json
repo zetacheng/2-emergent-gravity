@@ -1,0 +1,119 @@
+{
+  "arm": "pilot",
+  "audit": {
+    "C_cons_baseline": -0.5512458764871334,
+    "assessable": true,
+    "delta_audit": 0.05,
+    "diagnostics_gate": {
+      "extended-basis": {
+        "ok": true
+      },
+      "gfvec-v2-seagull": {
+        "ok": true
+      }
+    },
+    "gfvec_over_B": {
+      "assessable": true,
+      "central": -67.88739465230815,
+      "n_variants": 9,
+      "per_variant": {
+        "baseline": -67.88739465230815,
+        "eps-drop-largest": -84.07651792176561,
+        "eps-drop-smallest": -49.27610147032742,
+        "fit-order": -11.655410751421705,
+        "mass-drop-one[0]": -49.128469818379074,
+        "mass-drop-one[1]": -60.703938104350364,
+        "mass-drop-one[2]": -73.33339829079404,
+        "mass-drop-one[3]": -93.48199794639501,
+        "mass-drop-one[4]": -114.15626360171444
+      },
+      "sigma": 56.23198390088644
+    },
+    "harness_invalid": false,
+    "kind": "audit",
+    "proca_over_B": {
+      "assessable": true,
+      "central": -69.43864052879528,
+      "n_variants": 9,
+      "per_variant": {
+        "baseline": -69.43864052879528,
+        "eps-drop-largest": -85.76542283536033,
+        "eps-drop-smallest": -50.66909183237874,
+        "fit-order": -13.107487593447294,
+        "mass-drop-one[0]": -50.6796007450218,
+        "mass-drop-one[1]": -62.25513996242123,
+        "mass-drop-one[2]": -74.8846775390378,
+        "mass-drop-one[3]": -95.03340066030843,
+        "mass-drop-one[4]": -115.70779300256433
+      },
+      "sigma": 56.33115293534798
+    },
+    "sigma_C": 0.15825551443580976,
+    "tau_C": 7.03422147784586e-05,
+    "tol": 0.3165110288716195,
+    "twosigma": 0.3165110288716195,
+    "verdict": "INCONCLUSIVE (insufficient resolving power)",
+    "xcheck_max": 1.8363586205046717e-14,
+    "xcheck_tau_num": 7.784884839809053e-09
+  },
+  "historical_criterion": {
+    "assessable": true,
+    "gfvec_over_B": {
+      "assessable": true,
+      "central": -67.88739465230815,
+      "n_variants": 9,
+      "per_variant": {
+        "baseline": -67.88739465230815,
+        "eps-drop-largest": -84.07651792176561,
+        "eps-drop-smallest": -49.27610147032742,
+        "fit-order": -11.655410751421705,
+        "mass-drop-one[0]": -49.128469818379074,
+        "mass-drop-one[1]": -60.703938104350364,
+        "mass-drop-one[2]": -73.33339829079404,
+        "mass-drop-one[3]": -93.48199794639501,
+        "mass-drop-one[4]": -114.15626360171444
+      },
+      "sigma": 56.23198390088644
+    },
+    "harness_invalid": false,
+    "kind": "historical-criterion",
+    "met": false,
+    "note": "recorded outcome; promotion is a separate PI+reviewer step",
+    "proca_over_B": {
+      "assessable": true,
+      "central": -69.43864052879528,
+      "n_variants": 9,
+      "per_variant": {
+        "baseline": -69.43864052879528,
+        "eps-drop-largest": -85.76542283536033,
+        "eps-drop-smallest": -50.66909183237874,
+        "fit-order": -13.107487593447294,
+        "mass-drop-one[0]": -50.6796007450218,
+        "mass-drop-one[1]": -62.25513996242123,
+        "mass-drop-one[2]": -74.8846775390378,
+        "mass-drop-one[3]": -95.03340066030843,
+        "mass-drop-one[4]": -115.70779300256433
+      },
+      "sigma": 56.33115293534798
+    }
+  },
+  "integrity_status": "VERIFIED",
+  "non_decisive": true,
+  "refuse_log": [
+    "(1) sidecar hash OK",
+    "(2) prereg-doc hash OK",
+    "(3) registered-source hashes OK",
+    "(4) compute commit is ancestor of HEAD",
+    "(5) schema version OK"
+  ],
+  "scientific_status": "ASSESSABLE",
+  "seagull_diagnostic": {
+    "dZ_max": 2.4993895841873837e-14,
+    "dbeta": 5.424107604040662e-11,
+    "dbeta_over_absBbase": 4.901083958414177e-07,
+    "kind": "seagull",
+    "status": "consistent (<= tau_Z)",
+    "tau_Z": 2.2376338313871566e-08
+  },
+  "status": "verified"
+}

@@ -1,0 +1,15 @@
+{
+  "anchor1_gfvec_scale": {
+    "expected": 0.0007513205990277305,
+    "observed": 0.0007513206137399805,
+    "pass": true
+  },
+  "anchor2_boson_sign": {
+    "expected": -0.0002213431824496113,
+    "observed": -0.00022134318244961134,
+    "pass": true
+  },
+  "integrity_status": "VERIFIED",
+  "status": "OK",
+  "tau_num": 7.784884839809053e-09
+}
