@@ -1,7 +1,9 @@
 # Gate Registry
 
-Allowed statuses: `PROPOSED`, `SPECIFIED`, `RUNNING`, `PASS`, `FAIL`,
-`INCONCLUSIVE`, `SUSPENDED`, and `RETIRED`.
+Allowed statuses: `PROPOSED`, `SPECIFIED`, `RUNNING`, `RUN`, `PASS`, `FAIL`,
+`INCONCLUSIVE`, `SUSPENDED`, and `RETIRED`. (`RUN` = the registered test
+executed; the outcome is carried in a separate `Verdict:` field, never folded
+into the status.)
 
 These gates were run as an **independent verification** (no legacy source; see
 `MIGRATION.md`). A gate is `PASS`/`FAIL`/`INCONCLUSIVE` only for the
@@ -568,16 +570,37 @@ was `SUSPENDED` 2026-07-19 while the pipeline was missing).
 
 ## P2-BETAV-NUMREPRO-01 — Numerical reproduction of `β_V/β_B` at physical `k=1`
 
-Status: SPECIFIED (rules registered; not run)
+Status: RUN
+Verdict: INCONCLUSIVE (registered 2σ interval exceeds the NUMREPRO band boundary — a scientifically assessable outcome, not a harness failure)
+Artifact: results/P2-BETAV-CAMPAIGN/H_comparison.json (sha256: 918a9b87a8cac8fdff351d85bbfba66d09a80053926d370b634b76b3f11baa1f)
+
+The decisive Arm-H run executed once on 2026-07-22 (frozen harness, `n=32`,
+blind; `results/P2-BETAV-CAMPAIGN/raw/H.json`) and was compared under the
+pre-registered interval rules §(c2). The comparator returned
+`integrity_status=VERIFIED`, `scientific_status=ASSESSABLE`, exit 0. Result:
+central `R_H = β_V/β_B ≈ −2.23` (baseline variant) with battery `σ_H ≈ 4.08`;
+the battery spread is led by the **eps-drop-smallest** VERDICT variant, whose
+3-point eps fit even flips the sign to `R_H ≈ +1.85` (window-shift gives
+`R_H ≈ −3.52`; eps-drop-largest `≈ −5.61`). The 2σ interval `[−10.40, +5.94]`
+does not fit inside the band `[−3.7, −2.7]` → **INCONCLUSIVE**. This outcome is
+**consistent with the preregistered possibility of an inconclusive outcome,
+although the observed spread was driven primarily by eps-grid sensitivity
+(eps-drop variants −5.61 / +1.85) rather than the anticipated window shift** — a
+statement about the configuration's discriminating power, **not** a failure of
+the operator identity (that is Arm P's job, which is **not** run) and **not** a
+harness defect. Recorded as-is; no band widening, no variant changes.
 
 Rules registered 2026-07-21 in `derivations/P2-BETAV-CAMPAIGN_prereg.md`: Arm H
 (`n=32`, windows `M_H`/`M_Hs`, `EPS_H`), the interval rules §(c2) (2σ interval
 ⊆ band `[−3.7, −2.7]`, no resolving-power ceiling — a larger σ makes PASS
 harder), the frozen variant table §(c4) (window-shift is a VERDICT variant), and
-the blind harness `scripts/P2-BETAV-CAMPAIGN/`. **Not run:** the decisive Arm-H
-run is a separate, subsequently authorized task. A NUMREPRO PASS reproduces a
-historical number and **does not by itself promote `P2-C9`** (see the dual-gate
-rule); the `−3.2(5)` quarantine is untouched.
+the blind harness `scripts/P2-BETAV-CAMPAIGN/`. This is NUMREPRO output (2) of
+the three campaign outputs; a NUMREPRO verdict reproduces a historical number
+and **does not by itself promote `P2-C9`**. **Quarantine release or `P2-C9`
+promotion requires the registered dual-gate conditions AND explicit
+consideration of the separately recorded Arm-P historical-promotion outcome,
+followed by PI+reviewer authorization; no script automatically promotes.** The
+`−3.2(5)` quarantine is **unchanged** by this run.
 
 ### Scientific question
 At physical `k=1`, does the recovered `β_V/β_B` converge reproducibly into the

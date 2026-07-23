@@ -1,0 +1,41 @@
+{
+  "arm": "H",
+  "integrity_status": "VERIFIED",
+  "non_decisive": false,
+  "numrepro": {
+    "R_H": -2.2313258016794104,
+    "assessable": true,
+    "band": [
+      -3.7,
+      -2.7
+    ],
+    "harness_invalid": false,
+    "interval": [
+      -10.398074103610458,
+      5.9354225002516365
+    ],
+    "kind": "numrepro",
+    "per_variant": {
+      "baseline": -2.2313258016794104,
+      "eps-drop-largest": -5.608185284914383,
+      "eps-drop-smallest": 1.852048349286113,
+      "fit-order": -3.5921147990375273,
+      "mass-drop-one[0]": -3.790919179600965,
+      "mass-drop-one[1]": -3.6523872006425253,
+      "mass-drop-one[2]": -3.511395380381591,
+      "mass-drop-one[3]": -3.3758607813398664,
+      "window-shift": -3.519109939340353
+    },
+    "sigma_H": 4.083374150965524,
+    "verdict": "INCONCLUSIVE"
+  },
+  "refuse_log": [
+    "(1) sidecar hash OK",
+    "(2) prereg-doc hash OK",
+    "(3) registered-source hashes OK",
+    "(4) compute commit is ancestor of HEAD",
+    "(5) schema version OK"
+  ],
+  "scientific_status": "ASSESSABLE",
+  "status": "verified"
+}
