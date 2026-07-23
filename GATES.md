@@ -582,12 +582,13 @@ central `R_H = β_V/β_B ≈ −2.23` (baseline variant) with battery `σ_H ≈ 
 the battery spread is led by the **eps-drop-smallest** VERDICT variant, whose
 3-point eps fit even flips the sign to `R_H ≈ +1.85` (window-shift gives
 `R_H ≈ −3.52`; eps-drop-largest `≈ −5.61`). The 2σ interval `[−10.40, +5.94]`
-does not fit inside the band `[−3.7, −2.7]` → **INCONCLUSIVE**. This is exactly the
-pre-registered honest expectation (c2): the historical configuration cannot
-distinguish `−3` at the registered confidence — a statement about the
-configuration's discriminating power, **not** a failure of the operator
-identity (that is Arm P's job, which is **not** run) and **not** a harness
-defect. Recorded as-is; no band widening, no variant changes.
+does not fit inside the band `[−3.7, −2.7]` → **INCONCLUSIVE**. This outcome is
+**consistent with the preregistered possibility of an inconclusive outcome,
+although the observed spread was driven primarily by eps-grid sensitivity
+(eps-drop variants −5.61 / +1.85) rather than the anticipated window shift** — a
+statement about the configuration's discriminating power, **not** a failure of
+the operator identity (that is Arm P's job, which is **not** run) and **not** a
+harness defect. Recorded as-is; no band widening, no variant changes.
 
 Rules registered 2026-07-21 in `derivations/P2-BETAV-CAMPAIGN_prereg.md`: Arm H
 (`n=32`, windows `M_H`/`M_Hs`, `EPS_H`), the interval rules §(c2) (2σ interval

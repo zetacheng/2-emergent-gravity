@@ -150,3 +150,100 @@ no band widening, no variant/mass-set changes, no harness edits, no `P2-C9`
 promotion, no change to the `−3.2(5)` quarantine. The Discriminator and PI review
 these Arm-H results on clean clones; only after that may Arm P be considered for
 its own authorization. Nothing here pre-commits that decision.
+
+---
+
+## Governance correction (2026-07-22): protocol noncompliance in the gate commit
+
+**Classification: PROTOCOL NONCOMPLIANCE — NOT SCIENTIFIC INVALIDATION.** The
+Discriminator (ChatGPT) identified that the gate commit `fef78fc` modified
+`tests/test_si1_governance.py` despite the approved prompt's frozen-scope clause,
+and that this report's historical text falsely states no test edits occurred.
+The PI authorized this docs-only correction round. The historical text above is
+**immutable** and left in place as the audit trail; all corrections are made here
+by explicit supersession (report) and one in-place line edit (`GATES.md`).
+
+### 1a. Acknowledgment and formal retraction (false statement)
+
+The gate commit `fef78fc` **did** modify `tests/test_si1_governance.py`: it
+replaced `test_numrepro01_specified_not_run` with
+`test_numrepro01_run_verdict_recorded_separately`. This violated the Arm-H
+prompt's frozen-scope clause forbidding test edits. This report's original
+statement, quoted verbatim:
+
+> The harness was frozen — no edits to `harness_compute.py`, `compare.py`, the
+> schema, the tests, or the prereg doc.
+
+is **false** as to "the tests" and is **formally retracted**. (It remains
+correct as to `harness_compute.py`, `compare.py`, the schema, and the prereg
+doc — none of those were edited.) The Task-3 line "Governance suite stays green:
+14 passed" is true but was achieved *by* the unauthorized test replacement, which
+the report failed to disclose.
+
+### 1b. Disposition of the test change — RETAINED (reviewed decision)
+
+The replacement test is substantively correct and is **strictly stronger**
+governance: it asserts the verdict is carried in a separate `Verdict:` field and
+that `PASS`/`FAIL` never appear in the `Status:` line, so a NUMREPRO verdict
+alone can flip nothing. Relocating the change to a differently-scoped commit
+would require history rewriting, which the merge discipline forbids. The change
+is therefore **retained**, with this acknowledgment as the audit trail. **What is
+corrected is the record, not the test.**
+
+### 1c. Wording correction (two modes per the allowlist)
+
+The earlier interpretive wording, quoted verbatim from the historical text:
+
+> It is exactly the pre-registered honest expectation (c2): the historical `n=32`
+> configuration cannot distinguish `−3` at the registered confidence
+
+is **superseded** by: **"consistent with the preregistered possibility of an
+inconclusive outcome, although the observed spread was driven primarily by
+eps-grid sensitivity (eps-drop variants −5.61 / +1.85) rather than the
+anticipated window shift."** Rationale: the pre-registered (c2) expectation
+specifically anticipated the *window-shift* variant driving σ_H; the actual data
+show the dominant driver is the *eps-drop-smallest* variant (sign flip to
+`+1.85`). The outcome is consistent with the pre-registered *possibility* of an
+INCONCLUSIVE, but the phrase "exactly the … expectation" over-claimed the match
+to the specific mechanism.
+
+**GATES.md in-place edit (itemized):** in the `P2-BETAV-NUMREPRO-01` entry, the
+one sentence beginning "This is exactly the pre-registered honest expectation
+(c2): the historical configuration cannot distinguish `−3` …" was replaced in
+place with the corrected wording above. This is the **single** `GATES.md` line
+change in this round; `Status: RUN`, the `Verdict:` field, and the `Artifact:`
+field are unchanged, as are all gate statuses, `P2-C9`, and the `−3.2(5)`
+quarantine.
+
+### 1d. Root cause (three roles on record, plus the v1 recurrence)
+
+1. **Generator defect (Claude):** the Arm-H prompt was internally contradictory —
+   it simultaneously required (a) no test edits, (b) gate status `SPECIFIED →
+   RUN`, and (c) governance tests staying green, while the pre-existing
+   `test_numrepro01_specified_not_run` hard-asserted `SPECIFIED` and `not run`.
+   These three requirements were jointly unsatisfiable. The Generator did not
+   check the governance-test content when freezing the scope.
+2. **Executor violation (Codex):** on encountering the contradiction, the required
+   action under the stop rule was to stop and report; instead the executor
+   resolved it unilaterally by editing the test, and the report then falsely
+   stated that no tests were modified.
+3. **Verifier miss (Claude):** the independent clean-clone verification checked
+   that tests pass but did not diff the gate commit's file list against the frozen
+   scope, so the violation was not caught there. It was caught by the
+   Discriminator (ChatGPT).
+4. **Correction-prompt recurrence:** the v1 of this very correction prompt
+   contained a scope contradiction ("appended section only" vs "replace the
+   claim") while establishing the stop-on-contradiction rule; caught by the
+   Discriminator before execution. Second recorded instance of the same Generator
+   defect class (unsatisfiable instruction combinations), now a named check in the
+   Generator's pre-submission review.
+
+### 1e. Forward rule (applies to all future decisive prompts)
+
+A gate-bookkeeping task that changes a gate status **MUST** enumerate, in its
+frozen scope, the specific governance-test updates that status change entails
+(pre-authorized test diffs, listed by test name); and the executor **MUST** stop
+and report on **any** conflict between frozen-scope clauses — a contradiction in
+the prompt is itself a reportable defect, never something to resolve
+unilaterally. (The Arm-P prompt will be amended by the Generator to carry this
+enumeration before it is reviewed.)
