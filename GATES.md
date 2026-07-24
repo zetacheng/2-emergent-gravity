@@ -327,7 +327,9 @@ D1 withdrawn; `P2-C2`, `P2-C8` → `SUPPORTED`. Bookkeeping gate; not physics.
 
 ## P2-BETAV-CIRC-01 — Does the lattice `β_V` test discriminate?
 
-Status: SPECIFIED
+Status: RUN
+Verdict: INCONCLUSIVE (insufficient resolving power)
+Artifact: results/P2-BETAV-CAMPAIGN/P_comparison.json (sha256: 29f937e467d0c3d6ed157f4dbd752af65084b621ee7f209badb3845524f26d7d)
 Phase-1 design adjudication: DECOMP-UNAVAILABLE-AS-RECOVERED
 Previous additive k-scan design: WITHDRAWN
 Current registered test: operator/determinant-identity audit — **rules now
@@ -343,6 +345,31 @@ Current registered test: operator/determinant-identity audit — **rules now
   multiplicity bookkeeping); per Phase-1 every pipeline step is linear, so it
   **cannot** establish strong historical non-circularity, and a CIRC audit PASS
   **alone does not verify or promote** `β_V/β_B = −3.2(5)`.
+
+### Arm-P decisive record — 2026-07-24
+
+The decisive Arm-P comparator completed with `integrity_status=VERIFIED` and
+`scientific_status=ASSESSABLE`. Its audit verdict, recorded separately above,
+is **INCONCLUSIVE (insufficient resolving power)**: baseline
+`C_cons=0.059846062787177995`, `σ_C=0.7353056040292271`,
+`2σ_C=1.4706112080584541`, `δ_audit=0.05`, and
+`τ_C=1.4975142348013066e-05`.
+
+**Historical promotion-criterion outcome (recorded outcome, not a gate
+status): not met.** `β_gfvec/β_B=-13.185938988618338` with battery
+`σ_gf/B=20.08326113789817`; `β_proca/β_B=-14.12609292583116` with battery
+`σ_P/B=20.818566741927395`. This is not a gate verdict and causes no automatic
+promotion.
+
+Quarantine release or `P2-C9` promotion requires the registered dual-gate
+conditions AND explicit consideration of the separately recorded Arm-P
+historical-promotion outcome, followed by PI+reviewer authorization; no script
+automatically promotes.
+
+Arm-H NUMREPRO is already recorded as INCONCLUSIVE. Therefore the registered
+dual-gate PASS+PASS condition is presently not satisfiable, regardless of the
+Arm-P audit verdict or historical-promotion outcome. An Arm-P audit PASS alone
+creates no promotion path.
 
 **Adjudication note (design, not a CIRC verdict).** This gate was `SUSPENDED`
 while the historical Finding 5 pipeline was missing; the pipeline is now
