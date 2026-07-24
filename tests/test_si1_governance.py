@@ -28,19 +28,22 @@ def _gate_status(gate_id: str) -> str:
     raise AssertionError(f"no Status line found for {gate_id}")
 
 
-def test_circ01_is_specified_after_recovery():
+def test_circ01_run_verdict_recorded_separately():
     # The gate left SUSPENDED only because the historical pipeline was RECOVERED.
-    # It is in the allowed state SPECIFIED and has NOT passed or failed. The
+    # It is in the allowed state RUN and has NOT passed or failed. The
     # Phase-1 design adjudication (DECOMP-UNAVAILABLE-AS-RECOVERED) withdrew the
     # additive k-scan design; that is a statement about the design, not a CIRC
     # verdict.
     status = _gate_status("P2-BETAV-CIRC-01")
-    assert "SPECIFIED" in status
+    assert "RUN" in status
     assert "PASS" not in status and "FAIL" not in status  # the Status: line only
     gates = (ROOT / "GATES.md").read_text(encoding="utf-8")
     assert "recovered" in gates
     assert "DECOMP-UNAVAILABLE-AS-RECOVERED" in gates
     assert "Previous additive k-scan design: WITHDRAWN" in gates
+    block = gates.split("## P2-BETAV-CIRC-01", 1)[1].split("\n## ", 1)[0]
+    assert re.search(r"^Verdict:", block, re.M), "verdict must be its own field"
+    assert re.search(r"^Artifact:", block, re.M), "artifact digest field"
 
 
 def test_recon01_remains_proposed():
