@@ -615,3 +615,44 @@ statuses stand.
 
 ### Related branch and files
 ```
+
+## 2026-07-25 — Register P2-ACT-CANONICAL-ALIGN-01
+
+### Decision
+
+Register `P2-ACT-CANONICAL-ALIGN-01` as a mandatory manuscript-alignment
+action.  The Paper-2 manuscript must display the ratified generator-sum
+interaction or state unambiguously that its singlet notation is shorthand for
+the complete generator contraction.
+
+### Reason
+
+`derivations/CANONICAL_INTERACTION.md` is the ratified governing source for
+the Paper-2 canonical interaction.  Its historical manuscript presentation
+requires explicit expository alignment; this entry tracks that required action
+without editing the manuscript in this task.
+
+### Evidence
+
+- Ratified source: `derivations/CANONICAL_INTERACTION.md`, SHA-256
+  `27daae02ef0921602947cb25bfc7989031c8849172d0ea190cdcf1753f348a81`.
+- Landing evidence: `reports/2026-07-25_canonical-interaction_evidence.md`.
+
+### Consequences
+
+The identifier is hereby registered.  No Paper-2 manuscript source is edited
+by this tracking entry; manuscript alignment remains a separately authorized
+action.
+
+### Supersedes
+
+None.
+
+### Related gate
+
+`P2-CHANNEL-FREEZE-01` (downstream consumer of the ratified interaction).
+
+### Related branch and files
+
+`docs/canonical-interaction`; `derivations/CANONICAL_INTERACTION.md`,
+`reports/2026-07-25_canonical-interaction_evidence.md`, `DECISION_LOG.md`.
