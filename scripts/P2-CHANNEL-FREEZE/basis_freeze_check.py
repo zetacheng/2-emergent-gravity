@@ -8,7 +8,6 @@ import re
 from pathlib import Path
 
 import sympy as sp
-
 from gamma_algebra import GAMMA5, GAMMAS, basis, fierz_family_matrix
 from vocab_parser import canonical
 
@@ -64,7 +63,9 @@ def verify(c_override=None, d_override=None, companion_override=None) -> None:
     for _, element in basis():
         assert element.H == element and sp.trace(element * element) == 4
     matrix = fierz_family_matrix()
-    frozen_matrix = sp.Matrix([[sp.sympify(x) for x in row] for row in c_block["matrix_rational"]])
+    frozen_matrix = sp.Matrix(
+        [[sp.sympify(x) for x in row] for row in c_block["matrix_rational"]]
+    )
     assert matrix == frozen_matrix, "computed Fierz matrix mismatch"
     assert matrix * matrix == sp.eye(5), "Fierz involution failed"
     assert matrix.rank() == 5, "family rank mismatch"
@@ -113,7 +114,9 @@ def verify(c_override=None, d_override=None, companion_override=None) -> None:
     terms = []
     range_part = None
     for item in decomposition:
-        match = re.fullmatch(r"Sum\((.*),(\(A,0,N\*\*2-1\))\)", item["operator_expression"])
+        match = re.fullmatch(
+            r"Sum\((.*),(\(A,0,N\*\*2-1\))\)", item["operator_expression"]
+        )
         assert match, "unsupported frozen decomposition form"
         terms.append(match.group(1))
         range_part = match.group(2)

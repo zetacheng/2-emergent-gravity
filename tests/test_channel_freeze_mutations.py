@@ -6,7 +6,6 @@ from pathlib import Path
 
 import pytest
 
-
 ROOT = Path(__file__).resolve().parents[1]
 PATH = ROOT / "scripts/P2-CHANNEL-FREEZE/basis_freeze_check.py"
 sys.path.insert(0, str(PATH.parent))
@@ -17,11 +16,15 @@ SPEC.loader.exec_module(CHECK)
 
 def data():
     c, d = CHECK.blocks()
-    companion = json.loads((ROOT / "derivations/CANONICAL_INTERACTION.json").read_text())
+    companion = json.loads(
+        (ROOT / "derivations/CANONICAL_INTERACTION.json").read_text()
+    )
     return copy.deepcopy(c), copy.deepcopy(d), copy.deepcopy(companion)
 
 
-@pytest.mark.parametrize("mutation", ["tensor", "matrix", "coefficient", "duplicate", "removed", "companion"])
+@pytest.mark.parametrize(
+    "mutation", ["tensor", "matrix", "coefficient", "duplicate", "removed", "companion"]
+)
 def test_checker_rejects_frozen_data_mutation(mutation):
     c, d, companion = data()
     if mutation == "tensor":
@@ -35,6 +38,8 @@ def test_checker_rejects_frozen_data_mutation(mutation):
     elif mutation == "removed":
         d["kij_registry"].pop()
     else:
-        companion["canonical_interaction_expression"] = companion["canonical_interaction_expression"].replace("G/(2*N)", "G/N")
+        companion["canonical_interaction_expression"] = companion[
+            "canonical_interaction_expression"
+        ].replace("G/(2*N)", "G/N")
     with pytest.raises(AssertionError):
         CHECK.verify(c, d, companion)
