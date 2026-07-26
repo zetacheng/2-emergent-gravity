@@ -862,6 +862,23 @@ weakened.
 
 Status: PROPOSED
 
+Freeze state: PHASE-A FROZEN
+
+Metric state: PHASE-B PENDING
+
+SI-2 admissibility: BLOCKED UNTIL PHASE-B FREEZE
+
+Phase-A artifact: `derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md`
+
+Phase-A artifact SHA-256: `036a1a7b4959aab28b2ce6ddab56c261853be2a4a9a34223accab3bc0eafa1c2`
+
+Frozen vector path: pinned Paper-3 analytic path, `P3-C-001` / `P3-FIERZ-01` at `8c363ef08368f5c022278ea5f36e01496be3d5ca`; it receives **no validation from `−3.2(5)`**.
+
+v1 metric-item rulings: independent per-channel `g_c∈[−2,2]` REJECTED;
+`v_min=0.05` NOT RATIFIED pending a valid measure; ±10% multiplicative
+robustness REJECTED as defined; and the prior reduced HealthyGravity predicate
+REJECTED in favor of the registered full predicate.
+
 ### Sea–Ice alias
 SI-1 (pre-requisite freeze). Owner: Paper 2.
 
@@ -887,14 +904,12 @@ The original four-fermion interaction; the complete bilinear basis; the Fierz
 identities.
 
 ### Dependency
-Updated by governance clarification `P2-SI1-UNBLOCK-01` (2026-07-20): this gate
-**no longer requires `P2-BETAV-CIRC-01` to `PASS`**. `P2-BETAV-CIRC-01` is
-`SUSPENDED` (provenance NOT LOCATED) and does not consume the historical Finding
-5 value, so it does not block the channel freeze. The freeze requires instead
-that the **provenance adjudication is complete** and the historical value
-`−3.2(5)` is **quarantined as unreproduced** (`results/P2-BETAV-CIRC-01/
-PROVENANCE_SEARCH.md`, `results/P2-SI1-DEPENDENCY.md`). Feeds `P2-PHASE-01`
-(SI-1) and `P2-MULTIPHASE-GRAV-01` (SI-2).
+The merged decisive reports record `P2-BETAV-CIRC-01` as RUN / INCONCLUSIVE,
+`P2-BETAV-NUMREPRO-01` as RUN / INCONCLUSIVE, and the Arm-P historical
+promotion criterion as NOT MET.  The historical `−3.2(5)` remains quarantined
+and unpromoted.  This freeze therefore does not require a CIRC PASS; it cites
+the merged Arm-H and Arm-P decisive reports and feeds `P2-PHASE-01` (SI-1) and
+`P2-MULTIPHASE-GRAV-01` (SI-2).
 
 This gate must **freeze the selected operational vector-input path**, exactly
 one of:
