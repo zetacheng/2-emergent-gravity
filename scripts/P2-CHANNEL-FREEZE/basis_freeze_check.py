@@ -9,6 +9,9 @@ from pathlib import Path
 
 import sympy as sp
 
+from gamma_algebra import GAMMA5, GAMMAS, basis, fierz_family_matrix
+from vocab_parser import canonical
+
 ROOT = Path(__file__).resolve().parents[2]
 DOC = ROOT / "derivations" / "P2-CHANNEL-FREEZE-01_phaseA_freeze.md"
 COMPANION = ROOT / "derivations" / "CANONICAL_INTERACTION.json"
@@ -27,23 +30,6 @@ def blocks() -> tuple[dict, dict]:
     found = re.findall(r"```json\n(.*?)\n```", raw, flags=re.S)
     assert len(found) == 2, "document must have exactly two canonical JSON blocks"
     return json.loads(found[0]), json.loads(found[1])
-
-
-def expected_matrix() -> sp.Matrix:
-    q = sp.Rational
-    return sp.Matrix(
-        [
-            [q(1, 4), q(1, 4), q(1, 4), q(1, 4), q(1, 4)],
-            [q(1, 4), q(1, 4), -q(1, 4), -q(1, 4), q(1, 4)],
-            [1, -1, -q(1, 2), q(1, 2), 0],
-            [1, -1, q(1, 2), -q(1, 2), 0],
-            [q(3, 2), q(3, 2), 0, 0, -q(1, 2)],
-        ]
-    )
-
-
-def canonical(expr: str) -> str:
-    return re.sub(r"\s+", "", expr)
 
 
 def verify() -> None:
@@ -71,10 +57,13 @@ def verify() -> None:
     ):
         assert key in conventions
     assert conventions["grassmann_crossing_sign"] == "-1"
-    matrix = sp.Matrix(
-        [[sp.sympify(x) for x in row] for row in c_block["matrix_rational"]]
-    )
-    assert matrix == expected_matrix(), "exact Fierz matrix mismatch"
+    assert GAMMA5 == GAMMAS[0] * GAMMAS[1] * GAMMAS[2] * GAMMAS[3]
+    assert len(basis()) == 16
+    for _, element in basis():
+        assert element.H == element and sp.trace(element * element) == 4
+    matrix = fierz_family_matrix()
+    frozen_matrix = sp.Matrix([[sp.sympify(x) for x in row] for row in c_block["matrix_rational"]])
+    assert matrix == frozen_matrix, "computed Fierz matrix mismatch"
     assert matrix * matrix == sp.eye(5), "Fierz involution failed"
     assert matrix.rank() == 5, "family rank mismatch"
     artifact = json.loads(ARTIFACT.read_text(encoding="utf-8"))
@@ -117,10 +106,16 @@ def verify() -> None:
     )
     decomposition = d_block["interaction_decomposition"]
     assert [x["family_id"] for x in decomposition] == ["S", "P"]
-    reconstructed = (
-        "(G/(2*N))*Sum(bilinear(lam(A),Id4)**2+"
-        "bilinear(lam(A),I*gamma5)**2,(A,0,N**2-1))"
-    )
+    coefficients = {item["coefficient"] for item in decomposition}
+    assert len(coefficients) == 1
+    terms = []
+    range_part = None
+    for item in decomposition:
+        match = re.fullmatch(r"Sum\((.*),(\(A,0,N\*\*2-1\))\)", item["operator_expression"])
+        assert match, "unsupported frozen decomposition form"
+        terms.append(match.group(1))
+        range_part = match.group(2)
+    reconstructed = f"({coefficients.pop()})*Sum({'+'.join(terms)},{range_part})"
     assert canonical(reconstructed) == canonical(
         companion["canonical_interaction_expression"]
     )
