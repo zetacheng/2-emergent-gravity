@@ -32,8 +32,8 @@ def blocks() -> tuple[dict, dict]:
     return json.loads(found[0]), json.loads(found[1])
 
 
-def verify() -> None:
-    c_block, d_block = blocks()
+def verify(c_override=None, d_override=None, companion_override=None) -> None:
+    c_block, d_block = (c_override, d_override) if c_override is not None else blocks()
     assert list(c_block) == [
         "basis_order",
         "basis_elements",
@@ -45,6 +45,8 @@ def verify() -> None:
         "basis_order"
     ]
     conventions = c_block["conventions"]
+    tensor = next(item for item in c_block["basis_elements"] if item["basis_id"] == "T")
+    assert tensor["expression"] == conventions["sigma_definition"]
     for key in (
         "metric_signature",
         "gamma5_definition",
@@ -76,7 +78,7 @@ def verify() -> None:
 
     assert sha256(ROOT / "derivations" / "CANONICAL_INTERACTION.md") == MARKDOWN_SHA
     assert sha256(COMPANION) == COMPANION_SHA
-    companion = json.loads(COMPANION.read_text(encoding="utf-8"))
+    companion = companion_override or json.loads(COMPANION.read_text(encoding="utf-8"))
     assert companion["source_markdown_path"] == "derivations/CANONICAL_INTERACTION.md"
     assert companion["source_markdown_sha256"] == MARKDOWN_SHA
     assert list(d_block) == [
