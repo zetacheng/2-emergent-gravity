@@ -8,20 +8,30 @@ ratification evidence is `reports/2026-07-25_canonical-interaction_evidence.md`.
 
 ## §A — Canonical interaction
 
-The governing source designates the U(N) chiral NJL interaction.  Its §2
-definitions are: `ψ_{aα}` has Dirac index `α=1…4` and internal index
-`a=1…N`; `Tr[λ^A λ^B]=2δ^{AB}` and `λ^0=sqrt(2/N)·1_N`; and
+<!-- BEGIN VERBATIM CANONICAL_INTERACTION.md §2 -->
+## §2 — Operative canonical interaction (the working layer)
 
-```
-S^A = Sum_{a,b=1}^N Sum_{α,β=1}^4 psibar_{aα}(λ^A)_{ab}(1)_{αβ}ψ_{bβ}
-P^A = Sum_{a,b=1}^N Sum_{α,β=1}^4 psibar_{aα}(λ^A)_{ab}(iγ5)_{αβ}ψ_{bβ}
-L = Sum_a psibar_a(iγ^μ∂_μ)ψ_a + (G/(2N)) Sum_{A=0}^{N**2-1}[S^A**2+P^A**2].
-```
+The interaction **designated** as the unique operative canonical interaction governing Paper 2 and its registered downstream derivations is the **U(N) chiral NJL interaction** (generator-sum form), stated with the complete contraction:
 
-Thus `G>0` is the sole independent four-fermion coupling; `N` remains
-symbolic and `Λ=a**-1` is a regulator scale, not a channel coupling.  The
-historical `Lgen` and `L0` forms are superseded shorthand as governed by that
-source, not re-adjudicated here.
+Fields: `ψ_{aα}(x)` — Dirac index `α = 1…4`; internal index `a = 1…N` labelling the N modes, which carry a **U(N) internal structure** (the modes rotate into one another; they are not inert copies). `ψ̄ = ψ†γ⁰`. Internal generators `λ^A`, `A = 0 … N²−1`, normalized `Tr[λ^A λ^B] = 2δ^{AB}`, with the singlet `λ⁰ = √(2/N)·1_N`. Gamma-matrix and further conventions: `CONVENTIONS.md` (Paper 2) and the convention-lock section of the Paper-3 derivation note `derivations/u3-fierz/u3_fierz.md` at the pinned Paper-3 commit (§5) — these two sources are consistent (§7(b)).
+
+Bilinears (every contraction explicit):
+
+    S^A(x) ≡ Σ_{a,b=1}^{N} Σ_{α,β=1}^{4} ψ̄_{aα}(x) (λ^A)_{ab} (1)_{αβ} ψ_{bβ}(x)
+    P^A(x) ≡ Σ_{a,b=1}^{N} Σ_{α,β=1}^{4} ψ̄_{aα}(x) (λ^A)_{ab} (iγ₅)_{αβ} ψ_{bβ}(x)
+
+The canonical action:
+
+    L = Σ_{a=1}^{N} ψ̄_a (iγ^μ ∂_μ) ψ_a
+        + (G / 2N) Σ_{A=0}^{N²−1} [ S^A(x)² + P^A(x)² ]
+
+with:
+- `G > 0` — the **single independent coupling of the operative canonical four-fermion interaction** (attractive in the scalar channel under the registered convention; §7(b));
+- the `1/N` prefactor defining the large-N limit; `N` kept symbolic in all algebra;
+- classical symmetry `U(N)_L × U(N)_R`; the anomalous breaking of the axial `U(1)_A` is **not** part of this canonical interaction and is governed by its own records (§7(e)).
+
+**Superseded shorthand (recorded):** the Paper-2 manuscript's `L0` (`paper/emergent_gr_paper_v2_15.tex` L238–271) writes the singlet-only pair `(Σ_a ψ̄_aψ_a)² + (Σ_a ψ̄_a iγ₅ψ_a)²`. As literally written this is a *different* interaction (direct singlet channel only; incomplete chiral symmetry). It is hereby recorded as **imprecise shorthand** for the generator-sum form above, superseded by this document. The designation is forced jointly by: the PI's physical picture (§1); the completeness of the chiral symmetry; and the fact that the programme result recorded as VERIFIED, subject to §5 evidence confirmation, is derived from the generator-sum form.
+<!-- END VERBATIM CANONICAL_INTERACTION.md §2 -->
 
 ## §B — Independent coordinates and redundancies
 
@@ -60,7 +70,7 @@ identity and its family rank is five.  All strings are canonical exact SymPy
 expressions; no float is used.
 
 ```json
-{"basis_order":["S","P","V","A","T"],"basis_elements":[{"basis_id":"S","expression":"Id4","component_rule":"single"},{"basis_id":"P","expression":"gamma5","component_rule":"single"},{"basis_id":"V","expression":"gamma(mu)","component_rule":"mu=0..3"},{"basis_id":"A","expression":"I*gamma(mu)*gamma5","component_rule":"mu=0..3"},{"basis_id":"T","expression":"I*(gamma(mu)*gamma(nu)-gamma(nu)*gamma(mu)/2)","component_rule":"0<=mu<nu<=3"}],"conventions":{"metric_signature":["1","1","1","1"],"gamma5_definition":"gamma(0)*gamma(1)*gamma(2)*gamma(3)","sigma_definition":"I*(gamma(mu)*gamma(nu)-gamma(nu)*gamma(mu))/2","dirac_trace_normalization":"trace(Id4)=4","un_generator_normalization":"trace(lam(A)*lam(B))=2*KroneckerDelta(A,B)","grassmann_crossing_sign":"-1","singlet_traceless_order":["singlet","traceless"],"compound_index_order":["dirac_family","internal_family","component"]},"matrix_rational":[["1/4","1/4","1/4","1/4","1/4"],["1/4","1/4","-1/4","-1/4","1/4"],["1","-1","-1/2","1/2","0"],["1","-1","1/2","-1/2","0"],["3/2","3/2","0","0","-1/2"]]}
+{"basis_order":["S","P","V","A","T"],"basis_elements":[{"basis_id":"S","expression":"Id4","component_rule":"single"},{"basis_id":"P","expression":"gamma5","component_rule":"single"},{"basis_id":"V","expression":"gamma(mu)","component_rule":"mu=0..3"},{"basis_id":"A","expression":"I*gamma(mu)*gamma5","component_rule":"mu=0..3"},{"basis_id":"T","expression":"I*(gamma(mu)*gamma(nu)-gamma(nu)*gamma(mu))/2","component_rule":"0<=mu<nu<=3"}],"conventions":{"metric_signature":["1","1","1","1"],"gamma5_definition":"gamma(0)*gamma(1)*gamma(2)*gamma(3)","sigma_definition":"I*(gamma(mu)*gamma(nu)-gamma(nu)*gamma(mu))/2","dirac_trace_normalization":"trace(Id4)=4","un_generator_normalization":"trace(lam(A)*lam(B))=2*KroneckerDelta(A,B)","grassmann_crossing_sign":"-1","singlet_traceless_order":["singlet","traceless"],"compound_index_order":["dirac_family","internal_family","component"]},"matrix_rational":[["1/4","1/4","1/4","1/4","1/4"],["1/4","1/4","-1/4","-1/4","1/4"],["1","-1","-1/2","1/2","0"],["1","-1","1/2","-1/2","0"],["3/2","3/2","0","0","-1/2"]]}
 ```
 
 ## §D — HS/K_ij inclusion
@@ -99,13 +109,25 @@ remains quarantined and unpromoted.
 
 ## §F — Phase-B contract (deferred)
 
-From registered `P2-MULTIPHASE-GRAV-01`: CLEAN PASS requires a stable positive
-measure healthy region; CONDITIONAL PASS is fine-tuned and not a theoretical
-success; FAIL means every admissible phase has a negative Newtonian coupling,
-negative-residue physical pole, unavoidable ghost/tachyon, or no viable
-long-range mode.  HealthyGravity requires the full frozen-channel `K_ij`, a
-long-range spin-2/Newtonian pole, positive physical-pole residue, no ghost or
-tachyon, correct Newtonian sign, and stationary dynamically stable phase.
+`GATES.md`, `P2-MULTIPHASE-GRAV-01`, lines 1030–1076 (verbatim):
+
+<!-- BEGIN VERBATIM GATES.md P2-MULTIPHASE-GRAV-01 taxonomy -->
+Every phase from `P2-PHASE-01`; the full `K_ij(p)` including all
+frozen-channel mixing; Paper 3 vector input. Verdict is one of three
+pre-registered tiers (below).
+
+- **CLEAN PASS** — a healthy phase exists on a parameter region of
+  **positive volume** under the *pre-registered measure*, at least the
+  *pre-registered minimum healthy volume*, and stable under small parameter
+  perturbation. Only CLEAN PASS supports continuing into Sea–Ice cosmology.
+- **CONDITIONAL PASS (fine-tuned)** — a healthy phase exists only at an
+  isolated point, on a zero-measure surface, in a tuning band narrower than
+  the registered minimum, or requires fine cancellation. Permits technical
+  follow-up; **must not** be written as a theoretical success.
+- **FAIL** — every admissible phase is gravitationally pathological
+  (negative Newtonian coupling, negative-residue physical pole, unavoidable
+  ghost or tachyon, or no viable long-range mode). Hard consequence per AE-1.
+<!-- END VERBATIM GATES.md P2-MULTIPHASE-GRAV-01 taxonomy -->
 Phase B must separately preregister its domain, post-constraint measure,
 gap-map, robust-neighbourhood rule, branches, sampling, resolution, volume CI,
 boundaries and near-threshold handling.  It may not be drafted until this Phase
