@@ -904,12 +904,12 @@ The original four-fermion interaction; the complete bilinear basis; the Fierz
 identities.
 
 ### Dependency
-The merged decisive reports record `P2-BETAV-CIRC-01` as RUN / INCONCLUSIVE,
-`P2-BETAV-NUMREPRO-01` as RUN / INCONCLUSIVE, and the Arm-P historical
-promotion criterion as NOT MET.  The historical `−3.2(5)` remains quarantined
-and unpromoted.  This freeze therefore does not require a CIRC PASS; it cites
-the merged Arm-H and Arm-P decisive reports and feeds `P2-PHASE-01` (SI-1) and
-`P2-MULTIPHASE-GRAV-01` (SI-2).
+This gate no longer requires `P2-BETAV-CIRC-01` PASS.  Current record:
+`P2-BETAV-CIRC-01` RUN / INCONCLUSIVE (insufficient resolving power);
+`P2-BETAV-NUMREPRO-01` RUN / INCONCLUSIVE; historical promotion criterion NOT
+MET; and the historical `−3.2(5)` quarantine remains in force.  See the merged
+Arm-H and Arm-P decisive campaign reports.  This freeze feeds `P2-PHASE-01`
+(SI-1) and `P2-MULTIPHASE-GRAV-01` (SI-2).
 
 This gate must **freeze the selected operational vector-input path**, exactly
 one of:
