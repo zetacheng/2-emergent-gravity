@@ -58,3 +58,27 @@ remains: “channel inclusion/exclusion is justified ONLY by the algebra and
 symmetry of the fixed interaction and by adjudicated results meeting the
 exclusion rule in §D. Nothing in this freeze may reference what would help or
 hurt SI-2's outcome.”
+
+## 2026-07-25 source-integrity preflight addendum (v2.14)
+
+The original source block recorded above was resolved by the ratified canonical
+interaction merged on `main`.  This addendum records a distinct v2.14
+source-integrity preflight on the no-FF-synchronized
+`gate/p2-channel-freeze` branch.  The synchronized branch contains
+`derivations/CANONICAL_INTERACTION.md`; its SHA-256 is
+`27daae02ef0921602947cb25bfc7989031c8849172d0ea190cdcf1753f348a81`, so
+condition 1 passed.
+
+The supplied `CANONICAL_INTERACTION.json` machine companion was not present in
+the task attachment area.  Its actual SHA-256 is therefore unavailable, JSON
+parsing cannot be attempted, and its recorded `source_markdown_path` and
+`source_markdown_sha256` cannot be read.  This is an exact failure of
+preflight condition 2.  Conditions 3--5 were not evaluated because the frozen
+short-circuit rule applies; no copy was made, so condition 6 was not evaluated.
+
+`derivations/CANONICAL_INTERACTION.json` does not exist in the working tree as
+an uncommitted Task-0.5 artifact.  No freeze document, checker, result,
+gate edit, or test edit was created.
+
+`P2-CHANNEL-FREEZE-01` remains `PROPOSED`; the canonical-source integrity
+chain does not match the ratified state — return to the PI.
