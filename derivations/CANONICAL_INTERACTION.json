@@ -1,0 +1,23 @@
+{
+  "artifact_role": "PI-ratified machine-readable companion of the canonical interaction; the independent source-fidelity anchor for Phase-A reconstruction",
+  "source_markdown_path": "derivations/CANONICAL_INTERACTION.md",
+  "source_markdown_sha256": "27daae02ef0921602947cb25bfc7989031c8849172d0ea190cdcf1753f348a81",
+  "vocabulary": {
+    "Sum(expr, (idx, lo, hi))": "inclusive symbolic summation",
+    "bilinear(M_int, M_dirac)": "psibar_{a,alpha} (M_int)_{ab} (M_dirac)_{alpha beta} psi_{b,beta}, all indices contracted",
+    "lam(A)": "U(N) generator, A = 0..N**2-1, normalization trace(lam(A)*lam(B)) = 2*KroneckerDelta(A,B), lam(0) = sqrt(2/N)*IdN",
+    "Id4": "4x4 Dirac identity",
+    "IdN": "NxN internal identity",
+    "gamma5": "I*gamma(0)*gamma(1)*gamma(2)*gamma(3)",
+    "I": "imaginary unit",
+    "G": "single operative four-fermion coupling, G > 0",
+    "N": "internal multiplicity, symbolic"
+  },
+  "canonical_interaction_expression": "(G/(2*N)) * Sum( bilinear(lam(A), Id4)**2 + bilinear(lam(A), I*gamma5)**2, (A, 0, N**2-1) )",
+  "scope_note": "This expression is the four-fermion interaction term of §2 (the object the Phase-A decomposition must reconstruct); the free kinetic term Sum(bilinear(IdN, I*gamma(mu)*d(mu)), ...) is part of the canonical action but not of the interaction decomposition.",
+  "ratification": {
+    "transcribed_by": "Generator (Claude), 2026-07-25",
+    "review_required": "Discriminator (ChatGPT) must verify this transcription against §2 of the ratified markdown (v0.5 text) before the PI ratifies; the PI's delivery of the Phase-A prompt carrying this artifact's sha256 pin constitutes ratification",
+    "amendment_rule": "any change to this artifact is a full-chain amendment, versioned alongside the markdown"
+  }
+}
