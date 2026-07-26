@@ -870,7 +870,7 @@ SI-2 admissibility: BLOCKED UNTIL PHASE-B FREEZE
 
 Phase-A artifact: `derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md`
 
-Phase-A artifact SHA-256: `6ef0495c7b95b7b5626c7c06a3d0841a30f68e0f1e703cb57d91a3315af39f30`
+Phase-A artifact SHA-256: `fe68b9c645c80287afa45288d7c3e0490328b76663aafbe78af20dfc12a4e67a`
 
 Frozen vector path: pinned Paper-3 analytic path, `P3-C-001` / `P3-FIERZ-01` at `8c363ef08368f5c022278ea5f36e01496be3d5ca`; it receives **no validation from `−3.2(5)`**.
 
