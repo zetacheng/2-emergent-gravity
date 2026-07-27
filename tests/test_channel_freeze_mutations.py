@@ -10,6 +10,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 PATH = ROOT / "scripts/P2-CHANNEL-FREEZE/basis_freeze_check.py"
+REPORT = ROOT / "reports/2026-07-26_channel-freeze-phaseA_verifier-rebuild-3.md"
 sys.path.insert(0, str(PATH.parent))
 SPEC = importlib.util.spec_from_file_location("phase_check", PATH)
 CHECK = importlib.util.module_from_spec(SPEC)
@@ -24,21 +25,20 @@ def data():
     return copy.deepcopy(c_block), copy.deepcopy(d_block), copy.deepcopy(companion)
 
 
-@pytest.mark.parametrize(
-    ("mutation", "tag"),
-    [
-        ("tensor", "tensor normalization mismatch"),
-        ("matrix", "computed Fierz matrix mismatch"),
-        ("coefficient", "reconstruction mismatch"),
-        ("duplicate", "duplicate field_label"),
-        ("removed", "component-domain coverage omission"),
-        ("companion", "companion mismatch"),
-        ("metric", "unsupported metric signature"),
-        ("basis", "gram matrix normalization mismatch"),
-        ("rule", "component-domain completeness mismatch"),
-    ],
-)
-def test_checker_rejects_each_frozen_data_corruption(mutation, tag):
+MUTATIONS = [
+    ("tensor", "tensor normalization mismatch"),
+    ("matrix", "computed Fierz matrix mismatch"),
+    ("coefficient", "reconstruction mismatch"),
+    ("duplicate", "duplicate field_label"),
+    ("removed", "component-domain coverage omission"),
+    ("companion", "companion mismatch"),
+    ("metric", "unsupported metric signature"),
+    ("basis", "gram matrix normalization mismatch"),
+    ("rule", "component-domain completeness mismatch"),
+]
+
+
+def mutation_error(mutation):
     c_block, d_block, companion = data()
     if mutation == "tensor":
         c_block["basis_elements"][-1]["expression"] = "I*gamma(mu)*gamma(nu)"
@@ -62,5 +62,28 @@ def test_checker_rejects_each_frozen_data_corruption(mutation, tag):
         c_block["basis_elements"][3]["expression"] = "gamma(mu)*gamma5"
     else:
         c_block["basis_elements"][2]["component_rule"] = "mu=0..2"
-    with pytest.raises(CHECK.VerificationError, match=tag):
+    with pytest.raises(CHECK.VerificationError) as caught:
         CHECK.verify(c_block, d_block, companion)
+    return str(caught.value)
+
+
+@pytest.mark.parametrize(("mutation", "tag"), MUTATIONS)
+def test_checker_rejects_each_frozen_data_corruption(mutation, tag):
+    assert mutation_error(mutation) == tag
+
+
+def test_gamma5_definition_is_evaluated_from_the_typed_ast():
+    c_block, d_block, companion = data()
+    c_block["conventions"]["gamma5_definition"] = "-gamma(0)*gamma(1)*gamma(2)*gamma(3)"
+    with pytest.raises(
+        CHECK.VerificationError, match="gamma5 parsed-definition mismatch"
+    ):
+        CHECK.verify(c_block, d_block, companion)
+
+
+def test_accuracy_report_uses_captured_mutation_tags():
+    report = REPORT.read_text(encoding="utf-8")
+    for mutation, expected in MUTATIONS:
+        actual = mutation_error(mutation)
+        assert actual == expected
+        assert f"| {mutation} | {expected} | {actual} | PASS |" in report
