@@ -1,3 +1,5 @@
+"""Mutation tests proving the Phase-A checker consumes frozen data."""
+
 import copy
 import importlib.util
 import json
@@ -15,31 +17,50 @@ SPEC.loader.exec_module(CHECK)
 
 
 def data():
-    c, d = CHECK.blocks()
+    c_block, d_block = CHECK.blocks()
     companion = json.loads(
-        (ROOT / "derivations/CANONICAL_INTERACTION.json").read_text()
+        (ROOT / "derivations/CANONICAL_INTERACTION.json").read_text(encoding="utf-8")
     )
-    return copy.deepcopy(c), copy.deepcopy(d), copy.deepcopy(companion)
+    return copy.deepcopy(c_block), copy.deepcopy(d_block), copy.deepcopy(companion)
 
 
 @pytest.mark.parametrize(
-    "mutation", ["tensor", "matrix", "coefficient", "duplicate", "removed", "companion"]
+    ("mutation", "tag"),
+    [
+        ("tensor", "tensor normalization mismatch"),
+        ("matrix", "computed Fierz matrix mismatch"),
+        ("coefficient", "reconstruction mismatch"),
+        ("duplicate", "duplicate field_label"),
+        ("removed", "component-domain coverage omission"),
+        ("companion", "companion mismatch"),
+        ("metric", "unsupported metric signature"),
+        ("basis", "gram matrix normalization mismatch"),
+        ("rule", "component-domain completeness mismatch"),
+    ],
 )
-def test_checker_rejects_frozen_data_mutation(mutation):
-    c, d, companion = data()
+def test_checker_rejects_each_frozen_data_corruption(mutation, tag):
+    c_block, d_block, companion = data()
     if mutation == "tensor":
-        c["basis_elements"][-1]["expression"] = "I*gamma(mu)*gamma(nu)"
+        c_block["basis_elements"][-1]["expression"] = "I*gamma(mu)*gamma(nu)"
     elif mutation == "matrix":
-        c["matrix_rational"][0][0] = "1/3"
+        c_block["matrix_rational"][0][0] = "1/3"
     elif mutation == "coefficient":
-        d["interaction_decomposition"][0]["coefficient"] = "G/N"
+        d_block["interaction_decomposition"][0]["coefficient"] = "G/N"
     elif mutation == "duplicate":
-        d["kij_registry"].append(copy.deepcopy(d["kij_registry"][0]))
+        duplicate = copy.deepcopy(d_block["kij_registry"][0])
+        duplicate["family_id"] = "P"
+        d_block["kij_registry"].append(duplicate)
     elif mutation == "removed":
-        d["kij_registry"].pop()
-    else:
+        d_block["kij_registry"].pop()
+    elif mutation == "companion":
         companion["canonical_interaction_expression"] = companion[
             "canonical_interaction_expression"
         ].replace("G/(2*N)", "G/N")
-    with pytest.raises(AssertionError):
-        CHECK.verify(c, d, companion)
+    elif mutation == "metric":
+        c_block["conventions"]["metric_signature"] = ["1", "1", "1", "-1"]
+    elif mutation == "basis":
+        c_block["basis_elements"][3]["expression"] = "gamma(mu)*gamma5"
+    else:
+        c_block["basis_elements"][2]["component_rule"] = "mu=0..2"
+    with pytest.raises(CHECK.VerificationError, match=tag):
+        CHECK.verify(c_block, d_block, companion)
