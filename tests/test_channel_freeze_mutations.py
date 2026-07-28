@@ -81,6 +81,71 @@ def test_gamma5_definition_is_evaluated_from_the_typed_ast():
         CHECK.verify(c_block, d_block, companion)
 
 
+def test_singlet_extractor_ignores_surrounding_companion_prose():
+    c_block, d_block, companion = data()
+    companion["vocabulary"]["lam(A)"] = (
+        "incidental words; lam(0) = sqrt(2/N)*IdN; more incidental words"
+    )
+    CHECK.verify(c_block, d_block, companion)
+
+
+@pytest.mark.parametrize(
+    "value,tag",
+    [
+        (
+            "lam(0) = sqrt(2/N)*IdN; lam(0) = sqrt(2/N)*IdN",
+            "singlet declaration mismatch",
+        ),
+        ("lam(0) = sqrt(1/N)*IdN", "singlet normalization mismatch"),
+        ("U(N) generator with no singlet declaration", "singlet declaration mismatch"),
+    ],
+)
+def test_singlet_declaration_regressions(value, tag):
+    c_block, d_block, companion = data()
+    companion["vocabulary"]["lam(A)"] = value
+    with pytest.raises(CHECK.VerificationError, match=tag):
+        CHECK.verify(c_block, d_block, companion)
+
+
+def _rename_bound_everywhere(c_block, d_block, companion, *, tuple_name, lam_name):
+    old_tuple, new_tuple = "(A,0,N**2-1)", f"({tuple_name},0,N**2-1)"
+    old_tuple_spaced, new_tuple_spaced = "(A, 0, N**2-1)", f"({tuple_name}, 0, N**2-1)"
+    old_lam, new_lam = "lam(A)", f"lam({lam_name})"
+    for record in d_block["interaction_decomposition"]:
+        record["operator_expression"] = (
+            record["operator_expression"]
+            .replace(old_tuple, new_tuple)
+            .replace(old_lam, new_lam)
+        )
+    d_block["canonical_interaction"]["expression"] = (
+        d_block["canonical_interaction"]["expression"]
+        .replace(old_tuple, new_tuple)
+        .replace(old_lam, new_lam)
+    )
+    companion["canonical_interaction_expression"] = (
+        companion["canonical_interaction_expression"]
+        .replace(old_tuple, new_tuple)
+        .replace(old_tuple_spaced, new_tuple_spaced)
+        .replace(old_lam, new_lam)
+    )
+
+
+def test_generator_sum_alpha_renaming_is_structural():
+    c_block, d_block, companion = data()
+    _rename_bound_everywhere(c_block, d_block, companion, tuple_name="B", lam_name="B")
+    CHECK.verify(c_block, d_block, companion)
+
+
+@pytest.mark.parametrize(("tuple_name", "lam_name"), [("B", "A"), ("A", "B")])
+def test_generator_sum_partial_alpha_renaming_is_rejected(tuple_name, lam_name):
+    c_block, d_block, companion = data()
+    _rename_bound_everywhere(
+        c_block, d_block, companion, tuple_name=tuple_name, lam_name=lam_name
+    )
+    with pytest.raises(CHECK.VerificationError, match="generator sum mismatch"):
+        CHECK.verify(c_block, d_block, companion)
+
+
 def test_accuracy_report_uses_captured_mutation_tags():
     report = REPORT.read_text(encoding="utf-8")
     for mutation, expected in MUTATIONS:
