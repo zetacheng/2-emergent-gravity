@@ -27,8 +27,8 @@ bounds, internal generator, Dirac operator, bilinear power, and outside schema
 coefficient individually. Bound indices are normalized, so a consistent `A` to
 `B` renaming compares equal; a partial renaming fails.
 
-The Fierz matrix atom parser remains separate because matrix atoms are a distinct
-Task-2 representation. Gamma5 verification now also requires exact
+The Fierz matrix atom parser remains separate because matrix atoms are outside
+the Task 1–2 typed declaration/expression paths. Gamma5 verification now also requires exact
 `trace(gamma5)=0`.
 
 ## Mutation and focused-regression evidence

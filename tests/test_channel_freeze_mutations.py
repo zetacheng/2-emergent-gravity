@@ -10,7 +10,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 PATH = ROOT / "scripts/P2-CHANNEL-FREEZE/basis_freeze_check.py"
-REPORT = ROOT / "reports/2026-07-26_channel-freeze-phaseA_verifier-rebuild-3.md"
+REPORT = ROOT / "reports/2026-07-26_channel-freeze-phaseA_verifier-rebuild-4.md"
 sys.path.insert(0, str(PATH.parent))
 SPEC = importlib.util.spec_from_file_location("phase_check", PATH)
 CHECK = importlib.util.module_from_spec(SPEC)
@@ -152,3 +152,12 @@ def test_accuracy_report_uses_captured_mutation_tags():
         actual = mutation_error(mutation)
         assert actual == expected
         assert f"| {mutation} | {expected} | {actual} | PASS |" in report
+    for statement in (
+        "gamma5 parsed-definition mismatch",
+        "duplicate parsed declarations",
+        "absent declaration",
+        "sqrt(1/N)*IdN",
+        "`A` to `B` binder rename passes",
+        "binder-only and occurrence-only",
+    ):
+        assert statement in report
