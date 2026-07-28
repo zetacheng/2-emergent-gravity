@@ -116,8 +116,32 @@ def _gamma_value(node: object, gammas: list[sp.Matrix]) -> sp.Matrix:
     raise VerificationError("gamma5 parsed-definition mismatch")
 
 
+def _replace_bound(node: object, old: str, new: str = "_bound") -> object:
+    if isinstance(node, Symbol):
+        return Symbol(new) if node.name == old else node
+    if isinstance(node, Unary):
+        return Unary(node.op, _replace_bound(node.value, old, new))
+    if isinstance(node, Binary):
+        return Binary(
+            node.op,
+            _replace_bound(node.left, old, new),
+            _replace_bound(node.right, old, new),
+        )
+    if isinstance(node, Call):
+        return Call(
+            node.name, tuple(_replace_bound(item, old, new) for item in node.arguments)
+        )
+    if isinstance(node, IndexTuple):
+        return IndexTuple(
+            _replace_bound(node.index, old, new),
+            _replace_bound(node.lower, old, new),
+            _replace_bound(node.upper, old, new),
+        )
+    return node
+
+
 def _generator_terms(node: object) -> tuple[sp.Expr, tuple[tuple, ...]]:
-    """Extract typed GeneratorSum records; only explicit additive order commutes."""
+    """Extract six-field typed GeneratorSum records with alpha-normalization."""
     if not (isinstance(node, Binary) and node.op == "*"):
         raise VerificationError("generator sum mismatch")
     coefficient = scalar_ast(node.left)
@@ -131,7 +155,6 @@ def _generator_terms(node: object) -> tuple[sp.Expr, tuple[tuple, ...]]:
     body, index = sum_node.arguments
     if not (
         isinstance(index.index, Symbol)
-        and index.index.name == "A"
         and ast_key(index.lower) == ast_key(Number(0))
         and ast_key(index.upper)
         == ast_key(Binary("-", Binary("**", Symbol("N"), Number(2)), Number(1)))
@@ -144,20 +167,96 @@ def _generator_terms(node: object) -> tuple[sp.Expr, tuple[tuple, ...]]:
             collect(value.left)
             collect(value.right)
         else:
-            addends.append(ast_key(value))
+            addends.append(value)
 
     collect(body)
+    records = []
     for term in addends:
-        require(term[0] == "binary" and term[1] == "**", "generator sum mismatch")
-    return coefficient, tuple(sorted(addends))
+        require(
+            isinstance(term, Binary)
+            and term.op == "**"
+            and isinstance(term.right, Number)
+            and term.right.value == 2
+            and isinstance(term.left, Call)
+            and term.left.name == "bilinear",
+            "generator sum mismatch",
+        )
+        internal, dirac = term.left.arguments
+        require(
+            isinstance(internal, Call)
+            and internal.name == "lam"
+            and len(internal.arguments) == 1
+            and isinstance(internal.arguments[0], Symbol)
+            and internal.arguments[0].name == index.index.name,
+            "generator sum mismatch",
+        )
+        normalized_internal = _replace_bound(internal, index.index.name)
+        normalized_dirac = _replace_bound(dirac, index.index.name)
+        records.append(
+            (
+                ast_key(_replace_bound(index.index, index.index.name)),
+                ast_key(index.lower),
+                ast_key(index.upper),
+                ast_key(normalized_internal),
+                ast_key(normalized_dirac),
+                term.right.value,
+            )
+        )
+    return coefficient, tuple(sorted(records))
 
 
-def _companion_singlet_declaration(text: str) -> Equality:
-    marker = "lam(0) = sqrt(2/N)*IdN"
-    require(marker in text, "singlet declaration mismatch")
-    value = parse(marker)
-    require(isinstance(value, Equality), "singlet declaration mismatch")
-    return value
+def extract_singlet_declaration(text: str) -> Equality:
+    """Find exactly one complete parsable ``lam(0)`` equality in companion text."""
+    candidates: list[Equality] = []
+    seen_spans: set[tuple[int, int]] = set()
+    for start in range(len(text)):
+        for end in range(start + 1, len(text) + 1):
+            if start and (text[start - 1].isalnum() or text[start - 1] == "_"):
+                continue
+            if end < len(text) and text[end] not in {" ", "\t", "\n", ",", ";", "."}:
+                continue
+            try:
+                value = parse(text[start:end])
+            except ParseError:
+                continue
+            if (
+                isinstance(value, Equality)
+                and isinstance(value.left, Call)
+                and value.left.name == "lam"
+                and len(value.left.arguments) == 1
+                and isinstance(value.left.arguments[0], Number)
+                and value.left.arguments[0].value == 0
+            ):
+                normalized_span = (
+                    start + len(text[start:end]) - len(text[start:end].lstrip()),
+                    end - len(text[start:end]) + len(text[start:end].rstrip()),
+                )
+                if normalized_span in seen_spans:
+                    continue
+                seen_spans.add(normalized_span)
+                candidates.append(value)
+    require(len(candidates) == 1, "singlet declaration mismatch")
+    return candidates[0]
+
+
+def _internal_trace_of_square(rhs: object) -> sp.Expr:
+    """Narrow typed evaluator: square scalar×IdN, then trace exactly."""
+    require(isinstance(rhs, Binary) and rhs.op == "*", "singlet declaration mismatch")
+    scalar, identity = rhs.left, rhs.right
+    require(
+        isinstance(scalar, Call) and scalar.name == "sqrt",
+        "singlet declaration mismatch",
+    )
+    require(
+        isinstance(identity, Symbol) and identity.name == "IdN",
+        "singlet declaration mismatch",
+    )
+    argument = scalar_ast(scalar.arguments[0])
+    # Principal-sqrt squaring is a declared frozen-language semantic here.
+    squared_scalar = argument
+    squared_identity = Symbol("IdN")
+    require(isinstance(squared_identity, Symbol), "singlet declaration mismatch")
+    return sp.cancel(squared_scalar * N)
 
 
 def _pair_vector(matrix: sp.Matrix) -> sp.Matrix:
@@ -284,6 +383,7 @@ def verify(
     require(
         gamma5 * gamma5 == sp.eye(4)
         and gamma5.H == gamma5
+        and sp.trace(gamma5) == 0
         and all(gamma5 * gamma + gamma * gamma5 == sp.zeros(4) for gamma in gammas),
         "gamma5 algebra mismatch",
     )
@@ -299,13 +399,33 @@ def verify(
         conventions["un_generator_normalization"]
     )
     require(
-        ast_key(generator_declaration)
-        == ast_key(parse("trace(lam(A)*lam(B))=2*KroneckerDelta(A,B)")),
+        isinstance(generator_declaration, Equality), "internal normalization mismatch"
+    )
+    left_trace, right_decl = generator_declaration.left, generator_declaration.right
+    require(
+        isinstance(left_trace, Call)
+        and left_trace.name == "trace"
+        and isinstance(left_trace.arguments[0], Binary)
+        and left_trace.arguments[0].op == "*",
         "internal normalization mismatch",
     )
-    generator_norm, generator_domain = sp.Integer(2), descriptor("S[A=0..N**2-1]")
+    left_lam, right_lam = left_trace.arguments[0].left, left_trace.arguments[0].right
     require(
-        generator_norm == 2 and generator_domain.cardinality == N**2,
+        isinstance(left_lam, Call)
+        and isinstance(right_lam, Call)
+        and left_lam.name == right_lam.name == "lam"
+        and isinstance(left_lam.arguments[0], Symbol)
+        and isinstance(right_lam.arguments[0], Symbol),
+        "internal normalization mismatch",
+    )
+    require(
+        isinstance(right_decl, Binary)
+        and right_decl.op == "*"
+        and scalar_ast(right_decl.left) == 2
+        and isinstance(right_decl.right, Call)
+        and right_decl.right.name == "KroneckerDelta"
+        and ast_key(right_decl.right.arguments[0]) == ast_key(left_lam.arguments[0])
+        and ast_key(right_decl.right.arguments[1]) == ast_key(right_lam.arguments[0]),
         "internal normalization mismatch",
     )
     tensor = next(item for item in c_block["basis_elements"] if item["basis_id"] == "T")
@@ -369,32 +489,53 @@ def verify(
     )
     canonical = parse(d_block["canonical_interaction"]["expression"])
     external = parse(companion["canonical_interaction_expression"])
-    require(ast_key(canonical) == ast_key(external), "companion mismatch")
-    singlet = _companion_singlet_declaration(companion["vocabulary"]["lam(A)"])
+    canonical_outside, canonical_terms = _generator_terms(canonical)
+    outside, target_terms = _generator_terms(external)
+    require(
+        canonical_outside == outside and canonical_terms == target_terms,
+        "companion mismatch",
+    )
+    singlet = extract_singlet_declaration(companion["vocabulary"]["lam(A)"])
+    require(
+        isinstance(singlet.left, Call)
+        and singlet.left.name == "lam"
+        and isinstance(singlet.left.arguments[0], Number)
+        and singlet.left.arguments[0].value == 0,
+        "singlet declaration mismatch",
+    )
     require(
         isinstance(singlet.right, Binary) and singlet.right.op == "*",
         "singlet declaration mismatch",
     )
-    singlet_factor = singlet.right.left
     require(
-        isinstance(singlet_factor, Call) and singlet_factor.name == "sqrt",
-        "singlet declaration mismatch",
+        _internal_trace_of_square(singlet.right) == 2, "singlet normalization mismatch"
     )
-    require(
-        scalar_ast(singlet_factor.arguments[0]) == 2 / N, "singlet declaration mismatch"
-    )
-    require(sp.cancel((2 / N) * N) == 2, "singlet normalization mismatch")
     decomposition = d_block["interaction_decomposition"]
     terms = [parse(item["operator_expression"]) for item in decomposition]
     coefficients = [_coefficient(item["coefficient"]) for item in decomposition]
     require(len(set(coefficients)) == 1, "reconstruction mismatch")
-    outside, target_terms = _generator_terms(external)
     require(outside == coefficients[0], "reconstruction mismatch")
+    canonical_sum = external.right
+    require(
+        isinstance(canonical_sum, Call) and canonical_sum.name == "Sum",
+        "generator sum mismatch",
+    )
+    canonical_index = canonical_sum.arguments[1]
+    require(isinstance(canonical_index, IndexTuple), "generator sum mismatch")
+    generator_domain = canonical_index
+    require(
+        ast_key(generator_domain.lower) == ast_key(Number(0))
+        and ast_key(generator_domain.upper)
+        == ast_key(Binary("-", Binary("**", Symbol("N"), Number(2)), Number(1))),
+        "internal normalization mismatch",
+    )
+    generator_count = sp.cancel(
+        scalar_ast(generator_domain.upper) - scalar_ast(generator_domain.lower) + 1
+    )
+    require(generator_count == N**2, "internal normalization mismatch")
     record_terms = []
-    for term in terms:
-        term_with_coefficient = Binary(
-            "*", parse(decomposition[terms.index(term)]["coefficient"]), term
-        )
+    for record, term in zip(decomposition, terms, strict=True):
+        term_with_coefficient = Binary("*", parse(record["coefficient"]), term)
         term_outside, extracted = _generator_terms(term_with_coefficient)
         require(term_outside == outside, "reconstruction mismatch")
         record_terms.extend(extracted)
