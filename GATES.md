@@ -862,6 +862,23 @@ weakened.
 
 Status: PROPOSED
 
+Freeze state: PHASE-A FROZEN
+
+Metric state: PHASE-B PENDING
+
+SI-2 admissibility: BLOCKED UNTIL PHASE-B FREEZE
+
+Phase-A artifact: `derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md`
+
+Phase-A artifact SHA-256: `fe68b9c645c80287afa45288d7c3e0490328b76663aafbe78af20dfc12a4e67a`
+
+Frozen vector path: pinned Paper-3 analytic path, `P3-C-001` / `P3-FIERZ-01` at `8c363ef08368f5c022278ea5f36e01496be3d5ca`; it receives **no validation from `−3.2(5)`**.
+
+v1 metric-item rulings: independent per-channel `g_c∈[−2,2]` REJECTED;
+`v_min=0.05` NOT RATIFIED pending a valid measure; ±10% multiplicative
+robustness REJECTED as defined; and the prior reduced HealthyGravity predicate
+REJECTED in favor of the registered full predicate.
+
 ### Sea–Ice alias
 SI-1 (pre-requisite freeze). Owner: Paper 2.
 
@@ -887,13 +904,11 @@ The original four-fermion interaction; the complete bilinear basis; the Fierz
 identities.
 
 ### Dependency
-Updated by governance clarification `P2-SI1-UNBLOCK-01` (2026-07-20): this gate
-**no longer requires `P2-BETAV-CIRC-01` to `PASS`**. `P2-BETAV-CIRC-01` is
-`SUSPENDED` (provenance NOT LOCATED) and does not consume the historical Finding
-5 value, so it does not block the channel freeze. The freeze requires instead
-that the **provenance adjudication is complete** and the historical value
-`−3.2(5)` is **quarantined as unreproduced** (`results/P2-BETAV-CIRC-01/
-PROVENANCE_SEARCH.md`, `results/P2-SI1-DEPENDENCY.md`). Feeds `P2-PHASE-01`
+This gate no longer requires `P2-BETAV-CIRC-01` PASS.  Current record:
+`P2-BETAV-CIRC-01` RUN / INCONCLUSIVE (insufficient resolving power);
+`P2-BETAV-NUMREPRO-01` RUN / INCONCLUSIVE; historical promotion criterion NOT
+MET; and the historical `−3.2(5)` quarantine remains in force.  See the merged
+Arm-H and Arm-P decisive campaign reports.  This freeze feeds `P2-PHASE-01`
 (SI-1) and `P2-MULTIPHASE-GRAV-01` (SI-2).
 
 This gate must **freeze the selected operational vector-input path**, exactly
