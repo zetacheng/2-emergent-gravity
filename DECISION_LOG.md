@@ -656,3 +656,57 @@ None.
 
 `docs/canonical-interaction`; `derivations/CANONICAL_INTERACTION.md`,
 `reports/2026-07-25_canonical-interaction_evidence.md`, `DECISION_LOG.md`.
+
+## 2026-08-01 — Record Arm H procedural deviation and verdict-retention determination
+
+### Decision
+
+The PI determined that the `P2-BETAV-NUMREPRO-01` Arm-H verdict remains
+recorded as `INCONCLUSIVE`, rather than withdrawn. This entry records the
+approved audit and review conclusions; it adopts no forward governance rule.
+A separate governance amendment is to address this class of situation.
+
+### Reason
+
+The repository audit established that `fef78fc` modified
+`tests/test_si1_governance.py` without authorization, but did not modify the
+harness, comparator, schema, raw artifact, or comparison artifact. The audit
+also established that the compute and comparator artifacts were committed before
+the edit, and that the replacement test reads `GATES.md` only and is not on the
+verdict-producing code path.
+
+The review concluded that the replacement governance test did not weaken the
+governance checks. Relocating that test change would require history rewriting,
+which merge discipline forbids; the edit itself was therefore retained.
+
+### Evidence
+
+- `fef78fc`: changed `GATES.md` and `tests/test_si1_governance.py` only.
+- `ab36ca4`: Arm-H frozen compute artifact commit; `da62d44`: Arm-H comparison
+  artifact commit; both precede `fef78fc` in the commit graph.
+- `9b0ceed`: governance correction identifying the deviation and retaining the
+  test change; `3c0c484`: reviewed merge carrying that correction.
+- Discriminator identification and PI authorization of the correction round are
+  recorded in `reports/2026-07-22_betav-arm-h-decisive_report.md`.
+
+### Consequences
+
+The documented procedural deviation and the retained `INCONCLUSIVE` verdict are
+recorded without changing any script, test, schema, raw artifact, comparison
+artifact, gate status token, artifact digest, or verdict field. The forward-rule
+topic is reserved for the separate governance-amendment task.
+
+### Supersedes
+
+None. This entry cross-references, but does not erase, the correction record in
+`9b0ceed`.
+
+### Related gate
+
+`P2-BETAV-NUMREPRO-01`; `P2-BETAV-CIRC-01`; `P2-C9`.
+
+### Related branch and files
+
+`fef78fc`, `9b0ceed`, `3c0c484`;
+`GATES.md`, `DECISION_LOG.md`, and
+`reports/2026-07-22_betav-arm-h-decisive_report.md`.
