@@ -596,6 +596,54 @@ statuses stand.
 `scripts/recovered_2026/PROVENANCE.md`, `scripts/recovered_2026/MISSING.md`,
 `GATES.md`, `reports/2026-07-21_recovery-batch2_report.md`.
 
+## 2026-08-01 — Register P2-LATTICE-ONTOLOGY-01 as a Paper-2 specification gate
+
+### Decision
+
+Register `P2-LATTICE-ONTOLOGY-01` as `SPECIFIED` in Paper 2. This is a
+specification and obligation-linkage gate; it authorizes no computation and
+issues no physical PASS/FAIL verdict.
+
+### Reason
+
+The pinned concept note makes explicit the programme's physical-H(4)-substrate
+declaration and its downstream obligations. The Discriminator approved the
+pinned version for registration as SPECIFIED, not for gate completion.
+
+### Evidence
+
+- `derivations/P2-LATTICE-ONTOLOGY-01.md`, SHA-256
+  `1a03870eb5a24a748f3803e066a281dbbe4b64fa67860dad32409b41c0660b5c`.
+- `reviews/claude/2026-08-01-p2-lattice-ontology-01.md`, SHA-256
+  `83e3387316922d0c22812affeec6935a5ba4cb9b8bea17f59e58cc1049ca65fa`.
+- Exploratory, non-canonical probe: `scripts/euclidean_reconstruction.py`,
+  SHA-256 `30e3b59a0006b2ecc2d6ecce391ab918ce9ba542b2af649c55570e0643e63a78`.
+- All artifacts migrated byte-identically from `0-programme`
+  `programme/p2-lattice-ontology-01` at
+  `315451829412067f2e86d3559975e36b1b2ee03c`.
+
+### Consequences
+
+Cross-paper force awaits a separately ratified summary in `0-programme`.
+`P2-LATTICE-MICROSPEC-01` remains a required unregistered subordinate artifact;
+SI-2 remains blocked; and no Phase-B, Route-D D0, FIERZSUM, promotion, or
+quarantine action is created by this registration.
+
+### Supersedes
+
+None.
+
+### Related gate
+
+`P2-LATTICE-ONTOLOGY-01`.
+
+### Related branch and files
+
+`gate/p2-lattice-ontology-01`; `GATES.md`,
+`derivations/P2-LATTICE-ONTOLOGY-01.md`,
+`scripts/euclidean_reconstruction.py`, and
+`reviews/claude/2026-08-01-p2-lattice-ontology-01.md`.
+
 ## Entry template
 
 ```markdown

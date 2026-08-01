@@ -1222,6 +1222,93 @@ upgraded/downgraded by the recovery itself.
 ### Date closed
 2026-07-20 (recovery + reproduction; reviewer adjudication pending).
 
+## P2-LATTICE-ONTOLOGY-01 — Physical H(4) lattice substrate specification
+
+Status: SPECIFIED
+
+Type: SPECIFICATION gate — produces no numerical result and issues no PASS/FAIL
+verdict on any physical quantity.
+
+### Scientific question
+Is the H(4) lattice the declared physical substrate of the Paper-2 model, with
+the resulting foundational specification and downstream obligations recorded?
+
+### Scope
+Registered under Paper 2. Its consequences bind Papers 1–4, but cross-paper
+force requires a future ratified summary in `0-programme`; that action is not
+performed here.
+
+### Locked assumptions
+The specification source below. This is a declaration and obligation-linkage
+gate, not a computation or a physical-substrate truth claim.
+
+### Inputs
+- Specification source: `derivations/P2-LATTICE-ONTOLOGY-01.md`, SHA-256
+  `1a03870eb5a24a748f3803e066a281dbbe4b64fa67860dad32409b41c0660b5c`.
+- Review evidence: `reviews/claude/2026-08-01-p2-lattice-ontology-01.md`,
+  SHA-256 `83e3387316922d0c22812affeec6935a5ba4cb9b8bea17f59e58cc1049ca65fa`,
+  landed in commit `ec28c8dfa55289a7565c23aff9721c965eb65c6b`.
+- Supporting non-canonical evidence: `scripts/euclidean_reconstruction.py`,
+  SHA-256 `30e3b59a0006b2ecc2d6ecce391ab918ce9ba542b2af649c55570e0643e63a78` —
+  EXPLORATORY, not preregistered, not adopted, and carrying no evidential
+  weight for any gate verdict.
+
+### Specification and completion criteria
+The source artifacts were migrated byte-identically from `0-programme` branch
+`programme/p2-lattice-ontology-01` at
+`315451829412067f2e86d3559975e36b1b2ee03c`.
+
+If later assigned, PASS means the specification and obligation-linkage work is
+complete; it is not a scientific verdict that the physical-substrate hypothesis
+is true. SPECIFIED is the operative state permitting downstream preparatory
+work. PASS is withheld until all delegated obligations are discharged.
+
+Eventual PASS requires: (1) the declaration and §0 fundamental/emergent table
+remain identical to the pinned specification unless formally amended, with all
+consumers updating their pins; (2) every §1e ledger item is frozen in the note
+or discharged by its named owner; (3) every §6b downstream consumer pins this
+specification by hash; and (4) the §2 reference-equivalence invariance test
+`ΔE[r₁] = ΔE[r₂]` is defined by the first response-computing gate. The three
+§6 falsification routes are future outputs of this gate, not its completion
+criteria.
+
+### Standing constraints
+- `P2-LATTICE-MICROSPEC-01` is a required subordinate artifact; it is neither
+  created nor registered here.
+- Route D D-pre may be prepared, but D0 may not be authorized until the kinetic
+  operator and species ledger are frozen as a D-pre blocking deliverable.
+- Phase B may prepare inventory-independent infrastructure only; it may not
+  finalize channel inventory, summation, sign aggregation, or the death
+  threshold.
+- `P2-MULTIPHASE-GRAV-01` (SI-2) is unchanged and remains blocked.
+- `P2-FIERZSUM-01` and the Route D concept note remain in review and are not
+  registered here. The effective-discretization reading is non-operative and
+  consumed by no gate.
+
+### Reviewer verdict
+Discriminator review verdict: APPROVE for registration as SPECIFIED. This is a
+review verdict authorizing registration only, not the gate-completion status
+PASS.
+
+### Consequences
+The specification is available to its named downstream consumers for preparatory
+work under the recorded constraints. No computation, promotion, quarantine
+action, or SI-2 re-specification is authorized by this registration.
+
+### Repository branch
+`gate/p2-lattice-ontology-01`.
+
+### Relevant files
+`derivations/P2-LATTICE-ONTOLOGY-01.md`,
+`scripts/euclidean_reconstruction.py`,
+`reviews/claude/2026-08-01-p2-lattice-ontology-01.md`, `DECISION_LOG.md`.
+
+### Date opened
+2026-08-01
+
+### Date closed
+Open (SPECIFIED; eventual PASS intentionally withheld).
+
 ## Gate template
 
 ```markdown
