@@ -601,6 +601,18 @@ Status: RUN
 Verdict: INCONCLUSIVE (registered 2σ interval exceeds the NUMREPRO band boundary — a scientifically assessable outcome, not a harness failure)
 Artifact: results/P2-BETAV-CAMPAIGN/H_comparison.json (sha256: 918a9b87a8cac8fdff351d85bbfba66d09a80053926d370b634b76b3f11baa1f)
 
+### Governance status — 2026-08-01
+
+- **Scientific integrity: UNCHANGED** according to the repository audit completed
+  on 2026-08-01 — the unauthorized test edit occurred after the frozen compute
+  and comparison artifacts were produced and participates in neither code path.
+- **Governance integrity: PROCEDURAL DEVIATION RECORDED** — the execution scope
+  prohibited test edits.
+- **Recorded verdict disposition:** retained as `INCONCLUSIVE`; not PASS, not
+  FAIL, not INVALID, not RETRACTED.
+- See `DECISION_LOG.md`, 2026-08-01, “Record Arm H procedural deviation and
+  verdict-retention determination.”
+
 The decisive Arm-H run executed once on 2026-07-22 (frozen harness, `n=32`,
 blind; `results/P2-BETAV-CAMPAIGN/raw/H.json`) and was compared under the
 pre-registered interval rules §(c2). The comparator returned
@@ -640,14 +652,15 @@ discriminating power). Numerical work may be prepared independently, but
 **`P2-C9` promotion requires BOTH `P2-BETAV-CIRC-01 = PASS` AND
 `P2-BETAV-NUMREPRO-01 = PASS`**. Neither gate alone is sufficient.
 
-### Current state
-**Not run.** Current accessible-grid magnitudes do **not** reproduce the paper
+### Historical state before decisive execution (pre-registration record)
+**Historical state: not run.** Current accessible-grid magnitudes did **not**
+reproduce the paper
 value: `n=12: ≈ −61`, `n=16: ≈ −16` (light window); the heavy-inclusive window
 even flips sign — longitudinal-artifact/grid limited
 (`results/recovered-2026/BETAV_REPRODUCTION.md`). Only the vector `β_V` **sign**
 (and the scalar `β_B`) are reproduced.
 
-### Historical target configuration pinned — 2026-07-21 (pre-registration input; status unchanged)
+### Historical target configuration pinned — 2026-07-21 (pre-registration input; status then PROPOSED)
 
 The recovered full session log (`results/recovered-2026/session_log_full.md`)
 pins the **historical target configuration(s)** for this reproduction. These are
@@ -666,9 +679,9 @@ R12, R14). At minimum the index includes:
 When this gate's PASS/FAIL/INCONCLUSIVE rules are pre-registered, the
 reproduction **must target this configuration** and **must run through a blind
 harness** — the historical drivers embed the analytic targets (`−2`, `−3`) in
-comments/docstrings and the historical runs were **not blind**. **No status
-change:** the gate stays `PROPOSED` (not run); `P2-C9` and the `−3.2(5)`
-quarantine are untouched.
+comments/docstrings and the historical runs were **not blind**. **Historical
+status at this pre-registration point:** the gate stayed `PROPOSED` (not run);
+`P2-C9` and the `−3.2(5)` quarantine were untouched.
 
 ### Required preregistration before execution
 Before any execution, freeze and commit:
