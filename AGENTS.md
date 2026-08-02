@@ -36,6 +36,7 @@ Before making changes, read `PROGRESS.md`, `GATES.md`, `DECISION_LOG.md`,
 10. Every result must identify its regulator, cutoff, normalization, random
     seeds, and operating point.
 11. A branch must correspond to one scientific gate or one paper-edit task.
+12. Follow `CONVENTIONS.md` “Execution discipline for decisive runs and merges” for decisive-run and merge work.
 
 This repository contains Paper 2 only. Do not merge content from another paper
 repository.
