@@ -4,6 +4,7 @@ hoppings. Pure mode counting: no auxiliary fields, no channel decomposition,
 no Fierz choice anywhere."""
 import numpy as np
 
+
 def E(N, eps, L, t2):
     j = np.arange(N)
     s = 1.0 + eps*np.cos(2*np.pi*j*(N//L)/N)
