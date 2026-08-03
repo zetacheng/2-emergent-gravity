@@ -146,3 +146,216 @@ This rule arose from the Arm-H audit, in which several claims about repository
 state, made from recollection of prior sessions rather than from inspection,
 were found on checking to be incorrect. Verification against artifacts is not
 optional courtesy; it is the governing evidential rule.
+
+## Role separation and outcome-based task specification
+
+These rules extend, and do not replace, rules 1–7 above. They bind
+prospectively only and alter no interpretation of previously approved
+scientific results.
+
+Origin: adopted 2026-08-03 after the Arm H procedural deviation and a
+working session in which roughly seven of eleven executor stops were
+caused by defects in the *procedural* content of task specifications —
+none in their objectives, acceptance conditions, or prohibitions.
+Rationale record: the PI amendment draft landed alongside this section.
+
+### 8. Responsibility separation (root rule of this section)
+
+The **specification author** defines objectives, invariants and
+acceptance criteria.
+
+The **executor** determines the implementation necessary to satisfy
+them.
+
+The **reviewer** verifies the sufficiency and internal consistency of
+the specification before execution, and after execution independently
+assesses whether the resulting evidence actually supports the claimed
+outcome — including whether the acceptance criteria tested the
+intended object rather than merely passing implemented assertions.
+(Phase A's verifier rounds are the precedent: tests can pass while
+testing the wrong thing. A reviewer restricted to "did the criteria
+pass" would not catch that.)
+
+Two distinct review functions may be exercised by two independent
+reviewers: a **theory reviewer** (completeness, definitions, physics
+and mathematics) and an **evidence verifier** (repository results,
+computation, non-circularity of checkers, and whether claims exceed
+what was shown). These are functions, not fixed assignments to a
+particular agent.
+
+These are FUNCTIONS, not fixed agents: specification/theory,
+execution/experimentation, and independent review/verification. **PI
+authorization sits above all three** — adoption, exceptions, and final
+decisions are the PI's, and no rule in this section transfers that
+authority.
+
+No role prescribes another role's INCIDENTAL implementation process. A method
+MAY be prescribed where it is itself load-bearing to scientific
+validity, independence, reproducibility, provenance, or governance —
+for example: separation of blind compute from comparison; exact
+rational rather than floating-point arithmetic; independent
+reproduction; clean-clone validation; the prohibition on one program
+generating both expected and actual values; mutation tests; sample
+size, seed, and regulator prescriptions; merge parentage and the
+no-force-push rule. **Every prescribed method MUST carry a stated
+reason**, so that ordinary implementation cannot be re-labelled
+"load-bearing" to smuggle procedural control back in.
+
+Concretely: the specifier does not choose the executor's git strategy,
+working directory, or command sequence; the executor does not alter
+objectives, invariants, or scientific content; the reviewer does not
+design the implementation.
+
+**Review of specifications, not of executions.** Theory and
+acceptance criteria are reviewed BEFORE the task; the resulting state
+is reviewed AFTER it. Individual implementation steps are not
+submitted for review.
+
+### 9. Outcome-based task specification
+
+A task specification MUST define **what must be true when the task is
+complete**. It SHOULD avoid prescribing implementation details unless
+those details are themselves governance objects — merge protocol
+(rule 5) and blind-campaign procedure are governance objects, and
+remain prescribed; git strategy, working directories, command
+sequences and tool invocations are not.
+
+A conforming specification has four MANDATORY NORMATIVE sections.
+Other material — context, governing sources, dependency state,
+authority and scope, definitions, outcome taxonomy, known limitations
+— may be present; only these four carry execution authority:
+
+**(a) Objective** — the required end state, stated as a condition of
+the repository, not as a sequence of actions.
+
+**(b) Acceptance criteria** — conditions, each independently
+checkable, whose conjunction is sufficient for the objective. Every
+criterion MUST have a machine-executable verification procedure and a
+defined expected outcome; the specification MAY identify the verifier
+interface and required outputs WITHOUT prescribing incidental command
+syntax, environment paths, or working-directory details. A procedure
+may be a checker script, a symbolic identity, a statistical decision
+rule, a generated manifest, or a structured comparison — it need not
+be a shell one-liner. A criterion requiring human judgement is not an
+acceptance criterion and belongs in (c) or in review.
+
+**(c) Invariants and prohibitions** — what may not change or be done
+under any circumstance. This part is authored by the specifier and is
+never inferred by the executor.
+
+**(d) Report contract** — what the executor must return: the raw
+output of every acceptance criterion, every self-correction with its
+before/after hashes and its reason, and any condition it could not
+satisfy.
+
+Within the bounds of (c), the executor MAY choose its own method,
+explore alternatives, retry, and correct its own working artifacts.
+**It MUST NOT infer, extend, or relax (c).**
+
+### 10. Self-correction authority and its limit
+
+Self-correction is permitted ONLY for artifacts the specification
+explicitly classifies as **executor-editable**. Supplied-frozen,
+reviewer-approved, canonical-candidate, and content-authoritative
+artifacts remain immutable even when not yet registered, unless the
+objective explicitly authorizes substantive editing.
+
+For an executor-editable artifact, the executor MAY correct it without
+returning for authorization where all of the following hold: it is not
+registered and not hash-pinned by any registry entry; the correction
+is required to satisfy a stated acceptance criterion; the correction
+does not change reviewed scientific meaning, the objective, or any
+claim; the executor reports before/after hashes, the exact diff, and
+the reason; and result-equivalence is demonstrated by machine means.
+**If equivalence cannot be demonstrated mechanically, return for
+review.** Result-equivalence is required only where the correction is
+represented as non-semantic or output-preserving; substantively
+authorized development is judged against the acceptance criteria
+instead.
+
+An executor MUST NOT correct, reformat, or re-pin: any artifact
+hash-pinned by a registered gate; any gate status, verdict, or digest;
+any file outside the declared scope; or any repository configuration.
+
+**Tests:** tests may be created or updated within the current task
+ONLY where the specification expressly includes them in the authorized
+scope and acceptance criteria. Any test change not so authorized
+requires a separate specification and review. **An unexpected test
+failure never authorizes the executor to modify the test merely to
+obtain a green result.** (The Arm H lesson stated exactly:
+pre-authorized — permitted; not pre-authorized — stop; for a green
+suite — never.)
+
+The executor MAY revise its own intermediate working artifacts as many
+times as required — generate, lint, fix, re-lint is ordinary
+engineering and does not warrant a round trip — provided the final
+state satisfies the acceptance criteria and the report records what
+changed.
+
+A re-pin under this rule does not create a precedent for registered
+artifacts.
+
+### 11. Task granularity and integration boundary
+
+A task SHOULD combine implementation, local verification and branch
+preparation into ONE authorization. Implementation steps within it are
+not individually reviewed.
+
+**Integration is a separate authorization.** Merging into `main`
+requires a separate authorization, issued only AFTER clean-clone
+review of the resulting branch.
+
+**The default classification is MATERIAL.** A task may bypass separate
+result review and integration authorization only where its REVIEWED
+specification explicitly marks it `SINGLE-AUTHORIZATION-ELIGIBLE` and
+states why the change is low-risk. **The executor must not infer that
+classification, and may not upgrade a task into it.**
+
+Material work always includes: theory or concept specifications; gate
+registrations; decisive scientific runs; governance conventions;
+canonical or hash-pinned artifacts; and anything affecting a
+downstream gate. Non-exhaustive examples of what MAY be marked
+eligible: typo-only documentation corrections; a generated index
+refresh with no semantic change; formatting-only changes to unpinned
+files; removal of clearly identified scratch artifacts; mechanical
+metadata updates. Matching an example is not sufficient — the marking
+must be explicit in the reviewed specification.
+
+**Two review points and one integration boundary — and no others:**
+1. *Specification review* — before execution: the objective,
+   invariants, acceptance criteria, and the theory behind them.
+2. *Result review* — after execution, before integration: the
+   resulting branch, from a clean clone.
+3. *Integration* — under rule 5's merge discipline, which does not
+   require a freshly hand-written procedural specification each time
+   (see rule 5's standardized authorization).
+
+Nothing between those boundaries is submitted for review. No
+additional approval boundary is required unless the specification
+itself preregisters a scientific, safety, cost, or governance
+checkpoint.
+
+### 12. Acceptance criteria must be mechanically checkable
+
+Each acceptance criterion MUST have a machine-executable verification
+procedure with a defined expected outcome. The specification must
+identify the verifier interface, required inputs, and expected result,
+but need not prescribe incidental command syntax, environment paths,
+working directories, or tool invocation details.
+
+Where a criterion concerns the changed-file set, the declared manifest
+and the checker invocation are normative; the executor may choose how
+to prepare the inputs.
+
+The specifier MUST derive every literal in an acceptance criterion —
+hashes, file paths, grep patterns, rule sets, test names — from the
+repository as it actually is at specification time, not from
+recollection. Each specification MUST record a single line,
+`Specification evidence base: <full commit SHA>`; every
+repository-derived literal in it must be reproducible at that commit.
+Per-literal citation is not required.
+
+Recording the evidence base does NOT by itself freeze the execution
+base. Where base identity is load-bearing, it must ALSO appear
+explicitly as an invariant in part (c). Rule 7 (evidence precedence) applies to the authoring of
+specifications as much as to the reporting of results.
