@@ -797,3 +797,41 @@ This entry follows the 2026-07-15 and 2026-07-17 decision-log entry format.
 
 `CONVENTIONS.md`; `AGENTS.md`; `.gitignore`;
 `reports/2026-07-22_betav-arm-h-decisive_report.md`.
+
+---
+
+## 2026-08-03 — Governance amendment adopted: role separation and outcome-based tasks
+
+### Decision
+
+ADOPTED. Paper 2 adopts prospective rules 8–12 in `CONVENTIONS.md`:
+responsibility separation (the section's root rule); outcome-based task
+specification; self-correction authority and its limit; task granularity and
+the integration boundary; and mechanically checkable acceptance criteria.
+
+### Rationale
+
+The amendment records the approved responsibility boundary: specifications
+define objectives, invariants, and acceptance criteria; executors determine
+implementation; reviewers assess specifications before execution and resulting
+evidence afterwards. The default task classification is MATERIAL.
+
+Two prerequisites remain unbuilt: a standardized merge authorization/tool for
+rule 11's integration boundary, and a changed-file scope checker for rule 12.
+The section is programme-wide in intent, but is landed in Paper 2 pending
+ratification of an approved summary into `0-programme`.
+
+### Scope limits
+
+These rules are prospective only. This amendment creates no retrospective
+action and alters no previously approved scientific result.
+
+### Templates followed
+
+This entry follows the 2026-08-01 execution-discipline amendment and the
+repository decision-log template.
+
+### Related files
+
+`CONVENTIONS.md`; `DECISION_LOG.md`;
+`reviews/pi/2026-08-03-outcome-based-task-specification-amendment.md`.
