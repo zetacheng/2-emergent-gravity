@@ -189,8 +189,7 @@ authorization sits above all three** — adoption, exceptions, and final
 decisions are the PI's, and no rule in this section transfers that
 authority.
 
-no role
-prescribes another role's INCIDENTAL implementation process. A method
+No role prescribes another role's INCIDENTAL implementation process. A method
 MAY be prescribed where it is itself load-bearing to scientific
 validity, independence, reproducibility, provenance, or governance —
 for example: separation of blind compute from comparison; exact
