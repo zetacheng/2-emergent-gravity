@@ -710,3 +710,42 @@ None. This entry cross-references, but does not erase, the correction record in
 `fef78fc`, `9b0ceed`, `3c0c484`;
 `GATES.md`, `DECISION_LOG.md`, and
 `reports/2026-07-22_betav-arm-h-decisive_report.md`.
+
+---
+
+## 2026-08-01 — Governance amendment adopted: execution discipline
+
+### Decision
+
+ADOPTED. Paper 2 adopts seven prospective execution-discipline rules in
+`CONVENTIONS.md`: contradiction-stop; scope precedence; normative declared
+frozen scope; execution-prompt archival and hashing; minimum mandatory merge
+discipline; reporting honesty for merges; and evidence precedence.
+
+Rule 1 is promoted from the existing 2026-07-22 decisive-run report rather
+than newly created. The review rulings settled that the rules belong in
+`CONVENTIONS.md`; that a declared-scope checker is a separate implementation
+task rather than a manual procedure replacement; that decisive-run evidence
+requires both the committed prompt and its recorded hash; that the merge rules
+are mandatory rather than a template; and that this amendment applies at the
+Paper 2 level only.
+
+### Rationale
+
+The amendment makes the already approved execution expectations discoverable
+and explicit without changing any scientific result or gate interpretation.
+A scope-checker script remains to be implemented separately.
+
+### Scope limits
+
+These rules are prospective only. This amendment creates no retrospective
+action and alters no previously approved scientific result.
+
+### Templates followed
+
+This entry follows the 2026-07-15 and 2026-07-17 decision-log entry format.
+
+### Related files
+
+`CONVENTIONS.md`; `AGENTS.md`; `.gitignore`;
+`reports/2026-07-22_betav-arm-h-decisive_report.md`.
