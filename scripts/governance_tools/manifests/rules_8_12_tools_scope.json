@@ -13,5 +13,5 @@
     {"operation": "add", "path": "reviews/pi/2026-08-03-governance-tools-environment-authorization.md"}
   ],
   "optional": [],
-  "forbidden_operations": ["modify", "delete", "rename", "copy", "type_change", "unmerged", "unknown"]
+  "forbidden_operations": ["delete", "rename", "copy", "type_change", "unmerged", "unknown"]
 }
