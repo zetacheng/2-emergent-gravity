@@ -835,3 +835,70 @@ repository decision-log template.
 
 `CONVENTIONS.md`; `DECISION_LOG.md`;
 `reviews/pi/2026-08-03-outcome-based-task-specification-amendment.md`.
+
+---
+
+## 2026-08-04 — Record `P2-PHASE-01` dependency ruling and separate prerequisites
+
+### Decision
+
+The PI rules that `P2-PHASE-01`'s dependency on
+`P2-CHANNEL-FREEZE-01` is satisfied by the Phase-A freeze. Phase A supplies the
+frozen channel basis and identifies scan-eligible microscopic coordinates.
+Phase B is not a prerequisite of SI-1 phase enumeration: it governs the SI-2
+CLEAN-PASS metric and verdict tiers.
+
+The microscopic parameter domain is a third requirement, distinct from both
+freeze phases and frozen by neither. The gate's former attribution of that
+domain to `P2-CHANNEL-FREEZE-01` is superseded. Two requirements remain open:
+creation, review, and formal adoption of a frozen MICROSCOPIC PARAMETER DOMAIN
+artifact; and creation, review, and formal adoption of a PHASE INPUT /
+ADMISSIBILITY CONTRACT. These are labels, not gate IDs, and neither label is a
+registered gate. `P2-PHASE-01` remains PROPOSED and not runnable.
+
+### Reason
+
+The evidence distinguishes three previously conflated matters: (a) scannable
+coordinates — Phase A freezes one genuine coordinate `G`, classifies
+`HS_scale` and `Fierz_basis` as non-scan-eligible auxiliary parameters, and
+freezes the five HS families and `K_ij` registry; (b) coordinate bounds — the
+range of `G`, cutoff ratios, and finite-density `μ`, frozen by neither phase;
+and (c) SI-2 result judgement — the Phase-B CLEAN-PASS metric and verdict
+tiers. SI-1 requires (a) and (b), not (c).
+
+The inventory also finds no defined `Γ[Φ_i]`, finite-density prescription,
+bounded parameter domain, or operational Hessian positivity, free-energy,
+global-preference, metastability, susceptibility, causality/unitarity, or
+finite-density admissibility criterion. The only criteria-like text is a
+PROPOSED 0-programme policy and it supplies no bounds.
+
+### Evidence
+
+- `reviews/codex/2026-08-04-p2-phase-01-feasibility-inventory.md`, SHA-256
+  `34163b1276a88b434987da4fa98f4099fc07c2a5a843dd03a1861236f94a50fc`.
+- `GATES.md` @ `1e8d56da124c2ae791fb7a00b23a188d329c56f8`.
+- `derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md` @
+  `1e8d56da124c2ae791fb7a00b23a188d329c56f8`.
+- `derivations/P2-SI1-UNBLOCK-01.md` @
+  `1e8d56da124c2ae791fb7a00b23a188d329c56f8`.
+
+### Consequences
+
+No parameter domain, numerical bound, scan axis, admissibility criterion, or
+physics method is registered or defined by this ruling. No gate status,
+verdict, artifact digest, or hash-pinned artifact changes.
+
+### Supersedes
+
+The operative `P2-PHASE-01` wording that attributed the parameter domain to
+`P2-CHANNEL-FREEZE-01`; the former wording is preserved in `GATES.md` as
+historical / superseded text.
+
+### Related gate
+
+`P2-PHASE-01` (SI-1); `P2-CHANNEL-FREEZE-01`; `P2-MULTIPHASE-GRAV-01` (SI-2).
+
+### Related branch and files
+
+`governance/p2-phase-dependency-ruling`; `GATES.md`; `DECISION_LOG.md`;
+`reviews/codex/2026-08-04-p2-phase-01-feasibility-inventory.md`.
