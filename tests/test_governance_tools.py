@@ -139,6 +139,28 @@ def test_merge_guard_pre_and_post_rejects_wrong_parentage_and_scope(
         "remote_check_policy": "NOT_APPLICABLE_HISTORICAL_FIXTURE",
     }
     assert post_merge(repo, config)["overall"] == "PASS"
+    remote = tmp_path / "remote.git"
+    run(tmp_path, "init", "--bare", str(remote))
+    run(repo, "remote", "add", "origin", str(remote))
+    run(repo, "push", "origin", "HEAD:main")
+    run(repo, "fetch", "origin")
+    config.update(
+        {
+            "remote_check_policy": "REQUIRED",
+            "expected_remote_ref": "refs/remotes/origin/main",
+            "expected_remote_sha": merge,
+        }
+    )
+    assert post_merge(repo, config)["overall"] == "PASS"
+    config["expected_remote_sha"] = parent1
+    assert post_merge(repo, config)["overall"] == "FAIL"
+    config.update(
+        {
+            "remote_check_policy": "NOT_APPLICABLE_HISTORICAL_FIXTURE",
+            "expected_remote_ref": None,
+            "expected_remote_sha": None,
+        }
+    )
     config["expected_parent_2"] = base
     assert post_merge(repo, config)["overall"] == "FAIL"
     config["expected_parent_2"] = reviewed
