@@ -7,9 +7,9 @@
         {"operation": "modify", "path": "scripts/governance_tools/README.md"},
         {
             "operation": "modify",
-            "path": "scripts/governance_tools/manifests/rules_8_12_tools_scope.json",
+            "path": "scripts/governance_tools/manifests/rules_8_12_tools_scope.json"
         },
-        {"operation": "modify", "path": "tests/test_governance_tools.py"},
+        {"operation": "modify", "path": "tests/test_governance_tools.py"}
     ],
     "optional": [],
     "forbidden_operations": [
@@ -18,6 +18,6 @@
         "copy",
         "type_change",
         "unmerged",
-        "unknown",
-    ],
+        "unknown"
+    ]
 }
