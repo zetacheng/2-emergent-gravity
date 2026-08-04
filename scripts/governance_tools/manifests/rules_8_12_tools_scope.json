@@ -1,0 +1,23 @@
+{
+    "base": "339d17ad10e61a7e33bf1654c4911deae5568311",
+    "head": "HEAD",
+    "mode": "exact",
+    "required": [
+        {"operation": "modify", "path": "scripts/governance_tools/merge_guard.py"},
+        {"operation": "modify", "path": "scripts/governance_tools/README.md"},
+        {
+            "operation": "modify",
+            "path": "scripts/governance_tools/manifests/rules_8_12_tools_scope.json"
+        },
+        {"operation": "modify", "path": "tests/test_governance_tools.py"}
+    ],
+    "optional": [],
+    "forbidden_operations": [
+        "delete",
+        "rename",
+        "copy",
+        "type_change",
+        "unmerged",
+        "unknown"
+    ]
+}
