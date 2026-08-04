@@ -1,7 +1,7 @@
 # PI authorization record — governance-tools validator environment
 
-**Authorization date:** 2026-08-03  
-**Originating task evidence base:** `3302b612b954af6369fc01a2e9a85cfb4f682a07`  
+**Authorization date:** 2026-08-03
+**Originating task evidence base:** `3302b612b954af6369fc01a2e9a85cfb4f682a07`
 **Applies to branch/task:** `governance/rules-8-12-tools` — governance tools
 implementation and validation task
 
