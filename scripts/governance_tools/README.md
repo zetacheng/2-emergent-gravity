@@ -26,10 +26,19 @@ The operation vocabulary is `add`, `modify`, `delete`, `rename`, `copy`,
 record; `subset` permits a subset of declared required/optional records.
 
 The merge guard has distinct `PRE_MERGE` and `POST_MERGE` modes. The former
-checks the supplied working tree and reviewed revision; the latter checks an
-existing merge commit. Neither mode mutates a repository.
+checks the supplied working tree and requires its `HEAD` commit to equal the
+reviewed revision, whether attached or detached; the latter checks an existing
+merge commit. Neither mode mutates a repository.
+
+Content literals use one of three explicit match modes: `substring`,
+`line_substring`, or `exact_line`. The last is appropriate for a forbidden
+fragment which is only forbidden as a complete line.
 
 The consistency checker intentionally supports a small formal language:
 `file_hash`, `changed_files`, and `prefix_hash` with an explicit line-count
 boundary. It reports formal conflicts, malformed/underspecified criteria, and
 ordinary state mismatches separately; it does not interpret arbitrary prose.
+Conflict identities are domain-aware: a file hash is keyed by criterion kind,
+resolved commit, and normalized repository-relative path; a changed-file
+condition also includes its resolved base and head commits. There are no
+implicit cross-domain invariants.

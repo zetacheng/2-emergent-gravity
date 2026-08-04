@@ -14,6 +14,9 @@ from .core import (
     emit,
     git,
     load_json,
+    normalize_repo_path,
+    path_exists_at_revision,
+    resolve,
     sha256,
 )
 
@@ -26,14 +29,48 @@ def _invalid(identifier: str, reason: str) -> dict[str, str]:
     }
 
 
+def _sha256_literal(value: Any) -> bool:
+    return (
+        isinstance(value, str)
+        and len(value) == 64
+        and all(char in "0123456789abcdefABCDEF" for char in value)
+    )
+
+
+def _string_list(value: Any) -> list[str] | None:
+    if isinstance(value, list) and all(isinstance(item, str) for item in value):
+        return value
+    return None
+
+
 def evaluate(repo: Path, document: dict[str, Any]) -> dict[str, Any]:
     criteria = document.get("criteria")
     if not isinstance(criteria, list):
         raise InputError("criteria must be a list")
+    if not criteria:
+        return {
+            "tool": "spec_consistency_checker",
+            "criteria": [_invalid("document", "criteria list must not be empty")],
+            "overall": "FAIL",
+        }
+    identifiers = [item.get("id") for item in criteria if isinstance(item, dict)]
+    duplicate_ids = {
+        identifier for identifier in identifiers if identifiers.count(identifier) > 1
+    }
+    if duplicate_ids:
+        reason = f"duplicate criterion IDs: {', '.join(sorted(duplicate_ids))}"
+        return {
+            "tool": "spec_consistency_checker",
+            "criteria": [
+                _invalid(str(item.get("id", f"criterion-{index}")), reason)
+                for index, item in enumerate(criteria)
+            ],
+            "overall": "FAIL",
+        }
     results: list[dict[str, Any] | None] = [None] * len(criteria)
-    hashes: dict[str, tuple[str, int]] = {}
-    required: dict[str, int] = {}
-    forbidden: dict[str, int] = {}
+    hashes: dict[tuple[str, str, str], tuple[str, int]] = {}
+    required: dict[tuple[str, str, str, str], int] = {}
+    forbidden: dict[tuple[str, str, str, str], int] = {}
     for index, item in enumerate(criteria):
         if (
             not isinstance(item, dict)
@@ -46,37 +83,60 @@ def evaluate(repo: Path, document: dict[str, Any]) -> dict[str, Any]:
             continue
         identifier, kind = item["id"], item["kind"]
         if kind == "file_hash":
-            if not isinstance(item.get("path"), str) or not isinstance(
-                item.get("sha256"), str
+            if not isinstance(item.get("path"), str) or not _sha256_literal(
+                item.get("sha256")
             ):
                 results[index] = _invalid(
-                    identifier, "file_hash requires path and sha256"
+                    identifier, "file_hash requires path and a 64-hex sha256"
                 )
-            elif item["path"] in hashes and hashes[item["path"]][0] != item["sha256"]:
-                other = hashes[item["path"]][1]
+                continue
+            revision = item.get("revision", "HEAD")
+            if not isinstance(revision, str):
+                results[index] = _invalid(
+                    identifier, "file_hash revision must be a string"
+                )
+                continue
+            path = normalize_repo_path(item["path"])
+            domain = (kind, resolve(repo, revision), path)
+            if domain in hashes and hashes[domain][0].lower() != item["sha256"].lower():
+                other = hashes[domain][1]
                 results[index] = {
                     "id": identifier,
                     "classification": "CONTRADICTORY",
                     "conflicts_with": criteria[other]["id"],
+                    "path": path,
                 }
                 results[other] = {
                     "id": criteria[other]["id"],
                     "classification": "CONTRADICTORY",
                     "conflicts_with": identifier,
+                    "path": path,
                 }
             else:
-                hashes[item["path"]] = (item["sha256"], index)
+                hashes[domain] = (item["sha256"], index)
         elif kind == "changed_files":
-            if not isinstance(item.get("base"), str) or not isinstance(
-                item.get("head"), str
+            required_paths = _string_list(item.get("required_paths", []))
+            forbidden_paths = _string_list(item.get("forbidden_paths", []))
+            if (
+                not isinstance(item.get("base"), str)
+                or not isinstance(item.get("head"), str)
+                or required_paths is None
+                or forbidden_paths is None
             ):
                 results[index] = _invalid(
-                    identifier, "changed_files requires base and head"
+                    identifier,
+                    "changed_files requires base, head, and string path lists",
                 )
                 continue
-            for path in item.get("required_paths", []):
-                if path in forbidden:
-                    other = forbidden[path]
+            resolved_base, resolved_head = (
+                resolve(repo, item["base"]),
+                resolve(repo, item["head"]),
+            )
+            for raw_path in required_paths:
+                path = normalize_repo_path(raw_path)
+                domain = (kind, resolved_base, resolved_head, path)
+                if domain in forbidden:
+                    other = forbidden[domain]
                     results[index] = {
                         "id": identifier,
                         "classification": "CONTRADICTORY",
@@ -89,10 +149,12 @@ def evaluate(repo: Path, document: dict[str, Any]) -> dict[str, Any]:
                         "conflicts_with": identifier,
                         "path": path,
                     }
-                required[path] = index
-            for path in item.get("forbidden_paths", []):
-                if path in required:
-                    other = required[path]
+                required[domain] = index
+            for raw_path in forbidden_paths:
+                path = normalize_repo_path(raw_path)
+                domain = (kind, resolved_base, resolved_head, path)
+                if domain in required:
+                    other = required[domain]
                     results[index] = {
                         "id": identifier,
                         "classification": "CONTRADICTORY",
@@ -105,9 +167,27 @@ def evaluate(repo: Path, document: dict[str, Any]) -> dict[str, Any]:
                         "conflicts_with": identifier,
                         "path": path,
                     }
-                forbidden[path] = index
-        elif kind == "prefix_hash" and "boundary" not in item:
-            results[index] = _invalid(identifier, "undeclared region boundary")
+                forbidden[domain] = index
+        elif kind == "prefix_hash":
+            boundary = item.get("boundary")
+            if "boundary" not in item:
+                results[index] = _invalid(identifier, "undeclared region boundary")
+            elif not isinstance(item.get("path"), str) or not isinstance(
+                item.get("base"), str
+            ):
+                results[index] = _invalid(
+                    identifier, "prefix_hash requires path and base"
+                )
+            elif (
+                not isinstance(boundary, dict)
+                or not isinstance(boundary.get("line_count"), int)
+                or boundary["line_count"] < 0
+            ):
+                results[index] = _invalid(
+                    identifier, "boundary requires non-negative line_count"
+                )
+            else:
+                normalize_repo_path(item["path"])
         elif kind not in {"file_hash", "changed_files", "prefix_hash"}:
             results[index] = _invalid(identifier, f"unsupported criterion kind {kind}")
     for index, item in enumerate(criteria):
@@ -115,23 +195,32 @@ def evaluate(repo: Path, document: dict[str, Any]) -> dict[str, Any]:
             continue
         identifier, kind = item["id"], item["kind"]
         if kind == "file_hash":
-            actual = sha256(blob(repo, item.get("revision", "HEAD"), item["path"]))
+            path = normalize_repo_path(item["path"])
+            revision = resolve(repo, item.get("revision", "HEAD"))
+            actual = (
+                sha256(blob(repo, revision, path))
+                if path_exists_at_revision(repo, revision, path)
+                else None
+            )
             results[index] = {
                 "id": identifier,
                 "classification": "SATISFIED"
-                if actual == item["sha256"]
+                if actual == item["sha256"].lower()
                 else "UNSATISFIED",
                 "actual": actual,
                 "expected": item["sha256"],
             }
         elif kind == "changed_files":
-            actual = set(
-                str(
-                    git(repo, "diff", "--name-only", item["base"], item["head"])
-                ).splitlines()
-            )
-            missing = sorted(set(item.get("required_paths", [])) - actual)
-            prohibited = sorted(set(item.get("forbidden_paths", [])) & actual)
+            base, head = resolve(repo, item["base"]), resolve(repo, item["head"])
+            actual = set(str(git(repo, "diff", "--name-only", base, head)).splitlines())
+            required_paths = {
+                normalize_repo_path(path) for path in item.get("required_paths", [])
+            }
+            forbidden_paths = {
+                normalize_repo_path(path) for path in item.get("forbidden_paths", [])
+            }
+            missing = sorted(required_paths - actual)
+            prohibited = sorted(forbidden_paths & actual)
             results[index] = {
                 "id": identifier,
                 "classification": "SATISFIED"
@@ -142,17 +231,28 @@ def evaluate(repo: Path, document: dict[str, Any]) -> dict[str, Any]:
             }
         else:
             boundary = item["boundary"]
-            if not isinstance(boundary, dict) or not isinstance(
-                boundary.get("line_count"), int
-            ):
-                results[index] = _invalid(identifier, "boundary requires line_count")
-                continue
-            base = blob(repo, item["base"], item["path"])
-            head = blob(repo, item.get("head", "HEAD"), item["path"])
-            actual = sha256(
-                b"".join(head.splitlines(keepends=True)[: boundary["line_count"]])
+            path = normalize_repo_path(item["path"])
+            base, head = (
+                resolve(repo, item["base"]),
+                resolve(repo, item.get("head", "HEAD")),
             )
-            expected = sha256(base)
+            if not path_exists_at_revision(
+                repo, base, path
+            ) or not path_exists_at_revision(repo, head, path):
+                results[index] = {
+                    "id": identifier,
+                    "classification": "UNSATISFIED",
+                    "reason": "path absent at revision",
+                }
+                continue
+            actual = sha256(
+                b"".join(
+                    blob(repo, head, path).splitlines(keepends=True)[
+                        : boundary["line_count"]
+                    ]
+                )
+            )
+            expected = sha256(blob(repo, base, path))
             results[index] = {
                 "id": identifier,
                 "classification": "SATISFIED" if actual == expected else "UNSATISFIED",

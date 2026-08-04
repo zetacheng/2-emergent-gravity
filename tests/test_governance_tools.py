@@ -6,11 +6,19 @@ import json
 import subprocess
 from pathlib import Path
 
+from scripts.governance_tools import core
 from scripts.governance_tools.content_checker import evaluate_content
-from scripts.governance_tools.core import GOVERNANCE_FAILURE
+from scripts.governance_tools.core import (
+    GOVERNANCE_FAILURE,
+    TOOL_ERROR,
+    changed_operations,
+    evaluate_scope,
+    sha256,
+)
 from scripts.governance_tools.merge_guard import post_merge, pre_merge
 from scripts.governance_tools.scope_checker import main as scope_main
 from scripts.governance_tools.spec_consistency_checker import evaluate
+from scripts.governance_tools.spec_consistency_checker import main as consistency_main
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "8d48798eaa3884a0a5104d5dc19e2e836468f1aa"
@@ -95,6 +103,38 @@ def test_content_checker_rejects_required_missing_and_forbidden_present(
     }
 
 
+def test_content_checker_distinguishes_all_frozen_match_modes(tmp_path: Path) -> None:
+    target = tmp_path / "target.txt"
+    target.write_text("There is no role here\nno role\n", encoding="utf-8")
+    result = evaluate_content(
+        {
+            "file": str(target),
+            "required_literals": [
+                {"value": "no role", "match_mode": "substring"},
+                {"value": "no role", "match_mode": "line_substring"},
+                {"value": "no role", "match_mode": "exact_line"},
+            ],
+        }
+    )
+    assert [item["count"] for item in result["checks"]] == [2, 2, 1]
+    without_exact_line = evaluate_content(
+        {
+            "file": str(target),
+            "forbidden_literals": [{"value": "no role", "match_mode": "exact_line"}],
+        }
+    )
+    assert without_exact_line["overall"] == "FAIL"
+    target.write_text("There is no role here\n", encoding="utf-8")
+    exact = evaluate_content(
+        {
+            "file": str(target),
+            "required_literals": [{"value": "no role", "match_mode": "exact_line"}],
+            "forbidden_literals": [{"value": "no role", "match_mode": "substring"}],
+        }
+    )
+    assert [item["count"] for item in exact["checks"]] == [0, 1]
+
+
 def test_merge_guard_pre_and_post_rejects_wrong_parentage_and_scope(
     tmp_path: Path,
 ) -> None:
@@ -116,6 +156,25 @@ def test_merge_guard_pre_and_post_rejects_wrong_parentage_and_scope(
         },
     )
     assert pre["overall"] == "PASS"
+    run(repo, "checkout", "--detach", base)
+    detached = pre_merge(
+        repo,
+        {
+            "worktree": str(repo),
+            "reviewed_branch": reviewed,
+            "reviewed_base": base,
+            "expected_merge_base": merge_base,
+            "scope_manifest": scope,
+            "pinned_artifacts": [],
+        },
+    )
+    correspondence = next(
+        item
+        for item in detached["checks"]
+        if item["condition"] == "worktree_matches_reviewed_branch"
+    )
+    assert correspondence["status"] == "FAIL"
+    assert correspondence["attachment"] == "detached"
     run(repo, "checkout", "-b", "integration", base)
     (repo / "integration.txt").write_text("integration\n", encoding="utf-8")
     run(repo, "add", "integration.txt")
@@ -168,6 +227,39 @@ def test_merge_guard_pre_and_post_rejects_wrong_parentage_and_scope(
     failed = post_merge(repo, config)
     assert failed["overall"] == "FAIL"
     assert "expected add, observed modify" in str(failed)
+    config["pinned_artifacts"] = [{"path": "absent.txt", "sha256": "0" * 64}]
+    absent_pin = post_merge(repo, config)
+    assert absent_pin["overall"] == "FAIL"
+    assert (
+        next(
+            item
+            for item in absent_pin["checks"]
+            if item["condition"] == "pinned_artifacts"
+        )["evidence"][0]["actual"]
+        is None
+    )
+    one_parent = post_merge(
+        repo,
+        {
+            "mode": "POST_MERGE",
+            "merge_commit": parent1,
+            "expected_parent_1": base,
+            "expected_parent_2": reviewed,
+            "expected_merge_base": base,
+            "scope_manifest": {**operations(), "base": parent1, "head": parent1},
+            "pinned_artifacts": [],
+            "remote_check_policy": "NOT_APPLICABLE_HISTORICAL_FIXTURE",
+        },
+    )
+    assert one_parent["overall"] == "FAIL"
+    assert (
+        next(
+            item
+            for item in one_parent["checks"]
+            if item["condition"] == "exactly_two_parents"
+        )["status"]
+        == "FAIL"
+    )
 
 
 def test_consistency_checker_distinguishes_conflict_and_underspecification() -> None:
@@ -201,6 +293,183 @@ def test_consistency_checker_distinguishes_conflict_and_underspecification() -> 
     result = evaluate(ROOT, original_a5)
     assert result["criteria"][0]["classification"] == "INVALID_OR_UNDERSPECIFIED"
     assert "boundary" in result["criteria"][0]["reason"]
+
+
+def test_consistency_checker_uses_resolved_domains_and_validates_schema(
+    tmp_path: Path,
+) -> None:
+    gates_at_base = sha256(core.blob(ROOT, BASE, "GATES.md"))
+    cross_domain = {
+        "criteria": [
+            {
+                "id": "base",
+                "kind": "file_hash",
+                "path": "GATES.md",
+                "revision": BASE,
+                "sha256": gates_at_base,
+            },
+            {
+                "id": "merge",
+                "kind": "file_hash",
+                "path": "GATES.md",
+                "revision": MERGE,
+                "sha256": "0" * 64,
+            },
+            {
+                "id": "required",
+                "kind": "changed_files",
+                "base": BASE,
+                "head": MERGE,
+                "required_paths": ["CONVENTIONS.md"],
+                "forbidden_paths": [],
+            },
+            {
+                "id": "forbidden",
+                "kind": "changed_files",
+                "base": MERGE,
+                "head": "HEAD",
+                "required_paths": [],
+                "forbidden_paths": ["CONVENTIONS.md"],
+            },
+        ]
+    }
+    result = evaluate(ROOT, cross_domain)
+    assert all(item["classification"] != "CONTRADICTORY" for item in result["criteria"])
+    same_domain = {
+        "criteria": [
+            {
+                "id": "left",
+                "kind": "file_hash",
+                "path": "GATES.md",
+                "revision": BASE,
+                "sha256": gates_at_base,
+            },
+            {
+                "id": "right",
+                "kind": "file_hash",
+                "path": "GATES.md",
+                "revision": BASE,
+                "sha256": "0" * 64,
+            },
+        ]
+    }
+    result = evaluate(ROOT, same_domain)
+    assert {item["classification"] for item in result["criteria"]} == {"CONTRADICTORY"}
+    cases = {
+        "duplicate": {
+            "criteria": [
+                {
+                    "id": "same",
+                    "kind": "changed_files",
+                    "base": BASE,
+                    "head": MERGE,
+                    "required_paths": [],
+                    "forbidden_paths": [],
+                },
+                {
+                    "id": "same",
+                    "kind": "changed_files",
+                    "base": BASE,
+                    "head": MERGE,
+                    "required_paths": [],
+                    "forbidden_paths": [],
+                },
+            ]
+        },
+        "empty": {"criteria": []},
+        "bad-hash": {
+            "criteria": [
+                {
+                    "id": "hash",
+                    "kind": "file_hash",
+                    "path": "GATES.md",
+                    "revision": BASE,
+                    "sha256": "not-a-hash",
+                }
+            ]
+        },
+    }
+    for name, document in cases.items():
+        path = write_json(tmp_path / f"{name}.json", document)
+        assert (
+            consistency_main(["--repo", str(ROOT), "--spec", str(path)])
+            == GOVERNANCE_FAILURE
+        )
+        assert all(
+            item["classification"] == "INVALID_OR_UNDERSPECIFIED"
+            for item in evaluate(ROOT, document)["criteria"]
+        )
+    missing_path = {
+        "criteria": [
+            {
+                "id": "missing",
+                "kind": "file_hash",
+                "path": "missing.txt",
+                "revision": BASE,
+                "sha256": "0" * 64,
+            }
+        ]
+    }
+    assert (
+        evaluate(ROOT, missing_path)["criteria"][0]["classification"] == "UNSATISFIED"
+    )
+    unresolved = write_json(
+        tmp_path / "unresolved.json",
+        {
+            "criteria": [
+                {
+                    "id": "missing-object",
+                    "kind": "file_hash",
+                    "path": "GATES.md",
+                    "revision": "deadbeef",
+                    "sha256": "0" * 64,
+                }
+            ]
+        },
+    )
+    assert (
+        consistency_main(["--repo", str(ROOT), "--spec", str(unresolved)]) == TOOL_ERROR
+    )
+
+
+def test_scope_parser_handles_extended_operation_taxonomy(
+    monkeypatch: object, tmp_path: Path
+) -> None:
+    raw = (
+        b"R100\x00old.txt\x00new.txt\x00"
+        b"C100\x00source.txt\x00copy.txt\x00T\x00mode.txt\x00"
+    )
+
+    def fake_git(_: object, *args: str, text: bool = True) -> str | bytes:
+        if args[0] == "diff":
+            return raw
+        return "a" * 40 + "\n"
+
+    monkeypatch.setattr(core, "git", fake_git)
+    records = changed_operations(".", "base", "head")
+    assert records == [
+        {"operation": "rename", "from": "old.txt", "to": "new.txt"},
+        {"operation": "copy", "from": "source.txt", "to": "copy.txt"},
+        {"operation": "type_change", "path": "mode.txt"},
+    ]
+    manifest = {
+        "base": "base",
+        "head": "head",
+        "mode": "exact",
+        "required": records,
+        "optional": [],
+        "forbidden_operations": [],
+    }
+    assert evaluate_scope(".", manifest)["overall"] == "PASS"
+    malformed = write_json(
+        tmp_path / "bad.json",
+        {
+            "base": "base",
+            "head": "head",
+            "required": [{"operation": "rename", "path": "wrong"}],
+        },
+    )
+    assert scope_main(["--repo", ".", "--manifest", str(malformed)]) == TOOL_ERROR
 
 
 def test_self_application_of_all_four_tools(tmp_path: Path) -> None:
@@ -239,10 +508,10 @@ def test_self_application_of_all_four_tools(tmp_path: Path) -> None:
                         "No role prescribes another role's INCIDENTAL "
                         "implementation process."
                     ),
-                    "single_line": True,
+                    "match_mode": "line_substring",
                 }
             ],
-            "forbidden_literals": [{"value": "no role", "single_line": True}],
+            "forbidden_literals": [{"value": "no role", "match_mode": "exact_line"}],
             "heading_prefixes": [f"### {number}." for number in range(1, 13)],
         }
     )

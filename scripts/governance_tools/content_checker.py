@@ -8,13 +8,26 @@ from typing import Any
 
 from .core import GOVERNANCE_FAILURE, TOOL_ERROR, InputError, emit, load_json
 
+MATCH_MODES = {"substring", "line_substring", "exact_line"}
 
-def _entry(item: Any, label: str) -> tuple[str, bool]:
+
+def _entry(item: Any, label: str) -> tuple[str, str]:
     if isinstance(item, str):
-        return item, False
+        return item, "substring"
     if isinstance(item, dict) and isinstance(item.get("value"), str):
-        return item["value"], bool(item.get("single_line", False))
-    raise InputError(f"{label} entries require a string or {{value, single_line}}")
+        mode = item.get("match_mode", "substring")
+        if mode not in MATCH_MODES:
+            raise InputError(f"{label} match_mode must be one of {sorted(MATCH_MODES)}")
+        return item["value"], mode
+    raise InputError(f"{label} entries require a string or {{value, match_mode}}")
+
+
+def _count(text: str, lines: list[str], value: str, mode: str) -> int:
+    if mode == "substring":
+        return text.count(value)
+    if mode == "line_substring":
+        return sum(value in line for line in lines)
+    return sum(line == value for line in lines)
 
 
 def evaluate_content(manifest: dict[str, Any]) -> dict[str, Any]:
@@ -25,30 +38,26 @@ def evaluate_content(manifest: dict[str, Any]) -> dict[str, Any]:
     lines = text.splitlines()
     checks: list[dict[str, Any]] = []
     for item in manifest.get("required_literals", []):
-        value, single_line = _entry(item, "required_literals")
-        count = (
-            sum(value in line for line in lines) if single_line else text.count(value)
-        )
+        value, match_mode = _entry(item, "required_literals")
+        count = _count(text, lines, value, match_mode)
         checks.append(
             {
                 "kind": "required_literal",
                 "value": value,
                 "count": count,
-                "single_line": single_line,
+                "match_mode": match_mode,
                 "status": "PASS" if count else "FAIL",
             }
         )
     for item in manifest.get("forbidden_literals", []):
-        value, single_line = _entry(item, "forbidden_literals")
-        count = (
-            sum(value in line for line in lines) if single_line else text.count(value)
-        )
+        value, match_mode = _entry(item, "forbidden_literals")
+        count = _count(text, lines, value, match_mode)
         checks.append(
             {
                 "kind": "forbidden_literal",
                 "value": value,
                 "count": count,
-                "single_line": single_line,
+                "match_mode": match_mode,
                 "status": "PASS" if not count else "FAIL",
             }
         )

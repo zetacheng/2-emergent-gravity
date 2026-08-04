@@ -9,7 +9,7 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any
 
 GOVERNANCE_FAILURE = 2
@@ -45,11 +45,27 @@ def git(repo: str | Path, *args: str, text: bool = True) -> str | bytes:
 
 
 def resolve(repo: str | Path, revision: str) -> str:
-    return str(git(repo, "rev-parse", "--verify", revision)).strip()
+    return str(git(repo, "rev-parse", "--verify", f"{revision}^{{commit}}")).strip()
+
+
+def normalize_repo_path(path: str) -> str:
+    """Return one canonical repository-relative POSIX path."""
+    if not isinstance(path, str) or not path:
+        raise InputError("repository path must be a non-empty string")
+    normalized = PurePosixPath(path.replace("\\", "/"))
+    if normalized.is_absolute() or ".." in normalized.parts or str(normalized) == ".":
+        raise InputError(f"path is not repository-relative: {path}")
+    return normalized.as_posix()
 
 
 def blob(repo: str | Path, revision: str, path: str) -> bytes:
     return bytes(git(repo, "show", f"{revision}:{path}", text=False))
+
+
+def path_exists_at_revision(repo: str | Path, revision: str, path: str) -> bool:
+    """Check a tree entry without reading its blob content."""
+    listing = bytes(git(repo, "ls-tree", "-z", revision, "--", path, text=False))
+    return bool(listing)
 
 
 def sha256(data: bytes) -> str:
@@ -125,10 +141,14 @@ def validate_operation(record: Any) -> dict[str, str]:
     if op in {"rename", "copy"}:
         if not all(isinstance(record.get(key), str) for key in ("from", "to")):
             raise InputError(f"{op} entries require from and to")
-        return {"operation": op, "from": record["from"], "to": record["to"]}
+        return {
+            "operation": op,
+            "from": normalize_repo_path(record["from"]),
+            "to": normalize_repo_path(record["to"]),
+        }
     if not isinstance(record.get("path"), str):
         raise InputError(f"{op} entries require path")
-    return {"operation": op, "path": record["path"]}
+    return {"operation": op, "path": normalize_repo_path(record["path"])}
 
 
 def evaluate_scope(repo: str | Path, manifest: dict[str, Any]) -> dict[str, Any]:
@@ -146,7 +166,8 @@ def evaluate_scope(repo: str | Path, manifest: dict[str, Any]) -> dict[str, Any]
     mode = manifest.get("mode", "exact")
     if mode not in {"exact", "subset"}:
         raise InputError("scope mode must be exact or subset")
-    observed = changed_operations(repo, base, head)
+    resolved_base, resolved_head = resolve(repo, base), resolve(repo, head)
+    observed = changed_operations(repo, resolved_base, resolved_head)
     observed_keys = {operation_key(item) for item in observed}
     required_keys = {operation_key(item) for item in required}
     optional_keys = {operation_key(item) for item in optional}
@@ -177,8 +198,8 @@ def evaluate_scope(repo: str | Path, manifest: dict[str, Any]) -> dict[str, Any]
             failures.append(f"required operation missing: {key}")
     result = {
         "tool": "scope_checker",
-        "base": resolve(repo, base),
-        "head": resolve(repo, head),
+        "base": resolved_base,
+        "head": resolved_head,
         "mode": mode,
         "observed_operations": observed,
         "failures": failures,
@@ -195,12 +216,22 @@ def verify_pins(repo: str | Path, revision: str, pins: Any) -> list[dict[str, An
         if not isinstance(pin, dict) or not isinstance(pin.get("path"), str):
             raise InputError("each pin needs path and sha256")
         expected = pin.get("sha256")
-        if not isinstance(expected, str) or len(expected) != 64:
+        if (
+            not isinstance(expected, str)
+            or len(expected) != 64
+            or any(char not in "0123456789abcdefABCDEF" for char in expected)
+        ):
             raise InputError("each pin needs a 64-character sha256")
-        actual = sha256(blob(repo, revision, pin["path"]))
+        path = normalize_repo_path(pin["path"])
+        resolved_revision = resolve(repo, revision)
+        actual = (
+            sha256(blob(repo, resolved_revision, path))
+            if path_exists_at_revision(repo, resolved_revision, path)
+            else None
+        )
         results.append(
             {
-                "path": pin["path"],
+                "path": path,
                 "expected": expected,
                 "actual": actual,
                 "status": "PASS" if actual == expected else "FAIL",

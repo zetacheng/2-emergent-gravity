@@ -47,7 +47,7 @@ def pre_merge(repo: Path, config: dict[str, Any]) -> dict[str, Any]:
     status = str(git(worktree, "status", "--porcelain")).splitlines()
     worktree_head = resolve(worktree, "HEAD")
     branch_head = resolve(repo, branch)
-    allow_detached = bool(config.get("allow_equivalent_detached_head", False))
+    attachment = str(git(worktree, "rev-parse", "--abbrev-ref", "HEAD")).strip()
     actual_merge_base = str(git(repo, "merge-base", base, branch)).strip()
     checks = [
         {
@@ -57,11 +57,10 @@ def pre_merge(repo: Path, config: dict[str, Any]) -> dict[str, Any]:
         },
         {
             "condition": "worktree_matches_reviewed_branch",
-            "status": "PASS"
-            if worktree_head == branch_head or allow_detached
-            else "FAIL",
+            "status": "PASS" if worktree_head == branch_head else "FAIL",
             "worktree_head": worktree_head,
             "reviewed_branch_head": branch_head,
+            "attachment": "detached" if attachment == "HEAD" else attachment,
         },
         {
             "condition": "merge_base",
