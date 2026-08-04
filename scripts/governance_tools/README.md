@@ -26,9 +26,12 @@ The operation vocabulary is `add`, `modify`, `delete`, `rename`, `copy`,
 record; `subset` permits a subset of declared required/optional records.
 
 The merge guard has distinct `PRE_MERGE` and `POST_MERGE` modes. The former
-checks the supplied working tree and requires its `HEAD` commit to equal the
-reviewed revision, whether attached or detached; the latter checks an existing
-merge commit. Neither mode mutates a repository.
+checks the supplied working tree against the required
+`expected_worktree_head` revision. This field has no default: callers may
+declare any resolvable commit expression, including a reviewed base, a reviewed
+branch head, or a named third revision. The guard resolves it before comparing
+it with the worktree's `HEAD`; attachment is reported only as metadata. The
+latter checks an existing merge commit. Neither mode mutates a repository.
 
 Content literals use one of three explicit match modes: `substring`,
 `line_substring`, or `exact_line`. The last is appropriate for a forbidden

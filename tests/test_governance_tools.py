@@ -15,6 +15,7 @@ from scripts.governance_tools.core import (
     evaluate_scope,
     sha256,
 )
+from scripts.governance_tools.merge_guard import main as merge_main
 from scripts.governance_tools.merge_guard import post_merge, pre_merge
 from scripts.governance_tools.scope_checker import main as scope_main
 from scripts.governance_tools.spec_consistency_checker import evaluate
@@ -151,11 +152,32 @@ def test_merge_guard_pre_and_post_rejects_wrong_parentage_and_scope(
             "reviewed_branch": reviewed,
             "reviewed_base": base,
             "expected_merge_base": merge_base,
+            "expected_worktree_head": reviewed,
             "scope_manifest": scope,
             "pinned_artifacts": [],
         },
     )
     assert pre["overall"] == "PASS"
+    branch_mismatch = pre_merge(
+        repo,
+        {
+            "worktree": str(repo),
+            "reviewed_branch": reviewed,
+            "reviewed_base": base,
+            "expected_merge_base": merge_base,
+            "expected_worktree_head": base,
+            "scope_manifest": scope,
+            "pinned_artifacts": [],
+        },
+    )
+    assert (
+        next(
+            item
+            for item in branch_mismatch["checks"]
+            if item["condition"] == "worktree_matches_declared_target"
+        )["status"]
+        == "FAIL"
+    )
     run(repo, "checkout", "--detach", base)
     detached = pre_merge(
         repo,
@@ -164,6 +186,7 @@ def test_merge_guard_pre_and_post_rejects_wrong_parentage_and_scope(
             "reviewed_branch": reviewed,
             "reviewed_base": base,
             "expected_merge_base": merge_base,
+            "expected_worktree_head": base,
             "scope_manifest": scope,
             "pinned_artifacts": [],
         },
@@ -171,10 +194,67 @@ def test_merge_guard_pre_and_post_rejects_wrong_parentage_and_scope(
     correspondence = next(
         item
         for item in detached["checks"]
-        if item["condition"] == "worktree_matches_reviewed_branch"
+        if item["condition"] == "worktree_matches_declared_target"
     )
-    assert correspondence["status"] == "FAIL"
+    assert correspondence["status"] == "PASS"
     assert correspondence["attachment"] == "detached"
+    mismatched = pre_merge(
+        repo,
+        {
+            "worktree": str(repo),
+            "reviewed_branch": reviewed,
+            "reviewed_base": base,
+            "expected_merge_base": merge_base,
+            "expected_worktree_head": reviewed,
+            "scope_manifest": scope,
+            "pinned_artifacts": [],
+        },
+    )
+    mismatch = next(
+        item
+        for item in mismatched["checks"]
+        if item["condition"] == "worktree_matches_declared_target"
+    )
+    assert mismatch["status"] == "FAIL"
+    assert mismatch["worktree_head"] == base
+    assert mismatch["expected_worktree_head"] == reviewed
+    run(repo, "checkout", "-b", "third", base)
+    (repo / "third.txt").write_text("third\n", encoding="utf-8")
+    run(repo, "add", "third.txt")
+    run(repo, "commit", "-m", "third")
+    third = run(repo, "rev-parse", "HEAD")
+    named = pre_merge(
+        repo,
+        {
+            "worktree": str(repo),
+            "reviewed_branch": reviewed,
+            "reviewed_base": base,
+            "expected_merge_base": merge_base,
+            "expected_worktree_head": third,
+            "scope_manifest": scope,
+            "pinned_artifacts": [],
+        },
+    )
+    named_condition = next(
+        item
+        for item in named["checks"]
+        if item["condition"] == "worktree_matches_declared_target"
+    )
+    assert named_condition["status"] == "PASS"
+    missing_target = {
+        "mode": "PRE_MERGE",
+        "worktree": str(repo),
+        "reviewed_branch": reviewed,
+        "reviewed_base": base,
+        "expected_merge_base": merge_base,
+        "scope_manifest": scope,
+        "pinned_artifacts": [],
+    }
+    missing_target_path = write_json(tmp_path / "missing-target.json", missing_target)
+    assert (
+        merge_main(["--repo", str(repo), "--config", str(missing_target_path)])
+        == TOOL_ERROR
+    )
     run(repo, "checkout", "-b", "integration", base)
     (repo / "integration.txt").write_text("integration\n", encoding="utf-8")
     run(repo, "add", "integration.txt")

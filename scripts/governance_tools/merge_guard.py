@@ -37,16 +37,19 @@ def pre_merge(repo: Path, config: dict[str, Any]) -> dict[str, Any]:
     branch = config.get("reviewed_branch")
     base = config.get("reviewed_base")
     merge_base = config.get("expected_merge_base")
+    expected_worktree_head = config.get("expected_worktree_head")
     if not all(
-        isinstance(value, str) for value in (worktree, branch, base, merge_base)
+        isinstance(value, str)
+        for value in (worktree, branch, base, merge_base, expected_worktree_head)
     ):
         raise InputError(
             "pre-merge requires worktree, reviewed_branch, reviewed_base, "
-            "expected_merge_base"
+            "expected_merge_base, and expected_worktree_head"
         )
     status = str(git(worktree, "status", "--porcelain")).splitlines()
     worktree_head = resolve(worktree, "HEAD")
     branch_head = resolve(repo, branch)
+    target_head = resolve(repo, expected_worktree_head)
     attachment = str(git(worktree, "rev-parse", "--abbrev-ref", "HEAD")).strip()
     actual_merge_base = str(git(repo, "merge-base", base, branch)).strip()
     checks = [
@@ -56,10 +59,10 @@ def pre_merge(repo: Path, config: dict[str, Any]) -> dict[str, Any]:
             "entries": status,
         },
         {
-            "condition": "worktree_matches_reviewed_branch",
-            "status": "PASS" if worktree_head == branch_head else "FAIL",
+            "condition": "worktree_matches_declared_target",
+            "status": "PASS" if worktree_head == target_head else "FAIL",
             "worktree_head": worktree_head,
-            "reviewed_branch_head": branch_head,
+            "expected_worktree_head": target_head,
             "attachment": "detached" if attachment == "HEAD" else attachment,
         },
         {
