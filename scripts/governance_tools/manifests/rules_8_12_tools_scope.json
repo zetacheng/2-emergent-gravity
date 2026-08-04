@@ -1,17 +1,16 @@
 {
-  "base": "3302b612b954af6369fc01a2e9a85cfb4f682a07",
+  "base": "817c687d1d9be28991c159d69e43cbe7af05e7c3",
   "head": "HEAD",
   "mode": "exact",
   "required": [
-    {"operation": "add", "path": "scripts/governance_tools/__init__.py"},
-    {"operation": "add", "path": "scripts/governance_tools/core.py"},
-    {"operation": "add", "path": "scripts/governance_tools/scope_checker.py"},
-    {"operation": "add", "path": "scripts/governance_tools/content_checker.py"},
-    {"operation": "add", "path": "scripts/governance_tools/merge_guard.py"},
-    {"operation": "add", "path": "scripts/governance_tools/spec_consistency_checker.py"},
-    {"operation": "add", "path": "scripts/governance_tools/README.md"},
-    {"operation": "add", "path": "scripts/governance_tools/manifests/rules_8_12_tools_scope.json"},
-    {"operation": "add", "path": "tests/test_governance_tools.py"}
+    {"operation": "modify", "path": "scripts/governance_tools/core.py"},
+    {"operation": "modify", "path": "scripts/governance_tools/content_checker.py"},
+    {"operation": "modify", "path": "scripts/governance_tools/merge_guard.py"},
+    {"operation": "modify", "path": "scripts/governance_tools/spec_consistency_checker.py"},
+    {"operation": "modify", "path": "scripts/governance_tools/README.md"},
+    {"operation": "modify", "path": "scripts/governance_tools/manifests/rules_8_12_tools_scope.json"},
+    {"operation": "modify", "path": "tests/test_governance_tools.py"},
+    {"operation": "add", "path": "reviews/pi/2026-08-03-governance-tools-environment-authorization.md"}
   ],
   "optional": [],
   "forbidden_operations": ["modify", "delete", "rename", "copy", "type_change", "unmerged", "unknown"]
