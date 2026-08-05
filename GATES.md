@@ -1007,7 +1007,7 @@ Artifact state: **DRAFTED / NOT ADOPTED**. Prerequisite state:
 **UNSATISFIED**. Owner: Paper 2. Canonical label: **MICROSCOPIC PARAMETER
 DOMAIN**; not a gate ID. Draft:
 `derivations/P2-PHASE-01_microscopic_parameter_domain_DRAFT.md`
-(sha256 `27936642a2b2fff7a2845a492c989cf2a3a3b092a6a9d9edc32d8ddefdf6aff8`).
+(sha256 `d8e154690e0b3d8131260a9ed0ce0ef804dd5652d21c022c6b29677b90d3eba4`).
 
 The future artifact must decide and bound scan-eligible coupling `G`, and must
 decide whether cutoff ratios and finite-density `μ` are FIXED INPUTS or SCAN
@@ -1018,7 +1018,7 @@ Artifact state: **DRAFTED / NOT ADOPTED**. Prerequisite state:
 **UNSATISFIED**. Owner: Paper 2. Canonical label: **PHASE INPUT /
 ADMISSIBILITY CONTRACT**; not a gate ID. Draft:
 `derivations/P2-PHASE-01_input_admissibility_contract_DRAFT.md`
-(sha256 `057932b0f9ed1ea115b189b614702d469122fbb25aea9f8db6d9288042e0b8d6`).
+(sha256 `a3ec0cb6f7968cf92528e2197f34aedd86882eed08bfc58410142fdb875a9e73`).
 No operational stability or admissibility rule is presently frozen.
 
 ### Integrated exploratory evidence
