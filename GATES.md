@@ -1003,19 +1003,29 @@ may proceed without consuming the historical Finding 5 value `−3.2(5)`
 (quarantined as unreproduced). It is not blocked by `P2-BETAV-CIRC-01`.
 
 ### Unsatisfied prerequisite — MICROSCOPIC PARAMETER DOMAIN
-Artifact state: **NOT CREATED / NOT ADOPTED**. Prerequisite state:
+Artifact state: **DRAFTED / NOT ADOPTED**. Prerequisite state:
 **UNSATISFIED**. Owner: Paper 2. Canonical label: **MICROSCOPIC PARAMETER
-DOMAIN**; not a gate ID.
+DOMAIN**; not a gate ID. Draft:
+`derivations/P2-PHASE-01_microscopic_parameter_domain_DRAFT.md`
+(sha256 `27936642a2b2fff7a2845a492c989cf2a3a3b092a6a9d9edc32d8ddefdf6aff8`).
 
 The future artifact must decide and bound scan-eligible coupling `G`, and must
 decide whether cutoff ratios and finite-density `μ` are FIXED INPUTS or SCAN
 DIMENSIONS. Any admitted scan dimension must carry a frozen range.
 
 ### Unsatisfied prerequisite — PHASE INPUT / ADMISSIBILITY CONTRACT
-Artifact state: **NOT CREATED / NOT ADOPTED**. Prerequisite state:
+Artifact state: **DRAFTED / NOT ADOPTED**. Prerequisite state:
 **UNSATISFIED**. Owner: Paper 2. Canonical label: **PHASE INPUT /
-ADMISSIBILITY CONTRACT**; not a gate ID. No operational stability or
-admissibility rule is presently frozen.
+ADMISSIBILITY CONTRACT**; not a gate ID. Draft:
+`derivations/P2-PHASE-01_input_admissibility_contract_DRAFT.md`
+(sha256 `057932b0f9ed1ea115b189b614702d469122fbb25aea9f8db6d9288042e0b8d6`).
+No operational stability or admissibility rule is presently frozen.
+
+### Integrated exploratory evidence
+The reviewed scalar stationary study is included in the integrated repository
+state at `reports/2026-08-05_p2-phase-01_scalar-stationary-exploratory.md`.
+It is exploratory, restricted to its declared `mu = 0` slice, and reached no
+admissibility verdict.
 
 ### Historical / superseded dependency wording
 > **Locked assumptions (superseded):** `CONVENTIONS.md`; the frozen channel
