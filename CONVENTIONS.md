@@ -189,6 +189,11 @@ authorization sits above all three** — adoption, exceptions, and final
 decisions are the PI's, and no rule in this section transfers that
 authority.
 
+**Refinement — caller roles.** Neither a specification nor a tool may assign
+roles on the caller's behalf; it must fix the interface rather than presume the
+caller's meaning. (Origin: the hard-coded worktree-correspondence target and
+the proposed target-type enumeration.)
+
 No role prescribes another role's INCIDENTAL implementation process. A method
 MAY be prescribed where it is itself load-bearing to scientific
 validity, independence, reproducibility, provenance, or governance —
@@ -248,6 +253,13 @@ output of every acceptance criterion, every self-correction with its
 before/after hashes and its reason, and any condition it could not
 satisfy.
 
+**Refinement — protected prohibitions and conditional choices.** Every
+prohibition MUST state what it protects, so its scope need not be inferred;
+where a specification offers a choice, each acceptance criterion MUST be
+conditional on that choice. (Origin: over-broad repair, formatter, and
+scratch-tool prohibitions; and an equivalence-policy alternative whose
+criterion allowed only one option.)
+
 Within the bounds of (c), the executor MAY choose its own method,
 explore alternatives, retry, and correct its own working artifacts.
 **It MUST NOT infer, extend, or relax (c).**
@@ -276,6 +288,11 @@ instead.
 An executor MUST NOT correct, reformat, or re-pin: any artifact
 hash-pinned by a registered gate; any gate status, verdict, or digest;
 any file outside the declared scope; or any repository configuration.
+
+**Refinement — authorization record.** A mid-task authorization that changes
+what an executor may do MUST be recorded in the repository before a report
+relies on it. (Origin: the 2026-08-03 and 2026-08-04 environment
+authorizations initially existed only in conversation.)
 
 **Tests:** tests may be created or updated within the current task
 ONLY where the specification expressly includes them in the authorized
@@ -355,7 +372,53 @@ recollection. Each specification MUST record a single line,
 repository-derived literal in it must be reproducible at that commit.
 Per-literal citation is not required.
 
+**Refinement — satisfiability and literals.** Before issue, the specifier MUST
+evaluate each acceptance criterion against the evidence-base repository and
+confirm that a conforming implementation can satisfy it. Repository-derived
+literals — hashes, paths, SHAs, and grep patterns — MUST be machine-checked
+there for presence, completeness, and unbroken form. (Origin: the pure-append
+prefix criterion, an inexpressible heading-count check, and reflowed or
+nonmatching literals.)
+
 Recording the evidence base does NOT by itself freeze the execution
 base. Where base identity is load-bearing, it must ALSO appear
 explicitly as an invariant in part (c). Rule 7 (evidence precedence) applies to the authoring of
 specifications as much as to the reporting of results.
+
+### 13. Execution environment
+
+The repository declares its execution environment in an execution-environment
+document. The execution environment SHALL satisfy that document.
+
+**Standing authorization.** An executor MAY restore the declared execution
+environment without returning for authorization, and reports what it did in one
+line.
+
+**"Restore" means bringing the environment into conformity with the declared
+document. It does NOT authorize changing the declaration itself.**
+
+**Still requiring PI authorization:** changing what the document declares;
+installing anything it does not declare; modifying `pyproject.toml`, lint rules,
+validator configuration, or file permissions; and anything that alters whether
+a check passes or what a computation yields.
+
+**Environment failures SHALL be diagnosed in this order:** (1) execution
+identity; (2) interpreter availability; (3) permissions; (4) filesystem and
+workspace; (5) package availability.
+
+**Execution-environment repair SHALL NEVER be used as justification to modify
+repository content.** Restoring an environment never licenses editing a test,
+`pyproject.toml`, lint configuration, a script, a gate, or any other repository
+file. If a repository change appears necessary to make the environment work,
+that is a separate specification requiring its own authorization.
+
+**Repository content SHALL NEVER be modified solely because a different
+execution environment would make the modification unnecessary.** The two
+clauses bind in both directions: an environment problem is fixed in the
+environment, and a repository problem is not fixed by changing what the
+environment happens to be.
+
+**The repository and the execution environment are distinct layers.**
+`pyproject.toml`, tests, lint configuration and scripts are repository;
+interpreter, virtual environment, packages and permissions are environment. A
+failure in one is not evidence of a defect in the other.
