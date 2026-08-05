@@ -985,22 +985,49 @@ condensates drawn from the frozen channels, at finite density / `μ`, within
 the pre-registered microscopic parameter domain (policy §2, §4).
 
 ### Locked assumptions
-`CONVENTIONS.md`; the frozen channel basis and parameter domain from
-`P2-CHANNEL-FREEZE-01`.
+`CONVENTIONS.md`; the Phase-A frozen channel basis and identification of
+scan-eligible microscopic coordinates from `P2-CHANNEL-FREEZE-01`.
 
 ### Inputs
 Frozen channels; `Γ[Φ_i]`; finite density / `μ`.
 
 ### Dependency
-Depends on `P2-CHANNEL-FREEZE-01`. Feeds `P2-MULTIPHASE-GRAV-01` (SI-2).
-Governance clarification `P2-SI1-UNBLOCK-01` (2026-07-20): phase enumeration may
-proceed once the channel freeze is committed, **without consuming** the
-historical Finding 5 value `−3.2(5)` (quarantined as unreproduced). It is not
-blocked by `P2-BETAV-CIRC-01` = `SUSPENDED`.
+The channel-basis dependency on `P2-CHANNEL-FREEZE-01` is satisfied by its
+Phase-A freeze: it supplies the frozen channel basis and identifies the
+scan-eligible microscopic coordinates. Its Phase-B metric freeze is **not** a
+prerequisite of this SI-1 phase enumeration; it governs the SI-2 verdict
+metric. Feeds `P2-MULTIPHASE-GRAV-01` (SI-2).
+
+Governance clarification `P2-SI1-UNBLOCK-01` (2026-07-20): phase enumeration
+may proceed without consuming the historical Finding 5 value `−3.2(5)`
+(quarantined as unreproduced). It is not blocked by `P2-BETAV-CIRC-01`.
+
+### Unsatisfied prerequisite — MICROSCOPIC PARAMETER DOMAIN
+Artifact state: **NOT CREATED / NOT ADOPTED**. Prerequisite state:
+**UNSATISFIED**. Owner: Paper 2. Canonical label: **MICROSCOPIC PARAMETER
+DOMAIN**; not a gate ID.
+
+The future artifact must decide and bound scan-eligible coupling `G`, and must
+decide whether cutoff ratios and finite-density `μ` are FIXED INPUTS or SCAN
+DIMENSIONS. Any admitted scan dimension must carry a frozen range.
+
+### Unsatisfied prerequisite — PHASE INPUT / ADMISSIBILITY CONTRACT
+Artifact state: **NOT CREATED / NOT ADOPTED**. Prerequisite state:
+**UNSATISFIED**. Owner: Paper 2. Canonical label: **PHASE INPUT /
+ADMISSIBILITY CONTRACT**; not a gate ID. No operational stability or
+admissibility rule is presently frozen.
+
+### Historical / superseded dependency wording
+> **Locked assumptions (superseded):** `CONVENTIONS.md`; the frozen channel
+> basis and parameter domain from `P2-CHANNEL-FREEZE-01`.
 
 ### Kill criterion
 No admissible phase anywhere in the frozen space → the simplest Sea–Ice
 framework terminates.
+
+### Quantifier note
+The kill criterion cannot be evaluated until the MICROSCOPIC PARAMETER DOMAIN
+prerequisite creates the frozen space over which its universal quantifier runs.
 
 ### Required computations
 (not started)
