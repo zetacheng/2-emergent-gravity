@@ -902,3 +902,45 @@ historical / superseded text.
 
 `governance/p2-phase-dependency-ruling`; `GATES.md`; `DECISION_LOG.md`;
 `reviews/codex/2026-08-04-p2-phase-01-feasibility-inventory.md`.
+
+## 2026-08-05 — Governance amendment adopted: execution environment and rule refinements
+
+### Decision
+
+ADOPTED. Paper 2 adopts rule 13, Execution environment, in
+`CONVENTIONS.md`, and records the declared machine-specific execution
+configuration in `docs/local/`. Rule 13 establishes a standing authorization
+to restore the declared environment, while preserving the boundary that a
+restoration does not change its declaration or license repository changes.
+
+Rules 8–12 are refined: roles must not be assigned on callers' behalf;
+prohibitions state what they protect; acceptance criteria are conditional on
+offered choices; mid-task authorizations are recorded; and criteria and their
+repository-derived literals are checked for satisfiability and integrity before
+issue.
+
+### Rationale
+
+The amendments record the response to recurring specification-scope and
+execution-environment failures. Each refinement names its originating incident
+in the amended rule so that its continuing necessity remains reviewable.
+
+### Scope limits
+
+Rule 13 distinguishes repository content from the execution environment; it
+does not authorize changing either a declaration or repository configuration.
+The machine configuration is local rather than portable policy. No scientific
+result, gate, status, verdict, artifact digest, or hash-pinned artifact changes.
+
+`environment_guard` remains unbuilt queued work; this amendment does not build
+or imply its implementation.
+
+### Templates followed
+
+This entry follows the 2026-08-01 execution-discipline amendment and the
+repository decision-log template.
+
+### Related files
+
+`CONVENTIONS.md`; `DECISION_LOG.md`; `docs/local/README.md`;
+`docs/local/execution_environment.md`.
