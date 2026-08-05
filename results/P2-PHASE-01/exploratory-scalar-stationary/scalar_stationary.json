@@ -1,0 +1,4090 @@
+{
+  "study": "P2-PHASE-01 exploratory scalar stationary solutions",
+  "status": "EXPLORATORY; not a gate result; no admissibility verdict",
+  "mu": 0.0,
+  "script": "scripts/p2_phase01_scalar_exploratory.py",
+  "script_sha256": "3bb26bd942c0a7392e7fc6468a3f4744fcaa7371861d74791f56ea4ecd0e9bf0",
+  "frozen_relation": "1 = 2 G I0(Mhat); full derivative is Mhat*(1/(2G)-I0(Mhat))",
+  "quadrature": "4D product-midpoint BZ grid; shifts 0.0 and 0.25",
+  "grid_results": [
+    {
+      "n": 32,
+      "shift": 0.0,
+      "I0_at_zero": 0.08532107317981055,
+      "Gc": 5.860216958901479,
+      "roots": [
+        {
+          "G_over_Gc": 0.8,
+          "G": 4.688173567121184,
+          "roots": [
+            {
+              "mhat": -7.590667724609375,
+              "stationarity_residual": 1.0451620587548227e-05,
+              "divided_gap_factor": 1.0451620587548227e-05,
+              "reduced_curvature": 0.41771939429032273,
+              "I0": 0.10665022679540695,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.409332275390625,
+              "stationarity_residual": 1.045162058721516e-05,
+              "divided_gap_factor": 1.045162058721516e-05,
+              "reduced_curvature": -0.022524647225761738,
+              "I0": 0.10665022679540698,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.19999999999999996,
+              "reduced_curvature": 0.021330268294952645,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.9,
+          "G": 5.274195263011332,
+          "roots": [
+            {
+              "mhat": -7.814544677734375,
+              "stationarity_residual": 1.2103822021658495e-05,
+              "divided_gap_factor": 1.2103822021658495e-05,
+              "reduced_curvature": 0.4002715883423503,
+              "I0": 0.09480004496525121,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.185455322265625,
+              "stationarity_residual": 1.2103822021214405e-05,
+              "divided_gap_factor": 1.2103822021214405e-05,
+              "reduced_curvature": -0.009498098714209353,
+              "I0": 0.09480004496525125,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.09999999999999998,
+              "reduced_curvature": 0.009480119242201171,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.98,
+          "G": 5.74301261972345,
+          "roots": [
+            {
+              "mhat": -7.966278076171875,
+              "stationarity_residual": 1.6391092143575037e-06,
+              "divided_gap_factor": -1.6391092143575037e-06,
+              "reduced_curvature": 0.4097999518915709,
+              "I0": 0.08706246227588549,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.033721923828125,
+              "stationarity_residual": 1.6391092145795483e-06,
+              "divided_gap_factor": -1.6391092145795483e-06,
+              "reduced_curvature": -0.0017348609058723831,
+              "I0": 0.08706246227588552,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.02000000000000013,
+              "reduced_curvature": 0.001741246391424714,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.99,
+          "G": 5.801614789312465,
+          "roots": [
+            {
+              "mhat": -7.983367919921875,
+              "stationarity_residual": 1.598526814550194e-05,
+              "divided_gap_factor": 1.598526814550194e-05,
+              "reduced_curvature": 0.41233473292475586,
+              "I0": 0.08618152454502759,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.016632080078125,
+              "stationarity_residual": 1.5985268145612963e-05,
+              "divided_gap_factor": 1.5985268145612963e-05,
+              "reduced_curvature": -0.0008576534504316979,
+              "I0": 0.08618152454502757,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.010000000000000009,
+              "reduced_curvature": 0.0008618290220182845,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.0,
+          "G": 5.860216958901479,
+          "roots": [
+            {
+              "mhat": -7.999969482421875,
+              "stationarity_residual": 1.853145286223601e-05,
+              "divided_gap_factor": -1.853145286223601e-05,
+              "reduced_curvature": 0.4144779052260112,
+              "I0": 0.08532265430325633,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.0,
+              "reduced_curvature": 0.0,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.01,
+          "G": 5.918819128490494,
+          "roots": [
+            {
+              "mhat": -8.016265869140625,
+              "stationarity_residual": 1.4087872326484785e-05,
+              "divided_gap_factor": -1.4087872326484785e-05,
+              "reduced_curvature": 0.41603634191452077,
+              "I0": 0.08447750017049137,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.009999999999999787,
+              "reduced_curvature": -0.000844763100790194,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.016265869140625,
+              "stationarity_residual": 1.408787232670683e-05,
+              "divided_gap_factor": -1.408787232670683e-05,
+              "reduced_curvature": 0.0008429949896711919,
+              "I0": 0.08447750017049138,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.02,
+          "G": 5.977421298079509,
+          "roots": [
+            {
+              "mhat": -8.032257080078125,
+              "stationarity_residual": 7.893124905899995e-06,
+              "divided_gap_factor": 7.893124905899995e-06,
+              "reduced_curvature": 0.41685990711174065,
+              "I0": 0.08364745071561062,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.020000000000000018,
+              "reduced_curvature": -0.001672962219211968,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.032257080078125,
+              "stationarity_residual": 7.893124905233861e-06,
+              "divided_gap_factor": 7.893124905233861e-06,
+              "reduced_curvature": 0.0016747428812170894,
+              "I0": 0.08364745071561068,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.05,
+          "G": 6.153227806846553,
+          "roots": [
+            {
+              "mhat": -8.078460693359375,
+              "stationarity_residual": 1.5033173426770574e-05,
+              "divided_gap_factor": -1.5033173426770574e-05,
+              "reduced_curvature": 0.4147114423334145,
+              "I0": 0.08125938650123869,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.050000000000000044,
+              "reduced_curvature": -0.004062908246657643,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.078460693359375,
+              "stationarity_residual": 1.5033173426992619e-05,
+              "divided_gap_factor": -1.5033173426992619e-05,
+              "reduced_curvature": 0.004026605562566995,
+              "I0": 0.08125938650123872,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.1,
+          "G": 6.446238654791628,
+          "roots": [
+            {
+              "mhat": -8.151885986328125,
+              "stationarity_residual": 3.204330443096204e-06,
+              "divided_gap_factor": 3.204330443096204e-06,
+              "reduced_curvature": 0.400395996923362,
+              "I0": 0.07756436343899847,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.10000000000000009,
+              "reduced_curvature": -0.007756461198164602,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.151885986328125,
+              "stationarity_residual": 3.2043304423190477e-06,
+              "divided_gap_factor": 3.2043304423190477e-06,
+              "reduced_curvature": 0.007460424416842328,
+              "I0": 0.07756436343899853,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.2,
+          "G": 7.032260350681775,
+          "roots": [
+            {
+              "mhat": -8.291290283203125,
+              "stationarity_residual": 1.326341416829635e-05,
+              "divided_gap_factor": 1.326341416829635e-05,
+              "reduced_curvature": 0.3612485879539246,
+              "I0": 0.07109995127589974,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.19999999999999996,
+              "reduced_curvature": -0.01422017886330175,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.291290283203125,
+              "stationarity_residual": 1.326341416829635e-05,
+              "divided_gap_factor": 1.326341416829635e-05,
+              "reduced_curvature": 0.012692324622850516,
+              "I0": 0.07109995127589974,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.4,
+          "G": 8.20430374246207,
+          "roots": [
+            {
+              "mhat": -8.553680419921875,
+              "stationarity_residual": 1.2267546216637726e-06,
+              "divided_gap_factor": -1.2267546216637726e-06,
+              "reduced_curvature": 0.2930023865541799,
+              "I0": 0.06094369846273673,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.3999999999999997,
+              "reduced_curvature": -0.024377449479945863,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.553680419921875,
+              "stationarity_residual": 1.2267546218858172e-06,
+              "divided_gap_factor": -1.2267546218858172e-06,
+              "reduced_curvature": 0.01896599806845897,
+              "I0": 0.060943698462736735,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.6,
+          "G": 9.376347134242367,
+          "roots": [
+            {
+              "mhat": -8.801055908203125,
+              "stationarity_residual": 1.0756177419413149e-05,
+              "divided_gap_factor": -1.0756177419413149e-05,
+              "reduced_curvature": 0.2433383253660112,
+              "I0": 0.05332624431775706,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.6000000000000001,
+              "reduced_curvature": -0.031995402442428954,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.801055908203125,
+              "stationarity_residual": 1.0756177419635193e-05,
+              "divided_gap_factor": -1.0756177419635193e-05,
+              "reduced_curvature": 0.0221476850751526,
+              "I0": 0.053326244317757066,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.8,
+          "G": 10.548390526022663,
+          "roots": [
+            {
+              "mhat": -9.036590576171875,
+              "stationarity_residual": 1.4611414347998064e-05,
+              "divided_gap_factor": 1.4611414347998064e-05,
+              "reduced_curvature": 0.2067832838884352,
+              "I0": 0.047399903621254284,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.8,
+              "reduced_curvature": -0.03792047696880469,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.036590576171875,
+              "stationarity_residual": 1.4611414347553975e-05,
+              "divided_gap_factor": 1.4611414347553975e-05,
+              "reduced_curvature": 0.023720798491397868,
+              "I0": 0.047399903621254305,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 2.0,
+          "G": 11.720433917802959,
+          "roots": [
+            {
+              "mhat": -9.261871337890625,
+              "stationarity_residual": 5.966649265776169e-06,
+              "divided_gap_factor": 5.966649265776169e-06,
+              "reduced_curvature": 0.1790733666904175,
+              "I0": 0.042660282049445955,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.0,
+              "reduced_curvature": -0.042660536589905276,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.261871337890625,
+              "stationarity_residual": 5.966649265665147e-06,
+              "divided_gap_factor": 5.966649265665147e-06,
+              "reduced_curvature": 0.024397832455892703,
+              "I0": 0.04266028204944596,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 2.5,
+          "G": 14.650542397253698,
+          "roots": [
+            {
+              "mhat": -9.788055419921875,
+              "stationarity_residual": 4.953142590413684e-06,
+              "divided_gap_factor": 4.953142590413684e-06,
+              "reduced_curvature": 0.13283334403164365,
+              "I0": 0.03412826022894765,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.5,
+              "reduced_curvature": -0.05119264390788633,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.788055419921875,
+              "stationarity_residual": 4.953142590191639e-06,
+              "divided_gap_factor": 4.953142590191639e-06,
+              "reduced_curvature": 0.02426577322013526,
+              "I0": 0.03412826022894766,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 3.0,
+          "G": 17.58065087670444,
+          "roots": [
+            {
+              "mhat": -10.271331787109375,
+              "stationarity_residual": 1.0865105766200145e-06,
+              "divided_gap_factor": 1.0865105766200145e-06,
+              "reduced_curvature": 0.10468872186651974,
+              "I0": 0.028440326825854043,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -2.0,
+              "reduced_curvature": -0.05688071545320704,
+              "I0": 0.08532107317981055,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 2.271331787109375,
+              "stationarity_residual": 1.086510576842059e-06,
+              "divided_gap_factor": 1.086510576842059e-06,
+              "reduced_curvature": 0.023150169214832948,
+              "I0": 0.02844032682585404,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        }
+      ],
+      "mhat_one_crossing_G_over_Gc": 1.7683412459079761,
+      "small_mass_I0_difference": [
+        {
+          "mhat": 0.01,
+          "I0_zero_minus_I0_mhat": 0.0005184494992406391
+        },
+        {
+          "mhat": 0.02,
+          "I0_zero_minus_I0_mhat": 0.0010373881400962959
+        },
+        {
+          "mhat": 0.04,
+          "I0_zero_minus_I0_mhat": 0.002075342144646594
+        },
+        {
+          "mhat": 0.08,
+          "I0_zero_minus_I0_mhat": 0.004140683073211138
+        },
+        {
+          "mhat": 0.12,
+          "I0_zero_minus_I0_mhat": 0.006172567063768036
+        },
+        {
+          "mhat": 0.16,
+          "I0_zero_minus_I0_mhat": 0.008154024293390197
+        }
+      ]
+    },
+    {
+      "n": 32,
+      "shift": 0.25,
+      "I0_at_zero": 0.08537317362850504,
+      "Gc": 5.856640660633193,
+      "roots": [
+        {
+          "G_over_Gc": 0.8,
+          "G": 4.685312528506555,
+          "roots": [
+            {
+              "mhat": -7.589447021484375,
+              "stationarity_residual": 8.919836210097287e-06,
+              "divided_gap_factor": -8.919836210097287e-06,
+              "reduced_curvature": 0.41785026111954865,
+              "I0": 0.10671741892903816,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.410552978515625,
+              "stationarity_residual": 8.919836210319332e-06,
+              "divided_gap_factor": -8.919836210319332e-06,
+              "reduced_curvature": -0.022604714669958084,
+              "I0": 0.10671741892903819,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.19999999999999996,
+              "reduced_curvature": 0.02134329340712625,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.9,
+          "G": 5.270976594569874,
+          "roots": [
+            {
+              "mhat": -7.813385009765625,
+              "stationarity_residual": 1.5233423521943124e-05,
+              "divided_gap_factor": -1.5233423521943124e-05,
+              "reduced_curvature": 0.40002757190067306,
+              "I0": 0.09486052683801813,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.186614990234375,
+              "stationarity_residual": 1.5233423521721079e-05,
+              "divided_gap_factor": -1.5233423521721079e-05,
+              "reduced_curvature": -0.009555743324941982,
+              "I0": 0.09486052683801811,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.09999999999999987,
+              "reduced_curvature": 0.009485908180944982,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.98,
+          "G": 5.739507847420529,
+          "roots": [
+            {
+              "mhat": -7.966094970703125,
+              "stationarity_residual": 9.64565383254623e-06,
+              "divided_gap_factor": -9.64565383254623e-06,
+              "reduced_curvature": 0.40616786713119846,
+              "I0": 0.0871163235801882,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.033905029296875,
+              "stationarity_residual": 9.645653832768275e-06,
+              "divided_gap_factor": -9.645653832768275e-06,
+              "reduced_curvature": -0.001729562071700871,
+              "I0": 0.08711632358018823,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.020000000000000018,
+              "reduced_curvature": 0.0017423096658878562,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.99,
+          "G": 5.7980742540268615,
+          "roots": [
+            {
+              "mhat": -7.983306884765625,
+              "stationarity_residual": 3.65493827714225e-06,
+              "divided_gap_factor": 3.65493827714225e-06,
+              "reduced_curvature": 0.4104464998476634,
+              "I0": 0.08623521373214635,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.016693115234375,
+              "stationarity_residual": 3.6549382770312278e-06,
+              "divided_gap_factor": 3.6549382770312278e-06,
+              "reduced_curvature": -0.000857928842531298,
+              "I0": 0.08623521373214636,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.009999999999999898,
+              "reduced_curvature": 0.0008623552891768027,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.0,
+          "G": 5.856640660633193,
+          "roots": [
+            {
+              "mhat": -7.999969482421875,
+              "stationarity_residual": 1.85388504649886e-05,
+              "divided_gap_factor": -1.85388504649886e-05,
+              "reduced_curvature": 0.414894422261436,
+              "I0": 0.08537475634900465,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.0,
+              "reduced_curvature": 0.0,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.01,
+          "G": 5.915207067239525,
+          "roots": [
+            {
+              "mhat": -8.016265869140625,
+              "stationarity_residual": 1.5677672878910975e-05,
+              "divided_gap_factor": 1.5677672878910975e-05,
+              "reduced_curvature": 0.4185065315340738,
+              "I0": 0.08452656948100619,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.010000000000000009,
+              "reduced_curvature": -0.0008452789468168798,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.016265869140625,
+              "stationarity_residual": 1.5677672878910975e-05,
+              "divided_gap_factor": 1.5677672878910975e-05,
+              "reduced_curvature": 0.0008505174595234263,
+              "I0": 0.08452656948100619,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.02,
+          "G": 5.973773473845857,
+          "roots": [
+            {
+              "mhat": -8.032073974609375,
+              "stationarity_residual": 7.447988563225039e-06,
+              "divided_gap_factor": -7.447988563225039e-06,
+              "reduced_curvature": 0.420540136144438,
+              "I0": 0.0836998132224763,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.020000000000000018,
+              "reduced_curvature": -0.0016739837966373572,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.032073974609375,
+              "stationarity_residual": 7.447988563669128e-06,
+              "divided_gap_factor": -7.447988563669128e-06,
+              "reduced_curvature": 0.0016786955108573157,
+              "I0": 0.08369981322247633,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.05,
+          "G": 6.149472693664853,
+          "roots": [
+            {
+              "mhat": -8.077911376953125,
+              "stationarity_residual": 1.2761499625701944e-05,
+              "divided_gap_factor": -1.2761499625701944e-05,
+              "reduced_curvature": 0.4180068385784668,
+              "I0": 0.08130882201736032,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.050000000000000044,
+              "reduced_curvature": -0.004065389220405016,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.077911376953125,
+              "stationarity_residual": 1.2761499626368078e-05,
+              "divided_gap_factor": -1.2761499626368078e-05,
+              "reduced_curvature": 0.004030644305938044,
+              "I0": 0.08130882201736037,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.1,
+          "G": 6.442304726696513,
+          "roots": [
+            {
+              "mhat": -8.151031494140625,
+              "stationarity_residual": 1.564385881880348e-05,
+              "divided_gap_factor": 1.564385881880348e-05,
+              "reduced_curvature": 0.4014413216794641,
+              "I0": 0.07761076187511806,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.10000000000000009,
+              "reduced_curvature": -0.007761197602591377,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.151031494140625,
+              "stationarity_residual": 1.5643858818581435e-05,
+              "divided_gap_factor": 1.5643858818581435e-05,
+              "reduced_curvature": 0.007439548709018303,
+              "I0": 0.07761076187511808,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.2,
+          "G": 7.0279687927598316,
+          "roots": [
+            {
+              "mhat": -8.290252685546875,
+              "stationarity_residual": 1.4549327334689721e-05,
+              "divided_gap_factor": -1.4549327334689721e-05,
+              "reduced_curvature": 0.36157654163309205,
+              "I0": 0.07114534645896146,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.19999999999999996,
+              "reduced_curvature": -0.014228862271417508,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.290252685546875,
+              "stationarity_residual": 1.454932733513381e-05,
+              "divided_gap_factor": -1.454932733513381e-05,
+              "reduced_curvature": 0.012658272962863521,
+              "I0": 0.07114534645896149,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.4,
+          "G": 8.19929692488647,
+          "roots": [
+            {
+              "mhat": -8.552581787109375,
+              "stationarity_residual": 8.403093401332384e-06,
+              "divided_gap_factor": -8.403093401332384e-06,
+              "reduced_curvature": 0.29325341398122273,
+              "I0": 0.060981350733755,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.40000000000000013,
+              "reduced_curvature": -0.024392335322430014,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.552581787109375,
+              "stationarity_residual": 8.403093401332384e-06,
+              "divided_gap_factor": -8.403093401332384e-06,
+              "reduced_curvature": 0.018946605853739185,
+              "I0": 0.060981350733755,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.6,
+          "G": 9.37062505701311,
+          "roots": [
+            {
+              "mhat": -8.799896240234375,
+              "stationarity_residual": 1.6824362358835998e-06,
+              "divided_gap_factor": -1.6824362358835998e-06,
+              "reduced_curvature": 0.24354209935420215,
+              "I0": 0.05335832328964119,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.6000000000000001,
+              "reduced_curvature": -0.032014940110689394,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.799896240234375,
+              "stationarity_residual": 1.6824362358835998e-06,
+              "divided_gap_factor": -1.6824362358835998e-06,
+              "reduced_curvature": 0.022137498684009486,
+              "I0": 0.0533583232896412,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.8,
+          "G": 10.541953189139749,
+          "roots": [
+            {
+              "mhat": -9.035308837890625,
+              "stationarity_residual": 6.176641375477132e-06,
+              "divided_gap_factor": 6.176641375477132e-06,
+              "reduced_curvature": 0.20695878739983986,
+              "I0": 0.04742924794946024,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.8000000000000003,
+              "reduced_curvature": -0.03794363272378003,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.035308837890625,
+              "stationarity_residual": 6.176641375588154e-06,
+              "divided_gap_factor": 6.176641375588154e-06,
+              "reduced_curvature": 0.023714585650657434,
+              "I0": 0.04742924794946023,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 2.0,
+          "G": 11.713281321266386,
+          "roots": [
+            {
+              "mhat": -9.260528564453125,
+              "stationarity_residual": 7.739693971053896e-06,
+              "divided_gap_factor": 7.739693971053896e-06,
+              "reduced_curvature": 0.1792214356707209,
+              "I0": 0.0426862564331339,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.0,
+              "reduced_curvature": -0.04268658681425252,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.260528564453125,
+              "stationarity_residual": 7.739693970609807e-06,
+              "divided_gap_factor": 7.739693970609807e-06,
+              "reduced_curvature": 0.024395624990713693,
+              "I0": 0.04268625643313392,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 2.5,
+          "G": 14.641601651582983,
+          "roots": [
+            {
+              "mhat": -9.786529541015625,
+              "stationarity_residual": 8.541588532695599e-06,
+              "divided_gap_factor": 8.541588532695599e-06,
+              "reduced_curvature": 0.13293994120187544,
+              "I0": 0.034148977762393666,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.5,
+              "reduced_curvature": -0.05122390417710303,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.786529541015625,
+              "stationarity_residual": 8.541588532695599e-06,
+              "divided_gap_factor": 8.541588532695599e-06,
+              "reduced_curvature": 0.024268405327415987,
+              "I0": 0.034148977762393666,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 3.0,
+          "G": 17.56992198189958,
+          "roots": [
+            {
+              "mhat": -10.269622802734375,
+              "stationarity_residual": 1.0240500398772667e-06,
+              "divided_gap_factor": -1.0240500398772667e-06,
+              "reduced_curvature": 0.10477155974967933,
+              "I0": 0.028457753684968962,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -2.0,
+              "reduced_curvature": -0.056915449085670027,
+              "I0": 0.08537317362850504,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 2.269622802734375,
+              "stationarity_residual": 1.0240500396552221e-06,
+              "divided_gap_factor": -1.0240500396552221e-06,
+              "reduced_curvature": 0.023154860944409137,
+              "I0": 0.02845775368496896,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        }
+      ],
+      "mhat_one_crossing_G_over_Gc": 1.7694210655627698,
+      "small_mass_I0_difference": [
+        {
+          "mhat": 0.01,
+          "I0_zero_minus_I0_mhat": 0.0005198237977163955
+        },
+        {
+          "mhat": 0.02,
+          "I0_zero_minus_I0_mhat": 0.0010416561266787805
+        },
+        {
+          "mhat": 0.04,
+          "I0_zero_minus_I0_mhat": 0.002088371867561306
+        },
+        {
+          "mhat": 0.08,
+          "I0_zero_minus_I0_mhat": 0.004172374865864775
+        },
+        {
+          "mhat": 0.12,
+          "I0_zero_minus_I0_mhat": 0.006215764486912204
+        },
+        {
+          "mhat": 0.16,
+          "I0_zero_minus_I0_mhat": 0.008202538210992275
+        }
+      ]
+    },
+    {
+      "n": 40,
+      "shift": 0.0,
+      "I0_at_zero": 0.08534618124307951,
+      "Gc": 5.858492936853501,
+      "roots": [
+        {
+          "G_over_Gc": 0.8,
+          "G": 4.686794349482801,
+          "roots": [
+            {
+              "mhat": -7.590057373046875,
+              "stationarity_residual": 1.0239265316958068e-05,
+              "divided_gap_factor": -1.0239265316958068e-05,
+              "reduced_curvature": 0.4177835903996126,
+              "I0": 0.1066838189065913,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.409942626953125,
+              "stationarity_residual": 1.0239265317180113e-05,
+              "divided_gap_factor": -1.0239265317180113e-05,
+              "reduced_curvature": -0.022565842779592317,
+              "I0": 0.10668381890659132,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.19999999999999996,
+              "reduced_curvature": 0.021336545310769867,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.9,
+          "G": 5.27264364316815,
+          "roots": [
+            {
+              "mhat": -7.813995361328125,
+              "stationarity_residual": 3.5961466671174946e-07,
+              "divided_gap_factor": -3.5961466671174946e-07,
+              "reduced_curvature": 0.40005718472317997,
+              "I0": 0.09482912437202004,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.186004638671875,
+              "stationarity_residual": 3.5961466693379407e-07,
+              "divided_gap_factor": -3.5961466693379407e-07,
+              "reduced_curvature": -0.009523011144369117,
+              "I0": 0.09482912437202005,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.09999999999999998,
+              "reduced_curvature": 0.009482909027008837,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.98,
+          "G": 5.74132307811643,
+          "roots": [
+            {
+              "mhat": -7.966217041015625,
+              "stationarity_residual": 5.157799923605211e-06,
+              "divided_gap_factor": -5.157799923605211e-06,
+              "reduced_curvature": 0.40855884333551495,
+              "I0": 0.0870883892261292,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.033782958984375,
+              "stationarity_residual": 5.157799923827255e-06,
+              "divided_gap_factor": -5.157799923827255e-06,
+              "reduced_curvature": -0.0017330584935596346,
+              "I0": 0.08708838922612921,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.020000000000000018,
+              "reduced_curvature": 0.0017417588008791784,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.99,
+          "G": 5.799908007484966,
+          "roots": [
+            {
+              "mhat": -7.983306884765625,
+              "stationarity_residual": 1.3336478748682268e-05,
+              "divided_gap_factor": -1.3336478748682268e-05,
+              "reduced_curvature": 0.4117671728621086,
+              "I0": 0.0862094135965777,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.016693115234375,
+              "stationarity_residual": 1.3336478748682268e-05,
+              "divided_gap_factor": -1.3336478748682268e-05,
+              "reduced_curvature": -0.0008621583365269638,
+              "I0": 0.08620941359657772,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.009999999999999898,
+              "reduced_curvature": 0.000862082638818984,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.0,
+          "G": 5.858492936853501,
+          "roots": [
+            {
+              "mhat": -7.999969482421875,
+              "stationarity_residual": 1.8535061022229016e-05,
+              "divided_gap_factor": -1.8535061022229016e-05,
+              "reduced_curvature": 0.4146799144189228,
+              "I0": 0.08534776313975687,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.0,
+              "reduced_curvature": 0.0,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.01,
+          "G": 5.917077866222035,
+          "roots": [
+            {
+              "mhat": -8.016265869140625,
+              "stationarity_residual": 3.7509979318173237e-06,
+              "divided_gap_factor": -3.7509979318173237e-06,
+              "reduced_curvature": 0.41691552897815176,
+              "I0": 0.08450148651131568,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.010000000000000009,
+              "reduced_curvature": -0.0008450116954760306,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.016265869140625,
+              "stationarity_residual": 3.7509979320393683e-06,
+              "divided_gap_factor": -3.7509979320393683e-06,
+              "reduced_curvature": 0.0008456503112567091,
+              "I0": 0.0845014865113157,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.02,
+          "G": 5.975662795590571,
+          "roots": [
+            {
+              "mhat": -8.032196044921875,
+              "stationarity_residual": 4.50490222880795e-06,
+              "divided_gap_factor": 4.50490222880795e-06,
+              "reduced_curvature": 0.41821497620276715,
+              "I0": 0.08367234977144843,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.020000000000000018,
+              "reduced_curvature": -0.00167345453417804,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.032196044921875,
+              "stationarity_residual": 4.504902228474883e-06,
+              "divided_gap_factor": 4.504902228474883e-06,
+              "reduced_curvature": 0.0016767374184005362,
+              "I0": 0.08367234977144845,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.05,
+          "G": 6.151417583696176,
+          "roots": [
+            {
+              "mhat": -8.078277587890625,
+              "stationarity_residual": 7.293693463639173e-06,
+              "divided_gap_factor": 7.293693463639173e-06,
+              "reduced_curvature": 0.41627511038199116,
+              "I0": 0.08128148452780497,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.050000000000000044,
+              "reduced_curvature": -0.004064103868718083,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.078277587890625,
+              "stationarity_residual": 7.293693463306106e-06,
+              "divided_gap_factor": 7.293693463306106e-06,
+              "reduced_curvature": 0.004034245414011224,
+              "I0": 0.081281484527805,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.1,
+          "G": 6.444342230538851,
+          "roots": [
+            {
+              "mhat": -8.151458740234375,
+              "stationarity_residual": 1.571604476779953e-05,
+              "divided_gap_factor": -1.571604476779953e-05,
+              "reduced_curvature": 0.40106208393903414,
+              "I0": 0.0775886568613497,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.10000000000000009,
+              "reduced_curvature": -0.007758743749370869,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.151458740234375,
+              "stationarity_residual": 1.5716044767577486e-05,
+              "divided_gap_factor": -1.5716044767577486e-05,
+              "reduced_curvature": 0.0074507649469258835,
+              "I0": 0.07758865686134969,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.2,
+          "G": 7.0301915242242,
+          "roots": [
+            {
+              "mhat": -8.290802001953125,
+              "stationarity_residual": 6.172524901981724e-06,
+              "divided_gap_factor": 6.172524901981724e-06,
+              "reduced_curvature": 0.36141611858557915,
+              "I0": 0.07112137870137542,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.19999999999999996,
+              "reduced_curvature": -0.014224363540513249,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.290802001953125,
+              "stationarity_residual": 6.172524901648657e-06,
+              "divided_gap_factor": 6.172524901648657e-06,
+              "reduced_curvature": 0.012677186454046413,
+              "I0": 0.07112137870137544,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.4,
+          "G": 8.201890111594901,
+          "roots": [
+            {
+              "mhat": -8.553131103515625,
+              "stationarity_residual": 1.5783398238378155e-05,
+              "divided_gap_factor": -1.5783398238378155e-05,
+              "reduced_curvature": 0.2931272384125433,
+              "I0": 0.060962520211318705,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.40000000000000013,
+              "reduced_curvature": -0.024384623212308436,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.553131103515625,
+              "stationarity_residual": 1.5783398238378155e-05,
+              "divided_gap_factor": -1.5783398238378155e-05,
+              "reduced_curvature": 0.018955642494781336,
+              "I0": 0.060962520211318705,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.6,
+          "G": 9.373588698965602,
+          "roots": [
+            {
+              "mhat": -8.800506591796875,
+              "stationarity_residual": 1.358791523520253e-06,
+              "divided_gap_factor": -1.358791523520253e-06,
+              "reduced_curvature": 0.2434350908199142,
+              "I0": 0.053341435756716966,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.6000000000000001,
+              "reduced_curvature": -0.03200481796615482,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.800506591796875,
+              "stationarity_residual": 1.358791523520253e-06,
+              "divided_gap_factor": -1.358791523520253e-06,
+              "reduced_curvature": 0.022143136080293037,
+              "I0": 0.053341435756716966,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.8,
+          "G": 10.5452872863363,
+          "roots": [
+            {
+              "mhat": -9.035980224609375,
+              "stationarity_residual": 1.4165591645798337e-05,
+              "divided_gap_factor": 1.4165591645798337e-05,
+              "reduced_curvature": 0.20686699804987052,
+              "I0": 0.04741387347995972,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.8,
+              "reduced_curvature": -0.037931636108035335,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.035980224609375,
+              "stationarity_residual": 1.416559164546527e-05,
+              "divided_gap_factor": 1.416559164546527e-05,
+              "reduced_curvature": 0.023718012547322993,
+              "I0": 0.047413873479959734,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 2.0,
+          "G": 11.716985873707001,
+          "roots": [
+            {
+              "mhat": -9.261199951171875,
+              "stationarity_residual": 4.111884663648979e-06,
+              "divided_gap_factor": -4.111884663648979e-06,
+              "reduced_curvature": 0.17914690989729656,
+              "I0": 0.04267326608836663,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.0,
+              "reduced_curvature": -0.042673090621539754,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.261199951171875,
+              "stationarity_residual": 4.111884663648979e-06,
+              "divided_gap_factor": -4.111884663648979e-06,
+              "reduced_curvature": 0.02439626306220269,
+              "I0": 0.04267326608836663,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 2.5,
+          "G": 14.646232342133752,
+          "roots": [
+            {
+              "mhat": -9.787322998046875,
+              "stationarity_residual": 7.918542993201605e-06,
+              "divided_gap_factor": 7.918542993201605e-06,
+              "reduced_curvature": 0.13288453680270623,
+              "I0": 0.03413820217026961,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.5,
+              "reduced_curvature": -0.05120770874584771,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.787322998046875,
+              "stationarity_residual": 7.918542992424449e-06,
+              "divided_gap_factor": 7.918542992424449e-06,
+              "reduced_curvature": 0.024267080117349463,
+              "I0": 0.03413820217026964,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 3.0,
+          "G": 17.5754788105605,
+          "roots": [
+            {
+              "mhat": -10.270477294921875,
+              "stationarity_residual": 1.0935029071124092e-05,
+              "divided_gap_factor": -1.0935029071124092e-05,
+              "reduced_curvature": 0.10472981633738784,
+              "I0": 0.02844903816868417,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -2.0,
+              "reduced_curvature": -0.056897454162053,
+              "I0": 0.08534618124307951,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 2.270477294921875,
+              "stationarity_residual": 1.093502907156818e-05,
+              "divided_gap_factor": -1.093502907156818e-05,
+              "reduced_curvature": 0.0231522035993094,
+              "I0": 0.028449038168684184,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        }
+      ],
+      "mhat_one_crossing_G_over_Gc": 1.7688616287590275,
+      "small_mass_I0_difference": [
+        {
+          "mhat": 0.01,
+          "I0_zero_minus_I0_mhat": 0.0005189777545447083
+        },
+        {
+          "mhat": 0.02,
+          "I0_zero_minus_I0_mhat": 0.0010389499292761811
+        },
+        {
+          "mhat": 0.04,
+          "I0_zero_minus_I0_mhat": 0.0020801144041003444
+        },
+        {
+          "mhat": 0.08,
+          "I0_zero_minus_I0_mhat": 0.004153419784719323
+        },
+        {
+          "mhat": 0.12,
+          "I0_zero_minus_I0_mhat": 0.006191478611329723
+        },
+        {
+          "mhat": 0.16,
+          "I0_zero_minus_I0_mhat": 0.008176369587657106
+        }
+      ]
+    },
+    {
+      "n": 40,
+      "shift": 0.25,
+      "I0_at_zero": 0.0853793721327403,
+      "Gc": 5.856215471140315,
+      "roots": [
+        {
+          "G_over_Gc": 0.8,
+          "G": 4.684972376912252,
+          "roots": [
+            {
+              "mhat": -7.589324951171875,
+              "stationarity_residual": 7.052400162743666e-07,
+              "divided_gap_factor": 7.052400162743666e-07,
+              "reduced_curvature": 0.41786460392837776,
+              "I0": 0.10672413989973814,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.410675048828125,
+              "stationarity_residual": 7.052400158302774e-07,
+              "divided_gap_factor": 7.052400158302774e-07,
+              "reduced_curvature": -0.02261149253674218,
+              "I0": 0.10672413989973818,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.20000000000000007,
+              "reduced_curvature": 0.021344843033185082,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.9,
+          "G": 5.270593924026284,
+          "roots": [
+            {
+              "mhat": -7.813262939453125,
+              "stationarity_residual": 8.518933115597704e-06,
+              "divided_gap_factor": -8.518933115597704e-06,
+              "reduced_curvature": 0.4000328471067816,
+              "I0": 0.09486677719322327,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.186737060546875,
+              "stationarity_residual": 8.518933116263838e-06,
+              "divided_gap_factor": -8.518933116263838e-06,
+              "reduced_curvature": -0.009561616423843117,
+              "I0": 0.09486677719322334,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.09999999999999987,
+              "reduced_curvature": 0.009486596903637803,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.98,
+          "G": 5.739091161717509,
+          "roots": [
+            {
+              "mhat": -7.966033935546875,
+              "stationarity_residual": 1.6649381917588357e-05,
+              "divided_gap_factor": -1.6649381917588357e-05,
+              "reduced_curvature": 0.40528560114347695,
+              "I0": 0.0871232588229743,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.033966064453125,
+              "stationarity_residual": 1.6649381918032446e-05,
+              "divided_gap_factor": -1.6649381918032446e-05,
+              "reduced_curvature": -0.0017295383318618892,
+              "I0": 0.08712325882297435,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.019999999999999907,
+              "reduced_curvature": 0.0017424361659742899,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.99,
+          "G": 5.797653316428912,
+          "roots": [
+            {
+              "mhat": -7.983306884765625,
+              "stationarity_residual": 1.1920684943600435e-05,
+              "divided_gap_factor": 1.1920684943600435e-05,
+              "reduced_curvature": 0.40981754747239524,
+              "I0": 0.08624076197186305,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.016693115234375,
+              "stationarity_residual": 1.1920684943156346e-05,
+              "divided_gap_factor": 1.1920684943156346e-05,
+              "reduced_curvature": -0.0008558993351992303,
+              "I0": 0.08624076197186309,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.010000000000000009,
+              "reduced_curvature": 0.0008624179003307031,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.0,
+          "G": 5.856215471140315,
+          "roots": [
+            {
+              "mhat": -7.999969482421875,
+              "stationarity_residual": 1.8539696268415895e-05,
+              "divided_gap_factor": -1.8539696268415895e-05,
+              "reduced_curvature": 0.41494278676683694,
+              "I0": 0.08538095504036722,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.0,
+              "reduced_curvature": 0.0,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.01,
+          "G": 5.914777625851718,
+          "roots": [
+            {
+              "mhat": -8.016204833984375,
+              "stationarity_residual": 1.3629887575028476e-05,
+              "divided_gap_factor": -1.3629887575028476e-05,
+              "reduced_curvature": 0.41915002651053423,
+              "I0": 0.08453518400394426,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.010000000000000009,
+              "reduced_curvature": -0.0008453403181459401,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.016204833984375,
+              "stationarity_residual": 1.3629887575028476e-05,
+              "divided_gap_factor": -1.3629887575028476e-05,
+              "reduced_curvature": 0.00084616588770213,
+              "I0": 0.08453518400394425,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.02,
+          "G": 5.973339780563121,
+          "roots": [
+            {
+              "mhat": -8.032073974609375,
+              "stationarity_residual": 1.875125966332991e-05,
+              "divided_gap_factor": 1.875125966332991e-05,
+              "reduced_curvature": 0.4213731277195684,
+              "I0": 0.08370369721761133,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.020000000000000018,
+              "reduced_curvature": -0.0016741053359360797,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.032073974609375,
+              "stationarity_residual": 1.87512596627748e-05,
+              "divided_gap_factor": 1.87512596627748e-05,
+              "reduced_curvature": 0.0016842060563506073,
+              "I0": 0.08370369721761137,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.05,
+          "G": 6.149026244697331,
+          "roots": [
+            {
+              "mhat": -8.077850341796875,
+              "stationarity_residual": 1.2414353528389377e-05,
+              "divided_gap_factor": 1.2414353528389377e-05,
+              "reduced_curvature": 0.41827281573382175,
+              "I0": 0.08131267828860057,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.050000000000000044,
+              "reduced_curvature": -0.004065684387273352,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.077850341796875,
+              "stationarity_residual": 1.2414353528389377e-05,
+              "divided_gap_factor": 1.2414353528389377e-05,
+              "reduced_curvature": 0.00403210705150365,
+              "I0": 0.08131267828860057,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.1,
+          "G": 6.441837018254347,
+          "roots": [
+            {
+              "mhat": -8.150909423828125,
+              "stationarity_residual": 1.0539073797555254e-05,
+              "divided_gap_factor": 1.0539073797555254e-05,
+              "reduced_curvature": 0.4014815561424607,
+              "I0": 0.07761679301203327,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.10000000000000009,
+              "reduced_curvature": -0.007761761102976397,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.150909423828125,
+              "stationarity_residual": 1.0539073797555254e-05,
+              "divided_gap_factor": 1.0539073797555254e-05,
+              "reduced_curvature": 0.007434004146799192,
+              "I0": 0.07761679301203327,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.2,
+          "G": 7.027458565368378,
+          "roots": [
+            {
+              "mhat": -8.290130615234375,
+              "stationarity_residual": 1.6782511552015933e-05,
+              "divided_gap_factor": -1.6782511552015933e-05,
+              "reduced_curvature": 0.3616115236069818,
+              "I0": 0.07115067084419952,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.19999999999999996,
+              "reduced_curvature": -0.014229895355456726,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.290130615234375,
+              "stationarity_residual": 1.6782511552460022e-05,
+              "divided_gap_factor": -1.6782511552460022e-05,
+              "reduced_curvature": 0.01265420608594836,
+              "I0": 0.07115067084419954,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.4,
+          "G": 8.198701659596441,
+          "roots": [
+            {
+              "mhat": -8.552459716796875,
+              "stationarity_residual": 4.439493642705017e-06,
+              "divided_gap_factor": -4.439493642705017e-06,
+              "reduced_curvature": 0.29328160413780346,
+              "I0": 0.06098553655280007,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.40000000000000013,
+              "reduced_curvature": -0.024394106323640093,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.552459716796875,
+              "stationarity_residual": 4.439493643371151e-06,
+              "divided_gap_factor": -4.439493643371151e-06,
+              "reduced_curvature": 0.0189447376987807,
+              "I0": 0.060985536552800104,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.6,
+          "G": 9.369944753824504,
+          "roots": [
+            {
+              "mhat": -8.799774169921875,
+              "stationarity_residual": 7.603808926615052e-06,
+              "divided_gap_factor": 7.603808926615052e-06,
+              "reduced_curvature": 0.24356400842244477,
+              "I0": 0.053361701827692704,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.5999999999999999,
+              "reduced_curvature": -0.03201726454977761,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.799774169921875,
+              "stationarity_residual": 7.6038089263930075e-06,
+              "divided_gap_factor": 7.6038089263930075e-06,
+              "reduced_curvature": 0.0221368690763566,
+              "I0": 0.05336170182769272,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.8,
+          "G": 10.541187848052568,
+          "roots": [
+            {
+              "mhat": -9.035125732421875,
+              "stationarity_residual": 9.652681921323847e-06,
+              "divided_gap_factor": -9.652681921323847e-06,
+              "reduced_curvature": 0.20698318414764166,
+              "I0": 0.04743344237370118,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.8000000000000003,
+              "reduced_curvature": -0.03794638761455125,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.035125732421875,
+              "stationarity_residual": 9.652681921323847e-06,
+              "divided_gap_factor": -9.652681921323847e-06,
+              "reduced_curvature": 0.02371300229690466,
+              "I0": 0.04743344237370119,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 2.0,
+          "G": 11.71243094228063,
+          "roots": [
+            {
+              "mhat": -9.260345458984375,
+              "stationarity_residual": 2.677064270706353e-06,
+              "divided_gap_factor": -2.677064270706353e-06,
+              "reduced_curvature": 0.17924118637113237,
+              "I0": 0.042689800349403444,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.0,
+              "reduced_curvature": -0.04268968606637015,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.260345458984375,
+              "stationarity_residual": 2.677064270706353e-06,
+              "divided_gap_factor": -2.677064270706353e-06,
+              "reduced_curvature": 0.024394867561057337,
+              "I0": 0.042689800349403444,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 2.5,
+          "G": 14.640538677850788,
+          "roots": [
+            {
+              "mhat": -9.786346435546875,
+              "stationarity_residual": 8.305687703047404e-06,
+              "divided_gap_factor": 8.305687703047404e-06,
+              "reduced_curvature": 0.1329527188812325,
+              "I0": 0.03415146519933563,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.5,
+              "reduced_curvature": -0.05122762327964418,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.786346435546875,
+              "stationarity_residual": 8.305687703269449e-06,
+              "divided_gap_factor": 8.305687703269449e-06,
+              "reduced_curvature": 0.02426869785001306,
+              "I0": 0.03415146519933562,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 3.0,
+          "G": 17.568646413420943,
+          "roots": [
+            {
+              "mhat": -10.269439697265625,
+              "stationarity_residual": 5.933707391658771e-06,
+              "divided_gap_factor": 5.933707391658771e-06,
+              "reduced_curvature": 0.10478064561939425,
+              "I0": 0.02845962183884293,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.9999999999999996,
+              "reduced_curvature": -0.05691958142182686,
+              "I0": 0.0853793721327403,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 2.269439697265625,
+              "stationarity_residual": 5.933707391547749e-06,
+              "divided_gap_factor": 5.933707391547749e-06,
+              "reduced_curvature": 0.023155567845990162,
+              "I0": 0.028459621838842934,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        }
+      ],
+      "mhat_one_crossing_G_over_Gc": 1.7695495340676028,
+      "small_mass_I0_difference": [
+        {
+          "mhat": 0.01,
+          "I0_zero_minus_I0_mhat": 0.0005201553775068951
+        },
+        {
+          "mhat": 0.02,
+          "I0_zero_minus_I0_mhat": 0.0010427581743057968
+        },
+        {
+          "mhat": 0.04,
+          "I0_zero_minus_I0_mhat": 0.002091484922179046
+        },
+        {
+          "mhat": 0.08,
+          "I0_zero_minus_I0_mhat": 0.004177940363404187
+        },
+        {
+          "mhat": 0.12,
+          "I0_zero_minus_I0_mhat": 0.00622187186442931
+        },
+        {
+          "mhat": 0.16,
+          "I0_zero_minus_I0_mhat": 0.008208724893127836
+        }
+      ]
+    },
+    {
+      "n": 48,
+      "shift": 0.0,
+      "I0_at_zero": 0.0853597428025065,
+      "Gc": 5.857562166709317,
+      "roots": [
+        {
+          "G_over_Gc": 0.8,
+          "G": 4.686049733367454,
+          "roots": [
+            {
+              "mhat": -7.589752197265625,
+              "stationarity_residual": 8.804232992432048e-06,
+              "divided_gap_factor": -8.804232992432048e-06,
+              "reduced_curvature": 0.4178169982954525,
+              "I0": 0.10670061791196289,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.410247802734375,
+              "stationarity_residual": 8.804232992432048e-06,
+              "divided_gap_factor": -8.804232992432048e-06,
+              "reduced_curvature": -0.02258519333848292,
+              "I0": 0.10670061791196289,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.20000000000000007,
+              "reduced_curvature": 0.02133993570062663,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.9,
+          "G": 5.271805950038385,
+          "roots": [
+            {
+              "mhat": -7.813690185546875,
+              "stationarity_residual": 7.612345473306803e-06,
+              "divided_gap_factor": -7.612345473306803e-06,
+              "reduced_curvature": 0.4000252770559835,
+              "I0": 0.09484488065595359,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.186309814453125,
+              "stationarity_residual": 7.612345473750892e-06,
+              "divided_gap_factor": -7.612345473750892e-06,
+              "reduced_curvature": -0.009538951413090774,
+              "I0": 0.09484488065595362,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.10000000000000009,
+              "reduced_curvature": 0.009484415866945164,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.98,
+          "G": 5.740410923375131,
+          "roots": [
+            {
+              "mhat": -7.966156005859375,
+              "stationarity_residual": 1.43831955414786e-05,
+              "divided_gap_factor": -1.43831955414786e-05,
+              "reduced_curvature": 0.4075682335282713,
+              "I0": 0.0871030311718149,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.033843994140625,
+              "stationarity_residual": 1.4383195542144733e-05,
+              "divided_gap_factor": -1.4383195542144733e-05,
+              "reduced_curvature": -0.001732800526698886,
+              "I0": 0.08710303117181495,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.020000000000000018,
+              "reduced_curvature": 0.0017420355673980897,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.99,
+          "G": 5.798986545042224,
+          "roots": [
+            {
+              "mhat": -7.983306884765625,
+              "stationarity_residual": 6.9130520867766165e-06,
+              "divided_gap_factor": -6.9130520867766165e-06,
+              "reduced_curvature": 0.41126734633593015,
+              "I0": 0.08622255848369152,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.016693115234375,
+              "stationarity_residual": 6.913052087220706e-06,
+              "divided_gap_factor": -6.913052087220706e-06,
+              "reduced_curvature": -0.0008605583825131361,
+              "I0": 0.08622255848369156,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.010000000000000009,
+              "reduced_curvature": 0.000862219624267746,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.0,
+          "G": 5.857562166709317,
+          "roots": [
+            {
+              "mhat": -7.999969482421875,
+              "stationarity_residual": 1.8536979853989166e-05,
+              "divided_gap_factor": -1.8536979853989166e-05,
+              "reduced_curvature": 0.4147881817217099,
+              "I0": 0.08536132511433916,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.0,
+              "reduced_curvature": 0.0,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.01,
+          "G": 5.91613778837641,
+          "roots": [
+            {
+              "mhat": -8.016265869140625,
+              "stationarity_residual": 4.089737696388873e-06,
+              "divided_gap_factor": 4.089737696388873e-06,
+              "reduced_curvature": 0.4175681045908034,
+              "I0": 0.08451425119163228,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.010000000000000009,
+              "reduced_curvature": -0.0008451459683416485,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.016265869140625,
+              "stationarity_residual": 4.089737696055806e-06,
+              "divided_gap_factor": 4.089737696055806e-06,
+              "reduced_curvature": 0.0008476357193928228,
+              "I0": 0.0845142511916323,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.02,
+          "G": 5.9747134100435035,
+          "roots": [
+            {
+              "mhat": -8.032135009765625,
+              "stationarity_residual": 7.26475494272627e-06,
+              "divided_gap_factor": -7.26475494272627e-06,
+              "reduced_curvature": 0.41920215677242495,
+              "I0": 0.08368663031384307,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.020000000000000018,
+              "reduced_curvature": -0.0016737204471079653,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.032135009765625,
+              "stationarity_residual": 7.264754942948315e-06,
+              "divided_gap_factor": -7.264754942948315e-06,
+              "reduced_curvature": 0.001676540760049975,
+              "I0": 0.08368663031384309,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.05,
+          "G": 6.150440275044783,
+          "roots": [
+            {
+              "mhat": -8.078094482421875,
+              "stationarity_residual": 1.3510869234956147e-05,
+              "divided_gap_factor": -1.3510869234956147e-05,
+              "reduced_curvature": 0.4171822867277274,
+              "I0": 0.08129609151126613,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.050000000000000044,
+              "reduced_curvature": -0.004064749657262209,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.078094482421875,
+              "stationarity_residual": 1.351086923562228e-05,
+              "divided_gap_factor": -1.351086923562228e-05,
+              "reduced_curvature": 0.004031996394728471,
+              "I0": 0.08129609151126618,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.1,
+          "G": 6.443318383380249,
+          "roots": [
+            {
+              "mhat": -8.151275634765625,
+              "stationarity_residual": 1.6601844712638147e-05,
+              "divided_gap_factor": 1.6601844712638147e-05,
+              "reduced_curvature": 0.40129752102399036,
+              "I0": 0.07759847788482889,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.09999999999999987,
+              "reduced_curvature": -0.007759976618409686,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.151275634765625,
+              "stationarity_residual": 1.660184471186099e-05,
+              "divided_gap_factor": 1.660184471186099e-05,
+              "reduced_curvature": 0.007448753586243393,
+              "I0": 0.07759847788482895,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.2,
+          "G": 7.029074600051181,
+          "roots": [
+            {
+              "mhat": -8.290557861328125,
+              "stationarity_residual": 1.5216402678763785e-05,
+              "divided_gap_factor": 1.5216402678763785e-05,
+              "reduced_curvature": 0.361490375012851,
+              "I0": 0.07113203661190622,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.19999999999999996,
+              "reduced_curvature": -0.014226623800417754,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.290557861328125,
+              "stationarity_residual": 1.5216402678097651e-05,
+              "divided_gap_factor": 1.5216402678097651e-05,
+              "reduced_curvature": 0.012670140071740395,
+              "I0": 0.07113203661190626,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.4,
+          "G": 8.200587033393044,
+          "roots": [
+            {
+              "mhat": -8.552886962890625,
+              "stationarity_residual": 5.849752918507534e-06,
+              "divided_gap_factor": 5.849752918507534e-06,
+              "reduced_curvature": 0.293184427649766,
+              "I0": 0.06097088819221566,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.3999999999999999,
+              "reduced_curvature": -0.024388497943573277,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.552886962890625,
+              "stationarity_residual": 5.849752918396511e-06,
+              "divided_gap_factor": 5.849752918396511e-06,
+              "reduced_curvature": 0.01895274681019057,
+              "I0": 0.06097088819221567,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.6,
+          "G": 9.372099466734907,
+          "roots": [
+            {
+              "mhat": -8.800201416015625,
+              "stationarity_residual": 7.347229880050321e-07,
+              "divided_gap_factor": -7.347229880050321e-07,
+              "reduced_curvature": 0.2434886282939787,
+              "I0": 0.05334987844891986,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.5999999999999999,
+              "reduced_curvature": -0.03200990355093993,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.800201416015625,
+              "stationarity_residual": 7.347229884491213e-07,
+              "divided_gap_factor": -7.347229884491213e-07,
+              "reduced_curvature": 0.02214036047074169,
+              "I0": 0.05334987844891989,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.8,
+          "G": 10.54361190007677,
+          "roots": [
+            {
+              "mhat": -9.035614013671875,
+              "stationarity_residual": 3.779439776474547e-06,
+              "divided_gap_factor": -3.779439776474547e-06,
+              "reduced_curvature": 0.20691641292229337,
+              "I0": 0.04742225856361876,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.7999999999999998,
+              "reduced_curvature": -0.037937663467780665,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.035614013671875,
+              "stationarity_residual": 3.779439776918636e-06,
+              "divided_gap_factor": -3.779439776918636e-06,
+              "reduced_curvature": 0.023715499879218435,
+              "I0": 0.04742225856361878,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 2.0,
+          "G": 11.715124333418634,
+          "roots": [
+            {
+              "mhat": -9.260833740234375,
+              "stationarity_residual": 1.1235922375174567e-05,
+              "divided_gap_factor": -1.1235922375174567e-05,
+              "reduced_curvature": 0.179186974527987,
+              "I0": 0.04268035094897529,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.0,
+              "reduced_curvature": -0.04267987140125325,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.260833740234375,
+              "stationarity_residual": 1.1235922375618657e-05,
+              "divided_gap_factor": -1.1235922375618657e-05,
+              "reduced_curvature": 0.024395335587561198,
+              "I0": 0.042680350948975314,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 2.5,
+          "G": 14.643905416773293,
+          "roots": [
+            {
+              "mhat": -9.786895751953125,
+              "stationarity_residual": 3.122803461597101e-06,
+              "divided_gap_factor": -3.122803461597101e-06,
+              "reduced_curvature": 0.1329139771002968,
+              "I0": 0.03414400374568272,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.5,
+              "reduced_curvature": -0.0512158456815039,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.786895751953125,
+              "stationarity_residual": 3.122803461819146e-06,
+              "divided_gap_factor": -3.122803461819146e-06,
+              "reduced_curvature": 0.024267405526504866,
+              "I0": 0.03414400374568273,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 3.0,
+          "G": 17.57268650012795,
+          "roots": [
+            {
+              "mhat": -10.270050048828125,
+              "stationarity_residual": 5.19463148274113e-06,
+              "divided_gap_factor": -5.19463148274113e-06,
+              "reduced_curvature": 0.10475070722707963,
+              "I0": 0.02845339540497127,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.9999999999999996,
+              "reduced_curvature": -0.056906495201670994,
+              "I0": 0.0853597428025065,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 2.270050048828125,
+              "stationarity_residual": 5.1946314829631746e-06,
+              "divided_gap_factor": -5.1946314829631746e-06,
+              "reduced_curvature": 0.023153554704405718,
+              "I0": 0.028453395404971278,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        }
+      ],
+      "mhat_one_crossing_G_over_Gc": 1.7691427019335453,
+      "small_mass_I0_difference": [
+        {
+          "mhat": 0.01,
+          "I0_zero_minus_I0_mhat": 0.0005193379718827773
+        },
+        {
+          "mhat": 0.02,
+          "I0_zero_minus_I0_mhat": 0.001040074128897256
+        },
+        {
+          "mhat": 0.04,
+          "I0_zero_minus_I0_mhat": 0.0020835884535614774
+        },
+        {
+          "mhat": 0.08,
+          "I0_zero_minus_I0_mhat": 0.004162016380146266
+        },
+        {
+          "mhat": 0.12,
+          "I0_zero_minus_I0_mhat": 0.0062031435721103395
+        },
+        {
+          "mhat": 0.16,
+          "I0_zero_minus_I0_mhat": 0.008189296639221424
+        }
+      ]
+    },
+    {
+      "n": 48,
+      "shift": 0.25,
+      "I0_at_zero": 0.0853827344470288,
+      "Gc": 5.855984857339027,
+      "roots": [
+        {
+          "G_over_Gc": 0.8,
+          "G": 4.684787885871222,
+          "roots": [
+            {
+              "mhat": -7.589263916015625,
+              "stationarity_residual": 8.597080829120252e-06,
+              "divided_gap_factor": 8.597080829120252e-06,
+              "reduced_curvature": 0.4178721052226362,
+              "I0": 0.10672750050594919,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.410736083984375,
+              "stationarity_residual": 8.597080828121051e-06,
+              "divided_gap_factor": 8.597080828121051e-06,
+              "reduced_curvature": -0.022614553082094365,
+              "I0": 0.1067275005059493,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.19999999999999996,
+              "reduced_curvature": 0.02134568361175719,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.9,
+          "G": 5.270386371605124,
+          "roots": [
+            {
+              "mhat": -7.813201904296875,
+              "stationarity_residual": 2.079117452424839e-06,
+              "divided_gap_factor": -2.079117452424839e-06,
+              "reduced_curvature": 0.4000359209253285,
+              "I0": 0.09486990218640237,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.186798095703125,
+              "stationarity_residual": 2.0791174533130174e-06,
+              "divided_gap_factor": -2.0791174533130174e-06,
+              "reduced_curvature": -0.009564264064733244,
+              "I0": 0.09486990218640245,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.10000000000000009,
+              "reduced_curvature": 0.009486970494114316,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.98,
+          "G": 5.738865160192246,
+          "roots": [
+            {
+              "mhat": -7.966033935546875,
+              "stationarity_residual": 4.110075459973217e-06,
+              "divided_gap_factor": 4.110075459973217e-06,
+              "reduced_curvature": 0.40474860534438273,
+              "I0": 0.08712488114035434,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.033966064453125,
+              "stationarity_residual": 4.110075459529128e-06,
+              "divided_gap_factor": 4.110075459529128e-06,
+              "reduced_curvature": -0.0017254323289591612,
+              "I0": 0.08712488114035438,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.02000000000000013,
+              "reduced_curvature": 0.001742504784633253,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 0.99,
+          "G": 5.797425008765637,
+          "roots": [
+            {
+              "mhat": -7.983245849609375,
+              "stationarity_residual": 1.77338653279957e-05,
+              "divided_gap_factor": -1.77338653279957e-05,
+              "reduced_curvature": 0.4093071630360668,
+              "I0": 0.08624671577064932,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": -0.016754150390625,
+              "stationarity_residual": 1.7733865328661835e-05,
+              "divided_gap_factor": -1.7733865328661835e-05,
+              "reduced_curvature": -0.0008605308641417677,
+              "I0": 0.08624671577064938,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.010000000000000009,
+              "reduced_curvature": 0.000862451863101299,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.0,
+          "G": 5.855984857339027,
+          "roots": [
+            {
+              "mhat": -7.999969482421875,
+              "stationarity_residual": 1.854014526947445e-05,
+              "divided_gap_factor": -1.854014526947445e-05,
+              "reduced_curvature": 0.414968613996074,
+              "I0": 0.08538431745532896,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": 0.0,
+              "reduced_curvature": 0.0,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.01,
+          "G": 5.914544705912417,
+          "roots": [
+            {
+              "mhat": -8.016204833984375,
+              "stationarity_residual": 7.116365824844095e-06,
+              "divided_gap_factor": -7.116365824844095e-06,
+              "reduced_curvature": 0.4196408731233233,
+              "I0": 0.08453796243742799,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.010000000000000009,
+              "reduced_curvature": -0.0008453736083864211,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.016204833984375,
+              "stationarity_residual": 7.116365825732274e-06,
+              "divided_gap_factor": -7.116365825732274e-06,
+              "reduced_curvature": 0.0008477076163183112,
+              "I0": 0.08453796243742806,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.02,
+          "G": 5.973104554485808,
+          "roots": [
+            {
+              "mhat": -8.032012939453125,
+              "stationarity_residual": 6.012244972986025e-07,
+              "divided_gap_factor": -6.012244972986025e-07,
+              "reduced_curvature": 0.42189343632835996,
+              "I0": 0.0837086135110004,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.020000000000000018,
+              "reduced_curvature": -0.001674171263667229,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.032012939453125,
+              "stationarity_residual": 6.012244979647363e-07,
+              "divided_gap_factor": -6.012244979647363e-07,
+              "reduced_curvature": 0.00168147717310067,
+              "I0": 0.08370861351100045,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.05,
+          "G": 6.148784100205979,
+          "roots": [
+            {
+              "mhat": -8.077789306640625,
+              "stationarity_residual": 1.0964861073547993e-05,
+              "divided_gap_factor": 1.0964861073547993e-05,
+              "reduced_curvature": 0.4183609598214254,
+              "I0": 0.08131599832115001,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.050000000000000044,
+              "reduced_curvature": -0.004065844497477572,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.077789306640625,
+              "stationarity_residual": 1.0964861072548793e-05,
+              "divided_gap_factor": 1.0964861072548793e-05,
+              "reduced_curvature": 0.0040297092164144985,
+              "I0": 0.0813159983211501,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.1,
+          "G": 6.44158334307293,
+          "roots": [
+            {
+              "mhat": -8.150848388671875,
+              "stationarity_residual": 1.1167193816219445e-05,
+              "divided_gap_factor": 1.1167193816219445e-05,
+              "reduced_curvature": 0.40149876938583834,
+              "I0": 0.07761980087407698,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.10000000000000009,
+              "reduced_curvature": -0.0077620667679117045,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.150848388671875,
+              "stationarity_residual": 1.1167193815886378e-05,
+              "divided_gap_factor": 1.1167193815886378e-05,
+              "reduced_curvature": 0.007431419892449396,
+              "I0": 0.07761980087407701,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.2,
+          "G": 7.027181828806832,
+          "roots": [
+            {
+              "mhat": -8.290069580078125,
+              "stationarity_residual": 1.482097397009774e-05,
+              "divided_gap_factor": -1.482097397009774e-05,
+              "reduced_curvature": 0.36162923098939587,
+              "I0": 0.07115333325192796,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.19999999999999996,
+              "reduced_curvature": -0.01423045574117146,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.290069580078125,
+              "stationarity_residual": 1.4820973970541829e-05,
+              "divided_gap_factor": -1.4820973970541829e-05,
+              "reduced_curvature": 0.012652391128364424,
+              "I0": 0.07115333325192799,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.4,
+          "G": 8.198378800274638,
+          "roots": [
+            {
+              "mhat": -8.552398681640625,
+              "stationarity_residual": 6.202538863631091e-07,
+              "divided_gap_factor": 6.202538863631091e-07,
+              "reduced_curvature": 0.29329588830188547,
+              "I0": 0.06098762963432567,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.3999999999999999,
+              "reduced_curvature": -0.02439506698486537,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.552398681640625,
+              "stationarity_residual": 6.202538858079976e-07,
+              "divided_gap_factor": 6.202538858079976e-07,
+              "reduced_curvature": 0.01894399111667693,
+              "I0": 0.060987629634325705,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.6,
+          "G": 9.369575771742443,
+          "roots": [
+            {
+              "mhat": -8.799713134765625,
+              "stationarity_residual": 1.5324947488903895e-05,
+              "divided_gap_factor": 1.5324947488903895e-05,
+              "reduced_curvature": 0.24357512828893924,
+              "I0": 0.053363391225691836,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.6000000000000001,
+              "reduced_curvature": -0.03201852541763581,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 0.799713134765625,
+              "stationarity_residual": 1.5324947488570828e-05,
+              "divided_gap_factor": 1.5324947488570828e-05,
+              "reduced_curvature": 0.022136718418115157,
+              "I0": 0.05336339122569186,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 1.8,
+          "G": 10.540772743210248,
+          "roots": [
+            {
+              "mhat": -9.035064697265625,
+              "stationarity_residual": 2.492536017584257e-07,
+              "divided_gap_factor": 2.492536017584257e-07,
+              "reduced_curvature": 0.20699203737665728,
+              "I0": 0.047434840647263735,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -0.7999999999999998,
+              "reduced_curvature": -0.037947881976457244,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.035064697265625,
+              "stationarity_residual": 2.492536012033142e-07,
+              "divided_gap_factor": 2.492536012033142e-07,
+              "reduced_curvature": 0.023713194345466933,
+              "I0": 0.04743484064726376,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 2.0,
+          "G": 11.711969714678053,
+          "roots": [
+            {
+              "mhat": -9.260284423828125,
+              "stationarity_residual": 9.029094117041225e-06,
+              "divided_gap_factor": 9.029094117041225e-06,
+              "reduced_curvature": 0.17924841867960759,
+              "I0": 0.04269098175914176,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.0,
+              "reduced_curvature": -0.0426913672235144,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.260284423828125,
+              "stationarity_residual": 9.029094116708158e-06,
+              "divided_gap_factor": 9.029094116708158e-06,
+              "reduced_curvature": 0.024395262978253618,
+              "I0": 0.04269098175914177,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 2.5,
+          "G": 14.639962143347567,
+          "roots": [
+            {
+              "mhat": -9.786224365234375,
+              "stationarity_residual": 8.746084858568537e-07,
+              "divided_gap_factor": -8.746084858568537e-07,
+              "reduced_curvature": 0.132960930211566,
+              "I0": 0.03415312364939716,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.5,
+              "reduced_curvature": -0.05122964066821728,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 1.786224365234375,
+              "stationarity_residual": 8.746084863009429e-07,
+              "divided_gap_factor": -8.746084863009429e-07,
+              "reduced_curvature": 0.02426858462873116,
+              "I0": 0.034153123649397175,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        },
+        {
+          "G_over_Gc": 3.0,
+          "G": 17.56795457201708,
+          "roots": [
+            {
+              "mhat": -10.269317626953125,
+              "stationarity_residual": 1.549529924815829e-06,
+              "divided_gap_factor": 1.549529924815829e-06,
+              "reduced_curvature": 0.10478644672393192,
+              "I0": 0.02846086738130891,
+              "branch": "nontrivial_algebraic"
+            },
+            {
+              "mhat": 0.0,
+              "stationarity_residual": 0.0,
+              "divided_gap_factor": -1.9999999999999996,
+              "reduced_curvature": -0.05692182296468587,
+              "I0": 0.0853827344470288,
+              "branch": "trivial"
+            },
+            {
+              "mhat": 2.269317626953125,
+              "stationarity_residual": 1.5495299247048067e-06,
+              "divided_gap_factor": 1.5495299247048067e-06,
+              "reduced_curvature": 0.023155782308315682,
+              "I0": 0.028460867381308912,
+              "branch": "nontrivial_algebraic"
+            }
+          ]
+        }
+      ],
+      "mhat_one_crossing_G_over_Gc": 1.7696192204746821,
+      "small_mass_I0_difference": [
+        {
+          "mhat": 0.01,
+          "I0_zero_minus_I0_mhat": 0.0005204063612404414
+        },
+        {
+          "mhat": 0.02,
+          "I0_zero_minus_I0_mhat": 0.0010435859791996238
+        },
+        {
+          "mhat": 0.04,
+          "I0_zero_minus_I0_mhat": 0.0020936162535890313
+        },
+        {
+          "mhat": 0.08,
+          "I0_zero_minus_I0_mhat": 0.004181163180889014
+        },
+        {
+          "mhat": 0.12,
+          "I0_zero_minus_I0_mhat": 0.006225223265260302
+        },
+        {
+          "mhat": 0.16,
+          "I0_zero_minus_I0_mhat": 0.008212086414154787
+        }
+      ]
+    }
+  ],
+  "symmetry": {
+    "Mhat_to_negative_Mhat": "not a symmetry: the frozen Wilson integral differs at every tested nonzero mass.",
+    "sign_pairs": [
+      {
+        "mhat": 0.1,
+        "I0_positive": 0.08017107225453418,
+        "I0_negative": 0.09046002781897587,
+        "ratio_negative_over_positive": 1.1283375072217496
+      },
+      {
+        "mhat": 0.5,
+        "I0_positive": 0.06282771220001934,
+        "I0_negative": 0.11173251714553097,
+        "ratio_negative_over_positive": 1.778395444192166
+      },
+      {
+        "mhat": 1.0,
+        "I0_positive": 0.048249212858416934,
+        "I0_negative": 0.14399680725737157,
+        "ratio_negative_over_positive": 2.9844384752952866
+      }
+    ],
+    "wilson_complement_relation": "I0(Mhat) = I0(-8 - Mhat), from p_mu -> pi-p_mu; numerically checked below.",
+    "complement_pairs": [
+      {
+        "mhat": -1.3,
+        "complement": -6.7,
+        "absolute_difference": 1.1102230246251565e-16
+      },
+      {
+        "mhat": -0.4,
+        "complement": -7.6,
+        "absolute_difference": 1.3877787807814457e-17
+      },
+      {
+        "mhat": 0.7,
+        "complement": -8.7,
+        "absolute_difference": 2.0816681711721685e-17
+      },
+      {
+        "mhat": 1.8,
+        "complement": -9.8,
+        "absolute_difference": 1.3877787807814457e-17
+      }
+    ]
+  },
+  "onset": {
+    "small_mass_behavior": {
+      "fit": "I0(0)-I0(Mhat) = coefficient * Mhat**alpha",
+      "alpha": 0.9964326965758304,
+      "coefficient": 0.05144330255729294,
+      "log_rms_residual": 0.005520820026718925,
+      "points": [
+        {
+          "mhat": 0.01,
+          "I0_zero_minus_I0_mhat": 0.0005204063612404414
+        },
+        {
+          "mhat": 0.02,
+          "I0_zero_minus_I0_mhat": 0.0010435859791996238
+        },
+        {
+          "mhat": 0.04,
+          "I0_zero_minus_I0_mhat": 0.0020936162535890313
+        },
+        {
+          "mhat": 0.08,
+          "I0_zero_minus_I0_mhat": 0.004181163180889014
+        },
+        {
+          "mhat": 0.12,
+          "I0_zero_minus_I0_mhat": 0.006225223265260302
+        },
+        {
+          "mhat": 0.16,
+          "I0_zero_minus_I0_mhat": 0.008212086414154787
+        }
+      ]
+    },
+    "bare_power_fits": {
+      "1.01_to_1.10": {
+        "points": 3,
+        "beta": 0.9743861319881562,
+        "prefactor": 1.443024041119895,
+        "log_rms_residual": 0.0024579085660538483
+      },
+      "1.02_to_1.20": {
+        "points": 4,
+        "beta": 0.9574267610025847,
+        "prefactor": 1.3616076623119775,
+        "log_rms_residual": 0.00512056807329924
+      },
+      "1.05_to_1.40": {
+        "points": 4,
+        "beta": 0.9427498091023048,
+        "prefactor": 1.3164539518342138,
+        "log_rms_residual": 0.00453275135511028
+      }
+    },
+    "local_effective_exponents": [
+      {
+        "between_G_over_Gc": [
+          1.01,
+          1.02
+        ],
+        "beta_effective": 0.982230911773114
+      },
+      {
+        "between_G_over_Gc": [
+          1.02,
+          1.05
+        ],
+        "beta_effective": 0.9689760739626897
+      },
+      {
+        "between_G_over_Gc": [
+          1.05,
+          1.1
+        ],
+        "beta_effective": 0.9554555331175711
+      },
+      {
+        "between_G_over_Gc": [
+          1.1,
+          1.2
+        ],
+        "beta_effective": 0.9432997203961432
+      },
+      {
+        "between_G_over_Gc": [
+          1.2,
+          1.4
+        ],
+        "beta_effective": 0.9293108700285848
+      },
+      {
+        "between_G_over_Gc": [
+          1.4,
+          1.6
+        ],
+        "beta_effective": 0.9124904695646815
+      },
+      {
+        "between_G_over_Gc": [
+          1.6,
+          1.8
+        ],
+        "beta_effective": 0.8967056207690416
+      },
+      {
+        "between_G_over_Gc": [
+          1.8,
+          2.0
+        ],
+        "beta_effective": 0.8822728388422135
+      },
+      {
+        "between_G_over_Gc": [
+          2.0,
+          2.5
+        ],
+        "beta_effective": 0.8601644465449648
+      },
+      {
+        "between_G_over_Gc": [
+          2.5,
+          3.0
+        ],
+        "beta_effective": 0.8320820286106262
+      }
+    ],
+    "near_critical_exclusion": "G/Gc-1 < 0.01 is excluded from fits because root/grid resolution dominates there.",
+    "logarithmic_fit": "not attempted: the fitted small-Mhat difference is close to a regular linear power, so a logarithmic correction is not motivated by this finite-grid diagnostic."
+  },
+  "onset_by_grid": [
+    {
+      "n": 32,
+      "shift": 0.0,
+      "analysis": {
+        "small_mass_behavior": {
+          "fit": "I0(0)-I0(Mhat) = coefficient * Mhat**alpha",
+          "alpha": 0.9949630979495934,
+          "coefficient": 0.05084172262380407,
+          "log_rms_residual": 0.004173536581105953,
+          "points": [
+            {
+              "mhat": 0.01,
+              "I0_zero_minus_I0_mhat": 0.0005184494992406391
+            },
+            {
+              "mhat": 0.02,
+              "I0_zero_minus_I0_mhat": 0.0010373881400962959
+            },
+            {
+              "mhat": 0.04,
+              "I0_zero_minus_I0_mhat": 0.002075342144646594
+            },
+            {
+              "mhat": 0.08,
+              "I0_zero_minus_I0_mhat": 0.004140683073211138
+            },
+            {
+              "mhat": 0.12,
+              "I0_zero_minus_I0_mhat": 0.006172567063768036
+            },
+            {
+              "mhat": 0.16,
+              "I0_zero_minus_I0_mhat": 0.008154024293390197
+            }
+          ]
+        },
+        "bare_power_fits": {
+          "1.01_to_1.10": {
+            "points": 3,
+            "beta": 0.9772897122652667,
+            "prefactor": 1.4689296931494966,
+            "log_rms_residual": 0.003283014058897057
+          },
+          "1.02_to_1.20": {
+            "points": 4,
+            "beta": 0.9559420910928812,
+            "prefactor": 1.3654192689714428,
+            "log_rms_residual": 0.006136661446694663
+          },
+          "1.05_to_1.40": {
+            "points": 4,
+            "beta": 0.9396503353519519,
+            "prefactor": 1.315702257548849,
+            "log_rms_residual": 0.004566495107906456
+          }
+        },
+        "local_effective_exponents": [
+          {
+            "between_G_over_Gc": [
+              1.01,
+              1.02
+            ],
+            "beta_effective": 0.9877679386235071
+          },
+          {
+            "between_G_over_Gc": [
+              1.02,
+              1.05
+            ],
+            "beta_effective": 0.9700635294843618
+          },
+          {
+            "between_G_over_Gc": [
+              1.05,
+              1.1
+            ],
+            "beta_effective": 0.9529467768433635
+          },
+          {
+            "between_G_over_Gc": [
+              1.1,
+              1.2
+            ],
+            "beta_effective": 0.9394688106142821
+          },
+          {
+            "between_G_over_Gc": [
+              1.2,
+              1.4
+            ],
+            "beta_effective": 0.926595926844097
+          },
+          {
+            "between_G_over_Gc": [
+              1.4,
+              1.6
+            ],
+            "beta_effective": 0.9109121211666398
+          },
+          {
+            "between_G_over_Gc": [
+              1.6,
+              1.8
+            ],
+            "beta_effective": 0.8959945601907967
+          },
+          {
+            "between_G_over_Gc": [
+              1.8,
+              2.0
+            ],
+            "beta_effective": 0.8813105786256367
+          },
+          {
+            "between_G_over_Gc": [
+              2.0,
+              2.5
+            ],
+            "beta_effective": 0.8595878087163538
+          },
+          {
+            "between_G_over_Gc": [
+              2.5,
+              3.0
+            ],
+            "beta_effective": 0.8316044028133008
+          }
+        ],
+        "near_critical_exclusion": "G/Gc-1 < 0.01 is excluded from fits because root/grid resolution dominates there.",
+        "logarithmic_fit": "not attempted: the fitted small-Mhat difference is close to a regular linear power, so a logarithmic correction is not motivated by this finite-grid diagnostic."
+      }
+    },
+    {
+      "n": 32,
+      "shift": 0.25,
+      "analysis": {
+        "small_mass_behavior": {
+          "fit": "I0(0)-I0(Mhat) = coefficient * Mhat**alpha",
+          "alpha": 0.9964282060751228,
+          "coefficient": 0.05135464823258722,
+          "log_rms_residual": 0.005075303271372816,
+          "points": [
+            {
+              "mhat": 0.01,
+              "I0_zero_minus_I0_mhat": 0.0005198237977163955
+            },
+            {
+              "mhat": 0.02,
+              "I0_zero_minus_I0_mhat": 0.0010416561266787805
+            },
+            {
+              "mhat": 0.04,
+              "I0_zero_minus_I0_mhat": 0.002088371867561306
+            },
+            {
+              "mhat": 0.08,
+              "I0_zero_minus_I0_mhat": 0.004172374865864775
+            },
+            {
+              "mhat": 0.12,
+              "I0_zero_minus_I0_mhat": 0.006215764486912204
+            },
+            {
+              "mhat": 0.16,
+              "I0_zero_minus_I0_mhat": 0.008202538210992275
+            }
+          ]
+        },
+        "bare_power_fits": {
+          "1.01_to_1.10": {
+            "points": 3,
+            "beta": 0.9730765231266799,
+            "prefactor": 1.4392553424268677,
+            "log_rms_residual": 0.0020298940842528317
+          },
+          "1.02_to_1.20": {
+            "points": 4,
+            "beta": 0.956884081606485,
+            "prefactor": 1.3614188387386534,
+            "log_rms_residual": 0.005211344907776358
+          },
+          "1.05_to_1.40": {
+            "points": 4,
+            "beta": 0.9421306278693318,
+            "prefactor": 1.3160916734412327,
+            "log_rms_residual": 0.004517505625681351
+          }
+        },
+        "local_effective_exponents": [
+          {
+            "between_G_over_Gc": [
+              1.01,
+              1.02
+            ],
+            "beta_effective": 0.9795552312030026
+          },
+          {
+            "between_G_over_Gc": [
+              1.02,
+              1.05
+            ],
+            "beta_effective": 0.9686085600246224
+          },
+          {
+            "between_G_over_Gc": [
+              1.05,
+              1.1
+            ],
+            "beta_effective": 0.9549435044598842
+          },
+          {
+            "between_G_over_Gc": [
+              1.1,
+              1.2
+            ],
+            "beta_effective": 0.9424599938540823
+          },
+          {
+            "between_G_over_Gc": [
+              1.2,
+              1.4
+            ],
+            "beta_effective": 0.9288785966324438
+          },
+          {
+            "between_G_over_Gc": [
+              1.4,
+              1.6
+            ],
+            "beta_effective": 0.9122377209505524
+          },
+          {
+            "between_G_over_Gc": [
+              1.6,
+              1.8
+            ],
+            "beta_effective": 0.8967296207868677
+          },
+          {
+            "between_G_over_Gc": [
+              1.8,
+              2.0
+            ],
+            "beta_effective": 0.8820839819671791
+          },
+          {
+            "between_G_over_Gc": [
+              2.0,
+              2.5
+            ],
+            "beta_effective": 0.8601080548395802
+          },
+          {
+            "between_G_over_Gc": [
+              2.5,
+              3.0
+            ],
+            "beta_effective": 0.8319556217474258
+          }
+        ],
+        "near_critical_exclusion": "G/Gc-1 < 0.01 is excluded from fits because root/grid resolution dominates there.",
+        "logarithmic_fit": "not attempted: the fitted small-Mhat difference is close to a regular linear power, so a logarithmic correction is not motivated by this finite-grid diagnostic."
+      }
+    },
+    {
+      "n": 40,
+      "shift": 0.0,
+      "analysis": {
+        "small_mass_behavior": {
+          "fit": "I0(0)-I0(Mhat) = coefficient * Mhat**alpha",
+          "alpha": 0.9957070905476126,
+          "coefficient": 0.05107305377840271,
+          "log_rms_residual": 0.004420277692537608,
+          "points": [
+            {
+              "mhat": 0.01,
+              "I0_zero_minus_I0_mhat": 0.0005189777545447083
+            },
+            {
+              "mhat": 0.02,
+              "I0_zero_minus_I0_mhat": 0.0010389499292761811
+            },
+            {
+              "mhat": 0.04,
+              "I0_zero_minus_I0_mhat": 0.0020801144041003444
+            },
+            {
+              "mhat": 0.08,
+              "I0_zero_minus_I0_mhat": 0.004153419784719323
+            },
+            {
+              "mhat": 0.12,
+              "I0_zero_minus_I0_mhat": 0.006191478611329723
+            },
+            {
+              "mhat": 0.16,
+              "I0_zero_minus_I0_mhat": 0.008176369587657106
+            }
+          ]
+        },
+        "bare_power_fits": {
+          "1.01_to_1.10": {
+            "points": 3,
+            "beta": 0.9758886503637363,
+            "prefactor": 1.4589939634532298,
+            "log_rms_residual": 0.002865889192232688
+          },
+          "1.02_to_1.20": {
+            "points": 4,
+            "beta": 0.9559401042866923,
+            "prefactor": 1.362436882352045,
+            "log_rms_residual": 0.00576654973535706
+          },
+          "1.05_to_1.40": {
+            "points": 4,
+            "beta": 0.940396315952561,
+            "prefactor": 1.3150488270538299,
+            "log_rms_residual": 0.0042788743088421595
+          }
+        },
+        "local_effective_exponents": [
+          {
+            "between_G_over_Gc": [
+              1.01,
+              1.02
+            ],
+            "beta_effective": 0.9850355608353717
+          },
+          {
+            "between_G_over_Gc": [
+              1.02,
+              1.05
+            ],
+            "beta_effective": 0.9695805935716042
+          },
+          {
+            "between_G_over_Gc": [
+              1.05,
+              1.1
+            ],
+            "beta_effective": 0.9522536288027039
+          },
+          {
+            "between_G_over_Gc": [
+              1.1,
+              1.2
+            ],
+            "beta_effective": 0.9411123669777853
+          },
+          {
+            "between_G_over_Gc": [
+              1.2,
+              1.4
+            ],
+            "beta_effective": 0.9275842684021176
+          },
+          {
+            "between_G_over_Gc": [
+              1.4,
+              1.6
+            ],
+            "beta_effective": 0.9116683761550476
+          },
+          {
+            "between_G_over_Gc": [
+              1.6,
+              1.8
+            ],
+            "beta_effective": 0.8963317221070252
+          },
+          {
+            "between_G_over_Gc": [
+              1.8,
+              2.0
+            ],
+            "beta_effective": 0.8815650435532567
+          },
+          {
+            "between_G_over_Gc": [
+              2.0,
+              2.5
+            ],
+            "beta_effective": 0.8598899181854361
+          },
+          {
+            "between_G_over_Gc": [
+              2.5,
+              3.0
+            ],
+            "beta_effective": 0.8317205894024761
+          }
+        ],
+        "near_critical_exclusion": "G/Gc-1 < 0.01 is excluded from fits because root/grid resolution dominates there.",
+        "logarithmic_fit": "not attempted: the fitted small-Mhat difference is close to a regular linear power, so a logarithmic correction is not motivated by this finite-grid diagnostic."
+      }
+    },
+    {
+      "n": 40,
+      "shift": 0.25,
+      "analysis": {
+        "small_mass_behavior": {
+          "fit": "I0(0)-I0(Mhat) = coefficient * Mhat**alpha",
+          "alpha": 0.9964774456901326,
+          "coefficient": 0.05141588709365653,
+          "log_rms_residual": 0.005345209209540627,
+          "points": [
+            {
+              "mhat": 0.01,
+              "I0_zero_minus_I0_mhat": 0.0005201553775068951
+            },
+            {
+              "mhat": 0.02,
+              "I0_zero_minus_I0_mhat": 0.0010427581743057968
+            },
+            {
+              "mhat": 0.04,
+              "I0_zero_minus_I0_mhat": 0.002091484922179046
+            },
+            {
+              "mhat": 0.08,
+              "I0_zero_minus_I0_mhat": 0.004177940363404187
+            },
+            {
+              "mhat": 0.12,
+              "I0_zero_minus_I0_mhat": 0.00622187186442931
+            },
+            {
+              "mhat": 0.16,
+              "I0_zero_minus_I0_mhat": 0.008208724893127836
+            }
+          ]
+        },
+        "bare_power_fits": {
+          "1.01_to_1.10": {
+            "points": 3,
+            "beta": 0.9747840338120292,
+            "prefactor": 1.4465252534497979,
+            "log_rms_residual": 0.003194233284071279
+          },
+          "1.02_to_1.20": {
+            "points": 4,
+            "beta": 0.9566918130724561,
+            "prefactor": 1.360026402208446,
+            "log_rms_residual": 0.004926781285379208
+          },
+          "1.05_to_1.40": {
+            "points": 4,
+            "beta": 0.9424301621954995,
+            "prefactor": 1.3161277719576383,
+            "log_rms_residual": 0.0044631546307601685
+          }
+        },
+        "local_effective_exponents": [
+          {
+            "between_G_over_Gc": [
+              1.01,
+              1.02
+            ],
+            "beta_effective": 0.9849789031580247
+          },
+          {
+            "between_G_over_Gc": [
+              1.02,
+              1.05
+            ],
+            "beta_effective": 0.9677532647865383
+          },
+          {
+            "between_G_over_Gc": [
+              1.05,
+              1.1
+            ],
+            "beta_effective": 0.9549076220440008
+          },
+          {
+            "between_G_over_Gc": [
+              1.1,
+              1.2
+            ],
+            "beta_effective": 0.9430196394569181
+          },
+          {
+            "between_G_over_Gc": [
+              1.2,
+              1.4
+            ],
+            "beta_effective": 0.9291667326651042
+          },
+          {
+            "between_G_over_Gc": [
+              1.4,
+              1.6
+            ],
+            "beta_effective": 0.9124062042893119
+          },
+          {
+            "between_G_over_Gc": [
+              1.6,
+              1.8
+            ],
+            "beta_effective": 0.8966453018922559
+          },
+          {
+            "between_G_over_Gc": [
+              1.8,
+              2.0
+            ],
+            "beta_effective": 0.8822256170178615
+          },
+          {
+            "between_G_over_Gc": [
+              2.0,
+              2.5
+            ],
+            "beta_effective": 0.860213548239041
+          },
+          {
+            "between_G_over_Gc": [
+              2.5,
+              3.0
+            ],
+            "beta_effective": 0.8320314612341561
+          }
+        ],
+        "near_critical_exclusion": "G/Gc-1 < 0.01 is excluded from fits because root/grid resolution dominates there.",
+        "logarithmic_fit": "not attempted: the fitted small-Mhat difference is close to a regular linear power, so a logarithmic correction is not motivated by this finite-grid diagnostic."
+      }
+    },
+    {
+      "n": 48,
+      "shift": 0.0,
+      "analysis": {
+        "small_mass_behavior": {
+          "fit": "I0(0)-I0(Mhat) = coefficient * Mhat**alpha",
+          "alpha": 0.9961092161799906,
+          "coefficient": 0.05121197626255478,
+          "log_rms_residual": 0.0046710973792374105,
+          "points": [
+            {
+              "mhat": 0.01,
+              "I0_zero_minus_I0_mhat": 0.0005193379718827773
+            },
+            {
+              "mhat": 0.02,
+              "I0_zero_minus_I0_mhat": 0.001040074128897256
+            },
+            {
+              "mhat": 0.04,
+              "I0_zero_minus_I0_mhat": 0.0020835884535614774
+            },
+            {
+              "mhat": 0.08,
+              "I0_zero_minus_I0_mhat": 0.004162016380146266
+            },
+            {
+              "mhat": 0.12,
+              "I0_zero_minus_I0_mhat": 0.0062031435721103395
+            },
+            {
+              "mhat": 0.16,
+              "I0_zero_minus_I0_mhat": 0.008189296639221424
+            }
+          ]
+        },
+        "bare_power_fits": {
+          "1.01_to_1.10": {
+            "points": 3,
+            "beta": 0.9744842592552573,
+            "prefactor": 1.4491025449335553,
+            "log_rms_residual": 0.002448182941421197
+          },
+          "1.02_to_1.20": {
+            "points": 4,
+            "beta": 0.9564789613436503,
+            "prefactor": 1.3622806491036183,
+            "log_rms_residual": 0.005500373437959209
+          },
+          "1.05_to_1.40": {
+            "points": 4,
+            "beta": 0.9412721929335673,
+            "prefactor": 1.3157130717215777,
+            "log_rms_residual": 0.00445937554291175
+          }
+        },
+        "local_effective_exponents": [
+          {
+            "between_G_over_Gc": [
+              1.01,
+              1.02
+            ],
+            "beta_effective": 0.9822979982665411
+          },
+          {
+            "between_G_over_Gc": [
+              1.02,
+              1.05
+            ],
+            "beta_effective": 0.9690956081260124
+          },
+          {
+            "between_G_over_Gc": [
+              1.05,
+              1.1
+            ],
+            "beta_effective": 0.9538871114308802
+          },
+          {
+            "between_G_over_Gc": [
+              1.1,
+              1.2
+            ],
+            "beta_effective": 0.9416458503630475
+          },
+          {
+            "between_G_over_Gc": [
+              1.2,
+              1.4
+            ],
+            "beta_effective": 0.9281590645302794
+          },
+          {
+            "between_G_over_Gc": [
+              1.4,
+              1.6
+            ],
+            "beta_effective": 0.911816787798942
+          },
+          {
+            "between_G_over_Gc": [
+              1.6,
+              1.8
+            ],
+            "beta_effective": 0.896428169903897
+          },
+          {
+            "between_G_over_Gc": [
+              1.8,
+              2.0
+            ],
+            "beta_effective": 0.8818480249081488
+          },
+          {
+            "between_G_over_Gc": [
+              2.0,
+              2.5
+            ],
+            "beta_effective": 0.8600165337600887
+          },
+          {
+            "between_G_over_Gc": [
+              2.5,
+              3.0
+            ],
+            "beta_effective": 0.8318974469996887
+          }
+        ],
+        "near_critical_exclusion": "G/Gc-1 < 0.01 is excluded from fits because root/grid resolution dominates there.",
+        "logarithmic_fit": "not attempted: the fitted small-Mhat difference is close to a regular linear power, so a logarithmic correction is not motivated by this finite-grid diagnostic."
+      }
+    },
+    {
+      "n": 48,
+      "shift": 0.25,
+      "analysis": {
+        "small_mass_behavior": {
+          "fit": "I0(0)-I0(Mhat) = coefficient * Mhat**alpha",
+          "alpha": 0.9964326965758304,
+          "coefficient": 0.05144330255729294,
+          "log_rms_residual": 0.005520820026718925,
+          "points": [
+            {
+              "mhat": 0.01,
+              "I0_zero_minus_I0_mhat": 0.0005204063612404414
+            },
+            {
+              "mhat": 0.02,
+              "I0_zero_minus_I0_mhat": 0.0010435859791996238
+            },
+            {
+              "mhat": 0.04,
+              "I0_zero_minus_I0_mhat": 0.0020936162535890313
+            },
+            {
+              "mhat": 0.08,
+              "I0_zero_minus_I0_mhat": 0.004181163180889014
+            },
+            {
+              "mhat": 0.12,
+              "I0_zero_minus_I0_mhat": 0.006225223265260302
+            },
+            {
+              "mhat": 0.16,
+              "I0_zero_minus_I0_mhat": 0.008212086414154787
+            }
+          ]
+        },
+        "bare_power_fits": {
+          "1.01_to_1.10": {
+            "points": 3,
+            "beta": 0.9743861319881562,
+            "prefactor": 1.443024041119895,
+            "log_rms_residual": 0.0024579085660538483
+          },
+          "1.02_to_1.20": {
+            "points": 4,
+            "beta": 0.9574267610025847,
+            "prefactor": 1.3616076623119775,
+            "log_rms_residual": 0.00512056807329924
+          },
+          "1.05_to_1.40": {
+            "points": 4,
+            "beta": 0.9427498091023048,
+            "prefactor": 1.3164539518342138,
+            "log_rms_residual": 0.00453275135511028
+          }
+        },
+        "local_effective_exponents": [
+          {
+            "between_G_over_Gc": [
+              1.01,
+              1.02
+            ],
+            "beta_effective": 0.982230911773114
+          },
+          {
+            "between_G_over_Gc": [
+              1.02,
+              1.05
+            ],
+            "beta_effective": 0.9689760739626897
+          },
+          {
+            "between_G_over_Gc": [
+              1.05,
+              1.1
+            ],
+            "beta_effective": 0.9554555331175711
+          },
+          {
+            "between_G_over_Gc": [
+              1.1,
+              1.2
+            ],
+            "beta_effective": 0.9432997203961432
+          },
+          {
+            "between_G_over_Gc": [
+              1.2,
+              1.4
+            ],
+            "beta_effective": 0.9293108700285848
+          },
+          {
+            "between_G_over_Gc": [
+              1.4,
+              1.6
+            ],
+            "beta_effective": 0.9124904695646815
+          },
+          {
+            "between_G_over_Gc": [
+              1.6,
+              1.8
+            ],
+            "beta_effective": 0.8967056207690416
+          },
+          {
+            "between_G_over_Gc": [
+              1.8,
+              2.0
+            ],
+            "beta_effective": 0.8822728388422135
+          },
+          {
+            "between_G_over_Gc": [
+              2.0,
+              2.5
+            ],
+            "beta_effective": 0.8601644465449648
+          },
+          {
+            "between_G_over_Gc": [
+              2.5,
+              3.0
+            ],
+            "beta_effective": 0.8320820286106262
+          }
+        ],
+        "near_critical_exclusion": "G/Gc-1 < 0.01 is excluded from fits because root/grid resolution dominates there.",
+        "logarithmic_fit": "not attempted: the fitted small-Mhat difference is close to a regular linear power, so a logarithmic correction is not motivated by this finite-grid diagnostic."
+      }
+    }
+  ],
+  "curvature_regression": {
+    "n": 16,
+    "shift": 0.25,
+    "G_over_Gc": 1.4,
+    "mhat": 0.553680419921875,
+    "analytic_full_derivative": 0.018965998068458976,
+    "finite_difference_reconstructed_potential": 0.018965973889051996,
+    "absolute_difference": 2.417940698010157e-08
+  },
+  "channel_executability": [
+    {
+      "family": "S",
+      "executable": true,
+      "basis": "P2-GAP-01 fixes the scalar channel normalization, uniform self-energy ansatz, and reduced gap functional."
+    },
+    {
+      "family": "P",
+      "executable": false,
+      "missing": [
+        "HS normalization",
+        "uniform condensate ansatz",
+        "common zero and measure normalization for cross-family potentials",
+        "frozen quadratic G projection/sign for a pseudoscalar mean-field potential"
+      ]
+    },
+    {
+      "family": "V",
+      "executable": false,
+      "missing": [
+        "HS normalization",
+        "uniform condensate ansatz",
+        "common zero and measure normalization for cross-family potentials",
+        "uniform vector direction and Lorentz/H(4) component choice",
+        "internal generator choice"
+      ]
+    },
+    {
+      "family": "A",
+      "executable": false,
+      "missing": [
+        "HS normalization",
+        "uniform condensate ansatz",
+        "common zero and measure normalization for cross-family potentials",
+        "uniform axial direction and Lorentz/H(4) component choice",
+        "internal generator choice"
+      ]
+    },
+    {
+      "family": "T",
+      "executable": false,
+      "missing": [
+        "HS normalization",
+        "uniform condensate ansatz",
+        "common zero and measure normalization for cross-family potentials",
+        "tensor-plane and Lorentz/H(4) component choice",
+        "internal generator choice"
+      ]
+    }
+  ],
+  "exclusions": [
+    "quarantined -3.2(5)",
+    "suspended P2-BETAV-CIRC-01 result",
+    "historical Finding 5 extraction"
+  ],
+  "limitations": [
+    "restricted to a uniform scalar ansatz at mu=0",
+    "one-dimensional curvature is not the full multichannel Hessian",
+    "no cross-family effective-potential comparison is constructed"
+  ]
+}
