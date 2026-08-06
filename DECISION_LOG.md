@@ -944,3 +944,68 @@ repository decision-log template.
 
 `CONVENTIONS.md`; `DECISION_LOG.md`; `docs/local/README.md`;
 `docs/local/execution_environment.md`.
+
+## 2026-08-06 — Adopt the function-based role model and record the dual-executor arrangement
+
+### Decision
+
+Roles in this programme are **functions**, not fixed agents, and their
+assignments are current and change by PI instruction. `AGENTS.md` and
+`reviews/README.md` now state the function-based model — PI, Researcher,
+Reviewer, Executor — with current assignments, and record the two-executor
+arrangement together with the capability difference that makes the two
+executors non-interchangeable. Records created or substantively amended
+after this decision must state the function under which they were produced.
+
+Record fields:
+
+    Date: 2026-08-06
+    Decision owner: Principal Investigator
+    Superseded documents: AGENTS.md role section; reviews/README.md
+    Effect: prospective only
+    No retrospective relabelling of existing reviews/ records
+    Reference: CONVENTIONS.md rule 8
+    Specification SHA-256: f8409394fa6afc634daeb9df0d28b2fb7a1795569bd28dae6c548e3ec3779fdd
+    Specification path: specs/2026-08-06T0456Z_role-model-and-executors.md
+
+### Reason
+
+An independent review found a live conflict inside the repository:
+`AGENTS.md` and `reviews/README.md` assigned fixed roles that contradicted
+the arrangement actually in use, while `CONVENTIONS.md` rule 8 already
+stated that these are functions rather than fixed assignments to a
+particular agent — and no committed artifact said that rule 8 superseded
+the older text. Any further governance work would have been built on that
+contradiction.
+
+### Evidence
+
+The approved specification is committed at
+`specs/2026-08-06T0456Z_role-model-and-executors.md`, whose committed-blob
+SHA-256 is recorded above. The superseded role text is preserved verbatim in
+labelled historical subsections of `AGENTS.md` and `reviews/README.md`.
+
+### Consequences
+
+Effect is prospective only. No gate status, reviewer verdict, artifact
+digest, claim, or scientific result changes, and `CONVENTIONS.md` is
+byte-identical across this change: no rule is created, renumbered, or
+reworded. Existing records under `reviews/` remain valid historical evidence
+and are not relabelled. Going forward, a task specification whose acceptance
+criteria can only be met on one executor should say so.
+
+### Supersedes
+
+The `## Role separation` bullets of `AGENTS.md` and the role sentences of
+`reviews/README.md` as they stood at
+`a0e9d11b7281f0c2185aa8d517bae009ab54807f`. Both are preserved, not deleted.
+
+### Related gate
+
+None. This is a governance record and touches no gate.
+
+### Related branch and files
+
+`review/role-model-and-executors`; `AGENTS.md`, `reviews/README.md`,
+`HANDOFF.md`, `PROGRESS.md`, `DECISION_LOG.md`,
+`specs/2026-08-06T0456Z_role-model-and-executors.md`.
