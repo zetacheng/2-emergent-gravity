@@ -1,4 +1,8 @@
 # Current Handoff
+> **Staleness notice (2026-08-06):** This document is retained as
+> historical handoff/progress context and is not current. For the
+> latest committed P2-PHASE-01 integration and prerequisite status,
+> see `reports/2026-08-05_p2-phase-01_integration-and-drafts.md`.
 
 ## Current task
 
