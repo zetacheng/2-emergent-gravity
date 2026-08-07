@@ -1,0 +1,264 @@
+{
+  "A3a_grassmann_exchange_sign": {
+    "all_routes_agree": true,
+    "anticommutation_steps": [
+      {
+        "cumulative_sign": -1,
+        "moved": "psi_4",
+        "ordering_after": [
+          "psibar_1",
+          "psi_2",
+          "psi_4",
+          "psibar_3"
+        ],
+        "past": "psibar_3",
+        "sign_of_this_anticommutation": -1,
+        "step": 1
+      },
+      {
+        "cumulative_sign": 1,
+        "moved": "psi_4",
+        "ordering_after": [
+          "psibar_1",
+          "psi_4",
+          "psi_2",
+          "psibar_3"
+        ],
+        "past": "psi_2",
+        "sign_of_this_anticommutation": -1,
+        "step": 2
+      },
+      {
+        "cumulative_sign": -1,
+        "moved": "psibar_3",
+        "ordering_after": [
+          "psibar_1",
+          "psi_4",
+          "psibar_3",
+          "psi_2"
+        ],
+        "past": "psi_2",
+        "sign_of_this_anticommutation": -1,
+        "step": 3
+      }
+    ],
+    "anticommutation_steps_note_route": [
+      {
+        "cumulative_sign": -1,
+        "moved": "psi_2",
+        "ordering_after": [
+          "psibar_1",
+          "psibar_3",
+          "psi_2",
+          "psi_4"
+        ],
+        "past": "psibar_3",
+        "sign_of_this_anticommutation": -1,
+        "step": 1
+      },
+      {
+        "cumulative_sign": 1,
+        "moved": "psi_2",
+        "ordering_after": [
+          "psibar_1",
+          "psibar_3",
+          "psi_4",
+          "psi_2"
+        ],
+        "past": "psi_4",
+        "sign_of_this_anticommutation": -1,
+        "step": 2
+      },
+      {
+        "cumulative_sign": -1,
+        "moved": "psi_4",
+        "ordering_after": [
+          "psibar_1",
+          "psi_4",
+          "psibar_3",
+          "psi_2"
+        ],
+        "past": "psibar_3",
+        "sign_of_this_anticommutation": -1,
+        "step": 3
+      }
+    ],
+    "declared_grassmann_crossing_sign": -1,
+    "final_order": [
+      "psibar_1",
+      "psi_4",
+      "psibar_3",
+      "psi_2"
+    ],
+    "final_ordering_matches_normative_target": true,
+    "final_ordering_reached": [
+      "psibar_1",
+      "psi_4",
+      "psibar_3",
+      "psi_2"
+    ],
+    "labels": {
+      "1": "psibar^{i}_{alpha}",
+      "2": "psi^{j}_{beta}",
+      "3": "psibar^{k}_{gamma}",
+      "4": "psi^{l}_{delta}"
+    },
+    "legs_exchanged": "psi_2 and psi_4; the two psibar legs do not move",
+    "monomial": "( psibar^{i}_{alpha} Gamma_{alpha beta} lam^{A}_{ij} psi^{j}_{beta} ) ( psibar^{k}_{gamma} Gamma_{gamma delta} lam^{A}_{kl} psi^{l}_{delta} )",
+    "note_route_final_ordering": [
+      "psibar_1",
+      "psi_4",
+      "psibar_3",
+      "psi_2"
+    ],
+    "note_route_sign": -1,
+    "permutation_parity_cross_check": {
+      "inversions": 3,
+      "nontrivial_cycles": [
+        [
+          1,
+          3
+        ]
+      ],
+      "permutation_one_line": [
+        0,
+        3,
+        2,
+        1
+      ],
+      "sign_from_inversions": -1,
+      "sign_from_transpositions": -1,
+      "transposition_count": 1
+    },
+    "routes": {
+      "derivation_note_decomposition": -1,
+      "explicit_selection_sort": -1,
+      "permutation_parity_inversions": -1,
+      "permutation_parity_transpositions": -1
+    },
+    "s_G": -1,
+    "s_G_equals_declared_value": true,
+    "starting_order": [
+      "psibar_1",
+      "psi_2",
+      "psibar_3",
+      "psi_4"
+    ]
+  },
+  "A3b_storage_convention": {
+    "defining_kernel_equation_present": false,
+    "explicitly_not_used_as_evidence": "The numerical equality of an unsigned reconstruction with matrix_rational is NOT used here. That equality is consistent with either convention: it shows the entries match a signless construction, not that the defining equation omits the sign.",
+    "freeze_json_top_level_keys": [
+      "basis_order",
+      "basis_elements",
+      "conventions",
+      "matrix_rational"
+    ],
+    "kernel_equation_markers_found": {
+      "= M ": 0,
+      "K_direct": 0,
+      "K_exch": 0,
+      "M *": 0,
+      "M .": 0,
+      "defining equation": 0,
+      "kernel equation": 0
+    },
+    "reasoning": "No defining kernel equation appears anywhere in the frozen material. The freeze's JSON block carries only basis_order, basis_elements, conventions and matrix_rational; the standalone artifact carries only basis_order and matrix_rational. The only prose describing the matrix's meaning is section C, which says the algebra 'and the Grassmann crossing sign -1 fix the following exact exchange matrix' without stating whether the tabulated entries include that sign. Both K_exch = M K_direct and K_exch = s_G M K_direct remain consistent with the frozen text.",
+    "section_C_verbatim": "## \u00a7C \u2014 Exact representation-family Fierz map\n\nLevel: **representation family** (not component rank).  Euclidean hermitian\nDirac basis: `S=Id4`, `P=gamma5`, `V=gamma(mu)`,\n`A=I*gamma(mu)*gamma5`, and\n`T=I*(gamma(mu)*gamma(nu)-gamma(nu)*gamma(mu))/2`, with component counts\n`1,1,4,4,6`.  The recovered `fierz_verify.py` algebra and the Grassmann\ncrossing sign `-1` fix the following exact exchange matrix; its square is the\nidentity and its family rank is five.  All strings are canonical exact SymPy\nexpressions; no float is used.\n\n```json",
+    "standalone_artifact_keys": [
+      "basis_order",
+      "matrix_rational"
+    ],
+    "verdict": "UNRESOLVED_GOVERNANCE_OR_EVIDENCE_AMBIGUITY"
+  },
+  "A4_chiral_decomposition": {
+    "direct_scalar_channel": {
+      "LL": "0",
+      "LR": "2",
+      "P_in_chiral_bilinears": "S_R - S_L",
+      "RL": "2",
+      "RR": "0",
+      "S_in_chiral_bilinears": "S_L + S_R",
+      "expanded": "4*S_L*S_R",
+      "interaction": "S**2 - P**2  (canonical form after the ratified I*gamma5 -> gamma5 basis conversion)",
+      "purely_left_right": true
+    },
+    "exchanged_current_channel": {
+      "A_in_chiral_currents": "I*(J_R - J_L)",
+      "LL": "0",
+      "LR": "2",
+      "RL": "2",
+      "RR": "0",
+      "V_in_chiral_currents": "J_L + J_R",
+      "combination": "V**2 + A**2 with the frozen A = I*gamma(mu)*gamma5",
+      "expanded": "4*J_L*J_R",
+      "purely_left_right": true
+    },
+    "note": "Sign-blind: an overall sign multiplies all four coefficients equally, so this check cannot bear on s_G.",
+    "projector_convention": {
+      "P_L": "(Id4 - gamma5)/2",
+      "P_R": "(Id4 + gamma5)/2",
+      "checks": {
+        "P_L_P_R_orthogonal": true,
+        "P_L_idempotent": true,
+        "P_L_plus_P_R_is_Id4": true,
+        "P_R_idempotent": true,
+        "gamma5_hermitian": true,
+        "gamma5_squares_to_Id4": true
+      }
+    }
+  },
+  "A5_checker_sign_invariance": {
+    "checker_modified_by_this_task": false,
+    "expression": "(sign * projector * crossing * embedding).T * sign",
+    "invariant_under_sign_flip": true,
+    "mutation_suite_covers_the_field": false,
+    "output_for_sign_minus_1": [
+      [
+        "2",
+        "4"
+      ],
+      [
+        "1",
+        "3"
+      ]
+    ],
+    "output_for_sign_plus_1": [
+      [
+        "2",
+        "4"
+      ],
+      [
+        "1",
+        "3"
+      ]
+    ],
+    "reason": "sign is a scalar and transposition does not act on a scalar factor, so the two occurrences multiply to sign**2 = +1 for either declared value.",
+    "source": "scripts/P2-CHANNEL-FREEZE/basis_freeze_check.py:462"
+  },
+  "authority": "specs/2026-08-07T1159Z_grassmann-crossing-sign.md",
+  "consequence_for_P2_PHASE_01": {
+    "scope": "sign only; magnitude and structure of the induced V and A coefficients are already established there and are not restated or re-derived here",
+    "statement": "s_G is established as -1. Whether the P2-PHASE-01 induced V and A coefficients carry that factor depends on the storage convention, which A3b reports as unresolved. The sign therefore remains contingent; it is NOT flipped by this result on its own."
+  },
+  "derivation_note": "derivations/P2-CHANNEL-FREEZE-01_grassmann_crossing_sign.md",
+  "exclusions_confirmed": {
+    "historical_Finding_5_extraction": "NOT READ",
+    "quarantined_-3.2(5)": "NOT READ",
+    "suspended_P2-BETAV-CIRC-01_result": "NOT READ"
+  },
+  "input_sha256": {
+    "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md": "fe68b9c645c80287afa45288d7c3e0490328b76663aafbe78af20dfc12a4e67a",
+    "results/P2-CHANNEL-FREEZE/fierz_matrix.json": "5085463db1b3a21c0ea1ad2d0b0cdb5da3abb5fd8a78e9623c6b6942879667a9",
+    "scripts/P2-CHANNEL-FREEZE/basis_freeze_check.py": "b3123855c225c6832c890c42fda6b03b4b8b81eef69a1c69ae654d7523367fdb",
+    "tests/test_channel_freeze_mutations.py": "4abaaf1746f5ffdbe4c09d8b05711f3570b30d8d9b7e4cdbf510ddb80fe7c7c0"
+  },
+  "repository_inputs_read": [
+    "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md",
+    "results/P2-CHANNEL-FREEZE/fierz_matrix.json",
+    "scripts/P2-CHANNEL-FREEZE/basis_freeze_check.py",
+    "tests/test_channel_freeze_mutations.py"
+  ],
+  "status": "DERIVATION; a computation, not a ruling; no gate registered, no status changed, no frozen artifact modified",
+  "study": "P2-CHANNEL-FREEZE-01 Grassmann crossing sign, by explicit single-leg exchange"
+}
