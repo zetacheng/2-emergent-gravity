@@ -1009,3 +1009,78 @@ None. This is a governance record and touches no gate.
 `review/role-model-and-executors`; `AGENTS.md`, `reviews/README.md`,
 `HANDOFF.md`, `PROGRESS.md`, `DECISION_LOG.md`,
 `specs/2026-08-06T0456Z_role-model-and-executors.md`.
+
+## 2026-08-07 — Fierz matrix sign convention: `matrix_rational` is stored unsigned
+
+Date: 2026-08-07
+Decision owner: Principal Investigator
+Effect: supplies a definition absent from the frozen material
+
+### Decision
+
+The PI ruling of 2026-08-07, reproduced verbatim:
+
+> **PI ruling, 2026-08-07 — Fierz matrix sign convention.**
+>
+> `matrix_rational` stores the Dirac/internal exchange matrix **without**
+> the operator-level Grassmann crossing factor. The four-fermion operator
+> exchange is therefore
+>
+>     K_exch = s_G · M · K_direct,     s_G = -1
+>
+> The declared `grassmann_crossing_sign` is applied **exactly once at
+> operator use**. The existing double application in
+> `basis_freeze_check.py` is an ineffective validation and does not
+> define the storage convention.
+
+In short: s_G = -1, applied exactly once at operator use;
+matrix_rational is stored unsigned; and the
+basis_freeze_check.py double application is ineffective validation.
+
+### Reason
+
+Not a recovery of original intent. The executor established that no
+defining kernel equation exists anywhere in the frozen material —
+`K_exch`, `K_direct`, `defining equation` and `kernel equation` all occur
+zero times, verified independently. The ruling rests on three pieces of
+indirect evidence — an unsigned reconstruction matches the frozen
+entries; the checker's net effect is `+1`; the sign is declared as a
+separate convention field — **none of which is a defining equation**. The
+ruling therefore supplies a definition the freeze never carried, rather
+than recovering one it did. A record claiming otherwise would overstate
+the evidence.
+
+### Evidence
+
+`derivations/P2-CHANNEL-FREEZE-01_grassmann_crossing_sign.md` and
+`results/P2-CHANNEL-FREEZE/grassmann-crossing-sign/crossing_sign.json`
+establish the operator-level sign `s_G = -1` by explicit four-fermion
+exchange under a frozen permutation, by four independent routes, and
+record the storage convention as unresolved on the frozen material.
+`reports/2026-08-07T1159Z_grassmann-crossing-sign.md` reports both.
+
+### Consequences
+
+Consequence: P2-PHASE-01 induced V and A coefficients are -G/4 at the
+operator level, the singlet values reported as `+G/4` at the matrix level
+in `reports/2026-08-07T0356Z_p2-phase-01-fierz-and-branch-depths.md`
+acquiring the factor `s_G = -1` exactly once. The structural results are
+unaffected: S, P and T vanish; V and A are equal and purely singlet; the
+exchanged form is purely left-right with `LL = RR = 0`.
+
+Neither original report was altered. The consequence is recorded in
+`derivations/P2-PHASE-01_fierz_sign_addendum.md`.
+
+Freeze repair (tenth mutation, checker correction, vocab_parser pin) is
+queued as a separate task and is NOT performed here.
+
+### Related gate
+
+None. This ruling changes a convention, not a gate. `P2-CHANNEL-FREEZE-01`
+remains `PROPOSED` and `P2-PHASE-01` remains `PROPOSED`.
+
+### Related branch and files
+
+`gate/p2-integrate-fierz-and-sign-ruling`;
+`derivations/P2-PHASE-01_fierz_sign_addendum.md`, `DECISION_LOG.md`,
+`specs/2026-08-07T1320Z_integrate-fierz-and-sign-ruling.md`.
