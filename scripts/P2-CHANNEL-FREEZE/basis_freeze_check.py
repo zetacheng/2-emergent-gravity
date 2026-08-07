@@ -456,10 +456,17 @@ def verify(
     projector = pair_gram.inv() * embedding.T
     require(projector * embedding == sp.eye(5), "pair-space aggregation mismatch")
     crossing = _crossing_pair_map()
-    sign = parse_grassmann_sign(conventions["grassmann_crossing_sign"])
+    # The declared crossing sign is parsed so a malformed value is still
+    # rejected, but it is deliberately NOT applied to the reconstruction:
+    # per the 2026-08-07 ruling `matrix_rational` is stored unsigned, and
+    # s_G is applied exactly once at operator use, downstream of what this
+    # checker validates.  Applying it here would put the reconstruction an
+    # overall -1 away from the frozen table.  It was previously applied
+    # twice, which cancelled to the identity for either declared value.
+    parse_grassmann_sign(conventions["grassmann_crossing_sign"])
     # The frozen matrix is a coefficient-row action; dualising the computed
     # pair-space column action supplies its exact, typed orientation.
-    computed_fierz = (sign * projector * crossing * embedding).T * sign
+    computed_fierz = (projector * crossing * embedding).T
     frozen_fierz = _matrix_from_strings(c_block["matrix_rational"])
     require(computed_fierz == frozen_fierz, "computed Fierz matrix mismatch")
     require(
