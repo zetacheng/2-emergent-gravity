@@ -1084,3 +1084,68 @@ remains `PROPOSED` and `P2-PHASE-01` remains `PROPOSED`.
 `gate/p2-integrate-fierz-and-sign-ruling`;
 `derivations/P2-PHASE-01_fierz_sign_addendum.md`, `DECISION_LOG.md`,
 `specs/2026-08-07T1320Z_integrate-fierz-and-sign-ruling.md`.
+
+## 2026-08-07 — Branch-deletion policy adopted; pre-deletion authorization recorded
+
+Date: 2026-08-07
+Decision owner: Principal Investigator
+Effect: adds a lifecycle rule; authorizes nothing to be deleted yet
+
+### Decision
+
+`docs/BRANCHING_POLICY.md` previously said nothing about deletion. It now
+carries a **Branch lifecycle** section with four cases — merged with the
+tip recoverable as a merge parent; merged with the tip not a merge
+parent; unmerged; and explicitly preserved — together with the rule that
+**every deletion is recorded in two committed steps**: an authorization
+record before, and a finalized record after.
+
+Deletion proceeds in three stages with hard boundaries. Stage 1, this
+entry, lands the policy and the authorization record. **Stage 2 deletes
+nothing until Stage 1 is merged into `main`**, so that the record of what
+was to be deleted is permanent before the irreversible act. **Stage 3
+finalizes the record with what was actually deleted**, because a record
+of intent is not a record of outcome.
+
+### Evidence
+
+`docs/BRANCH_DELETION_RECORD_2026-08-07.md` carries one entry per branch
+in the deletion set, each with its name, tip SHA, merge commit,
+live-verified merge status and deletion status. Every value was computed
+from the repository and the live remote, not transcribed.
+
+The deletion set is **26 listed branches**, of which **25 are present on
+the remote and all 25 verified as ancestors of `main`**, giving 25
+`PENDING_DELETE` entries. **No listed branch failed the merge check.**
+The single `NOT_AUTHORIZED` entry, `gate/p2-integrate-fierz-and-sign-ruling`,
+is unauthorized because it is absent from the remote, never having been
+pushed; its local ref equals `main`, so nothing is at risk.
+
+One branch on the remote is not in the deletion set —
+`fix/freeze-checker-sign-repair`, pushed after the specification was
+written and awaiting its own review. It must not be deleted.
+
+### Consequences
+
+Nothing is deleted by this entry. Twenty-five refs become eligible for
+deletion once Stage 1 is merged; their content, grouping and tip SHAs
+survive in the merge commits on `main`, and their names survive in the
+record. What deletion costs is the human-readable name, which the record
+preserves more durably than a ref does.
+
+**`review/role-model-and-executors` @
+`10c260b96882ac12610f78840aeeabd07be2d7cb` is permanently preserved.** It
+is unmerged, so deleting it would destroy content rather than a name. It
+appears in no deletion set at any stage, and is verified before and after
+every deletion loop.
+
+### Related gate
+
+None. This is a repository-hygiene policy and changes no gate or
+scientific status.
+
+### Related branch and files
+
+`fix/branch-deletion-policy`;
+`docs/BRANCHING_POLICY.md`, `docs/BRANCH_DELETION_RECORD_2026-08-07.md`,
+`DECISION_LOG.md`, `specs/2026-08-07T1437Z_branch-deletion-policy.md`.
