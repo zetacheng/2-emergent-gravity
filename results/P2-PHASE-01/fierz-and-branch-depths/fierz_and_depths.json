@@ -1,0 +1,5694 @@
+{
+  "authority": "specs/2026-08-07T0356Z_p2-phase-01-fierz-and-branch-depths.md",
+  "decisions_taken": {
+    "branch_characterisation": "NONE MADE (OPEN-AC-2)",
+    "hubbard_stratonovich_channel": "NONE SELECTED (OPEN-AC-1)",
+    "potential_zero": "NONE SELECTED",
+    "vat_orientation_or_components": "NONE SELECTED"
+  },
+  "derivation_a_fierz": {
+    "basis_checks": {
+      "all_hermitian": true,
+      "all_square_to_Id4": true,
+      "element_count": 16,
+      "gamma5_hermitian": true,
+      "gamma5_squares_to_Id4": true,
+      "gammas_hermitian": true,
+      "linearly_independent": true,
+      "orthogonality_trace_GaGb_eq_4delta": true,
+      "rank_of_span": 16,
+      "spans_4x4_matrices": true,
+      "trace_Id4": "4",
+      "trace_proportionality_constant_per_family": {
+        "A": "4",
+        "P": "4",
+        "S": "4",
+        "T": "4",
+        "V": "4"
+      }
+    },
+    "crossing_sign_placement_finding": "The frozen matrix_rational equals the reconstruction WITHOUT the grassmann_crossing_sign factor. Where the -1 is applied is not determined by the frozen material; it is reported, not resolved.",
+    "elementwise_comparison_unsigned_vs_frozen": [
+      [
+        {
+          "a": "S",
+          "b": "S",
+          "equal": true,
+          "frozen": "1/4",
+          "reconstructed": "1/4"
+        },
+        {
+          "a": "S",
+          "b": "P",
+          "equal": true,
+          "frozen": "1/4",
+          "reconstructed": "1/4"
+        },
+        {
+          "a": "S",
+          "b": "V",
+          "equal": true,
+          "frozen": "1/4",
+          "reconstructed": "1/4"
+        },
+        {
+          "a": "S",
+          "b": "A",
+          "equal": true,
+          "frozen": "1/4",
+          "reconstructed": "1/4"
+        },
+        {
+          "a": "S",
+          "b": "T",
+          "equal": true,
+          "frozen": "1/4",
+          "reconstructed": "1/4"
+        }
+      ],
+      [
+        {
+          "a": "P",
+          "b": "S",
+          "equal": true,
+          "frozen": "1/4",
+          "reconstructed": "1/4"
+        },
+        {
+          "a": "P",
+          "b": "P",
+          "equal": true,
+          "frozen": "1/4",
+          "reconstructed": "1/4"
+        },
+        {
+          "a": "P",
+          "b": "V",
+          "equal": true,
+          "frozen": "-1/4",
+          "reconstructed": "-1/4"
+        },
+        {
+          "a": "P",
+          "b": "A",
+          "equal": true,
+          "frozen": "-1/4",
+          "reconstructed": "-1/4"
+        },
+        {
+          "a": "P",
+          "b": "T",
+          "equal": true,
+          "frozen": "1/4",
+          "reconstructed": "1/4"
+        }
+      ],
+      [
+        {
+          "a": "V",
+          "b": "S",
+          "equal": true,
+          "frozen": "1",
+          "reconstructed": "1"
+        },
+        {
+          "a": "V",
+          "b": "P",
+          "equal": true,
+          "frozen": "-1",
+          "reconstructed": "-1"
+        },
+        {
+          "a": "V",
+          "b": "V",
+          "equal": true,
+          "frozen": "-1/2",
+          "reconstructed": "-1/2"
+        },
+        {
+          "a": "V",
+          "b": "A",
+          "equal": true,
+          "frozen": "1/2",
+          "reconstructed": "1/2"
+        },
+        {
+          "a": "V",
+          "b": "T",
+          "equal": true,
+          "frozen": "0",
+          "reconstructed": "0"
+        }
+      ],
+      [
+        {
+          "a": "A",
+          "b": "S",
+          "equal": true,
+          "frozen": "1",
+          "reconstructed": "1"
+        },
+        {
+          "a": "A",
+          "b": "P",
+          "equal": true,
+          "frozen": "-1",
+          "reconstructed": "-1"
+        },
+        {
+          "a": "A",
+          "b": "V",
+          "equal": true,
+          "frozen": "1/2",
+          "reconstructed": "1/2"
+        },
+        {
+          "a": "A",
+          "b": "A",
+          "equal": true,
+          "frozen": "-1/2",
+          "reconstructed": "-1/2"
+        },
+        {
+          "a": "A",
+          "b": "T",
+          "equal": true,
+          "frozen": "0",
+          "reconstructed": "0"
+        }
+      ],
+      [
+        {
+          "a": "T",
+          "b": "S",
+          "equal": true,
+          "frozen": "3/2",
+          "reconstructed": "3/2"
+        },
+        {
+          "a": "T",
+          "b": "P",
+          "equal": true,
+          "frozen": "3/2",
+          "reconstructed": "3/2"
+        },
+        {
+          "a": "T",
+          "b": "V",
+          "equal": true,
+          "frozen": "0",
+          "reconstructed": "0"
+        },
+        {
+          "a": "T",
+          "b": "A",
+          "equal": true,
+          "frozen": "0",
+          "reconstructed": "0"
+        },
+        {
+          "a": "T",
+          "b": "T",
+          "equal": true,
+          "frozen": "-1/2",
+          "reconstructed": "-1/2"
+        }
+      ]
+    ],
+    "frozen_equals_minus_signed_reconstruction": true,
+    "frozen_matrix_embedded_in_freeze": [
+      [
+        "1/4",
+        "1/4",
+        "1/4",
+        "1/4",
+        "1/4"
+      ],
+      [
+        "1/4",
+        "1/4",
+        "-1/4",
+        "-1/4",
+        "1/4"
+      ],
+      [
+        "1",
+        "-1",
+        "-1/2",
+        "1/2",
+        "0"
+      ],
+      [
+        "1",
+        "-1",
+        "1/2",
+        "-1/2",
+        "0"
+      ],
+      [
+        "3/2",
+        "3/2",
+        "0",
+        "0",
+        "-1/2"
+      ]
+    ],
+    "frozen_matrix_standalone_json": [
+      [
+        "1/4",
+        "1/4",
+        "1/4",
+        "1/4",
+        "1/4"
+      ],
+      [
+        "1/4",
+        "1/4",
+        "-1/4",
+        "-1/4",
+        "1/4"
+      ],
+      [
+        "1",
+        "-1",
+        "-1/2",
+        "1/2",
+        "0"
+      ],
+      [
+        "1",
+        "-1",
+        "1/2",
+        "-1/2",
+        "0"
+      ],
+      [
+        "3/2",
+        "3/2",
+        "0",
+        "0",
+        "-1/2"
+      ]
+    ],
+    "generator_checks": {
+      "2": {
+        "completeness_sum_lamA_ij_lamA_kl_eq_2_delta_il_delta_kj": true,
+        "expected_count": 4,
+        "generator_count": 4,
+        "singlet_is_sqrt_2_over_n_times_identity": true,
+        "trace_lamA_lamB_eq_2delta": true
+      },
+      "3": {
+        "completeness_sum_lamA_ij_lamA_kl_eq_2_delta_il_delta_kj": true,
+        "expected_count": 9,
+        "generator_count": 9,
+        "singlet_is_sqrt_2_over_n_times_identity": true,
+        "trace_lamA_lamB_eq_2delta": true
+      },
+      "4": {
+        "completeness_sum_lamA_ij_lamA_kl_eq_2_delta_il_delta_kj": true,
+        "expected_count": 16,
+        "generator_count": 16,
+        "singlet_is_sqrt_2_over_n_times_identity": true,
+        "trace_lamA_lamB_eq_2delta": true
+      }
+    },
+    "induced_coefficients": {
+      "canonical_vector_before_conversion": {
+        "A": "0",
+        "P": "G/(2*N)",
+        "S": "G/(2*N)",
+        "T": "0",
+        "V": "0"
+      },
+      "conversion_rule": "(bilinear(lam(A), I*gamma5))**2 = -(bilinear(lam(A), gamma5))**2",
+      "converted_vector_in_frozen_basis": {
+        "A": "0",
+        "P": "-G/(2*N)",
+        "S": "G/(2*N)",
+        "T": "0",
+        "V": "0"
+      },
+      "dirac_row_after_matrix": {
+        "A": "1/2",
+        "P": "0",
+        "S": "0",
+        "T": "0",
+        "V": "1/2"
+      },
+      "induced_coefficient_singlet": {
+        "A": "G/4",
+        "P": "0",
+        "S": "0",
+        "T": "0",
+        "V": "G/4"
+      },
+      "induced_coefficient_traceless": {
+        "A": "0",
+        "P": "0",
+        "S": "0",
+        "T": "0",
+        "V": "0"
+      },
+      "internal_factor_derivation": "Sum_A lam(A)_ab lam(A)_cd = 2 delta_ad delta_cb ; Id_N = sqrt(N/2) lam(0) ; 2 * (N/2) = N",
+      "traceless_vanishes_because": "the exchanged internal structure is Id_N x Id_N, which is pure singlet under lam(0) = sqrt(2/N) Id_N; no traceless generator appears. A vanishing coefficient is a result, not an omission."
+    },
+    "involution": {
+      "exact_residual_frozen_squared_minus_identity": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "frozen_squared": [
+        [
+          "1",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "1"
+        ]
+      ],
+      "frozen_squared_is_identity": true,
+      "note": "Both the signed and unsigned forms are involutory, so involution does not discriminate the crossing-sign placement. Reported as found; no convention adjusted.",
+      "rank_frozen": 5,
+      "signed_squared_is_identity": true,
+      "unsigned_squared_is_identity": true
+    },
+    "kernel_identity": {
+      "A": {
+        "components_checked": 256,
+        "holds": true,
+        "max_abs_residual": "0"
+      },
+      "P": {
+        "components_checked": 256,
+        "holds": true,
+        "max_abs_residual": "0"
+      },
+      "S": {
+        "components_checked": 256,
+        "holds": true,
+        "max_abs_residual": "0"
+      },
+      "T": {
+        "components_checked": 256,
+        "holds": true,
+        "max_abs_residual": "0"
+      },
+      "V": {
+        "components_checked": 256,
+        "holds": true,
+        "max_abs_residual": "0"
+      }
+    },
+    "projection_formula": "M[a][c] = (1/16) Sum_i trace(G^a_i G^c_k G^a_i G^c_k)",
+    "projection_formula_k_independence": [
+      {
+        "a": "S",
+        "c": "S",
+        "k_independent": true,
+        "values_over_components": [
+          "1/4"
+        ]
+      },
+      {
+        "a": "S",
+        "c": "P",
+        "k_independent": true,
+        "values_over_components": [
+          "1/4"
+        ]
+      },
+      {
+        "a": "S",
+        "c": "V",
+        "k_independent": true,
+        "values_over_components": [
+          "1/4",
+          "1/4",
+          "1/4",
+          "1/4"
+        ]
+      },
+      {
+        "a": "S",
+        "c": "A",
+        "k_independent": true,
+        "values_over_components": [
+          "1/4",
+          "1/4",
+          "1/4",
+          "1/4"
+        ]
+      },
+      {
+        "a": "S",
+        "c": "T",
+        "k_independent": true,
+        "values_over_components": [
+          "1/4",
+          "1/4",
+          "1/4",
+          "1/4",
+          "1/4",
+          "1/4"
+        ]
+      },
+      {
+        "a": "P",
+        "c": "S",
+        "k_independent": true,
+        "values_over_components": [
+          "1/4"
+        ]
+      },
+      {
+        "a": "P",
+        "c": "P",
+        "k_independent": true,
+        "values_over_components": [
+          "1/4"
+        ]
+      },
+      {
+        "a": "P",
+        "c": "V",
+        "k_independent": true,
+        "values_over_components": [
+          "-1/4",
+          "-1/4",
+          "-1/4",
+          "-1/4"
+        ]
+      },
+      {
+        "a": "P",
+        "c": "A",
+        "k_independent": true,
+        "values_over_components": [
+          "-1/4",
+          "-1/4",
+          "-1/4",
+          "-1/4"
+        ]
+      },
+      {
+        "a": "P",
+        "c": "T",
+        "k_independent": true,
+        "values_over_components": [
+          "1/4",
+          "1/4",
+          "1/4",
+          "1/4",
+          "1/4",
+          "1/4"
+        ]
+      },
+      {
+        "a": "V",
+        "c": "S",
+        "k_independent": true,
+        "values_over_components": [
+          "1"
+        ]
+      },
+      {
+        "a": "V",
+        "c": "P",
+        "k_independent": true,
+        "values_over_components": [
+          "-1"
+        ]
+      },
+      {
+        "a": "V",
+        "c": "V",
+        "k_independent": true,
+        "values_over_components": [
+          "-1/2",
+          "-1/2",
+          "-1/2",
+          "-1/2"
+        ]
+      },
+      {
+        "a": "V",
+        "c": "A",
+        "k_independent": true,
+        "values_over_components": [
+          "1/2",
+          "1/2",
+          "1/2",
+          "1/2"
+        ]
+      },
+      {
+        "a": "V",
+        "c": "T",
+        "k_independent": true,
+        "values_over_components": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      {
+        "a": "A",
+        "c": "S",
+        "k_independent": true,
+        "values_over_components": [
+          "1"
+        ]
+      },
+      {
+        "a": "A",
+        "c": "P",
+        "k_independent": true,
+        "values_over_components": [
+          "-1"
+        ]
+      },
+      {
+        "a": "A",
+        "c": "V",
+        "k_independent": true,
+        "values_over_components": [
+          "1/2",
+          "1/2",
+          "1/2",
+          "1/2"
+        ]
+      },
+      {
+        "a": "A",
+        "c": "A",
+        "k_independent": true,
+        "values_over_components": [
+          "-1/2",
+          "-1/2",
+          "-1/2",
+          "-1/2"
+        ]
+      },
+      {
+        "a": "A",
+        "c": "T",
+        "k_independent": true,
+        "values_over_components": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      {
+        "a": "T",
+        "c": "S",
+        "k_independent": true,
+        "values_over_components": [
+          "3/2"
+        ]
+      },
+      {
+        "a": "T",
+        "c": "P",
+        "k_independent": true,
+        "values_over_components": [
+          "3/2"
+        ]
+      },
+      {
+        "a": "T",
+        "c": "V",
+        "k_independent": true,
+        "values_over_components": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      {
+        "a": "T",
+        "c": "A",
+        "k_independent": true,
+        "values_over_components": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      {
+        "a": "T",
+        "c": "T",
+        "k_independent": true,
+        "values_over_components": [
+          "-1/2",
+          "-1/2",
+          "-1/2",
+          "-1/2",
+          "-1/2",
+          "-1/2"
+        ]
+      }
+    ],
+    "reconstructed_matrix_with_crossing_sign": [
+      [
+        "-1/4",
+        "-1/4",
+        "-1/4",
+        "-1/4",
+        "-1/4"
+      ],
+      [
+        "-1/4",
+        "-1/4",
+        "1/4",
+        "1/4",
+        "-1/4"
+      ],
+      [
+        "-1",
+        "1",
+        "1/2",
+        "-1/2",
+        "0"
+      ],
+      [
+        "-1",
+        "1",
+        "-1/2",
+        "1/2",
+        "0"
+      ],
+      [
+        "-3/2",
+        "-3/2",
+        "0",
+        "0",
+        "1/2"
+      ]
+    ],
+    "reconstructed_matrix_without_crossing_sign": [
+      [
+        "1/4",
+        "1/4",
+        "1/4",
+        "1/4",
+        "1/4"
+      ],
+      [
+        "1/4",
+        "1/4",
+        "-1/4",
+        "-1/4",
+        "1/4"
+      ],
+      [
+        "1",
+        "-1",
+        "-1/2",
+        "1/2",
+        "0"
+      ],
+      [
+        "1",
+        "-1",
+        "1/2",
+        "-1/2",
+        "0"
+      ],
+      [
+        "3/2",
+        "3/2",
+        "0",
+        "0",
+        "-1/2"
+      ]
+    ],
+    "signed_reconstruction_equals_frozen": false,
+    "status": "EXECUTED",
+    "two_frozen_copies_agree_entrywise": [
+      [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    ],
+    "two_frozen_copies_identical": true,
+    "unsigned_reconstruction_equals_frozen": true
+  },
+  "derivation_b_branch_depths": {
+    "aggregates": [
+      {
+        "G_over_Gc": 0.8,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 0.8,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -7.590667724609375,
+          "n32_shift0.25": -7.589447021484375,
+          "n40_shift0.0": -7.590057373046875,
+          "n40_shift0.25": -7.589324951171875,
+          "n48_shift0.0": -7.589752197265625,
+          "n48_shift0.25": -7.589263916015625
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -3.9156459849177203,
+        "potential_min_across_grids": -3.917258250299849,
+        "potential_spread": 0.0016122653821288857,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 2
+      },
+      {
+        "G_over_Gc": 0.8,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -0.409332275390625,
+          "n32_shift0.25": -0.410552978515625,
+          "n40_shift0.0": -0.409942626953125,
+          "n40_shift0.25": -0.410675048828125,
+          "n48_shift0.0": -0.410247802734375,
+          "n48_shift0.25": -0.410736083984375
+        },
+        "ordinal": 1,
+        "potential_max_across_grids": 0.0006141450619166541,
+        "potential_min_across_grids": 0.0006078794842460725,
+        "potential_spread": 6.2655776705815985e-06,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 5
+      },
+      {
+        "G_over_Gc": 0.9,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 0.9,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -7.814544677734375,
+          "n32_shift0.25": -7.813385009765625,
+          "n40_shift0.0": -7.813995361328125,
+          "n40_shift0.25": -7.813262939453125,
+          "n48_shift0.0": -7.813690185546875,
+          "n48_shift0.25": -7.813201904296875
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -4.265752234665248,
+        "potential_min_across_grids": -4.26730960787995,
+        "potential_spread": 0.0015573732147018404,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 2
+      },
+      {
+        "G_over_Gc": 0.9,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -0.185455322265625,
+          "n32_shift0.25": -0.186614990234375,
+          "n40_shift0.0": -0.186004638671875,
+          "n40_shift0.25": -0.186737060546875,
+          "n48_shift0.0": -0.186309814453125,
+          "n48_shift0.25": -0.186798095703125
+        },
+        "ordinal": 1,
+        "potential_max_across_grids": 5.51890065091285e-05,
+        "potential_min_across_grids": 5.4209849680776634e-05,
+        "potential_spread": 9.791568283518647e-07,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 4
+      },
+      {
+        "G_over_Gc": 0.98,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 0.98,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -7.966278076171875,
+          "n32_shift0.25": -7.966094970703125,
+          "n40_shift0.0": -7.966217041015625,
+          "n40_shift0.25": -7.966033935546875,
+          "n48_shift0.0": -7.966156005859375,
+          "n48_shift0.25": -7.966033935546875
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -4.503988512483366,
+        "potential_min_across_grids": -4.505905107772506,
+        "potential_spread": 0.0019165952891402327,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 1
+      },
+      {
+        "G_over_Gc": 0.98,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -0.033721923828125,
+          "n32_shift0.25": -0.033905029296875,
+          "n40_shift0.0": -0.033782958984375,
+          "n40_shift0.25": -0.033966064453125,
+          "n48_shift0.0": -0.033843994140625,
+          "n48_shift0.25": -0.033966064453125
+        },
+        "ordinal": 1,
+        "potential_max_across_grids": 3.334496074402184e-07,
+        "potential_min_across_grids": 3.293559208470922e-07,
+        "potential_spread": 4.093686593126201e-09,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 8
+      },
+      {
+        "G_over_Gc": 0.99,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 0.99,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -7.983367919921875,
+          "n32_shift0.25": -7.983306884765625,
+          "n40_shift0.0": -7.983306884765625,
+          "n40_shift0.25": -7.983306884765625,
+          "n48_shift0.0": -7.983306884765625,
+          "n48_shift0.25": -7.983245849609375
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -4.531830858513064,
+        "potential_min_across_grids": -4.53374062287613,
+        "potential_spread": 0.001909764363065669,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 2
+      },
+      {
+        "G_over_Gc": 0.99,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -0.016632080078125,
+          "n32_shift0.25": -0.016693115234375,
+          "n40_shift0.0": -0.016693115234375,
+          "n40_shift0.25": -0.016693115234375,
+          "n48_shift0.0": -0.016693115234375,
+          "n48_shift0.25": -0.016754150390625
+        },
+        "ordinal": 1,
+        "potential_max_across_grids": 4.008690214017376e-08,
+        "potential_min_across_grids": 3.982970531785387e-08,
+        "potential_spread": 2.5719682231988407e-10,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 9
+      },
+      {
+        "G_over_Gc": 1.0,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 1.0,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -7.999969482421875,
+          "n32_shift0.25": -7.999969482421875,
+          "n40_shift0.0": -7.999969482421875,
+          "n40_shift0.25": -7.999969482421875,
+          "n48_shift0.0": -7.999969482421875,
+          "n48_shift0.25": -7.999969482421875
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -4.559277208760892,
+        "potential_min_across_grids": -4.561175404029084,
+        "potential_spread": 0.0018981952681924597,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 2
+      },
+      {
+        "G_over_Gc": 1.01,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 1.01,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -8.016265869140625,
+          "n32_shift0.25": -8.016265869140625,
+          "n40_shift0.0": -8.016265869140625,
+          "n40_shift0.25": -8.016204833984375,
+          "n48_shift0.0": -8.016265869140625,
+          "n48_shift0.25": -8.016204833984375
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -4.586333045557616,
+        "potential_min_across_grids": -4.588216635258119,
+        "potential_spread": 0.0018835897005029523,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 2
+      },
+      {
+        "G_over_Gc": 1.01,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.016265869140625,
+          "n32_shift0.25": 0.016265869140625,
+          "n40_shift0.0": 0.016265869140625,
+          "n40_shift0.25": 0.016204833984375,
+          "n48_shift0.0": 0.016265869140625,
+          "n48_shift0.25": 0.016204833984375
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -3.713507182602472e-08,
+        "potential_min_across_grids": -3.7371487220381314e-08,
+        "potential_spread": 2.3641539435659633e-10,
+        "sign_sector": "positive",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 9
+      },
+      {
+        "G_over_Gc": 1.02,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 1.02,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -8.032257080078125,
+          "n32_shift0.25": -8.032073974609375,
+          "n40_shift0.0": -8.032196044921875,
+          "n40_shift0.25": -8.032073974609375,
+          "n48_shift0.0": -8.032135009765625,
+          "n48_shift0.25": -8.032012939453125
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -4.613004038968438,
+        "potential_min_across_grids": -4.614872360096141,
+        "potential_spread": 0.0018683211277030765,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 2
+      },
+      {
+        "G_over_Gc": 1.02,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.032257080078125,
+          "n32_shift0.25": 0.032073974609375,
+          "n40_shift0.0": 0.032196044921875,
+          "n40_shift0.25": 0.032073974609375,
+          "n48_shift0.0": 0.032135009765625,
+          "n48_shift0.25": 0.032012939453125
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -2.8682915762675117e-07,
+        "potential_min_across_grids": -2.900052211093443e-07,
+        "potential_spread": 3.1760634825931224e-09,
+        "sign_sector": "positive",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 8
+      },
+      {
+        "G_over_Gc": 1.05,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 1.05,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -8.078460693359375,
+          "n32_shift0.25": -8.077911376953125,
+          "n40_shift0.0": -8.078277587890625,
+          "n40_shift0.25": -8.077850341796875,
+          "n48_shift0.0": -8.078094482421875,
+          "n48_shift0.25": -8.077789306640625
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -4.690781076314075,
+        "potential_min_across_grids": -4.692599843134133,
+        "potential_spread": 0.001818766820057327,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 2
+      },
+      {
+        "G_over_Gc": 1.05,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.078460693359375,
+          "n32_shift0.25": 0.077911376953125,
+          "n40_shift0.0": 0.078277587890625,
+          "n40_shift0.25": 0.077850341796875,
+          "n48_shift0.0": 0.078094482421875,
+          "n48_shift0.25": 0.077789306640625
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -4.091343930627371e-06,
+        "potential_min_across_grids": -4.160088016623626e-06,
+        "potential_spread": 6.874408599625518e-08,
+        "sign_sector": "positive",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 6
+      },
+      {
+        "G_over_Gc": 1.1,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 1.1,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -8.151885986328125,
+          "n32_shift0.25": -8.151031494140625,
+          "n40_shift0.0": -8.151458740234375,
+          "n40_shift0.25": -8.150909423828125,
+          "n48_shift0.0": -8.151275634765625,
+          "n48_shift0.25": -8.150848388671875
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -4.8133646291445045,
+        "potential_min_across_grids": -4.815110702943976,
+        "potential_spread": 0.001746073799471226,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 1
+      },
+      {
+        "G_over_Gc": 1.1,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.151885986328125,
+          "n32_shift0.25": 0.151031494140625,
+          "n40_shift0.0": 0.151458740234375,
+          "n40_shift0.25": 0.150909423828125,
+          "n48_shift0.0": 0.151275634765625,
+          "n48_shift0.25": 0.150848388671875
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -2.8928410366593142e-05,
+        "potential_min_across_grids": -2.937401944574946e-05,
+        "potential_spread": 4.456090791563191e-07,
+        "sign_sector": "positive",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 6
+      },
+      {
+        "G_over_Gc": 1.2,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 1.2,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -8.291290283203125,
+          "n32_shift0.25": -8.290252685546875,
+          "n40_shift0.0": -8.290802001953125,
+          "n40_shift0.25": -8.290130615234375,
+          "n48_shift0.0": -8.290557861328125,
+          "n48_shift0.25": -8.290069580078125
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -5.035093345736922,
+        "potential_min_across_grids": -5.036280244247159,
+        "potential_spread": 0.0011868985102374552,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 2
+      },
+      {
+        "G_over_Gc": 1.2,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.291290283203125,
+          "n32_shift0.25": 0.290252685546875,
+          "n40_shift0.0": 0.290802001953125,
+          "n40_shift0.25": 0.290130615234375,
+          "n48_shift0.0": 0.290557861328125,
+          "n48_shift0.25": 0.290069580078125
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -0.00018933027973731548,
+        "potential_min_across_grids": -0.0001912707995595955,
+        "potential_spread": 1.940519822280027e-06,
+        "sign_sector": "positive",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 5
+      },
+      {
+        "G_over_Gc": 1.4,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 1.4,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -8.553680419921875,
+          "n32_shift0.25": -8.552581787109375,
+          "n40_shift0.0": -8.553131103515625,
+          "n40_shift0.25": -8.552459716796875,
+          "n48_shift0.0": -8.552886962890625,
+          "n48_shift0.25": -8.552398681640625
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -5.3962609966215265,
+        "potential_min_across_grids": -5.396797104077621,
+        "potential_spread": 0.0005361074560941148,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 2
+      },
+      {
+        "G_over_Gc": 1.4,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.553680419921875,
+          "n32_shift0.25": 0.552581787109375,
+          "n40_shift0.0": 0.553131103515625,
+          "n40_shift0.25": 0.552459716796875,
+          "n48_shift0.0": 0.552886962890625,
+          "n48_shift0.25": 0.552398681640625
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -0.0010978309005452939,
+        "potential_min_across_grids": -0.001104333611307757,
+        "potential_spread": 6.502710762463018e-06,
+        "sign_sector": "positive",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 5
+      },
+      {
+        "G_over_Gc": 1.6,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 1.6,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -8.801055908203125,
+          "n32_shift0.25": -8.799896240234375,
+          "n40_shift0.0": -8.800506591796875,
+          "n40_shift0.25": -8.799774169921875,
+          "n48_shift0.0": -8.800201416015625,
+          "n48_shift0.25": -8.799713134765625
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -5.680637929052356,
+        "potential_min_across_grids": -5.6816005155236144,
+        "potential_spread": 0.0009625864712585752,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 2
+      },
+      {
+        "G_over_Gc": 1.6,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.801055908203125,
+          "n32_shift0.25": 0.799896240234375,
+          "n40_shift0.0": 0.800506591796875,
+          "n40_shift0.25": 0.799774169921875,
+          "n48_shift0.0": 0.800201416015625,
+          "n48_shift0.25": 0.799713134765625
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -0.002836621677612807,
+        "potential_min_across_grids": -0.002848732885604749,
+        "potential_spread": 1.2111207991941791e-05,
+        "sign_sector": "positive",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 4
+      },
+      {
+        "G_over_Gc": 1.8,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 1.8,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -9.036590576171875,
+          "n32_shift0.25": -9.035308837890625,
+          "n40_shift0.0": -9.035980224609375,
+          "n40_shift0.25": -9.035125732421875,
+          "n48_shift0.0": -9.035614013671875,
+          "n48_shift0.25": -9.035064697265625
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -5.916951209159,
+        "potential_min_across_grids": -5.91775988507775,
+        "potential_spread": 0.0008086759187495574,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 2
+      },
+      {
+        "G_over_Gc": 1.8,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 1.036590576171875,
+          "n32_shift0.25": 1.035308837890625,
+          "n40_shift0.0": 1.035980224609375,
+          "n40_shift0.25": 1.035125732421875,
+          "n48_shift0.0": 1.035614013671875,
+          "n48_shift0.25": 1.035064697265625
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -0.005325153587742902,
+        "potential_min_across_grids": -0.0053432976936865495,
+        "potential_spread": 1.8144105943647404e-05,
+        "sign_sector": "positive",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 4
+      },
+      {
+        "G_over_Gc": 2.0,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 2.0,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -9.261871337890625,
+          "n32_shift0.25": -9.260528564453125,
+          "n40_shift0.0": -9.261199951171875,
+          "n40_shift0.25": -9.260345458984375,
+          "n48_shift0.0": -9.260833740234375,
+          "n48_shift0.25": -9.260284423828125
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -6.113025718108656,
+        "potential_min_across_grids": -6.113911168639134,
+        "potential_spread": 0.0008854505304780602,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 2
+      },
+      {
+        "G_over_Gc": 2.0,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 1.261871337890625,
+          "n32_shift0.25": 1.260528564453125,
+          "n40_shift0.0": 1.261199951171875,
+          "n40_shift0.25": 1.260345458984375,
+          "n48_shift0.0": 1.260833740234375,
+          "n48_shift0.25": 1.260284423828125
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -0.00844187959538114,
+        "potential_min_across_grids": -0.00846616142739947,
+        "potential_spread": 2.428183201833023e-05,
+        "sign_sector": "positive",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 3
+      },
+      {
+        "G_over_Gc": 2.5,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 2.5,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -9.788055419921875,
+          "n32_shift0.25": -9.786529541015625,
+          "n40_shift0.0": -9.787322998046875,
+          "n40_shift0.25": -9.786346435546875,
+          "n48_shift0.0": -9.786895751953125,
+          "n48_shift0.25": -9.786224365234375
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -6.5033763636896555,
+        "potential_min_across_grids": -6.503823458594364,
+        "potential_spread": 0.0004470949047084005,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 2
+      },
+      {
+        "G_over_Gc": 2.5,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 1.788055419921875,
+          "n32_shift0.25": 1.786529541015625,
+          "n40_shift0.0": 1.787322998046875,
+          "n40_shift0.25": 1.786346435546875,
+          "n48_shift0.0": 1.786895751953125,
+          "n48_shift0.25": 1.786224365234375
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -0.018244896621114073,
+        "potential_min_across_grids": -0.018284051220539242,
+        "potential_spread": 3.91545994251688e-05,
+        "sign_sector": "positive",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 3
+      },
+      {
+        "G_over_Gc": 3.0,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 0.0,
+          "n32_shift0.25": 0.0,
+          "n40_shift0.0": 0.0,
+          "n40_shift0.25": 0.0,
+          "n48_shift0.0": 0.0,
+          "n48_shift0.25": 0.0
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": 0.0,
+        "potential_min_across_grids": 0.0,
+        "potential_spread": 0.0,
+        "sign_sector": "zero",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT_THROUGH_D_MAX",
+        "stable_decimal_places": 12
+      },
+      {
+        "G_over_Gc": 3.0,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": -10.271331787109375,
+          "n32_shift0.25": -10.269622802734375,
+          "n40_shift0.0": -10.270477294921875,
+          "n40_shift0.25": -10.269439697265625,
+          "n48_shift0.0": -10.270050048828125,
+          "n48_shift0.25": -10.269317626953125
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -6.786872555883052,
+        "potential_min_across_grids": -6.787536874684798,
+        "potential_spread": 0.0006643188017454449,
+        "sign_sector": "negative",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 2
+      },
+      {
+        "G_over_Gc": 3.0,
+        "combinations_frozen_in_specification": 6,
+        "mhat_by_combination": {
+          "n32_shift0.0": 2.271331787109375,
+          "n32_shift0.25": 2.269622802734375,
+          "n40_shift0.0": 2.270477294921875,
+          "n40_shift0.25": 2.269439697265625,
+          "n48_shift0.0": 2.270050048828125,
+          "n48_shift0.25": 2.269317626953125
+        },
+        "ordinal": 0,
+        "potential_max_across_grids": -0.029870220587262172,
+        "potential_min_across_grids": -0.029922958516748685,
+        "potential_spread": 5.273792948651268e-05,
+        "sign_sector": "positive",
+        "stability_combinations": 6,
+        "stability_status": "AGREEMENT",
+        "stable_decimal_places": 4
+      }
+    ],
+    "cross_family_comparison": "OUT OF SCOPE (OPEN-AC-3): no common HS, measure or potential-zero normalisation is frozen",
+    "depth_resolution": [
+      {
+        "G_over_Gc": 0.8,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 0.8,
+        "branch_1": "zero#0",
+        "branch_2": "negative#1",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "zero#0"
+      },
+      {
+        "G_over_Gc": 0.8,
+        "branch_1": "negative#0",
+        "branch_2": "negative#1",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 0.9,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 0.9,
+        "branch_1": "zero#0",
+        "branch_2": "negative#1",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "zero#0"
+      },
+      {
+        "G_over_Gc": 0.9,
+        "branch_1": "negative#0",
+        "branch_2": "negative#1",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 0.98,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 0.98,
+        "branch_1": "zero#0",
+        "branch_2": "negative#1",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "zero#0"
+      },
+      {
+        "G_over_Gc": 0.98,
+        "branch_1": "negative#0",
+        "branch_2": "negative#1",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 0.99,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 0.99,
+        "branch_1": "zero#0",
+        "branch_2": "negative#1",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "zero#0"
+      },
+      {
+        "G_over_Gc": 0.99,
+        "branch_1": "negative#0",
+        "branch_2": "negative#1",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.0,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.01,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.01,
+        "branch_1": "zero#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "positive#0"
+      },
+      {
+        "G_over_Gc": 1.01,
+        "branch_1": "negative#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.02,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.02,
+        "branch_1": "zero#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "positive#0"
+      },
+      {
+        "G_over_Gc": 1.02,
+        "branch_1": "negative#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.05,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.05,
+        "branch_1": "zero#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "positive#0"
+      },
+      {
+        "G_over_Gc": 1.05,
+        "branch_1": "negative#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.1,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.1,
+        "branch_1": "zero#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "positive#0"
+      },
+      {
+        "G_over_Gc": 1.1,
+        "branch_1": "negative#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.2,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.2,
+        "branch_1": "zero#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "positive#0"
+      },
+      {
+        "G_over_Gc": 1.2,
+        "branch_1": "negative#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.4,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.4,
+        "branch_1": "zero#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "positive#0"
+      },
+      {
+        "G_over_Gc": 1.4,
+        "branch_1": "negative#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.6,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.6,
+        "branch_1": "zero#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "positive#0"
+      },
+      {
+        "G_over_Gc": 1.6,
+        "branch_1": "negative#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.8,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 1.8,
+        "branch_1": "zero#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "positive#0"
+      },
+      {
+        "G_over_Gc": 1.8,
+        "branch_1": "negative#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 2.0,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 2.0,
+        "branch_1": "zero#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "positive#0"
+      },
+      {
+        "G_over_Gc": 2.0,
+        "branch_1": "negative#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 2.5,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 2.5,
+        "branch_1": "zero#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "positive#0"
+      },
+      {
+        "G_over_Gc": 2.5,
+        "branch_1": "negative#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 3.0,
+        "branch_1": "zero#0",
+        "branch_2": "negative#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      },
+      {
+        "G_over_Gc": 3.0,
+        "branch_1": "zero#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "positive#0"
+      },
+      {
+        "G_over_Gc": 3.0,
+        "branch_1": "negative#0",
+        "branch_2": "positive#0",
+        "depth_resolved": true,
+        "envelopes_disjoint": true,
+        "more_negative_branch": "negative#0"
+      }
+    ],
+    "derivative_check": [
+      {
+        "abs_difference": 1.727012422293213e-12,
+        "analytic_first_derivative": -0.0,
+        "mhat": 0.0,
+        "numerical_dV": 1.727012422293213e-12
+      },
+      {
+        "abs_difference": 1.6502549110217202e-12,
+        "analytic_first_derivative": -0.0009058116096436781,
+        "mhat": 0.1,
+        "numerical_dV": -0.0009058116079934231
+      },
+      {
+        "abs_difference": 8.281084151740004e-13,
+        "analytic_first_derivative": 0.0041365918548562156,
+        "mhat": 0.5,
+        "numerical_dV": 0.004136591855684324
+      },
+      {
+        "abs_difference": 1.1332948468556481e-13,
+        "analytic_first_derivative": 0.02285168145827373,
+        "mhat": 1.0,
+        "numerical_dV": 0.02285168145838706
+      }
+    ],
+    "domain_reduction": {
+      "amendment_commit": null,
+      "couplings_frozen_in_specification": [
+        0.8,
+        0.9,
+        0.98,
+        0.99,
+        1.0,
+        1.01,
+        1.02,
+        1.05,
+        1.1,
+        1.2,
+        1.4,
+        1.6,
+        1.8,
+        2.0,
+        2.5,
+        3.0
+      ],
+      "couplings_used": [
+        0.8,
+        0.9,
+        0.98,
+        0.99,
+        1.0,
+        1.01,
+        1.02,
+        1.05,
+        1.1,
+        1.2,
+        1.4,
+        1.6,
+        1.8,
+        2.0,
+        2.5,
+        3.0
+      ],
+      "grids_frozen_in_specification": [
+        [
+          32,
+          0.0
+        ],
+        [
+          32,
+          0.25
+        ],
+        [
+          40,
+          0.0
+        ],
+        [
+          40,
+          0.25
+        ],
+        [
+          48,
+          0.0
+        ],
+        [
+          48,
+          0.25
+        ]
+      ],
+      "grids_used": [
+        [
+          32,
+          0.0
+        ],
+        [
+          32,
+          0.25
+        ],
+        [
+          40,
+          0.0
+        ],
+        [
+          40,
+          0.25
+        ],
+        [
+          48,
+          0.0
+        ],
+        [
+          48,
+          0.25
+        ]
+      ],
+      "note": "No pre-evaluation reduction was required, so no amendment commit exists.",
+      "reduced": false
+    },
+    "potential_source": "derivations/P2-PHASE-01_scalar_stationary_exploratory.md; reconstructed_potential imported from scripts/p2_phase01_scalar_exploratory.py",
+    "potential_zero": "NOT DEFINED UNDER THE FROZEN MATERIAL; only V_red(Mhat)-V_red(0) is fixed. Classified UNRESOLVED_GOVERNANCE_OR_EVIDENCE_AMBIGUITY.",
+    "regression_anchor": {
+      "G": 7.032260350681775,
+      "G_over_Gc": 1.2,
+      "mhat": 0.5,
+      "n": 32,
+      "potential_minus_trivial": 0.00019130050729523028,
+      "provenance": "SELF-GENERATED BY THIS TASK; a regression anchor against future drift, NOT independent validation of correctness, and NOT a pre-existing frozen number.",
+      "shift": 0.0
+    },
+    "rounding_rule": "decimal representation at 12 stored decimals, decimal.ROUND_HALF_EVEN; binary float round() not used",
+    "rows": [
+      {
+        "G": 4.688173567121184,
+        "G_over_Gc": 0.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.590667724609375,
+        "n": 32,
+        "potential_minus_trivial": -3.917258250299849,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.41771939429032273,
+        "shift": 0.0,
+        "stationarity_residual": 1.0451620587548227e-05
+      },
+      {
+        "G": 4.688173567121184,
+        "G_over_Gc": 0.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.409332275390625,
+        "n": 32,
+        "potential_minus_trivial": 0.0006078794842460725,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.022524647225761738,
+        "shift": 0.0,
+        "stationarity_residual": 1.045162058721516e-05
+      },
+      {
+        "G": 4.688173567121184,
+        "G_over_Gc": 0.8,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.021330268294952645,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.274195263011332,
+        "G_over_Gc": 0.9,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.814544677734375,
+        "n": 32,
+        "potential_minus_trivial": -4.26730960787995,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4002715883423503,
+        "shift": 0.0,
+        "stationarity_residual": 1.2103822021658495e-05
+      },
+      {
+        "G": 5.274195263011332,
+        "G_over_Gc": 0.9,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.185455322265625,
+        "n": 32,
+        "potential_minus_trivial": 5.4209849680776634e-05,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.009498098714209353,
+        "shift": 0.0,
+        "stationarity_residual": 1.2103822021214405e-05
+      },
+      {
+        "G": 5.274195263011332,
+        "G_over_Gc": 0.9,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.009480119242201171,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.74301261972345,
+        "G_over_Gc": 0.98,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.966278076171875,
+        "n": 32,
+        "potential_minus_trivial": -4.505905107772506,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4097999518915709,
+        "shift": 0.0,
+        "stationarity_residual": 1.6391092143575037e-06
+      },
+      {
+        "G": 5.74301261972345,
+        "G_over_Gc": 0.98,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.033721923828125,
+        "n": 32,
+        "potential_minus_trivial": 3.293559208470922e-07,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0017348609058723831,
+        "shift": 0.0,
+        "stationarity_residual": 1.6391092145795483e-06
+      },
+      {
+        "G": 5.74301261972345,
+        "G_over_Gc": 0.98,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.001741246391424714,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.801614789312465,
+        "G_over_Gc": 0.99,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.983367919921875,
+        "n": 32,
+        "potential_minus_trivial": -4.53374062287613,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.41233473292475586,
+        "shift": 0.0,
+        "stationarity_residual": 1.598526814550194e-05
+      },
+      {
+        "G": 5.801614789312465,
+        "G_over_Gc": 0.99,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.016632080078125,
+        "n": 32,
+        "potential_minus_trivial": 3.982970531785387e-08,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0008576534504316979,
+        "shift": 0.0,
+        "stationarity_residual": 1.5985268145612963e-05
+      },
+      {
+        "G": 5.801614789312465,
+        "G_over_Gc": 0.99,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0008618290220182845,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.860216958901479,
+        "G_over_Gc": 1.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.999969482421875,
+        "n": 32,
+        "potential_minus_trivial": -4.561175404029084,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4144779052260112,
+        "shift": 0.0,
+        "stationarity_residual": 1.853145286223601e-05
+      },
+      {
+        "G": 5.860216958901479,
+        "G_over_Gc": 1.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.918819128490494,
+        "G_over_Gc": 1.01,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.016265869140625,
+        "n": 32,
+        "potential_minus_trivial": -4.588216635258119,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.41603634191452077,
+        "shift": 0.0,
+        "stationarity_residual": 1.4087872326484785e-05
+      },
+      {
+        "G": 5.918819128490494,
+        "G_over_Gc": 1.01,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.000844763100790194,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.918819128490494,
+        "G_over_Gc": 1.01,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.016265869140625,
+        "n": 32,
+        "potential_minus_trivial": -3.7371487220381314e-08,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0008429949896711919,
+        "shift": 0.0,
+        "stationarity_residual": 1.408787232670683e-05
+      },
+      {
+        "G": 5.977421298079509,
+        "G_over_Gc": 1.02,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.032257080078125,
+        "n": 32,
+        "potential_minus_trivial": -4.614872360096141,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.41685990711174065,
+        "shift": 0.0,
+        "stationarity_residual": 7.893124905899995e-06
+      },
+      {
+        "G": 5.977421298079509,
+        "G_over_Gc": 1.02,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.001672962219211968,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.977421298079509,
+        "G_over_Gc": 1.02,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.032257080078125,
+        "n": 32,
+        "potential_minus_trivial": -2.900052211093443e-07,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0016747428812170894,
+        "shift": 0.0,
+        "stationarity_residual": 7.893124905233861e-06
+      },
+      {
+        "G": 6.153227806846553,
+        "G_over_Gc": 1.05,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.078460693359375,
+        "n": 32,
+        "potential_minus_trivial": -4.692599843134133,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4147114423334145,
+        "shift": 0.0,
+        "stationarity_residual": 1.5033173426770574e-05
+      },
+      {
+        "G": 6.153227806846553,
+        "G_over_Gc": 1.05,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.004062908246657643,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 6.153227806846553,
+        "G_over_Gc": 1.05,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.078460693359375,
+        "n": 32,
+        "potential_minus_trivial": -4.160088016623626e-06,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.004026605562566995,
+        "shift": 0.0,
+        "stationarity_residual": 1.5033173426992619e-05
+      },
+      {
+        "G": 6.446238654791628,
+        "G_over_Gc": 1.1,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.151885986328125,
+        "n": 32,
+        "potential_minus_trivial": -4.815110702943976,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.400395996923362,
+        "shift": 0.0,
+        "stationarity_residual": 3.204330443096204e-06
+      },
+      {
+        "G": 6.446238654791628,
+        "G_over_Gc": 1.1,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.007756461198164602,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 6.446238654791628,
+        "G_over_Gc": 1.1,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.151885986328125,
+        "n": 32,
+        "potential_minus_trivial": -2.937401944574946e-05,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.007460424416842328,
+        "shift": 0.0,
+        "stationarity_residual": 3.2043304423190477e-06
+      },
+      {
+        "G": 7.032260350681775,
+        "G_over_Gc": 1.2,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.291290283203125,
+        "n": 32,
+        "potential_minus_trivial": -5.036280244247159,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.3612485879539246,
+        "shift": 0.0,
+        "stationarity_residual": 1.326341416829635e-05
+      },
+      {
+        "G": 7.032260350681775,
+        "G_over_Gc": 1.2,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.01422017886330175,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 7.032260350681775,
+        "G_over_Gc": 1.2,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.291290283203125,
+        "n": 32,
+        "potential_minus_trivial": -0.0001912707995595955,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.012692324622850516,
+        "shift": 0.0,
+        "stationarity_residual": 1.326341416829635e-05
+      },
+      {
+        "G": 8.20430374246207,
+        "G_over_Gc": 1.4,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.553680419921875,
+        "n": 32,
+        "potential_minus_trivial": -5.396797104077621,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.2930023865541799,
+        "shift": 0.0,
+        "stationarity_residual": 1.2267546216637726e-06
+      },
+      {
+        "G": 8.20430374246207,
+        "G_over_Gc": 1.4,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.024377449479945863,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 8.20430374246207,
+        "G_over_Gc": 1.4,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.553680419921875,
+        "n": 32,
+        "potential_minus_trivial": -0.001104333611307757,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.01896599806845897,
+        "shift": 0.0,
+        "stationarity_residual": 1.2267546218858172e-06
+      },
+      {
+        "G": 9.376347134242367,
+        "G_over_Gc": 1.6,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.801055908203125,
+        "n": 32,
+        "potential_minus_trivial": -5.6816005155236144,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.2433383253660112,
+        "shift": 0.0,
+        "stationarity_residual": 1.0756177419413149e-05
+      },
+      {
+        "G": 9.376347134242367,
+        "G_over_Gc": 1.6,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.031995402442428954,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 9.376347134242367,
+        "G_over_Gc": 1.6,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.801055908203125,
+        "n": 32,
+        "potential_minus_trivial": -0.002848732885604749,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0221476850751526,
+        "shift": 0.0,
+        "stationarity_residual": 1.0756177419635193e-05
+      },
+      {
+        "G": 10.548390526022663,
+        "G_over_Gc": 1.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.036590576171875,
+        "n": 32,
+        "potential_minus_trivial": -5.91775988507775,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.2067832838884352,
+        "shift": 0.0,
+        "stationarity_residual": 1.4611414347998064e-05
+      },
+      {
+        "G": 10.548390526022663,
+        "G_over_Gc": 1.8,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.03792047696880469,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 10.548390526022663,
+        "G_over_Gc": 1.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.036590576171875,
+        "n": 32,
+        "potential_minus_trivial": -0.0053432976936865495,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.023720798491397868,
+        "shift": 0.0,
+        "stationarity_residual": 1.4611414347553975e-05
+      },
+      {
+        "G": 11.720433917802959,
+        "G_over_Gc": 2.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.261871337890625,
+        "n": 32,
+        "potential_minus_trivial": -6.113911168639134,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.1790733666904175,
+        "shift": 0.0,
+        "stationarity_residual": 5.966649265776169e-06
+      },
+      {
+        "G": 11.720433917802959,
+        "G_over_Gc": 2.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.042660536589905276,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 11.720433917802959,
+        "G_over_Gc": 2.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.261871337890625,
+        "n": 32,
+        "potential_minus_trivial": -0.00846616142739947,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.024397832455892703,
+        "shift": 0.0,
+        "stationarity_residual": 5.966649265665147e-06
+      },
+      {
+        "G": 14.650542397253698,
+        "G_over_Gc": 2.5,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.788055419921875,
+        "n": 32,
+        "potential_minus_trivial": -6.503823458594364,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.13283334403164365,
+        "shift": 0.0,
+        "stationarity_residual": 4.953142590413684e-06
+      },
+      {
+        "G": 14.650542397253698,
+        "G_over_Gc": 2.5,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.05119264390788633,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 14.650542397253698,
+        "G_over_Gc": 2.5,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.788055419921875,
+        "n": 32,
+        "potential_minus_trivial": -0.018284051220539242,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.02426577322013526,
+        "shift": 0.0,
+        "stationarity_residual": 4.953142590191639e-06
+      },
+      {
+        "G": 17.58065087670444,
+        "G_over_Gc": 3.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -10.271331787109375,
+        "n": 32,
+        "potential_minus_trivial": -6.787536874684798,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.10468872186651974,
+        "shift": 0.0,
+        "stationarity_residual": 1.0865105766200145e-06
+      },
+      {
+        "G": 17.58065087670444,
+        "G_over_Gc": 3.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.05688071545320704,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 17.58065087670444,
+        "G_over_Gc": 3.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": 2.271331787109375,
+        "n": 32,
+        "potential_minus_trivial": -0.029922958516748685,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.023150169214832948,
+        "shift": 0.0,
+        "stationarity_residual": 1.086510576842059e-06
+      },
+      {
+        "G": 4.685312528506555,
+        "G_over_Gc": 0.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.589447021484375,
+        "n": 32,
+        "potential_minus_trivial": -3.9159342824866763,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.41785026111954865,
+        "shift": 0.25,
+        "stationarity_residual": 8.919836210097287e-06
+      },
+      {
+        "G": 4.685312528506555,
+        "G_over_Gc": 0.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.410552978515625,
+        "n": 32,
+        "potential_minus_trivial": 0.0006131482989446806,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.022604714669958084,
+        "shift": 0.25,
+        "stationarity_residual": 8.919836210319332e-06
+      },
+      {
+        "G": 4.685312528506555,
+        "G_over_Gc": 0.8,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.02134329340712625,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.270976594569874,
+        "G_over_Gc": 0.9,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.813385009765625,
+        "n": 32,
+        "potential_minus_trivial": -4.266024272346103,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.40002757190067306,
+        "shift": 0.25,
+        "stationarity_residual": 1.5233423521943124e-05
+      },
+      {
+        "G": 5.270976594569874,
+        "G_over_Gc": 0.9,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.186614990234375,
+        "n": 32,
+        "potential_minus_trivial": 5.501475538400983e-05,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.009555743324941982,
+        "shift": 0.25,
+        "stationarity_residual": 1.5233423521721079e-05
+      },
+      {
+        "G": 5.270976594569874,
+        "G_over_Gc": 0.9,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.009485908180944982,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.739507847420529,
+        "G_over_Gc": 0.98,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.966094970703125,
+        "n": 32,
+        "potential_minus_trivial": -4.504296281278865,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.40616786713119846,
+        "shift": 0.25,
+        "stationarity_residual": 9.64565383254623e-06
+      },
+      {
+        "G": 5.739507847420529,
+        "G_over_Gc": 0.98,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.033905029296875,
+        "n": 32,
+        "potential_minus_trivial": 3.320492494565124e-07,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.001729562071700871,
+        "shift": 0.25,
+        "stationarity_residual": 9.645653832768275e-06
+      },
+      {
+        "G": 5.739507847420529,
+        "G_over_Gc": 0.98,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0017423096658878562,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.7980742540268615,
+        "G_over_Gc": 0.99,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.983306884765625,
+        "n": 32,
+        "potential_minus_trivial": -4.532136022985498,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4104464998476634,
+        "shift": 0.25,
+        "stationarity_residual": 3.65493827714225e-06
+      },
+      {
+        "G": 5.7980742540268615,
+        "G_over_Gc": 0.99,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.016693115234375,
+        "n": 32,
+        "potential_minus_trivial": 3.999208438363236e-08,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.000857928842531298,
+        "shift": 0.25,
+        "stationarity_residual": 3.6549382770312278e-06
+      },
+      {
+        "G": 5.7980742540268615,
+        "G_over_Gc": 0.99,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0008623552891768027,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.856640660633193,
+        "G_over_Gc": 1.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.999969482421875,
+        "n": 32,
+        "potential_minus_trivial": -4.559579772583388,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.414894422261436,
+        "shift": 0.25,
+        "stationarity_residual": 1.85388504649886e-05
+      },
+      {
+        "G": 5.856640660633193,
+        "G_over_Gc": 1.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.915207067239525,
+        "G_over_Gc": 1.01,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.016265869140625,
+        "n": 32,
+        "potential_minus_trivial": -4.58663281484821,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4185065315340738,
+        "shift": 0.25,
+        "stationarity_residual": 1.5677672878910975e-05
+      },
+      {
+        "G": 5.915207067239525,
+        "G_over_Gc": 1.01,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0008452789468168798,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.915207067239525,
+        "G_over_Gc": 1.01,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.016265869140625,
+        "n": 32,
+        "potential_minus_trivial": -3.7217970152557417e-08,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0008505174595234263,
+        "shift": 0.25,
+        "stationarity_residual": 1.5677672878910975e-05
+      },
+      {
+        "G": 5.973773473845857,
+        "G_over_Gc": 1.02,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.032073974609375,
+        "n": 32,
+        "potential_minus_trivial": -4.613301894586869,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.420540136144438,
+        "shift": 0.25,
+        "stationarity_residual": 7.447988563225039e-06
+      },
+      {
+        "G": 5.973773473845857,
+        "G_over_Gc": 1.02,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0016739837966373572,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.973773473845857,
+        "G_over_Gc": 1.02,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.032073974609375,
+        "n": 32,
+        "potential_minus_trivial": -2.8788664294027334e-07,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0016786955108573157,
+        "shift": 0.25,
+        "stationarity_residual": 7.447988563669128e-06
+      },
+      {
+        "G": 6.149472693664853,
+        "G_over_Gc": 1.05,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.077911376953125,
+        "n": 32,
+        "potential_minus_trivial": -4.691071588485942,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4180068385784668,
+        "shift": 0.25,
+        "stationarity_residual": 1.2761499625701944e-05
+      },
+      {
+        "G": 6.149472693664853,
+        "G_over_Gc": 1.05,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.004065389220405016,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 6.149472693664853,
+        "G_over_Gc": 1.05,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.077911376953125,
+        "n": 32,
+        "potential_minus_trivial": -4.109213896372481e-06,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.004030644305938044,
+        "shift": 0.25,
+        "stationarity_residual": 1.2761499626368078e-05
+      },
+      {
+        "G": 6.442304726696513,
+        "G_over_Gc": 1.1,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.151031494140625,
+        "n": 32,
+        "potential_minus_trivial": -4.813653014022153,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4014413216794641,
+        "shift": 0.25,
+        "stationarity_residual": 1.564385881880348e-05
+      },
+      {
+        "G": 6.442304726696513,
+        "G_over_Gc": 1.1,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.007761197602591377,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 6.442304726696513,
+        "G_over_Gc": 1.1,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.151031494140625,
+        "n": 32,
+        "potential_minus_trivial": -2.901606881737821e-05,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.007439548709018303,
+        "shift": 0.25,
+        "stationarity_residual": 1.5643858818581435e-05
+      },
+      {
+        "G": 7.0279687927598316,
+        "G_over_Gc": 1.2,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.290252685546875,
+        "n": 32,
+        "potential_minus_trivial": -5.035337474050131,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.36157654163309205,
+        "shift": 0.25,
+        "stationarity_residual": 1.4549327334689721e-05
+      },
+      {
+        "G": 7.0279687927598316,
+        "G_over_Gc": 1.2,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.014228862271417508,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 7.0279687927598316,
+        "G_over_Gc": 1.2,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.290252685546875,
+        "n": 32,
+        "potential_minus_trivial": -0.00018965434530027886,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.012658272962863521,
+        "shift": 0.25,
+        "stationarity_residual": 1.454932733513381e-05
+      },
+      {
+        "G": 8.19929692488647,
+        "G_over_Gc": 1.4,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.552581787109375,
+        "n": 32,
+        "potential_minus_trivial": -5.396371985580705,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.29325341398122273,
+        "shift": 0.25,
+        "stationarity_residual": 8.403093401332384e-06
+      },
+      {
+        "G": 8.19929692488647,
+        "G_over_Gc": 1.4,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.024392335322430014,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 8.19929692488647,
+        "G_over_Gc": 1.4,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.552581787109375,
+        "n": 32,
+        "potential_minus_trivial": -0.0010988618195088597,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.018946605853739185,
+        "shift": 0.25,
+        "stationarity_residual": 8.403093401332384e-06
+      },
+      {
+        "G": 9.37062505701311,
+        "G_over_Gc": 1.6,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.799896240234375,
+        "n": 32,
+        "potential_minus_trivial": -5.680807319842948,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.24354209935420215,
+        "shift": 0.25,
+        "stationarity_residual": 1.6824362358835998e-06
+      },
+      {
+        "G": 9.37062505701311,
+        "G_over_Gc": 1.6,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.032014940110689394,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 9.37062505701311,
+        "G_over_Gc": 1.6,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.799896240234375,
+        "n": 32,
+        "potential_minus_trivial": -0.0028385214649635157,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.022137498684009486,
+        "shift": 0.25,
+        "stationarity_residual": 1.6824362358835998e-06
+      },
+      {
+        "G": 10.541953189139749,
+        "G_over_Gc": 1.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.035308837890625,
+        "n": 32,
+        "potential_minus_trivial": -5.9171343538460714,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.20695878739983986,
+        "shift": 0.25,
+        "stationarity_residual": 6.176641375477132e-06
+      },
+      {
+        "G": 10.541953189139749,
+        "G_over_Gc": 1.8,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.03794363272378003,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 10.541953189139749,
+        "G_over_Gc": 1.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.035308837890625,
+        "n": 32,
+        "potential_minus_trivial": -0.005327988127628854,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.023714585650657434,
+        "shift": 0.25,
+        "stationarity_residual": 6.176641375588154e-06
+      },
+      {
+        "G": 11.713281321266386,
+        "G_over_Gc": 2.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.260528564453125,
+        "n": 32,
+        "potential_minus_trivial": -6.113210327585309,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.1792214356707209,
+        "shift": 0.25,
+        "stationarity_residual": 7.739693971053896e-06
+      },
+      {
+        "G": 11.713281321266386,
+        "G_over_Gc": 2.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.04268658681425252,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 11.713281321266386,
+        "G_over_Gc": 2.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.260528564453125,
+        "n": 32,
+        "potential_minus_trivial": -0.008445665233339686,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.024395624990713693,
+        "shift": 0.25,
+        "stationarity_residual": 7.739693970609807e-06
+      },
+      {
+        "G": 14.641601651582983,
+        "G_over_Gc": 2.5,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.786529541015625,
+        "n": 32,
+        "potential_minus_trivial": -6.5035010195155945,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.13293994120187544,
+        "shift": 0.25,
+        "stationarity_residual": 8.541588532695599e-06
+      },
+      {
+        "G": 14.641601651582983,
+        "G_over_Gc": 2.5,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.05122390417710303,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 14.641601651582983,
+        "G_over_Gc": 2.5,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.786529541015625,
+        "n": 32,
+        "potential_minus_trivial": -0.018250987148986153,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.024268405327415987,
+        "shift": 0.25,
+        "stationarity_residual": 8.541588532695599e-06
+      },
+      {
+        "G": 17.56992198189958,
+        "G_over_Gc": 3.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -10.269622802734375,
+        "n": 32,
+        "potential_minus_trivial": -6.7870221790315615,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.10477155974967933,
+        "shift": 0.25,
+        "stationarity_residual": 1.0240500398772667e-06
+      },
+      {
+        "G": 17.56992198189958,
+        "G_over_Gc": 3.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 32,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.056915449085670027,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 17.56992198189958,
+        "G_over_Gc": 3.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": 2.269622802734375,
+        "n": 32,
+        "potential_minus_trivial": -0.02987841635349643,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.023154860944409137,
+        "shift": 0.25,
+        "stationarity_residual": 1.0240500396552221e-06
+      },
+      {
+        "G": 4.686794349482801,
+        "G_over_Gc": 0.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.590057373046875,
+        "n": 40,
+        "potential_minus_trivial": -3.9166569438399446,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4177835903996126,
+        "shift": 0.0,
+        "stationarity_residual": 1.0239265316958068e-05
+      },
+      {
+        "G": 4.686794349482801,
+        "G_over_Gc": 0.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.409942626953125,
+        "n": 40,
+        "potential_minus_trivial": 0.0006103844180352595,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.022565842779592317,
+        "shift": 0.0,
+        "stationarity_residual": 1.0239265317180113e-05
+      },
+      {
+        "G": 4.686794349482801,
+        "G_over_Gc": 0.8,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.021336545310769867,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.27264364316815,
+        "G_over_Gc": 0.9,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.813995361328125,
+        "n": 40,
+        "potential_minus_trivial": -4.266718335943365,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.40005718472317997,
+        "shift": 0.0,
+        "stationarity_residual": 3.5961466671174946e-07
+      },
+      {
+        "G": 5.27264364316815,
+        "G_over_Gc": 0.9,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.186004638671875,
+        "n": 40,
+        "potential_minus_trivial": 5.456878742130943e-05,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.009523011144369117,
+        "shift": 0.0,
+        "stationarity_residual": 3.5961466693379407e-07
+      },
+      {
+        "G": 5.27264364316815,
+        "G_over_Gc": 0.9,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.009482909027008837,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.74132307811643,
+        "G_over_Gc": 0.98,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.966217041015625,
+        "n": 40,
+        "potential_minus_trivial": -4.505149928460099,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.40855884333551495,
+        "shift": 0.0,
+        "stationarity_residual": 5.157799923605211e-06
+      },
+      {
+        "G": 5.74132307811643,
+        "G_over_Gc": 0.98,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.033782958984375,
+        "n": 40,
+        "potential_minus_trivial": 3.3023666418682227e-07,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0017330584935596346,
+        "shift": 0.0,
+        "stationarity_residual": 5.157799923827255e-06
+      },
+      {
+        "G": 5.74132307811643,
+        "G_over_Gc": 0.98,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0017417588008791784,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.799908007484966,
+        "G_over_Gc": 0.99,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.983306884765625,
+        "n": 40,
+        "potential_minus_trivial": -4.532985668625723,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4117671728621086,
+        "shift": 0.0,
+        "stationarity_residual": 1.3336478748682268e-05
+      },
+      {
+        "G": 5.799908007484966,
+        "G_over_Gc": 0.99,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.016693115234375,
+        "n": 40,
+        "potential_minus_trivial": 3.9880838594074584e-08,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0008621583365269638,
+        "shift": 0.0,
+        "stationarity_residual": 1.3336478748682268e-05
+      },
+      {
+        "G": 5.799908007484966,
+        "G_over_Gc": 0.99,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.000862082638818984,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.858492936853501,
+        "G_over_Gc": 1.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.999969482421875,
+        "n": 40,
+        "potential_minus_trivial": -4.560422912503883,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4146799144189228,
+        "shift": 0.0,
+        "stationarity_residual": 1.8535061022229016e-05
+      },
+      {
+        "G": 5.858492936853501,
+        "G_over_Gc": 1.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.917077866222035,
+        "G_over_Gc": 1.01,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.016265869140625,
+        "n": 40,
+        "potential_minus_trivial": -4.58746882535643,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.41691552897815176,
+        "shift": 0.0,
+        "stationarity_residual": 3.7509979318173237e-06
+      },
+      {
+        "G": 5.917077866222035,
+        "G_over_Gc": 1.01,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0008450116954760306,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.917077866222035,
+        "G_over_Gc": 1.01,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.016265869140625,
+        "n": 40,
+        "potential_minus_trivial": -3.732047560857824e-08,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0008456503112567091,
+        "shift": 0.0,
+        "stationarity_residual": 3.7509979320393683e-06
+      },
+      {
+        "G": 5.975662795590571,
+        "G_over_Gc": 1.02,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.032196044921875,
+        "n": 40,
+        "potential_minus_trivial": -4.614130519401906,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.41821497620276715,
+        "shift": 0.0,
+        "stationarity_residual": 4.50490222880795e-06
+      },
+      {
+        "G": 5.975662795590571,
+        "G_over_Gc": 1.02,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.00167345453417804,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.975662795590571,
+        "G_over_Gc": 1.02,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.032196044921875,
+        "n": 40,
+        "potential_minus_trivial": -2.892891192091273e-07,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0016767374184005362,
+        "shift": 0.0,
+        "stationarity_residual": 4.504902228474883e-06
+      },
+      {
+        "G": 6.151417583696176,
+        "G_over_Gc": 1.05,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.078277587890625,
+        "n": 40,
+        "potential_minus_trivial": -4.6918792747631,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.41627511038199116,
+        "shift": 0.0,
+        "stationarity_residual": 7.293693463639173e-06
+      },
+      {
+        "G": 6.151417583696176,
+        "G_over_Gc": 1.05,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.004064103868718083,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 6.151417583696176,
+        "G_over_Gc": 1.05,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.078277587890625,
+        "n": 40,
+        "potential_minus_trivial": -4.141164579516722e-06,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.004034245414011224,
+        "shift": 0.0,
+        "stationarity_residual": 7.293693463306106e-06
+      },
+      {
+        "G": 6.444342230538851,
+        "G_over_Gc": 1.1,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.151458740234375,
+        "n": 40,
+        "potential_minus_trivial": -4.814437899441672,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.40106208393903414,
+        "shift": 0.0,
+        "stationarity_residual": 1.571604476779953e-05
+      },
+      {
+        "G": 6.444342230538851,
+        "G_over_Gc": 1.1,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.007758743749370869,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 6.444342230538851,
+        "G_over_Gc": 1.1,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.151458740234375,
+        "n": 40,
+        "potential_minus_trivial": -2.922252870192195e-05,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0074507649469258835,
+        "shift": 0.0,
+        "stationarity_residual": 1.5716044767577486e-05
+      },
+      {
+        "G": 7.0301915242242,
+        "G_over_Gc": 1.2,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.290802001953125,
+        "n": 40,
+        "potential_minus_trivial": -5.035889238169567,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.36141611858557915,
+        "shift": 0.0,
+        "stationarity_residual": 6.172524901981724e-06
+      },
+      {
+        "G": 7.0301915242242,
+        "G_over_Gc": 1.2,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.014224363540513249,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 7.0301915242242,
+        "G_over_Gc": 1.2,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.290802001953125,
+        "n": 40,
+        "potential_minus_trivial": -0.0001905231709669196,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.012677186454046413,
+        "shift": 0.0,
+        "stationarity_residual": 6.172524901648657e-06
+      },
+      {
+        "G": 8.201890111594901,
+        "G_over_Gc": 1.4,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.553131103515625,
+        "n": 40,
+        "potential_minus_trivial": -5.396624282243964,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.2931272384125433,
+        "shift": 0.0,
+        "stationarity_residual": 1.5783398238378155e-05
+      },
+      {
+        "G": 8.201890111594901,
+        "G_over_Gc": 1.4,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.024384623212308436,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 8.201890111594901,
+        "G_over_Gc": 1.4,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.553131103515625,
+        "n": 40,
+        "potential_minus_trivial": -0.001101727856984468,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.018955642494781336,
+        "shift": 0.0,
+        "stationarity_residual": 1.5783398238378155e-05
+      },
+      {
+        "G": 9.373588698965602,
+        "G_over_Gc": 1.6,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.800506591796875,
+        "n": 40,
+        "potential_minus_trivial": -5.681249597093269,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.2434350908199142,
+        "shift": 0.0,
+        "stationarity_residual": 1.358791523520253e-06
+      },
+      {
+        "G": 9.373588698965602,
+        "G_over_Gc": 1.6,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.03200481796615482,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 9.373588698965602,
+        "G_over_Gc": 1.6,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.800506591796875,
+        "n": 40,
+        "potential_minus_trivial": -0.0028438420030715283,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.022143136080293037,
+        "shift": 0.0,
+        "stationarity_residual": 1.358791523520253e-06
+      },
+      {
+        "G": 10.5452872863363,
+        "G_over_Gc": 1.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.035980224609375,
+        "n": 40,
+        "potential_minus_trivial": -5.917510193252275,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.20686699804987052,
+        "shift": 0.0,
+        "stationarity_residual": 1.4165591645798337e-05
+      },
+      {
+        "G": 10.5452872863363,
+        "G_over_Gc": 1.8,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.037931636108035335,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 10.5452872863363,
+        "G_over_Gc": 1.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.035980224609375,
+        "n": 40,
+        "potential_minus_trivial": -0.0053359490232026685,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.023718012547322993,
+        "shift": 0.0,
+        "stationarity_residual": 1.416559164546527e-05
+      },
+      {
+        "G": 11.716985873707001,
+        "G_over_Gc": 2.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.261199951171875,
+        "n": 40,
+        "potential_minus_trivial": -6.113626645385045,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.17914690989729656,
+        "shift": 0.0,
+        "stationarity_residual": 4.111884663648979e-06
+      },
+      {
+        "G": 11.716985873707001,
+        "G_over_Gc": 2.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.042673090621539754,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 11.716985873707001,
+        "G_over_Gc": 2.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.261199951171875,
+        "n": 40,
+        "potential_minus_trivial": -0.008456312450100721,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.02439626306220269,
+        "shift": 0.0,
+        "stationarity_residual": 4.111884663648979e-06
+      },
+      {
+        "G": 14.646232342133752,
+        "G_over_Gc": 2.5,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.787322998046875,
+        "n": 40,
+        "potential_minus_trivial": -6.503713556190986,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.13288453680270623,
+        "shift": 0.0,
+        "stationarity_residual": 7.918542993201605e-06
+      },
+      {
+        "G": 14.646232342133752,
+        "G_over_Gc": 2.5,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.05120770874584771,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 14.646232342133752,
+        "G_over_Gc": 2.5,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.787322998046875,
+        "n": 40,
+        "potential_minus_trivial": -0.018268143959521997,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.024267080117349463,
+        "shift": 0.0,
+        "stationarity_residual": 7.918542992424449e-06
+      },
+      {
+        "G": 17.5754788105605,
+        "G_over_Gc": 3.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -10.270477294921875,
+        "n": 40,
+        "potential_minus_trivial": -6.787353956599539,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.10472981633738784,
+        "shift": 0.0,
+        "stationarity_residual": 1.0935029071124092e-05
+      },
+      {
+        "G": 17.5754788105605,
+        "G_over_Gc": 3.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.056897454162053,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 17.5754788105605,
+        "G_over_Gc": 3.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": 2.270477294921875,
+        "n": 40,
+        "potential_minus_trivial": -0.02990151851892893,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0231522035993094,
+        "shift": 0.0,
+        "stationarity_residual": 1.093502907156818e-05
+      },
+      {
+        "G": 4.684972376912252,
+        "G_over_Gc": 0.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.589324951171875,
+        "n": 40,
+        "potential_minus_trivial": -3.9157508648732717,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.41786460392837776,
+        "shift": 0.25,
+        "stationarity_residual": 7.052400162743666e-07
+      },
+      {
+        "G": 4.684972376912252,
+        "G_over_Gc": 0.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.410675048828125,
+        "n": 40,
+        "potential_minus_trivial": 0.0006137934582957447,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.02261149253674218,
+        "shift": 0.25,
+        "stationarity_residual": 7.052400158302774e-07
+      },
+      {
+        "G": 4.684972376912252,
+        "G_over_Gc": 0.8,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.021344843033185082,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.270593924026284,
+        "G_over_Gc": 0.9,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.813262939453125,
+        "n": 40,
+        "potential_minus_trivial": -4.265850864518617,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4000328471067816,
+        "shift": 0.25,
+        "stationarity_residual": 8.518933115597704e-06
+      },
+      {
+        "G": 5.270593924026284,
+        "G_over_Gc": 0.9,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.186737060546875,
+        "n": 40,
+        "potential_minus_trivial": 5.512673289307865e-05,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.009561616423843117,
+        "shift": 0.25,
+        "stationarity_residual": 8.518933116263838e-06
+      },
+      {
+        "G": 5.270593924026284,
+        "G_over_Gc": 0.9,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.009486596903637803,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.739091161717509,
+        "G_over_Gc": 0.98,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.966033935546875,
+        "n": 40,
+        "potential_minus_trivial": -4.50409711545717,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.40528560114347695,
+        "shift": 0.25,
+        "stationarity_residual": 1.6649381917588357e-05
+      },
+      {
+        "G": 5.739091161717509,
+        "G_over_Gc": 0.98,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.033966064453125,
+        "n": 40,
+        "potential_minus_trivial": 3.328475362443547e-07,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0017295383318618892,
+        "shift": 0.25,
+        "stationarity_residual": 1.6649381918032446e-05
+      },
+      {
+        "G": 5.739091161717509,
+        "G_over_Gc": 0.98,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0017424361659742899,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.797653316428912,
+        "G_over_Gc": 0.99,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.983306884765625,
+        "n": 40,
+        "potential_minus_trivial": -4.531938065399418,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.40981754747239524,
+        "shift": 0.25,
+        "stationarity_residual": 1.1920684943600435e-05
+      },
+      {
+        "G": 5.797653316428912,
+        "G_over_Gc": 0.99,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.016693115234375,
+        "n": 40,
+        "potential_minus_trivial": 4.00446812613946e-08,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0008558993351992303,
+        "shift": 0.25,
+        "stationarity_residual": 1.1920684943156346e-05
+      },
+      {
+        "G": 5.797653316428912,
+        "G_over_Gc": 0.99,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0008624179003307031,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.856215471140315,
+        "G_over_Gc": 1.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.999969482421875,
+        "n": 40,
+        "potential_minus_trivial": -4.559383729350062,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.41494278676683694,
+        "shift": 0.25,
+        "stationarity_residual": 1.8539696268415895e-05
+      },
+      {
+        "G": 5.856215471140315,
+        "G_over_Gc": 1.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.914777625851718,
+        "G_over_Gc": 1.01,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.016204833984375,
+        "n": 40,
+        "potential_minus_trivial": -4.586438609248297,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.41915002651053423,
+        "shift": 0.25,
+        "stationarity_residual": 1.3629887575028476e-05
+      },
+      {
+        "G": 5.914777625851718,
+        "G_over_Gc": 1.01,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0008453403181459401,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.914777625851718,
+        "G_over_Gc": 1.01,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.016204833984375,
+        "n": 40,
+        "potential_minus_trivial": -3.7171664939319684e-08,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.00084616588770213,
+        "shift": 0.25,
+        "stationarity_residual": 1.3629887575028476e-05
+      },
+      {
+        "G": 5.973339780563121,
+        "G_over_Gc": 1.02,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.032073974609375,
+        "n": 40,
+        "potential_minus_trivial": -4.613109014962792,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4213731277195684,
+        "shift": 0.25,
+        "stationarity_residual": 1.875125966332991e-05
+      },
+      {
+        "G": 5.973339780563121,
+        "G_over_Gc": 1.02,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0016741053359360797,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.973339780563121,
+        "G_over_Gc": 1.02,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.032073974609375,
+        "n": 40,
+        "potential_minus_trivial": -2.8728221366881504e-07,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0016842060563506073,
+        "shift": 0.25,
+        "stationarity_residual": 1.87512596627748e-05
+      },
+      {
+        "G": 6.149026244697331,
+        "G_over_Gc": 1.05,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.077850341796875,
+        "n": 40,
+        "potential_minus_trivial": -4.690883686725682,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.41827281573382175,
+        "shift": 0.25,
+        "stationarity_residual": 1.2414353528389377e-05
+      },
+      {
+        "G": 6.149026244697331,
+        "G_over_Gc": 1.05,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.004065684387273352,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 6.149026244697331,
+        "G_over_Gc": 1.05,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.077850341796875,
+        "n": 40,
+        "potential_minus_trivial": -4.09827856085273e-06,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.00403210705150365,
+        "shift": 0.25,
+        "stationarity_residual": 1.2414353528389377e-05
+      },
+      {
+        "G": 6.441837018254347,
+        "G_over_Gc": 1.1,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.150909423828125,
+        "n": 40,
+        "potential_minus_trivial": -4.813466377135237,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4014815561424607,
+        "shift": 0.25,
+        "stationarity_residual": 1.0539073797555254e-05
+      },
+      {
+        "G": 6.441837018254347,
+        "G_over_Gc": 1.1,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.007761761102976397,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 6.441837018254347,
+        "G_over_Gc": 1.1,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.150909423828125,
+        "n": 40,
+        "potential_minus_trivial": -2.8960203695284023e-05,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.007434004146799192,
+        "shift": 0.25,
+        "stationarity_residual": 1.0539073797555254e-05
+      },
+      {
+        "G": 7.027458565368378,
+        "G_over_Gc": 1.2,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.290130615234375,
+        "n": 40,
+        "potential_minus_trivial": -5.035182860845839,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.3616115236069818,
+        "shift": 0.25,
+        "stationarity_residual": 1.6782511552015933e-05
+      },
+      {
+        "G": 7.027458565368378,
+        "G_over_Gc": 1.2,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.014229895355456726,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 7.027458565368378,
+        "G_over_Gc": 1.2,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.290130615234375,
+        "n": 40,
+        "potential_minus_trivial": -0.0001894452080434079,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.01265420608594836,
+        "shift": 0.25,
+        "stationarity_residual": 1.6782511552460022e-05
+      },
+      {
+        "G": 8.198701659596441,
+        "G_over_Gc": 1.4,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.552459716796875,
+        "n": 40,
+        "potential_minus_trivial": -5.396301553167667,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.29328160413780346,
+        "shift": 0.25,
+        "stationarity_residual": 4.439493642705017e-06
+      },
+      {
+        "G": 8.198701659596441,
+        "G_over_Gc": 1.4,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.024394106323640093,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 8.198701659596441,
+        "G_over_Gc": 1.4,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.552459716796875,
+        "n": 40,
+        "potential_minus_trivial": -0.001098194376287191,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0189447376987807,
+        "shift": 0.25,
+        "stationarity_residual": 4.439493643371151e-06
+      },
+      {
+        "G": 9.369944753824504,
+        "G_over_Gc": 1.6,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.799774169921875,
+        "n": 40,
+        "potential_minus_trivial": -5.680697903844305,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.24356400842244477,
+        "shift": 0.25,
+        "stationarity_residual": 7.603808926615052e-06
+      },
+      {
+        "G": 9.369944753824504,
+        "G_over_Gc": 1.6,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.03201726454977761,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 9.369944753824504,
+        "G_over_Gc": 1.6,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.799774169921875,
+        "n": 40,
+        "potential_minus_trivial": -0.0028372906856698223,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0221368690763566,
+        "shift": 0.25,
+        "stationarity_residual": 7.6038089263930075e-06
+      },
+      {
+        "G": 10.541187848052568,
+        "G_over_Gc": 1.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.035125732421875,
+        "n": 40,
+        "potential_minus_trivial": -5.917019772020867,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.20698318414764166,
+        "shift": 0.25,
+        "stationarity_residual": 9.652681921323847e-06
+      },
+      {
+        "G": 10.541187848052568,
+        "G_over_Gc": 1.8,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.03794638761455125,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 10.541187848052568,
+        "G_over_Gc": 1.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.035125732421875,
+        "n": 40,
+        "potential_minus_trivial": -0.005326151290507095,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.02371300229690466,
+        "shift": 0.25,
+        "stationarity_residual": 9.652681921323847e-06
+      },
+      {
+        "G": 11.71243094228063,
+        "G_over_Gc": 2.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.260345458984375,
+        "n": 40,
+        "potential_minus_trivial": -6.113093472240667,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.17924118637113237,
+        "shift": 0.25,
+        "stationarity_residual": 2.677064270706353e-06
+      },
+      {
+        "G": 11.71243094228063,
+        "G_over_Gc": 2.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.04268968606637015,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 11.71243094228063,
+        "G_over_Gc": 2.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.260345458984375,
+        "n": 40,
+        "potential_minus_trivial": -0.008443211760571799,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.024394867561057337,
+        "shift": 0.25,
+        "stationarity_residual": 2.677064270706353e-06
+      },
+      {
+        "G": 14.640538677850788,
+        "G_over_Gc": 2.5,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.786346435546875,
+        "n": 40,
+        "potential_minus_trivial": -6.503425804788567,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.1329527188812325,
+        "shift": 0.25,
+        "stationarity_residual": 8.305687703047404e-06
+      },
+      {
+        "G": 14.640538677850788,
+        "G_over_Gc": 2.5,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.05122762327964418,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 14.640538677850788,
+        "G_over_Gc": 2.5,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.786346435546875,
+        "n": 40,
+        "potential_minus_trivial": -0.018247039305676983,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.02426869785001306,
+        "shift": 0.25,
+        "stationarity_residual": 8.305687703269449e-06
+      },
+      {
+        "G": 17.568646413420943,
+        "G_over_Gc": 3.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -10.269439697265625,
+        "n": 40,
+        "potential_minus_trivial": -6.786926165984118,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.10478064561939425,
+        "shift": 0.25,
+        "stationarity_residual": 5.933707391658771e-06
+      },
+      {
+        "G": 17.568646413420943,
+        "G_over_Gc": 3.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 40,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.05691958142182686,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 17.568646413420943,
+        "G_over_Gc": 3.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": 2.269439697265625,
+        "n": 40,
+        "potential_minus_trivial": -0.029873103593650266,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.023155567845990162,
+        "shift": 0.25,
+        "stationarity_residual": 5.933707391547749e-06
+      },
+      {
+        "G": 4.686049733367454,
+        "G_over_Gc": 0.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.589752197265625,
+        "n": 48,
+        "potential_minus_trivial": -3.916305757507453,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4178169982954525,
+        "shift": 0.0,
+        "stationarity_residual": 8.804232992432048e-06
+      },
+      {
+        "G": 4.686049733367454,
+        "G_over_Gc": 0.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.410247802734375,
+        "n": 48,
+        "potential_minus_trivial": 0.0006117638234647213,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.02258519333848292,
+        "shift": 0.0,
+        "stationarity_residual": 8.804232992432048e-06
+      },
+      {
+        "G": 4.686049733367454,
+        "G_over_Gc": 0.8,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.02133993570062663,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.271805950038385,
+        "G_over_Gc": 0.9,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.813690185546875,
+        "n": 48,
+        "potential_minus_trivial": -4.266378614226643,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4000252770559835,
+        "shift": 0.0,
+        "stationarity_residual": 7.612345473306803e-06
+      },
+      {
+        "G": 5.271805950038385,
+        "G_over_Gc": 0.9,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.186309814453125,
+        "n": 48,
+        "potential_minus_trivial": 5.4784548608197495e-05,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.009538951413090774,
+        "shift": 0.0,
+        "stationarity_residual": 7.612345473750892e-06
+      },
+      {
+        "G": 5.271805950038385,
+        "G_over_Gc": 0.9,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.009484415866945164,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.740410923375131,
+        "G_over_Gc": 0.98,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.966156005859375,
+        "n": 48,
+        "potential_minus_trivial": -4.504725060309553,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4075682335282713,
+        "shift": 0.0,
+        "stationarity_residual": 1.43831955414786e-05
+      },
+      {
+        "G": 5.740410923375131,
+        "G_over_Gc": 0.98,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.033843994140625,
+        "n": 48,
+        "potential_minus_trivial": 3.3095214405776927e-07,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.001732800526698886,
+        "shift": 0.0,
+        "stationarity_residual": 1.4383195542144733e-05
+      },
+      {
+        "G": 5.740410923375131,
+        "G_over_Gc": 0.98,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0017420355673980897,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.798986545042224,
+        "G_over_Gc": 0.99,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.983306884765625,
+        "n": 48,
+        "potential_minus_trivial": -4.532562158138286,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.41126734633593015,
+        "shift": 0.0,
+        "stationarity_residual": 6.9130520867766165e-06
+      },
+      {
+        "G": 5.798986545042224,
+        "G_over_Gc": 0.99,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.016693115234375,
+        "n": 48,
+        "potential_minus_trivial": 3.992377969451471e-08,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0008605583825131361,
+        "shift": 0.0,
+        "stationarity_residual": 6.913052087220706e-06
+      },
+      {
+        "G": 5.798986545042224,
+        "G_over_Gc": 0.99,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.000862219624267746,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.857562166709317,
+        "G_over_Gc": 1.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.999969482421875,
+        "n": 48,
+        "potential_minus_trivial": -4.560002242800433,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4147881817217099,
+        "shift": 0.0,
+        "stationarity_residual": 1.8536979853989166e-05
+      },
+      {
+        "G": 5.857562166709317,
+        "G_over_Gc": 1.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.91613778837641,
+        "G_over_Gc": 1.01,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.016265869140625,
+        "n": 48,
+        "potential_minus_trivial": -4.587051554745418,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4175681045908034,
+        "shift": 0.0,
+        "stationarity_residual": 4.089737696388873e-06
+      },
+      {
+        "G": 5.91613778837641,
+        "G_over_Gc": 1.01,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0008451459683416485,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.91613778837641,
+        "G_over_Gc": 1.01,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.016265869140625,
+        "n": 48,
+        "potential_minus_trivial": -3.728003941810537e-08,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0008476357193928228,
+        "shift": 0.0,
+        "stationarity_residual": 4.089737696055806e-06
+      },
+      {
+        "G": 5.9747134100435035,
+        "G_over_Gc": 1.02,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.032135009765625,
+        "n": 48,
+        "potential_minus_trivial": -4.613716958405471,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.41920215677242495,
+        "shift": 0.0,
+        "stationarity_residual": 7.26475494272627e-06
+      },
+      {
+        "G": 5.9747134100435035,
+        "G_over_Gc": 1.02,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0016737204471079653,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.9747134100435035,
+        "G_over_Gc": 1.02,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.032135009765625,
+        "n": 48,
+        "potential_minus_trivial": -2.8872702767238003e-07,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.001676540760049975,
+        "shift": 0.0,
+        "stationarity_residual": 7.264754942948315e-06
+      },
+      {
+        "G": 6.150440275044783,
+        "G_over_Gc": 1.05,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.078094482421875,
+        "n": 48,
+        "potential_minus_trivial": -4.691476167083184,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4171822867277274,
+        "shift": 0.0,
+        "stationarity_residual": 1.3510869234956147e-05
+      },
+      {
+        "G": 6.150440275044783,
+        "G_over_Gc": 1.05,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.004064749657262209,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 6.150440275044783,
+        "G_over_Gc": 1.05,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.078094482421875,
+        "n": 48,
+        "potential_minus_trivial": -4.127400028992173e-06,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.004031996394728471,
+        "shift": 0.0,
+        "stationarity_residual": 1.351086923562228e-05
+      },
+      {
+        "G": 6.443318383380249,
+        "G_over_Gc": 1.1,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.151275634765625,
+        "n": 48,
+        "potential_minus_trivial": -4.814050593368561,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.40129752102399036,
+        "shift": 0.0,
+        "stationarity_residual": 1.6601844712638147e-05
+      },
+      {
+        "G": 6.443318383380249,
+        "G_over_Gc": 1.1,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.007759976618409686,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 6.443318383380249,
+        "G_over_Gc": 1.1,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.151275634765625,
+        "n": 48,
+        "potential_minus_trivial": -2.9125648440285912e-05,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.007448753586243393,
+        "shift": 0.0,
+        "stationarity_residual": 1.660184471186099e-05
+      },
+      {
+        "G": 7.029074600051181,
+        "G_over_Gc": 1.2,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.290557861328125,
+        "n": 48,
+        "potential_minus_trivial": -5.035634022219215,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.361490375012851,
+        "shift": 0.0,
+        "stationarity_residual": 1.5216402678763785e-05
+      },
+      {
+        "G": 7.029074600051181,
+        "G_over_Gc": 1.2,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.014226623800417754,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 7.029074600051181,
+        "G_over_Gc": 1.2,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.290557861328125,
+        "n": 48,
+        "potential_minus_trivial": -0.00019009519555886548,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.012670140071740395,
+        "shift": 0.0,
+        "stationarity_residual": 1.5216402678097651e-05
+      },
+      {
+        "G": 8.200587033393044,
+        "G_over_Gc": 1.4,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.552886962890625,
+        "n": 48,
+        "potential_minus_trivial": -5.396507209058118,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.293184427649766,
+        "shift": 0.0,
+        "stationarity_residual": 5.849752918507534e-06
+      },
+      {
+        "G": 8.200587033393044,
+        "G_over_Gc": 1.4,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.024388497943573277,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 8.200587033393044,
+        "G_over_Gc": 1.4,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.552886962890625,
+        "n": 48,
+        "potential_minus_trivial": -0.0011002961886017858,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.01895274681019057,
+        "shift": 0.0,
+        "stationarity_residual": 5.849752918396511e-06
+      },
+      {
+        "G": 9.372099466734907,
+        "G_over_Gc": 1.6,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.800201416015625,
+        "n": 48,
+        "potential_minus_trivial": -5.6810354514799535,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.2434886282939787,
+        "shift": 0.0,
+        "stationarity_residual": 7.347229880050321e-07
+      },
+      {
+        "G": 9.372099466734907,
+        "G_over_Gc": 1.6,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.03200990355093993,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 9.372099466734907,
+        "G_over_Gc": 1.6,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.800201416015625,
+        "n": 48,
+        "potential_minus_trivial": -0.0028411768573782595,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.02214036047074169,
+        "shift": 0.0,
+        "stationarity_residual": 7.347229884491213e-07
+      },
+      {
+        "G": 10.54361190007677,
+        "G_over_Gc": 1.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.035614013671875,
+        "n": 48,
+        "potential_minus_trivial": -5.917340175381464,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.20691641292229337,
+        "shift": 0.0,
+        "stationarity_residual": 3.779439776474547e-06
+      },
+      {
+        "G": 10.54361190007677,
+        "G_over_Gc": 1.8,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.037937663467780665,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 10.54361190007677,
+        "G_over_Gc": 1.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.035614013671875,
+        "n": 48,
+        "potential_minus_trivial": -0.005331957067640492,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.023715499879218435,
+        "shift": 0.0,
+        "stationarity_residual": 3.779439776918636e-06
+      },
+      {
+        "G": 11.715124333418634,
+        "G_over_Gc": 2.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.260833740234375,
+        "n": 48,
+        "potential_minus_trivial": -6.113435867243069,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.179186974527987,
+        "shift": 0.0,
+        "stationarity_residual": 1.1235922375174567e-05
+      },
+      {
+        "G": 11.715124333418634,
+        "G_over_Gc": 2.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.04267987140125325,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 11.715124333418634,
+        "G_over_Gc": 2.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.260833740234375,
+        "n": 48,
+        "potential_minus_trivial": -0.008450970605521323,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.024395335587561198,
+        "shift": 0.0,
+        "stationarity_residual": 1.1235922375618657e-05
+      },
+      {
+        "G": 14.643905416773293,
+        "G_over_Gc": 2.5,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.786895751953125,
+        "n": 48,
+        "potential_minus_trivial": -6.503622749305881,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.1329139771002968,
+        "shift": 0.0,
+        "stationarity_residual": 3.122803461597101e-06
+      },
+      {
+        "G": 14.643905416773293,
+        "G_over_Gc": 2.5,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0512158456815039,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 14.643905416773293,
+        "G_over_Gc": 2.5,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.786895751953125,
+        "n": 48,
+        "potential_minus_trivial": -0.01825953112984812,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.024267405526504866,
+        "shift": 0.0,
+        "stationarity_residual": 3.122803461819146e-06
+      },
+      {
+        "G": 17.57268650012795,
+        "G_over_Gc": 3.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -10.270050048828125,
+        "n": 48,
+        "potential_minus_trivial": -6.787205317232219,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.10475070722707963,
+        "shift": 0.0,
+        "stationarity_residual": 5.19463148274113e-06
+      },
+      {
+        "G": 17.57268650012795,
+        "G_over_Gc": 3.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.056906495201670994,
+        "shift": 0.0,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 17.57268650012795,
+        "G_over_Gc": 3.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": 2.270050048828125,
+        "n": 48,
+        "potential_minus_trivial": -0.029889918278637892,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.023153554704405718,
+        "shift": 0.0,
+        "stationarity_residual": 5.1946314829631746e-06
+      },
+      {
+        "G": 4.684787885871222,
+        "G_over_Gc": 0.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.589263916015625,
+        "n": 48,
+        "potential_minus_trivial": -3.9156459849177203,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4178721052226362,
+        "shift": 0.25,
+        "stationarity_residual": 8.597080829120252e-06
+      },
+      {
+        "G": 4.684787885871222,
+        "G_over_Gc": 0.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.410736083984375,
+        "n": 48,
+        "potential_minus_trivial": 0.0006141450619166541,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.022614553082094365,
+        "shift": 0.25,
+        "stationarity_residual": 8.597080828121051e-06
+      },
+      {
+        "G": 4.684787885871222,
+        "G_over_Gc": 0.8,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.02134568361175719,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.270386371605124,
+        "G_over_Gc": 0.9,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.813201904296875,
+        "n": 48,
+        "potential_minus_trivial": -4.265752234665248,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4000359209253285,
+        "shift": 0.25,
+        "stationarity_residual": 2.079117452424839e-06
+      },
+      {
+        "G": 5.270386371605124,
+        "G_over_Gc": 0.9,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.186798095703125,
+        "n": 48,
+        "potential_minus_trivial": 5.51890065091285e-05,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.009564264064733244,
+        "shift": 0.25,
+        "stationarity_residual": 2.0791174533130174e-06
+      },
+      {
+        "G": 5.270386371605124,
+        "G_over_Gc": 0.9,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.009486970494114316,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.738865160192246,
+        "G_over_Gc": 0.98,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.966033935546875,
+        "n": 48,
+        "potential_minus_trivial": -4.503988512483366,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.40474860534438273,
+        "shift": 0.25,
+        "stationarity_residual": 4.110075459973217e-06
+      },
+      {
+        "G": 5.738865160192246,
+        "G_over_Gc": 0.98,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.033966064453125,
+        "n": 48,
+        "potential_minus_trivial": 3.334496074402184e-07,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0017254323289591612,
+        "shift": 0.25,
+        "stationarity_residual": 4.110075459529128e-06
+      },
+      {
+        "G": 5.738865160192246,
+        "G_over_Gc": 0.98,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.001742504784633253,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.797425008765637,
+        "G_over_Gc": 0.99,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.983245849609375,
+        "n": 48,
+        "potential_minus_trivial": -4.531830858513064,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4093071630360668,
+        "shift": 0.25,
+        "stationarity_residual": 1.77338653279957e-05
+      },
+      {
+        "G": 5.797425008765637,
+        "G_over_Gc": 0.99,
+        "branch": "nontrivial_algebraic",
+        "mhat": -0.016754150390625,
+        "n": 48,
+        "potential_minus_trivial": 4.008690214017376e-08,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0008605308641417677,
+        "shift": 0.25,
+        "stationarity_residual": 1.7733865328661835e-05
+      },
+      {
+        "G": 5.797425008765637,
+        "G_over_Gc": 0.99,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.000862451863101299,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.855984857339027,
+        "G_over_Gc": 1.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -7.999969482421875,
+        "n": 48,
+        "potential_minus_trivial": -4.559277208760892,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.414968613996074,
+        "shift": 0.25,
+        "stationarity_residual": 1.854014526947445e-05
+      },
+      {
+        "G": 5.855984857339027,
+        "G_over_Gc": 1.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.914544705912417,
+        "G_over_Gc": 1.01,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.016204833984375,
+        "n": 48,
+        "potential_minus_trivial": -4.586333045557616,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4196408731233233,
+        "shift": 0.25,
+        "stationarity_residual": 7.116365824844095e-06
+      },
+      {
+        "G": 5.914544705912417,
+        "G_over_Gc": 1.01,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0008453736083864211,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.914544705912417,
+        "G_over_Gc": 1.01,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.016204833984375,
+        "n": 48,
+        "potential_minus_trivial": -3.713507182602472e-08,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0008477076163183112,
+        "shift": 0.25,
+        "stationarity_residual": 7.116365825732274e-06
+      },
+      {
+        "G": 5.973104554485808,
+        "G_over_Gc": 1.02,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.032012939453125,
+        "n": 48,
+        "potential_minus_trivial": -4.613004038968438,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.42189343632835996,
+        "shift": 0.25,
+        "stationarity_residual": 6.012244972986025e-07
+      },
+      {
+        "G": 5.973104554485808,
+        "G_over_Gc": 1.02,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.001674171263667229,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 5.973104554485808,
+        "G_over_Gc": 1.02,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.032012939453125,
+        "n": 48,
+        "potential_minus_trivial": -2.8682915762675117e-07,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.00168147717310067,
+        "shift": 0.25,
+        "stationarity_residual": 6.012244979647363e-07
+      },
+      {
+        "G": 6.148784100205979,
+        "G_over_Gc": 1.05,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.077789306640625,
+        "n": 48,
+        "potential_minus_trivial": -4.690781076314075,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.4183609598214254,
+        "shift": 0.25,
+        "stationarity_residual": 1.0964861073547993e-05
+      },
+      {
+        "G": 6.148784100205979,
+        "G_over_Gc": 1.05,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.004065844497477572,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 6.148784100205979,
+        "G_over_Gc": 1.05,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.077789306640625,
+        "n": 48,
+        "potential_minus_trivial": -4.091343930627371e-06,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.0040297092164144985,
+        "shift": 0.25,
+        "stationarity_residual": 1.0964861072548793e-05
+      },
+      {
+        "G": 6.44158334307293,
+        "G_over_Gc": 1.1,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.150848388671875,
+        "n": 48,
+        "potential_minus_trivial": -4.8133646291445045,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.40149876938583834,
+        "shift": 0.25,
+        "stationarity_residual": 1.1167193816219445e-05
+      },
+      {
+        "G": 6.44158334307293,
+        "G_over_Gc": 1.1,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0077620667679117045,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 6.44158334307293,
+        "G_over_Gc": 1.1,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.150848388671875,
+        "n": 48,
+        "potential_minus_trivial": -2.8928410366593142e-05,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.007431419892449396,
+        "shift": 0.25,
+        "stationarity_residual": 1.1167193815886378e-05
+      },
+      {
+        "G": 7.027181828806832,
+        "G_over_Gc": 1.2,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.290069580078125,
+        "n": 48,
+        "potential_minus_trivial": -5.035093345736922,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.36162923098939587,
+        "shift": 0.25,
+        "stationarity_residual": 1.482097397009774e-05
+      },
+      {
+        "G": 7.027181828806832,
+        "G_over_Gc": 1.2,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.01423045574117146,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 7.027181828806832,
+        "G_over_Gc": 1.2,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.290069580078125,
+        "n": 48,
+        "potential_minus_trivial": -0.00018933027973731548,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.012652391128364424,
+        "shift": 0.25,
+        "stationarity_residual": 1.4820973970541829e-05
+      },
+      {
+        "G": 8.198378800274638,
+        "G_over_Gc": 1.4,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.552398681640625,
+        "n": 48,
+        "potential_minus_trivial": -5.3962609966215265,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.29329588830188547,
+        "shift": 0.25,
+        "stationarity_residual": 6.202538863631091e-07
+      },
+      {
+        "G": 8.198378800274638,
+        "G_over_Gc": 1.4,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.02439506698486537,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 8.198378800274638,
+        "G_over_Gc": 1.4,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.552398681640625,
+        "n": 48,
+        "potential_minus_trivial": -0.0010978309005452939,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.01894399111667693,
+        "shift": 0.25,
+        "stationarity_residual": 6.202538858079976e-07
+      },
+      {
+        "G": 9.369575771742443,
+        "G_over_Gc": 1.6,
+        "branch": "nontrivial_algebraic",
+        "mhat": -8.799713134765625,
+        "n": 48,
+        "potential_minus_trivial": -5.680637929052356,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.24357512828893924,
+        "shift": 0.25,
+        "stationarity_residual": 1.5324947488903895e-05
+      },
+      {
+        "G": 9.369575771742443,
+        "G_over_Gc": 1.6,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.03201852541763581,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 9.369575771742443,
+        "G_over_Gc": 1.6,
+        "branch": "nontrivial_algebraic",
+        "mhat": 0.799713134765625,
+        "n": 48,
+        "potential_minus_trivial": -0.002836621677612807,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.022136718418115157,
+        "shift": 0.25,
+        "stationarity_residual": 1.5324947488570828e-05
+      },
+      {
+        "G": 10.540772743210248,
+        "G_over_Gc": 1.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.035064697265625,
+        "n": 48,
+        "potential_minus_trivial": -5.916951209159,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.20699203737665728,
+        "shift": 0.25,
+        "stationarity_residual": 2.492536017584257e-07
+      },
+      {
+        "G": 10.540772743210248,
+        "G_over_Gc": 1.8,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.037947881976457244,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 10.540772743210248,
+        "G_over_Gc": 1.8,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.035064697265625,
+        "n": 48,
+        "potential_minus_trivial": -0.005325153587742902,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.023713194345466933,
+        "shift": 0.25,
+        "stationarity_residual": 2.492536012033142e-07
+      },
+      {
+        "G": 11.711969714678053,
+        "G_over_Gc": 2.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.260284423828125,
+        "n": 48,
+        "potential_minus_trivial": -6.113025718108656,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.17924841867960759,
+        "shift": 0.25,
+        "stationarity_residual": 9.029094117041225e-06
+      },
+      {
+        "G": 11.711969714678053,
+        "G_over_Gc": 2.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.0426913672235144,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 11.711969714678053,
+        "G_over_Gc": 2.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.260284423828125,
+        "n": 48,
+        "potential_minus_trivial": -0.00844187959538114,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.024395262978253618,
+        "shift": 0.25,
+        "stationarity_residual": 9.029094116708158e-06
+      },
+      {
+        "G": 14.639962143347567,
+        "G_over_Gc": 2.5,
+        "branch": "nontrivial_algebraic",
+        "mhat": -9.786224365234375,
+        "n": 48,
+        "potential_minus_trivial": -6.5033763636896555,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.132960930211566,
+        "shift": 0.25,
+        "stationarity_residual": 8.746084858568537e-07
+      },
+      {
+        "G": 14.639962143347567,
+        "G_over_Gc": 2.5,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.05122964066821728,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 14.639962143347567,
+        "G_over_Gc": 2.5,
+        "branch": "nontrivial_algebraic",
+        "mhat": 1.786224365234375,
+        "n": 48,
+        "potential_minus_trivial": -0.018244896621114073,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.02426858462873116,
+        "shift": 0.25,
+        "stationarity_residual": 8.746084863009429e-07
+      },
+      {
+        "G": 17.56795457201708,
+        "G_over_Gc": 3.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": -10.269317626953125,
+        "n": 48,
+        "potential_minus_trivial": -6.786872555883052,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.10478644672393192,
+        "shift": 0.25,
+        "stationarity_residual": 1.549529924815829e-06
+      },
+      {
+        "G": 17.56795457201708,
+        "G_over_Gc": 3.0,
+        "branch": "trivial",
+        "mhat": 0.0,
+        "n": 48,
+        "potential_minus_trivial": 0.0,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": -0.05692182296468587,
+        "shift": 0.25,
+        "stationarity_residual": 0.0
+      },
+      {
+        "G": 17.56795457201708,
+        "G_over_Gc": 3.0,
+        "branch": "nontrivial_algebraic",
+        "mhat": 2.269317626953125,
+        "n": 48,
+        "potential_minus_trivial": -0.029870220587262172,
+        "potential_value": "NOT DEFINED UNDER THE FROZEN MATERIAL",
+        "reduced_curvature": 0.023155782308315682,
+        "shift": 0.25,
+        "stationarity_residual": 1.5495299247048067e-06
+      }
+    ],
+    "sign_convention": "more negative potential_minus_trivial = deeper",
+    "status": "EXECUTED",
+    "units": "per site (per unit four-volume in lattice units), a=1, r=1"
+  },
+  "derivation_note": "derivations/P2-PHASE-01_fierz_verification_and_branch_depths.md",
+  "exclusions_confirmed": {
+    "evidence": "repository_inputs_read above is the complete list of repository paths opened by this script.",
+    "historical_Finding_5_extraction": "NOT READ",
+    "quarantined_-3.2(5)": "NOT READ",
+    "suspended_P2-BETAV-CIRC-01_result": "NOT READ"
+  },
+  "input_sha256": {
+    "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md": "fe68b9c645c80287afa45288d7c3e0490328b76663aafbe78af20dfc12a4e67a",
+    "results/P2-CHANNEL-FREEZE/fierz_matrix.json": "5085463db1b3a21c0ea1ad2d0b0cdb5da3abb5fd8a78e9623c6b6942879667a9",
+    "results/P2-PHASE-01/exploratory-scalar-stationary/scalar_stationary.json": "a4537efad3b46e5e429b5310baad8b4dbf36d9c95582873dbfa0b03cc44d7028",
+    "scripts/p2_phase01_scalar_exploratory.py": "3bb26bd942c0a7392e7fc6468a3f4744fcaa7371861d74791f56ea4ecd0e9bf0"
+  },
+  "repository_inputs_read": [
+    "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md",
+    "results/P2-CHANNEL-FREEZE/fierz_matrix.json",
+    "results/P2-PHASE-01/exploratory-scalar-stationary/scalar_stationary.json",
+    "scripts/p2_phase01_scalar_exploratory.py"
+  ],
+  "status": "DERIVATION; not a gate result; no admissibility verdict; P2-PHASE-01 remains PROPOSED",
+  "study": "P2-PHASE-01 Fierz-matrix verification and stationary-branch potential depths"
+}
