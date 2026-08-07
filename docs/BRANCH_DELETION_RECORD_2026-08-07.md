@@ -47,7 +47,7 @@ evidence. It appears in no deletion set, at any stage.
 | `gate/p2-channel-freeze` | `47e271bbf1a73b6d3f2fc779c1ffcd024abaa80b` | `e045aa5c6c4353ee539fa902b41ca8dffd3f3686` | true | `PENDING_DELETE` |
 | `gate/p2-governance-amendment` | `d63f33b9df723a3a53c13a5126f85c47ffb77d30` | `d8ca67d80a8ac84e489a4c3532f214b45e705483` | true | `PENDING_DELETE` |
 | `gate/p2-grassmann-crossing-sign` | `cf4c78959c0caf6bfed7c80f9451b6a3337972fe` | `81fd2f965c520be9791c61ab7a677b9343aeb70d` | true | `PENDING_DELETE` |
-| `gate/p2-integrate-fierz-and-sign-ruling` | `236f71c69ef9abec33ef0d808724ce80af037710` | `NOT PRESENT ON REMOTE` | n/a | `NOT_AUTHORIZED` |
+| `gate/p2-integrate-fierz-and-sign-ruling` | `236f71c69ef9abec33ef0d808724ce80af037710` | `NOT PRESENT ON REMOTE` | n/a | `ABSENT_FROM_REMOTE` |
 | `gate/p2-lattice-ontology-01` | `edb08c2a6244c330614d98b0b824db9dfe8d873f` | `de05e9e3f8e0ea9f74e37831342d98b8232edc0b` | true | `PENDING_DELETE` |
 | `gate/p2-phase-01-fierz-and-branch-depths` | `dca522690b00ae6bc9b706492b09d7c60d7efc51` | `b9ca22ea448825347e4cd45b1a92b1b62e6b9ab4` | true | `PENDING_DELETE` |
 | `gate/p2-si1-unblock` | `c1f1bec27085335b077dbdd26cb460f994acffd6` | `dc4ab9e7dfb21ddb0428d688bb257f2178da7f0a` | true | `PENDING_DELETE` |
@@ -63,7 +63,7 @@ evidence. It appears in no deletion set, at any stage.
 | `run/p2-betav-arm-p-decisive` | `48c5cc59f81b148da66cb4366199b59987e53a2a` | `8b64b895cac1e1c9b4e8f600449c15ce1ffc66c7` | true | `PENDING_DELETE` |
 | `sea-ice/gate-stubs` | `b02c70279b382e05d415b23b9b5f562e3c5e2156` | `e21f81ea7f750c71fcfe2734ab86423cadf91b17` | true | `PENDING_DELETE` |
 
-## The one `NOT_AUTHORIZED` entry, and why
+## The one `ABSENT_FROM_REMOTE` entry, and why
 
 `gate/p2-integrate-fierz-and-sign-ruling` **is not present on the
 remote.** It was created locally during the 2026-08-07 integration task
@@ -72,17 +72,24 @@ itself, not by pushing the branch.
 
 Its local ref resolves to `236f71c69ef9abec33ef0d808724ce80af037710`,
 which is `main` itself, so no content is at risk under any outcome. It
-is `NOT_AUTHORIZED` because **there is no remote ref to delete**, and
-Stage 2 deletes remote branches only.
+is `ABSENT_FROM_REMOTE` because **there is no remote ref to delete**,
+and Stage 2 deletes remote branches only.
 
 **Its `verified_merged` is recorded as `n/a`, not `true` or `false`.**
 Recording `true` would make it `PENDING_DELETE` under the state machine
 and send Stage 2 to delete a branch that does not exist; recording
-`false` would assert something untrue about its ancestry. The
-specification's state machine has no state for "listed but absent from
-the remote", which is reported as a specification defect in the Stage-1
-report. The conservative resolution is used here: **it authorizes
-nothing.**
+`false` would assert something untrue about its ancestry.
+
+**This entry was first recorded as `NOT_AUTHORIZED`**, because the
+policy then in force had no state for "listed but absent from the
+remote". That was the conservative reading — it authorized nothing —
+but it conflated two different situations. The 2026-08-07 policy
+amendment added `ABSENT_FROM_REMOTE` as a distinct terminal state, and
+this entry is restated under it. The distinction matters for the future:
+a branch absent from the remote may be pushed later and would then be
+assessed afresh, whereas a branch that is present but unmerged will not
+become deletable by anything happening on the remote. Both remain
+terminal for this deletion round, and neither enters Stage 2.
 
 ## Counts
 
@@ -95,11 +102,26 @@ nothing.**
 
 `pending_delete_count` equals `verified_merged_count`, as required.
 
-**`not_merged_count` is 0 while one entry is `NOT_AUTHORIZED`.** The two
-are not the same number here, and the discrepancy is deliberate and
-explained above: the single `NOT_AUTHORIZED` entry is unauthorized for
-absence from the remote, not for being unmerged. **No branch on the list
-failed the merge check.**
+**`not_merged_count` is 0 while one entry is `ABSENT_FROM_REMOTE`.** The
+two are not the same number here, and the discrepancy is deliberate and
+explained above: the single `ABSENT_FROM_REMOTE` entry is unauthorized
+for absence from the remote, not for being unmerged. **No branch on the
+list failed the merge check.**
+
+### Count identity
+
+Under the 2026-08-07 policy amendment the authorization states partition
+the listed set, so the counts must add up. Recomputed from the live
+remote:
+
+    listed_count               26
+    pending_delete_count       25
+    not_authorized_count        0
+    absent_from_remote_count    1
+    25 + 0 + 1 = 26 = listed_count   ✓
+
+The identity is stated as arithmetic rather than as a claim so that a
+mis-stated entry shows up as a number that does not add up.
 
 The one unexpected remote branch is `fix/freeze-checker-sign-repair` @
 `0ab0ca9d4a6dcdd2762d5a03fe83207b18b6b49b`, pushed on 2026-08-07 by the

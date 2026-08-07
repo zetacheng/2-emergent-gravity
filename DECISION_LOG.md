@@ -1149,3 +1149,86 @@ scientific status.
 `fix/branch-deletion-policy`;
 `docs/BRANCHING_POLICY.md`, `docs/BRANCH_DELETION_RECORD_2026-08-07.md`,
 `DECISION_LOG.md`, `specs/2026-08-07T1437Z_branch-deletion-policy.md`.
+
+## 2026-08-07 — Branch-deletion policy amended: `ABSENT_FROM_REMOTE` and remote-refs-only authority
+
+Date: 2026-08-07
+Decision owner: Principal Investigator
+Effect: closes two governing gaps; authorizes no deletion
+
+### Decision
+
+Two amendments to the **Branch lifecycle** policy adopted earlier the
+same day.
+
+**A third authorization state.** Stage-1 authorization now has three
+outcomes and every listed branch reaches exactly one: `PENDING_DELETE`
+for a branch present on the remote and verified merged;
+`NOT_AUTHORIZED` for one present but not merged; and
+**`ABSENT_FROM_REMOTE`** for one that is listed but has no remote ref at
+all. The last two are terminal. `verified_merged` is `n/a` for an
+`ABSENT_FROM_REMOTE` entry, because with no tip there is no ancestry to
+test. The counts must satisfy the closed identity `listed_count =
+pending_delete_count + not_authorized_count + absent_from_remote_count`,
+reported as arithmetic rather than as a claim.
+
+**Remote refs are the sole deletion authority.** `git ls-remote origin`
+governs every tip value, existence test and ancestry check. Local branch
+refs must not be used for any deletion decision, each tip is re-verified
+from the remote immediately before its deletion command, and deletion is
+performed with `git push origin --delete`; `git branch -d` and
+`git branch -D` are prohibited because they touch only local refs and
+would leave the remote branch in place while appearing to have deleted
+it.
+
+### Evidence
+
+**Both gaps were exposed by executing Stage 1, not by reviewing it.**
+Stage 1 handled both correctly under the policy as written and reported
+them; neither is a defect in what it produced.
+
+The first surfaced as a record that had to explain itself:
+`gate/p2-integrate-fierz-and-sign-ruling` is listed but was never
+pushed, and the only available state was `NOT_AUTHORIZED`, leaving
+`not_merged_count` at 0 while one entry carried that status. The two
+situations differ in their futures — an absent branch may be pushed
+later and reassessed; a present-but-unmerged one will not become
+deletable by anything happening on the remote.
+
+The second surfaced as observed drift: local `main` sits at `0f796174`
+against a remote `236f71c6`, and local `run/p2-betav-arm-p-decisive` at
+`0f796174` against a remote `48c5cc59`. Stage 1 read every value from
+`git ls-remote` and was correct to, but nothing in the policy required
+it.
+
+`docs/BRANCH_DELETION_RECORD_2026-08-07.md` is corrected: the one absent
+entry is restated as `ABSENT_FROM_REMOTE`, its explanation preserved and
+extended with the reason for the restatement, and the count identity
+added. **No recorded tip, merge commit or other entry was altered** —
+they are pre-deletion evidence.
+
+### Consequences
+
+Nothing is deleted by this entry, and the deletion set is unchanged at
+25 `PENDING_DELETE` entries. **Stage 2 is gated on this amendment and
+Stage 1 both being merged into `main`.**
+
+`fix/freeze-checker-sign-repair` remains excluded from the deletion set
+and must not be deleted; it appeared on the remote after the Stage-1
+inventory was taken and is handled in a later inventory.
+
+`review/role-model-and-executors` @
+`10c260b96882ac12610f78840aeeabd07be2d7cb` remains permanently
+preserved.
+
+### Related gate
+
+None. This is a repository-hygiene policy and changes no gate or
+scientific status.
+
+### Related branch and files
+
+`fix/branch-deletion-policy-amendment`;
+`docs/BRANCHING_POLICY.md`, `docs/BRANCH_DELETION_RECORD_2026-08-07.md`,
+`DECISION_LOG.md`,
+`specs/2026-08-07T1508Z_branch-deletion-policy-amendment.md`.
