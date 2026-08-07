@@ -19,6 +19,7 @@ import sympy as sp
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
+import p2_grassmann_crossing_sign as consumer  # noqa: E402
 from p2_grassmann_crossing_sign import (  # noqa: E402
     DECLARED_CROSSING_SIGN,
     FINAL_ORDER,
@@ -148,6 +149,85 @@ def test_mutation_suite_does_not_cover_the_crossing_sign():
     out = checker_sign_invariance()
     assert out["mutation_suite_covers_the_field"] is False
     assert out["checker_modified_by_this_task"] is False
+
+
+# ---- operator-layer coverage for a flipped declaration -------------------
+#
+# The freeze checker validates the unsigned stored matrix and is correctly
+# blind to `grassmann_crossing_sign`, so a flipped declaration cannot be
+# caught there and must not be added to the freeze mutation suite.  The one
+# place a computed crossing sign meets a declared one is the comparison in
+# `scripts/p2_grassmann_crossing_sign.py::main`:
+#
+#     "s_G_equals_declared_value": bool(sign == DECLARED_CROSSING_SIGN)
+#
+# These tests drive that PRODUCTION comparison.  The flip is injected into
+# the module attribute the production code reads, and the artifact
+# destination is redirected to a temporary path, so no repository file is
+# written -- the freeze is not edited, transiently or otherwise.  The tests
+# themselves PASS by asserting that the production comparison rejected.
+
+
+def _run_consumer(tmp_path, monkeypatch, declared):
+    """Run the production `main()` with a given declared sign.
+
+    Only two module attributes are patched: the declaration under test, and
+    the output path so the committed artifact is untouched.
+    """
+    monkeypatch.setattr(consumer, "OUT", tmp_path / "crossing_sign.json")
+    if declared is not None:
+        monkeypatch.setattr(consumer, "DECLARED_CROSSING_SIGN", declared)
+    return consumer.main()["A3a_grassmann_exchange_sign"]
+
+
+def test_production_comparison_accepts_the_real_declaration(tmp_path,
+                                                            monkeypatch):
+    """Baseline: unflipped, the production comparison agrees."""
+    block = _run_consumer(tmp_path, monkeypatch, None)
+    assert block["declared_grassmann_crossing_sign"] == -1
+    assert block["s_G"] == -1
+    assert block["s_G_equals_declared_value"] is True
+
+
+def test_production_comparison_rejects_a_flipped_declaration(tmp_path,
+                                                             monkeypatch):
+    """The production comparison must reject a flipped declared value.
+
+    The rejection comes from the production code comparing its own computed
+    ``s_G = -1`` against the mutated declaration ``+1``.  This test does not
+    re-implement that comparison; it asserts on what ``main()`` recorded.
+    """
+    block = _run_consumer(tmp_path, monkeypatch, +1)
+    # the declaration the production code actually used
+    assert block["declared_grassmann_crossing_sign"] == +1
+    # the computed sign is untouched by the flip -- still derived, not read
+    assert block["s_G"] == -1
+    assert block["all_routes_agree"] is True
+    assert set(block["routes"].values()) == {-1}
+    # ...so the production comparison, and only it, produces the rejection
+    assert block["s_G_equals_declared_value"] is False
+
+
+def test_flip_changes_only_the_declaration_and_the_verdict(tmp_path,
+                                                           monkeypatch):
+    """Localises the rejection to the production comparison itself."""
+    baseline = _run_consumer(tmp_path, monkeypatch, None)
+    monkeypatch.setattr(consumer, "DECLARED_CROSSING_SIGN", +1)
+    flipped = consumer.main()["A3a_grassmann_exchange_sign"]
+    differing = {key for key in baseline
+                 if baseline[key] != flipped.get(key)}
+    assert differing == {"declared_grassmann_crossing_sign",
+                         "s_G_equals_declared_value"}
+
+
+def test_flip_demonstration_writes_no_repository_file(tmp_path, monkeypatch):
+    """The freeze and the committed artifact are untouched by the flip."""
+    freeze = ROOT / "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md"
+    before = (freeze.read_bytes(), RESULTS.read_bytes())
+    _run_consumer(tmp_path, monkeypatch, +1)
+    assert (freeze.read_bytes(), RESULTS.read_bytes()) == before
+    assert (tmp_path / "crossing_sign.json").exists(), \
+        "the run must have written somewhere, or it did not run"
 
 
 # ---- the artifact --------------------------------------------------------
