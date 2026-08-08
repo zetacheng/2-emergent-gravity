@@ -1,0 +1,172 @@
+{
+  "audit_verdict": {
+    "both_normalisations_stated_precisely": true,
+    "decisive_evidence": "Line 189 of the Paper-3 note writes the coefficient of J_mu J^mu explicitly as -(G/2N) BEFORE converting it to G_omega. That is the same number this repository derives, in the same operator normalisation, on the same page. The two documents never disagreed about a coefficient, only about which quantity they name.",
+    "mapping_reproduces_G_omega": true,
+    "neither_value_adjusted": true,
+    "paper3_G_omega_as_written": "-G/N",
+    "paper3_c_J_as_written": "-G/(2*N)",
+    "recomputed_c_J": "-G/(2*N)",
+    "same_operator_same_normalisation_agree": true,
+    "verdict": "NORMALISATION MAPPING"
+  },
+  "authority": "specs/2026-08-08T1354Z_normalisation-audit.md",
+  "banner_status": "derivations/CANONICAL_INTERACTION.md retains its DRAFT v0.5 ratification-candidate banner; this task does not modify that file",
+  "comparison_with_channel_character": {
+    "agree": true,
+    "channel_character_c_J": "-G/(2*N)",
+    "channel_character_c_L": "-G/4",
+    "independence_caveat": "Both computations run the same chain over the same frozen material and were authored in the same session. This corroborates the CHAIN, not the judgement behind it. The genuinely independent check is Paper 3, which re-derives its Fierz table from 16-dim completeness at N=3 by a different route and reproduces every intermediate quantity.",
+    "recomputed_c_J": "-G/(2*N)",
+    "recomputed_c_L": "-G/4",
+    "status": "CORROBORATION"
+  },
+  "conversion": {
+    "conversion_factor": 2,
+    "factor_origin": "the explicit 1/2 in L_V = (G_V/2) J_mu J^mu at line 10 of the Paper-3 note; a definitional prefactor on the reported coupling, not an algebraic step",
+    "paper3_convention": "L_V = (G_V/2) J_mu J^mu",
+    "relation": "G_omega = 2 * c_J",
+    "secondary_conversion": {
+      "origin": "the frozen lam(0) = sqrt(2/N) Id_N; Paper 3 performs the same step at its Level 3, writing sqrt(2/3) for N=3",
+      "relation": "c_J = (2/N) * c_L"
+    },
+    "symbolic_check": "2*c_J"
+  },
+  "derivation_note": "derivations/P2-NORMALISATION-AUDIT_g_omega.md",
+  "exclusions_confirmed": {
+    "historical_Finding_5_extraction": "NOT READ",
+    "quarantined_-3.2(5)": "NOT READ",
+    "suspended_P2-BETAV-CIRC-01_result": "NOT READ"
+  },
+  "external_evidence_availability": "AVAILABLE; the pinned revision was fetched and its digest matched",
+  "gate_status": "P2-PHASE-01 remains PROPOSED",
+  "independent_recomputation": {
+    "G_omega_equals_twice_c_J": "-G/N",
+    "c_J_coefficient_of_J_dot_J": "-G/(2*N)",
+    "c_L_coefficient_of_lam0_bilinear_squared": "-G/4",
+    "c_V_bracket_at_N_3": "-3/2",
+    "c_V_bracket_general_N": "-N/2",
+    "c_V_dirac": "1/2",
+    "canonical_per_family_coefficient": "G/(2*N)",
+    "dirac_row_after_frozen_matrix": [
+      "0",
+      "0",
+      "1/2",
+      "1/2",
+      "0"
+    ],
+    "method": "recomputed from the frozen interaction_decomposition and the frozen matrix_rational; the unmerged branch's value was not read before this computation",
+    "s_G_applied_once_at_operator_use": -1
+  },
+  "input_sha256": {
+    "[external] derivations/u3-fierz/u3_fierz.md": "6784d51a5a8d5f8b70b55213e4bf9b3eb50fc8c331397e80a239d16285d58f49",
+    "derivations/CANONICAL_INTERACTION.md": "27daae02ef0921602947cb25bfc7989031c8849172d0ea190cdcf1753f348a81",
+    "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md": "fe68b9c645c80287afa45288d7c3e0490328b76663aafbe78af20dfc12a4e67a",
+    "derivations/P2-PHASE-01_fierz_sign_addendum.md": "a0553b8a79cfcd521620448f7d1d6928475573e751dd404698adcd48ad6871df",
+    "results/P2-CHANNEL-FREEZE/fierz_matrix.json": "5085463db1b3a21c0ea1ad2d0b0cdb5da3abb5fd8a78e9623c6b6942879667a9"
+  },
+  "paper3_intermediate_agreement": {
+    "all_levels_agree": true,
+    "levels": [
+      {
+        "agree": true,
+        "paper3": "+1/2",
+        "quantity": "c_V_dirac",
+        "recomputed": "1/2"
+      },
+      {
+        "agree": true,
+        "paper3": "-3/2",
+        "quantity": "c_V_bracket_at_N_3",
+        "recomputed": "-3/2"
+      },
+      {
+        "agree": true,
+        "paper3": "-G/4",
+        "quantity": "coefficient_of_lam0_bilinear_squared",
+        "recomputed": "-G/4"
+      },
+      {
+        "agree": true,
+        "paper3": "-G/(2*N)",
+        "quantity": "coefficient_of_J_dot_J",
+        "recomputed": "-G/(2*N)"
+      },
+      {
+        "agree": true,
+        "paper3": "-G/N",
+        "quantity": "G_omega",
+        "recomputed": "-G/N"
+      }
+    ],
+    "why_this_matters": "Agreement at every intermediate level, not only at the endpoint, rules out compensating errors. Paper 3 also applies the crossing sign once at operator use, matching the 2026-08-07 ruling; had it not, endpoint agreement would have been accidental."
+  },
+  "paper3_normalisation": {
+    "G_omega_as_written": "-G/N",
+    "assembly_line_numbers": [
+      185,
+      186,
+      187,
+      188,
+      189,
+      190
+    ],
+    "assembly_quoted": [
+      "- **Level 3 \u2014 normalize to `J_mu`.** `psibar gamma_mu lambda^0 psi =",
+      "  sqrt(2/3) psibar gamma_mu psi = sqrt(2/3) J_mu`, so",
+      "  `(psibar gamma_mu lambda^0 psi)^2 = (2/3) J_mu J^mu`. Restoring `L_int = (G/2N)*[...]`:",
+      "",
+      "      L_int -> (G/2N) * (-3/2) * (2/3) J_mu J^mu  =  -(G/2N) J_mu J^mu",
+      "             =  (G_omega/2) J_mu J^mu   with   G_omega = -G/N."
+    ],
+    "carries_a_factor_of_one_half": true,
+    "classification_line_number": 11,
+    "classification_quoted": "`G_V < 0` repulsive (omega survives) / `G_V > 0` attractive (fails) / `G_V = 0` no channel.",
+    "coefficient_of_J_dot_J_as_written": "-(G/2N)",
+    "convention_line_number": 10,
+    "convention_quoted": "Classification (Paper 3 convention `L_V = (G_V/2) J_mu J^mu`, `J_mu = psibar gamma_mu psi`):",
+    "half_factor_origin": "L_V = (G_V/2) J_mu J^mu, the reported coupling is twice the operator coefficient",
+    "pinned_revision": "8c363ef08368f5c022278ea5f36e01496be3d5ca",
+    "source_path": "derivations/u3-fierz/u3_fierz.md",
+    "source_repository": "zetacheng/3-vector-sector",
+    "source_sha256": "6784d51a5a8d5f8b70b55213e4bf9b3eb50fc8c331397e80a239d16285d58f49"
+  },
+  "repository_inputs_read": {
+    "2-emergent-gravity": [
+      "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md",
+      "results/P2-CHANNEL-FREEZE/fierz_matrix.json",
+      "derivations/CANONICAL_INTERACTION.md",
+      "derivations/P2-PHASE-01_fierz_sign_addendum.md",
+      "results/P2-PHASE-01/channel-character/channel_character.json  [read from the unmerged branch object, not the base tree]"
+    ],
+    "3-vector-sector (read-only, external pin)": [
+      "derivations/u3-fierz/u3_fierz.md"
+    ]
+  },
+  "rows_not_closed_by_this_audit": [
+    "starting-interaction match (path, line range, pinned SHA)",
+    "G_omega provenance to its derivation equation reference",
+    "claim status VERIFIED (registry path and entry)",
+    "test count (command and output digest)",
+    "convention-compatibility table"
+  ],
+  "status": "EVIDENCE PRODUCTION; one row of the CANONICAL_INTERACTION.md \u00a75 evidence table; ratifies nothing, removes no banner, modifies no Paper-3 content",
+  "study": "Normalisation audit: G_omega against the derived vector coefficient",
+  "this_repository_normalisation": {
+    "carries_a_factor_of_one_half": false,
+    "normalisation_L_definition": "coefficient of (psibar lam(0) Gamma psi)^2",
+    "normalisation_P_definition": "coefficient of (psibar Gamma psi)^2",
+    "normalisation_relation": "c_P = (2/N) * c_L, from lam(0) = sqrt(2/N) Id_N",
+    "note": "Neither declared normalisation carries a factor of one half; both are plain coefficients of a squared bilinear. G_omega is a third quantity, defined by Paper 3's (G_V/2) convention.",
+    "reported_induced_V_singlet": {
+      "normalisation_L": "-G/4",
+      "normalisation_P": "-G/(2*N)",
+      "origin": "Fierz image, operator level (s_G applied once)",
+      "sign": -1,
+      "sign_of_P_normalisation": -1
+    },
+    "source_commit": "cb604a4e3a96f9120787a685120f205d8e4c7c88",
+    "source_path": "results/P2-PHASE-01/channel-character/channel_character.json",
+    "source_status": "UNMERGED BRANCH gate/p2-channel-character; absent from the evidence base; quoted for its declaration only, not consumed as an input"
+  }
+}
