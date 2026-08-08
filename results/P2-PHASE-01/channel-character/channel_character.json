@@ -1,0 +1,337 @@
+{
+  "authority": "specs/2026-08-08T1321Z_channel-character.md",
+  "convention_dependence": {
+    "composite_vector_scope": "This computes the sign of the induced singlet V and A in the particle-hole rearrangement only. The particle-particle channel is not computed. No statement is made about whether a massive composite vector can form; that would concern channels this derivation does not examine.",
+    "depends_on": [
+      "Euclidean metric_signature (1,1,1,1) with Hermitian gammas",
+      "the mandatory (I*gamma5)^2 = -(gamma5)^2 basis conversion",
+      "the 2026-08-07 ruling: matrix_rational stored unsigned, s_G applied exactly once at operator use"
+    ],
+    "if_the_s_G_ruling_were_reversed": {
+      "induced_coefficients_become": {
+        "induced_A_singlet": {
+          "changed": true,
+          "normalisation_L": "G/4",
+          "normalisation_P": "G/(2*N)"
+        },
+        "induced_V_singlet": {
+          "changed": true,
+          "normalisation_L": "G/4",
+          "normalisation_P": "G/(2*N)"
+        },
+        "scalar_singlet_direct": {
+          "changed": false,
+          "normalisation_L": "G/(2*N)",
+          "normalisation_P": "G/N**2"
+        }
+      },
+      "meaning": "matrix_rational would be held to store the sign already, so no further factor at operator use",
+      "scalar_channel_untouched": "the scalar is direct, not Fierz-induced, so it does not move",
+      "structure_untouched": "S, P and T still vanish; V and A remain equal and purely singlet; the exchanged form remains purely left-right, because an overall sign multiplies all four chiral coefficients equally"
+    }
+  },
+  "derivation_b_diquark_executability": {
+    "no_C_selected": true,
+    "no_pp_projection_constructed": true,
+    "step_0_all_pp_operator_definitions_fixed": false,
+    "step_0_detail": {
+      "charge_conjugated_field_definition_frozen": false,
+      "diquark_operator_normalisation_frozen": false,
+      "particle_particle_grassmann_ordering_frozen": false,
+      "what_the_freeze_does_fix": {
+        "applies_to": "the particle-hole exchange (alpha,beta,gamma,delta) -> (alpha,delta,gamma,beta); a particle-particle pairing is a different permutation and no ordering convention is frozen for it",
+        "compound_index_order": [
+          "dirac_family",
+          "internal_family",
+          "component"
+        ],
+        "grassmann_crossing_sign": "-1"
+      },
+      "why": "In Euclidean signature psi and psibar are independent Grassmann variables, so psibar^c is not derivable from psi^c by conjugation; it must be defined. The sign/phase eta in psibar^c = eta psi^T C^-1 appears ONCE in the paired product and therefore flips the coefficient sign for eta = -1."
+    },
+    "step_1_C_fixed_by_the_frozen_material": false,
+    "step_1_marker_counts": {
+      "charge conjugation": 0,
+      "charge-conjugation": 0,
+      "conjugation matrix": 0,
+      "diquark": 0,
+      "particle-particle": 0,
+      "particle\u2013particle": 0,
+      "psi^c": 0,
+      "psi_c": 0
+    },
+    "step_1_sources_searched": [
+      "CONVENTIONS.md",
+      "derivations/CANONICAL_INTERACTION.md",
+      "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md",
+      "derivations/P2-GAP-01_gap_criticality.md",
+      "derivations/P2-PHASE-01_fierz_sign_addendum.md",
+      "derivations/P2-PHASE-01_fierz_verification_and_branch_depths.md"
+    ],
+    "step_2_C_unique_up_to_a_nonzero_scalar": true,
+    "step_2_checks": {
+      "antisymmetric_C_transpose_equals_minus_C": true,
+      "defining_relation_holds_for_all_mu": true,
+      "determinant_is_one": true,
+      "residual_scalar_cancels_in_the_paired_product": true,
+      "unitary_C_dagger_C_is_identity": true
+    },
+    "step_2_defining_relation": "C gamma_mu^T C^-1 = -gamma_mu",
+    "step_2_representative_C": [
+      [
+        "0",
+        "1",
+        "0",
+        "0"
+      ],
+      [
+        "-1",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "0"
+      ]
+    ],
+    "step_2_solution_space_complex_dimension": 1,
+    "step_3_channel_character_invariant_under_residual_scalar": true,
+    "step_4_dependence_that_forces_it": "The pp channel character is invariant under the residual freedom in C, so C is NOT the obstruction. It is not invariant under the un-frozen charge-conjugated-field convention eta, which appears once in the paired product and flips the sign. The frozen material fixes neither eta nor the pp Grassmann ordering nor the diquark normalisation.",
+    "step_4_verdict": "UNRESOLVED_GOVERNANCE_OR_EVIDENCE_AMBIGUITY",
+    "why_no_projection": "Constructing it would require supplying exactly the conventions step 0 shows to be missing. The authority records an earlier exploratory diquark projection that returned zero in all four families and treats it as a failed attempt rather than a finding; it is not repeated here."
+  },
+  "derivation_note": "derivations/P2-PHASE-01_channel_character.md",
+  "exclusions_confirmed": {
+    "historical_Finding_5_extraction": "NOT READ",
+    "quarantined_-3.2(5)": "NOT READ",
+    "suspended_P2-BETAV-CIRC-01_result": "NOT READ"
+  },
+  "gate_status": "P2-PHASE-01 remains PROPOSED",
+  "input_sha256": {
+    "CONVENTIONS.md": "ec8d23aa8b0596d4d68cb5df4ab4821428641e923980d0fe1b45c4770c0089e6",
+    "derivations/CANONICAL_INTERACTION.md": "27daae02ef0921602947cb25bfc7989031c8849172d0ea190cdcf1753f348a81",
+    "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md": "fe68b9c645c80287afa45288d7c3e0490328b76663aafbe78af20dfc12a4e67a",
+    "derivations/P2-GAP-01_gap_criticality.md": "17b6f613ffefb79fae8c0a5c40e3bd67ad31a101112af615945647e143fade00",
+    "derivations/P2-PHASE-01_fierz_sign_addendum.md": "a0553b8a79cfcd521620448f7d1d6928475573e751dd404698adcd48ad6871df",
+    "derivations/P2-PHASE-01_fierz_verification_and_branch_depths.md": "c7e5744c9744780b6eb205c08ff9b65393e0055d7ebf04f2e0fc406d028edeb5",
+    "results/P2-CHANNEL-FREEZE/fierz_matrix.json": "5085463db1b3a21c0ea1ad2d0b0cdb5da3abb5fd8a78e9623c6b6942879667a9",
+    "results/P2-PHASE-01/fierz-and-branch-depths/fierz_and_depths.json": "9bf14f51cc1fbdf4523debe70ad91164bc6d9c96d75f3450b7bce6d43514ec1d",
+    "scripts/P2-CHANNEL-FREEZE/gamma_algebra.py": "df067d4da603a215746f080d2f05f0c8084bee27b0a8ba19529c4abf559f9ec9"
+  },
+  "layer_1a": {
+    "canonical_coefficient_read_from_freeze": "G/(2*N)",
+    "channels": {
+      "induced_A_singlet": {
+        "normalisation_L": "-G/4",
+        "normalisation_P": "-G/(2*N)",
+        "origin": "Fierz image, operator level (s_G applied once)",
+        "sign": -1,
+        "sign_of_P_normalisation": -1
+      },
+      "induced_V_singlet": {
+        "normalisation_L": "-G/4",
+        "normalisation_P": "-G/(2*N)",
+        "origin": "Fierz image, operator level (s_G applied once)",
+        "sign": -1,
+        "sign_of_P_normalisation": -1
+      },
+      "scalar_singlet_direct": {
+        "normalisation_L": "G/(2*N)",
+        "normalisation_P": "G/N**2",
+        "origin": "frozen canonical interaction, singlet term A=0",
+        "sign": 1,
+        "sign_of_P_normalisation": 1
+      }
+    },
+    "dirac_row_after_frozen_matrix": [
+      "0",
+      "0",
+      "1/2",
+      "1/2",
+      "0"
+    ],
+    "layer": "1a \u2014 frozen algebraic coefficient; UNCONDITIONAL",
+    "matrix_level_normalisation_L": {
+      "A": "G/4",
+      "P": "0",
+      "S": "0",
+      "T": "0",
+      "V": "G/4"
+    },
+    "normalisation_L_definition": "coefficient of (psibar lam(0) Gamma psi)^2",
+    "normalisation_P_definition": "coefficient of (psibar Gamma psi)^2",
+    "normalisation_relation": "c_P = (2/N) * c_L, from lam(0) = sqrt(2/N) Id_N",
+    "note_on_the_exploratory_pairing": "The authority pairs the scalar as +G/N**2 and the induced vector as -G/4. Both values are correct but they are stated in DIFFERENT normalisations: +G/N**2 is normalisation P and -G/4 is normalisation L. In a single normalisation the pair is (+G/(2*N), -G/4) or (+G/N**2, -G/(2*N)). The sign conclusion is unaffected; the magnitudes as paired are not comparable.",
+    "operator_level_normalisation_L": {
+      "A": "-G/4",
+      "P": "0",
+      "S": "0",
+      "T": "0",
+      "V": "-G/4"
+    },
+    "s_G_applied_once_at_operator_use": -1,
+    "v_canonical": [
+      "G/(2*N)",
+      "G/(2*N)",
+      "0",
+      "0",
+      "0"
+    ],
+    "v_frozen_after_I_gamma5_conversion": [
+      "G/(2*N)",
+      "-G/(2*N)",
+      "0",
+      "0",
+      "0"
+    ],
+    "vanishing_families": [
+      "S",
+      "P",
+      "T"
+    ]
+  },
+  "layer_1b": {
+    "branches": {
+      "branch_i_expression_already_in_the_exponent": {
+        "channels": {
+          "induced_A_singlet": {
+            "g_in_normalisation_P": "-G/N",
+            "real_linear_HS_field_admissible": false,
+            "sign_of_g": -1
+          },
+          "induced_V_singlet": {
+            "g_in_normalisation_P": "-G/N",
+            "real_linear_HS_field_admissible": false,
+            "sign_of_g": -1
+          },
+          "scalar_singlet_direct": {
+            "g_in_normalisation_P": "2*G/N**2",
+            "real_linear_HS_field_admissible": true,
+            "sign_of_g": 1
+          }
+        },
+        "description": "weight carries exp[+c J^2]; g = +2c"
+      },
+      "branch_ii_expression_is_a_term_of_S_E": {
+        "channels": {
+          "induced_A_singlet": {
+            "g_in_normalisation_P": "G/N",
+            "real_linear_HS_field_admissible": true,
+            "sign_of_g": 1
+          },
+          "induced_V_singlet": {
+            "g_in_normalisation_P": "G/N",
+            "real_linear_HS_field_admissible": true,
+            "sign_of_g": 1
+          },
+          "scalar_singlet_direct": {
+            "g_in_normalisation_P": "-2*G/N**2",
+            "real_linear_HS_field_admissible": false,
+            "sign_of_g": -1
+          }
+        },
+        "description": "weight carries exp[-c J^2]; g = -2c"
+      }
+    },
+    "g_is_not_2c": "g is an exponent-level quantity; the mapping supplies the sign relating it to the algebraic coefficient c",
+    "identity": "exp[(g/2) J^2] = Integral dPhi exp[-Phi^2/(2g) + Phi J], convergent only for g > 0",
+    "layer": "1b \u2014 exponent / HS coefficient; CONDITIONAL on the mapping",
+    "mapping_is_fixed_by_the_frozen_material": false,
+    "search": {
+      "explicit_L_to_S_E_mapping_found": false,
+      "marker_counts": {
+        "Boltzmann": 0,
+        "Euclidean action": 1,
+        "L_E": 0,
+        "Lagrangian": 0,
+        "S_E": 2,
+        "S_int": 0,
+        "Wick": 1,
+        "action density": 0,
+        "e^{-": 0,
+        "enters the exponent": 0,
+        "exp(-": 0,
+        "exp[-": 0
+      },
+      "quotes": [
+        "CONVENTIONS.md: | Sign of the action | Euclidean action `S_E \u2265 0`; `Z = \u222b e^{\u2212S_E}`, effective action `W = \u2212ln Z`. Boson: `W = +\u00bd Tr ln(\u0394+m\u00b2)`. Dirac fermion: `W = \u2212Tr ln(i\u03b3\u00b7D \u2212 m) = \u2212\u00bd Tr ln(\u2212(\u03b3D)\u00b2 + m\u00b2)`. |",
+        "CONVENTIONS.md: | Sign of the action | Euclidean action `S_E \u2265 0`; `Z = \u222b e^{\u2212S_E}`, effective action `W = \u2212ln Z`. Boson: `W = +\u00bd Tr ln(\u0394+m\u00b2)`. Dirac fermion: `W = \u2212Tr ln(i\u03b3\u00b7D \u2212 m) = \u2212\u00bd Tr ln(\u2212(\u03b3D)\u00b2 + m\u00b2)`. |",
+        "CONVENTIONS.md: | Wick rotation | All loop integrals performed in Euclidean signature. `\u222b d\u2074p_E` with `p\u00b2\u2261p_E\u00b2 \u2265 0`. |"
+      ],
+      "sources_searched": [
+        "CONVENTIONS.md",
+        "derivations/CANONICAL_INTERACTION.md",
+        "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md",
+        "derivations/P2-GAP-01_gap_criticality.md",
+        "derivations/P2-PHASE-01_fierz_sign_addendum.md",
+        "derivations/P2-PHASE-01_fierz_verification_and_branch_depths.md"
+      ]
+    },
+    "usage_inference": {
+      "branch_i_scalar_admits_real_HS": true,
+      "branch_ii_consistent_with_P2_GAP_01": false,
+      "branch_ii_scalar_admits_real_HS": false,
+      "statement": "P2-GAP-01 introduces a REAL scalar auxiliary Sigma for the attractive scalar channel and obtains G_c = 1/(2 I_0). A scalar channel with g < 0 admits no real linear HS field, so branch (ii) cannot be the convention that calculation operated under.",
+      "status": "INFERENCE FROM USAGE, NOT A FROZEN DEFINITION. It does not resolve this layer; the verdict above stands. Fixing the mapping is a PI decision."
+    },
+    "verdict": "REAL-HS ADMISSIBILITY NOT DEFINED BY THE FROZEN MATERIAL"
+  },
+  "layer_2": {
+    "anchors_supply_a_general_criterion": false,
+    "canonical_interaction_anchor": [
+      "vector-singlet Fierz image `G_\u03c9 = \u2212G/N` (repulsive), claim `P3-C-001`",
+      "coefficient `G_\u03c9 = \u2212G/N` (repulsive; \u03c9 survives screening) \u2014 claim",
+      "pseudoscalar bilinear `i\u03b3\u2085`; classification `G_V < 0` repulsive/\u03c9"
+    ],
+    "conditional_consequence": "Under branch (i) \u2014 the only branch consistent with P2-GAP-01's executed real-auxiliary treatment \u2014 and reading the two anchors as a common sign convention, the induced singlet V and A would be repulsive and the scalar attractive. Stated as a conditional consequence, not as a verdict.",
+    "conventions_anchor": [
+      "| Definition of attractive and repulsive channels | Scalar (`\u03c8\u0304\u03c8`) condensate channel is the attractive channel driving the gap; the four-fermion coupling `G > 0` is attractive there. |"
+    ],
+    "layer": "2 \u2014 physical label; requires MORE than layer 1b",
+    "u_double_prime_is_not_a_second_route": "For the bare quadratic term U(Phi) = Phi^2/(2g), U''(0) = 1/g \u2014 the same sign test restated. For the fermion-integrated effective potential U''(0) = 1/g - Pi(0), whose sign changes with the coupling: an attractive scalar channel still has U''(0) > 0 below G_c. No curvature is offered here as evidence for a force label.",
+    "verdict": "ATTRACTIVE/REPULSIVE NOT DEFINED BY THE FROZEN MATERIAL",
+    "why_not": "CONVENTIONS.md labels ONE channel (scalar, G > 0, attractive); it states no rule mapping an arbitrary channel's coefficient sign to a force label. CANONICAL_INTERACTION.md's G_V < 0 repulsive classification is a recorded Paper-3 claim whose source note derivations/u3-fierz/u3_fierz.md is NOT present in this repository, in a document carrying a DRAFT v0.5 no-governing-force banner.",
+    "why_not_the_same_as_1b": "Real-HS admissibility is not a statement about two-body forces. A negative g forces an imaginary HS contour, which is not by itself the absence of an interaction in that channel."
+  },
+  "open_ac_1": "untouched; this reports which channels admit a real linear auxiliary field under each possible exponent mapping, and reports that the mapping is not frozen",
+  "repository_inputs_read": [
+    "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md",
+    "results/P2-CHANNEL-FREEZE/fierz_matrix.json",
+    "derivations/CANONICAL_INTERACTION.md",
+    "derivations/P2-PHASE-01_fierz_verification_and_branch_depths.md",
+    "results/P2-PHASE-01/fierz-and-branch-depths/fierz_and_depths.json",
+    "derivations/P2-PHASE-01_fierz_sign_addendum.md",
+    "derivations/P2-GAP-01_gap_criticality.md",
+    "CONVENTIONS.md",
+    "scripts/P2-CHANNEL-FREEZE/gamma_algebra.py"
+  ],
+  "scalar_control": {
+    "G_GAP_from_the_frozen_singlet": "4*G/N**2",
+    "G_N_from_the_frozen_singlet": "G/N**2",
+    "P2_GAP_01_requires_attractive_scalar_i_e_positive": true,
+    "control_passes": true,
+    "factor_of_two_convention": "G_GAP = 4 * G_N, absorbing trace(Id4) = 4",
+    "gate": "P2-GAP-01",
+    "internal_normalisation": "lam(0) = sqrt(2/N) Id_N, frozen",
+    "operator": "(psibar psi)**2",
+    "quoted_from_the_pinned_note": [
+      "See `CONVENTIONS.md`. Euclidean `d=4`; attractive scalar (`\u03c8\u0304\u03c8`) channel;",
+      "Mean-field (Hubbard\u2013Stratonovich) treatment of the attractive scalar-channel",
+      "\"NJL\" normalization `L_int = G_N(\u03c8\u0304\u03c8)\u00b2`, one has `G = 4 G_N` and the gap",
+      "equation reads `1 = 8 G_N B`; the physics \u2014 the value of `I_0` and the ratio of"
+    ],
+    "sign_of_G_N": 1,
+    "what_this_does_not_test": "It does not re-derive G_c = 1/(2 I_0) for the generator-sum interaction. P2-GAP-01 worked from the singlet-only form L_int = G_N (psibar psi)**2; the mean-field combinatorics of the full U(N) generator sum were not performed there and are not performed here."
+  },
+  "status": "DERIVATION; a computation, not a ruling; no gate registered, no status changed, no frozen artifact modified, no Hubbard-Stratonovich channel selected, no charge-conjugation convention selected",
+  "study": "P2-PHASE-01 channel character of the Fierz-induced interaction"
+}
