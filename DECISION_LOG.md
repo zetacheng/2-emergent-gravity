@@ -1232,3 +1232,160 @@ scientific status.
 `docs/BRANCHING_POLICY.md`, `docs/BRANCH_DELETION_RECORD_2026-08-07.md`,
 `DECISION_LOG.md`,
 `specs/2026-08-07T1508Z_branch-deletion-policy-amendment.md`.
+
+## 2026-08-08 — Euclidean exponent mapping: the canonical interaction is written in the exponent
+
+Date: 2026-08-08
+Decision owner: Principal Investigator
+Effect: supplies a convention absent from the frozen material
+
+### Decision
+
+The PI ruling of 2026-08-08, reproduced verbatim:
+
+> **PI ruling, 2026-08-08 — Euclidean exponent mapping.**
+>
+> The canonical interaction expression
+>
+>     X = (G/(2N)) * Sum( bilinear(lam(A), Id4)**2
+>                       + bilinear(lam(A), I*gamma5)**2, (A, 0, N**2-1) )
+>
+> is written **as it appears in the Boltzmann exponent**. Equivalently,
+> it enters the Euclidean action with a minus sign:
+>
+>     exp(-S_E) contains exp(+X)        <=>        S_E = S_E,0 - X
+>
+> Consequently, for a channel whose coefficient in `X` is written
+> `c * J**2`, the Hubbard–Stratonovich coefficient is
+>
+>     g = +2c
+>
+> **Basis, stated exactly.** This is **NOT derived from the frozen
+> material.** The frozen material contains no Euclidean action, no free
+> or kinetic part, and no exponent mapping; the derivation that raised
+> this question searched for one and found none. The ruling is
+> **constrained by executed usage**: `P2-GAP-01` is a PASSed gate whose
+> mean-field treatment introduces a **real** scalar auxiliary field `Σ`,
+> which is admissible only when the scalar channel has `g > 0`. Under
+> the opposite mapping the scalar channel would give `g < 0` and that
+> gate's method would not be available.
+>
+> **This supplies a definition the frozen material never carried. It is
+> not a recovery of an original intent.**
+>
+> **Scope.** This ruling resolves the exponent mapping and nothing else.
+> It selects no Hubbard–Stratonovich channel — that remains `OPEN-AC-1`
+> and is the PI's. It freezes none of the three diquark-definition gaps
+> (`η`, particle–particle Grassmann ordering, diquark normalisation). It
+> reaches no conclusion about a composite vector. It does not by itself
+> re-run any withheld verdict.
+
+### Reason
+
+The exponent mapping was identified as missing by the channel-character
+derivation, which searched the frozen material for it and found none,
+and therefore withheld two verdicts: `REAL-HS ADMISSIBILITY NOT DEFINED
+BY THE FROZEN MATERIAL` and `ATTRACTIVE/REPULSIVE NOT DEFINED BY THE
+FROZEN MATERIAL`. Both remain withheld until separately recomputed; this
+entry does not re-run them.
+
+The ruling is **constrained by executed usage** rather than derived.
+`P2-GAP-01` is a PASSed gate whose method requires the scalar channel to
+admit a real linear auxiliary field.
+
+**Not a recovery of an original intent** — no document ever stated the
+mapping, and the constraint fixes which of two conventions the programme
+has in fact been using, not which one was once intended.
+
+### Consequences
+
+For any channel whose coefficient in `X` is `c`, the exponent-level
+Hubbard–Stratonovich coefficient is `g = +2c`. The withheld Layer-1b and
+Layer-2 verdicts of the channel-character derivation become computable;
+computing them is a separate authorized task and is not performed here.
+
+This ruling **selects no Hubbard-Stratonovich channel**. `OPEN-AC-1`
+remains open and is the PI's. The three diquark-definition gaps — `η`,
+the particle–particle Grassmann ordering, and the diquark normalisation
+— are untouched and remain unfrozen.
+
+No gate status changes. `P2-GAP-01` remains `PASS` and `P2-PHASE-01`
+remains `PROPOSED`.
+
+### Related gate
+
+None. This ruling supplies a convention; it registers no gate and
+changes no gate status.
+
+### Related branch and files
+
+`fix/exponent-mapping-ruling`;
+`DECISION_LOG.md`,
+`specs/2026-08-08T1634Z_exponent-mapping-ruling.md`.
+
+## 2026-08-08 — Open derivation item: generator-sum criticality is UNESTABLISHED
+
+Date: 2026-08-08
+Decision owner: Principal Investigator
+Effect: opens an unperformed derivation item
+
+### Decision
+
+The open item, reproduced verbatim:
+
+> **Open derivation item — generator-sum criticality.**
+>
+> `P2-GAP-01` obtained `G_c = 1/(2·I_0)` working from the singlet-only
+> form `L_int = G_N (ψ̄ψ)²`, with `G = 4·G_N`. **The mean-field
+> combinatorics of the full U(N) generator-sum canonical interaction
+> have never been performed**, in that gate or since.
+>
+> **Status: UNESTABLISHED.** Whether `G_c = 1/(2·I_0)` transfers to the
+> canonical generator-sum interaction is not known. **`P2-GAP-01`'s PASS
+> stands for the form it computed**; this item concerns whether that
+> result may be lifted to the canonical form, and it may not be assumed.
+>
+> **Not implied by the exponent ruling.** That `P2-GAP-01`'s real-`Σ`
+> usage constrains the exponent mapping says nothing about whether its
+> `G_c` applies to the generator-sum form. **Treating HS contour
+> consistency as evidence for a gap equation would conflate a convention
+> with a derivation.**
+
+### Reason
+
+The canonical interaction designated by `CANONICAL_INTERACTION.md` §2 is
+the U(N) generator-sum form `(G/2N) Σ_A [S^A² + P^A²]`. `P2-GAP-01`
+computed its critical coupling from the singlet-only NJL form
+`L_int = G_N(ψ̄ψ)²`. Those are different interactions: the generator sum
+carries `N²` internal channels where the singlet-only form carries one,
+and the mean-field combinatorics that produce the gap equation's
+prefactor have never been carried out for it.
+
+The question this item opens is narrow and dynamical: **does
+`G_c = 1/(2·I_0)` survive the change of interaction?** It is a
+derivation, not a convention, and no ruling can settle it.
+
+### Consequences
+
+`G_c = 1/(2·I_0)` may not be quoted for the canonical generator-sum
+interaction until the derivation is performed. It remains quotable for
+the form `P2-GAP-01` actually computed.
+
+**`P2-GAP-01`'s gate entry is not edited and its `PASS` is not
+qualified.** The gate passed for the interaction it computed, and that
+remains true; this item records a question about lifting the result, not
+a doubt about it.
+
+Stated once without markup, so the record carries the sentence plainly:
+P2-GAP-01's PASS stands for the form it computed.
+
+### Related gate
+
+`P2-GAP-01`, whose status is unchanged at `PASS`. This entry registers no
+gate and changes no gate status.
+
+### Related branch and files
+
+`fix/exponent-mapping-ruling`;
+`DECISION_LOG.md`,
+`specs/2026-08-08T1634Z_exponent-mapping-ruling.md`.
