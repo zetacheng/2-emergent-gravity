@@ -1650,8 +1650,9 @@ here.**
 
 If the two agree, the `η = ±1` sign ambiguity does not affect the
 diquark channel character and that sign question closes. If they
-disagree, the character depends on an unresolved sign convention, and
-the programme records that rather than concealing it behind a choice.
+disagree, the diquark channel character depends on an unresolved sign
+convention, and the programme records that rather than concealing it
+behind a choice.
 
 **The residual phase freedom in `η` is not characterised by this
 ruling** in either outcome. The ruling addresses the sign ambiguity the
@@ -1686,20 +1687,33 @@ The PI ruling of 2026-08-09, reproduced verbatim:
 > **PI ruling, 2026-08-09 — the negative-mass branch is DEFERRED, not
 > excluded.**
 >
-> The exploratory study found a second stable stationary branch at
-> `M̂ ≈ −7.59`, the exact Wilson complement of the trivial branch, stable
-> including below `G_c`.
+> The exploratory study found a second stationary branch at
+> `M̂ ≈ −7.59`, the exact Wilson complement of the trivial branch, **with
+> positive restricted curvature in the explored one-dimensional
+> stationary analysis, including below `G_c`.**
+>
+> **"Restricted", not "stable", is the accurate word.** The pinned
+> exploratory note states of exactly that quantity: *"Neither curvature
+> is a full condensate-space Hessian or a phase-admissibility
+> statement."* **A bare "stable" would let a later reader take the
+> premise as stronger than the evidence.**
 >
 > **It is not classified as a lattice artifact.** The complement
-> relation and sub-critical stability **tie the branch structurally to
-> the Wilson term; they do not establish that it lacks physical
-> content.** Under the substrate reading there is no continuum limit, so
+> relation and the observed restricted stability **tie the branch
+> structurally to the Wilson term; they do not establish full
+> condensate-space stability, phase admissibility, or absence of
+> physical content.** Under the substrate reading there is no continuum limit, so
 > **the standard continuum-decoupling argument cannot by itself classify
 > this branch as an unphysical lattice artifact.**
 >
-> **The PI's position is that a stable solution corresponds to something
-> real.** The branch is deferred pending the main line — see
-> `DEFERRED-02`.
+> **The PI's position is that a solution stable under the analysis
+> actually performed corresponds to something that warrants physical
+> interpretation rather than automatic dismissal.** The branch is
+> deferred pending the main line — see `DEFERRED-02`.
+>
+> **The qualifier is load-bearing.** Written as *a stable solution
+> corresponds to something real*, the position would quietly restore the
+> stability claim narrowed two paragraphs above.
 >
 > **Consequence for SI-1, recorded now so it is not met by surprise.**
 > `P2-PHASE-01`'s kill criterion asks whether any admissible phase exists
@@ -1713,8 +1727,15 @@ The PI ruling of 2026-08-09, reproduced verbatim:
 
 The exploratory scalar stationary study reported a second stationary
 root at `M̂ ≈ -7.59`, the exact Wilson complement of the trivial branch
-under `I_0(M̂) = I_0(-8-M̂)`, with positive restricted curvature at
+under `I_0(M̂) = I_0(-8-M̂)`, carrying positive restricted curvature at
 `G/G_c` values below `1`.
+
+**The word "restricted" is doing work.** The quantity measured is the
+curvature of the reduced one-dimensional scalar potential, of which the
+pinned exploratory note says: "Neither curvature is a full
+condensate-space Hessian or a phase-admissibility statement." The
+ruling carries that qualifier in its own text rather than leaving it to
+be recovered from the source.
 
 Both facts tie the branch to the Wilson term. **Neither shows the
 branch carries no physical content.** The argument that would ordinarily
@@ -1725,7 +1746,8 @@ continuum limit for it to appeal to.
 ### Consequences
 
 The branch is entered in the deferred-items register as `DEFERRED-02`,
-neither admitted nor excluded, with the PI's position recorded there.
+neither admitted nor excluded, with the PI's position and the strength
+of the supporting evidence recorded there separately.
 
 **`P2-PHASE-01`'s kill criterion asks whether any admissible phase
 exists in the frozen space. With this branch neither admitted nor

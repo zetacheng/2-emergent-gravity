@@ -30,6 +30,12 @@ deferred work is wrong, unphysical, or unnecessary. Where an entry
 records that a classification is *not* supported, that is a statement
 about the argument available, not about the object.
 
+**An entry's evidence and its PI position are separate fields, and they
+are not the same kind of claim.** The evidence is what was computed; the
+position is what the PI holds in the light of it. Where the two differ
+in strength, the entry says so in an `Evidence strength:` field rather
+than letting the position borrow the evidence's authority.
+
 **Every entry states what it is blocking**, so that a reader planning
 work knows whether a deferral is inert or load-bearing.
 
@@ -66,10 +72,12 @@ where `layer_1b.channels.induced_V_singlet` and
 `g_in_normalisation_L: "-G/2"` and
 `real_linear_HS_field_admissible: false`.
 
-**Both are conditional** on the two PI rulings of 2026-08-08 — the
-Euclidean exponent mapping and the attraction/repulsion labels — as the
-source note records. Reversing the mapping reverses which channels
-admit the real contour.
+**Evidence strength.** The coefficients are exact symbolic quantities,
+reproduced from the frozen material by a gating control. **They are
+conditional** on the two PI rulings of 2026-08-08 — the Euclidean
+exponent mapping and the attraction/repulsion labels — as the source
+note records. Reversing the mapping reverses which channels admit the
+real contour.
 
 **Blocks:** nothing. The scalar route proceeds independently of this
 item.
@@ -82,14 +90,30 @@ item.
 
 **Reason.** The main line proceeds first.
 
-**PI position.** A stable solution corresponds to something real.
+**Evidence strength.** Positive **restricted** one-dimensional
+curvature. The pinned exploratory note
+`derivations/P2-PHASE-01_scalar_stationary_exploratory.md` states of
+exactly that quantity:
+
+> Neither curvature is a full condensate-space Hessian or a
+> phase-admissibility statement.
+
+**"Restricted", not "stable", is the accurate word**, and this entry
+uses it throughout. What was measured is the curvature of the reduced
+one-dimensional scalar potential along the uniform `M̂` ansatz. **Full
+condensate-space stability was not computed, and phase admissibility
+was not assessed.**
+
+**PI position.** A solution stable under the analysis actually performed
+warrants physical interpretation rather than automatic dismissal.
 Classifying this branch as a lattice artifact is not supported: under
 the substrate reading there is no continuum limit, so the standard
 continuum-decoupling argument cannot by itself classify it as an
 unphysical lattice artifact.
 
 **Evidence.** An exact Wilson-complement relation
-`I_0(M̂) = I_0(-8-M̂)`, and stability at couplings below `G_c`. From
+`I_0(M̂) = I_0(-8-M̂)`, and positive restricted curvature at couplings
+below `G_c`. From
 `reports/2026-08-05_p2-phase-01_scalar-stationary-exploratory.md`:
 
 > There is instead an exact Wilson-complement relation
@@ -107,23 +131,12 @@ curvature while the near-zero branch does not:
     0.90    -7.813202         0.400036       -0.186798       -0.009564
     0.98    -7.966034         0.404749       -0.033966       -0.001725
 
-The corroborating artifact is
+Corroborated by
 `results/P2-PHASE-01/exploratory-scalar-stationary/scalar_stationary.json`,
 whose `symmetry.wilson_complement_relation` reads
 `I0(Mhat) = I0(-8 - Mhat), from p_mu -> pi-p_mu; numerically checked
 below.` with four `complement_pairs` whose absolute differences are at
 most `1.1102230246251565e-16`.
-
-**A scope note the evidence carries with it.** The curvature above is
-the restricted one-dimensional curvature of the reduced scalar
-potential. The pinned derivation note
-`derivations/P2-PHASE-01_scalar_stationary_exploratory.md` states of it:
-
-> Neither curvature is a full condensate-space Hessian or a
-> phase-admissibility statement.
-
-**The branch is stable in that restricted sense**, which is what
-"stable below `G_c`" means here.
 
 **Blocks:** the quantifier range of the SI-1 kill criterion. That
 criterion asks whether any admissible phase exists in the frozen space;
