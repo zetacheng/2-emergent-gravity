@@ -68,20 +68,33 @@ changes, no frozen artifact is touched, and no result is recomputed.
 > **PI ruling, 2026-08-09 — the negative-mass branch is DEFERRED, not
 > excluded.**
 >
-> The exploratory study found a second stable stationary branch at
-> `M̂ ≈ −7.59`, the exact Wilson complement of the trivial branch, stable
-> including below `G_c`.
+> The exploratory study found a second stationary branch at
+> `M̂ ≈ −7.59`, the exact Wilson complement of the trivial branch, **with
+> positive restricted curvature in the explored one-dimensional
+> stationary analysis, including below `G_c`.**
+>
+> **"Restricted", not "stable", is the accurate word.** The pinned
+> exploratory note states of exactly that quantity: *"Neither curvature
+> is a full condensate-space Hessian or a phase-admissibility
+> statement."* **A bare "stable" would let a later reader take the
+> premise as stronger than the evidence.**
 >
 > **It is not classified as a lattice artifact.** The complement
-> relation and sub-critical stability **tie the branch structurally to
-> the Wilson term; they do not establish that it lacks physical
-> content.** Under the substrate reading there is no continuum limit, so
+> relation and the observed restricted stability **tie the branch
+> structurally to the Wilson term; they do not establish full
+> condensate-space stability, phase admissibility, or absence of
+> physical content.** Under the substrate reading there is no continuum limit, so
 > **the standard continuum-decoupling argument cannot by itself classify
 > this branch as an unphysical lattice artifact.**
 >
-> **The PI's position is that a stable solution corresponds to something
-> real.** The branch is deferred pending the main line — see
-> `DEFERRED-02`.
+> **The PI's position is that a solution stable under the analysis
+> actually performed corresponds to something that warrants physical
+> interpretation rather than automatic dismissal.** The branch is
+> deferred pending the main line — see `DEFERRED-02`.
+>
+> **The qualifier is load-bearing.** Written as *a stable solution
+> corresponds to something real*, the position would quietly restore the
+> stability claim narrowed two paragraphs above.
 >
 > **Consequence for SI-1, recorded now so it is not met by surprise.**
 > `P2-PHASE-01`'s kill criterion asks whether any admissible phase exists
@@ -123,13 +136,20 @@ the file:
     DEFERRED-02  Negative-mass stationary branch, M-hat ~ -7.59
       Status:    deferred, neither admitted nor excluded
       Reason:    the main line proceeds first
-      PI position: a stable solution corresponds to something real;
+      Evidence strength: positive RESTRICTED one-dimensional curvature,
+                 which the pinned note states is neither a full
+                 condensate-space Hessian nor a phase-admissibility
+                 statement
+      PI position: a solution stable under the analysis actually
+                 performed warrants physical interpretation rather than
+                 automatic dismissal;
                  classifying it as an artifact is not supported, because
                  the substrate reading has no continuum limit and the
                  standard continuum-decoupling argument cannot by itself
                  classify it as an unphysical lattice artifact
-      Evidence:  exact Wilson complement I_0(M) = I_0(-8-M); stable
-                 below G_c (exploratory scalar stationary study)
+      Evidence:  exact Wilson complement I_0(M) = I_0(-8-M); positive
+                 restricted curvature below G_c (exploratory scalar
+                 stationary study report and results artifact)
       Blocks:    the quantifier range of the SI-1 kill criterion, which
                  must state whether this branch falls inside it
 
@@ -178,6 +198,20 @@ there is none.
     results/P2-PHASE-01/channel-character-layers/layers.json
     fe343c74389cc996e42567d7dd510f479f1e7ed01cba81de61ff1d6f7e9d1542
 
+    reports/2026-08-05_p2-phase-01_scalar-stationary-exploratory.md
+    70ab88eda32483420c0bfd522babd2ca4a73941bc2d2d20f8414976641756cbe
+
+    results/P2-PHASE-01/exploratory-scalar-stationary/scalar_stationary.json
+    a4537efad3b46e5e429b5310baad8b4dbf36d9c95582873dbfa0b03cc44d7028
+
+**The last two are pinned because `DEFERRED-02`'s evidence lives there,
+not in the exploratory derivation note.** That note is a
+pre-registration: it records that the complement symmetry would be
+tested, not the roots, curvatures or complement relation themselves. **A
+previous issue of this specification pinned only the note, so A2 could
+not be satisfied from A1's enumerated set** — a specification defect,
+not an evidence failure.
+
 **A2 — Cited evidence verified, not assumed.** For each
 **evidence-backed** `Evidence:` line in §1 — `DEFERRED-01` and
 `DEFERRED-02` — locate the supporting statement in the pinned material
@@ -206,9 +240,18 @@ they are.** Each entry must contain:
               This does not close OPEN-AC-1
     entry 2   the programme evaluates both the
               rather than selecting between them
-              rests on an arbitrary sign
+              depends on an unresolved sign convention
+
+**These phrases may appear in the entry's surrounding prose rather than
+inside the verbatim ruling**, where the ruling's own wording does not
+contain them. **Do not edit the ruling text to make a check pass** — the
+requirement is that the entry contains the phrase, not that the
+blockquote does. A previous issue's `rests on an arbitrary sign` could
+not be satisfied inside the ruling and was correctly placed in the
+`### Reason` prose.
     entry 3   DEFERRED, not excluded
-              they do not establish that it lacks physical content
+              they do not establish full condensate-space stability,
+                phase admissibility, or absence of physical content
               cannot by itself classify this branch as an unphysical
                 lattice artifact
               that criterion's quantifier range is undetermined
