@@ -83,6 +83,60 @@ consuming a declared manifest is to be implemented separately; until it
 exists, the manual comparison is mandatory and its output MUST be recorded in
 the run report.
 
+**Amendment H, adopted 2026-08-09 — literals are verified by execution.**
+
+**A specification that requires a literal or normalised-text match
+MUST have had the specified match executed against the target text by
+its author before issue.** Asserting a literal is not verifying it.
+
+**The specification MUST distinguish two kinds of check:**
+
+    byte- or character-exact    no representation-changing
+                                normalisation is permitted
+    normalised substantive      one explicitly defined normalisation
+                                function, applied to BOTH the
+                                requirement and the target
+
+**Once blockquote prefixes are stripped or whitespace collapsed, the
+check is no longer an exact string match** — and some literals cannot
+tolerate that: a SHA, a JSON key, a Markdown heading a script locates
+by. **Say which kind each check is.**
+
+**The specification MUST state which representation features are
+SEMANTIC for that check and which are normalised away.** Do not write
+that representation is ignored in general — for some literals the
+representation IS the substance:
+
+    normally normalisable   blockquote prefixes, line wrapping
+    depends on the target   Markdown emphasis, code delimiters
+    usually SEMANTIC        Unicode dashes, exact SHAs and blob ids,
+                            JSON field names, Markdown headings a
+                            script locates by, code identifiers,
+                            regex tokens
+
+**The normalisation MUST be a single function applied to BOTH the
+requirement and the target**, specified as a function rather than as a
+list of removals. **Stripping can manufacture a match the raw text does
+not contain as easily as it can repair one it does**; applying one
+function to both sides is the property that makes the check auditable.
+
+**The specification MUST record the target, the normalisation, the
+verification method, and that the check PASSED before issue** — for
+example: *"Pre-issue literal verification: PASS after stripping
+blockquote prefixes and collapsing whitespace; code delimiters
+stripped; en dashes preserved."* **Raw authoring output may be
+retained in the review record rather than embedded in the
+specification**, so that a specification does not fill with tool
+transcripts.
+
+Where the literal is itself sensitive — **especially a hash, an object
+id, a machine-consumed heading, or an identifier** — the expected
+value and the executable verification method MUST be written out.
+**This is not required of every exact heading**: a specification with
+ten of them should not carry ten shell commands. It applies where the
+literal is consumed by machine or where a near-match would pass
+unnoticed.
+
 ### 4. Execution prompts are evidence
 
 The execution prompt governing any decisive or pre-registered run MUST be
@@ -122,6 +176,87 @@ precedent.
    STOP; do not repair the repository, do not retry by changing its state,
    report the exact output. This takes precedence over the instruction to
    complete the merge.
+
+**Amendment K, adopted 2026-08-09 — re-issuing an executed specification.**
+
+**TASK-IDENTITY PATHS are paths whose names identify a particular
+execution instance** — ordinarily its specification and its report,
+plus any other path the specification explicitly designates as
+execution-specific. **Canonical target files are NOT task-identity
+paths.**
+
+**A specification that has already been executed and pushed MUST NOT
+be re-issued against the same branch while reusing the same
+task-identity paths.** A re-issue proceeds on a NEW branch cut from
+the evidence base, under a NEW task name and NEW specification and
+report `{HHMM}` paths.
+
+**Canonical target paths the task exists to populate or modify may
+remain the same** — an append-only log, a registry, a named
+derivation — **provided the new branch starts from the original
+evidence base and the re-issue specification explicitly authorizes
+them.** Only the paths that identify the task are required to change.
+
+**The original branch is preserved UNTOUCHED and is identified as
+superseded in the re-issue specification and report**; it is not
+rewritten, reset, force-pushed, or carried forward. **A Git branch ref
+carries no such marker, so the identification lives in the documents,
+not in the ref.**
+
+**A superseded branch MUST NOT be integrated.** `docs/BRANCHING_POLICY.md`'s
+authorization machine has `PENDING_DELETE`, `NOT_AUTHORIZED` and
+`ABSENT_FROM_REMOTE` and **no state for superseded, never to be
+integrated** — so a later integrator reading the branch list would see
+two branches claiming to land the same entries. **Either that state is
+added or this prohibition is stated where an integrator will meet it.**
+This is Amendment E(iii) again: a missing state forcing a
+conservative-but-wrong label.
+
+**Append-only and forbidden-delete are evaluated against the LAST
+PUSHED STATE OF THAT BRANCH, as well as against the evidence base.**
+A re-issue on a new branch starts from the original evidence base and
+**does not inherit the superseded branch's append-only history.** A record already
+pushed and then removed or replaced by a later commit is not
+append-only for the branch's operative content, **even though the old
+commit survives in Git history.** Evaluating only against a distant
+base would let any append-only file be rewritten by rebuilding it from
+that base.
+
+**Local iteration before a push is unaffected.** Committing a log
+entry and correcting a typo in it two commits later, before anything
+is pushed, is ordinary work and is not a violation. **An earlier draft
+said "immediate parent-to-child", which would have forbidden that.**
+
+**The re-issue mechanism is supplied by the specification, not derived
+by the executor.** A re-issued specification that does not say how the
+second execution is to be represented **is a specification defect**,
+and the executor's correct response is: **stop before the first
+irreversible or authority-expanding step; complete only those
+remaining observations or local checks that are independently
+authorised and do not alter protected or remote state; then report the
+unresolved construction for authorization.**
+
+**"Authorised" is the operative test, not "reversible".** Some
+read-only observations have no meaningful notion of reversibility, and
+some local commits are technically reversible while not being
+authorised at all.
+
+**A bare stop would have delivered nothing** — no entries, no
+register, no analysis of the collision. **What serves the PI is the
+full work, the conflict laid out, and the choice.** A rule that reads
+as "produce nothing when uncertain" teaches silence, which is the
+opposite of what this discipline is for.
+
+**This describes required behaviour; it does not create a named
+state.** If a formal `PARTIAL_STOP` state is wanted — with its own
+semantics for what may be committed, pushed and reported — **it should
+be defined deliberately elsewhere, not created in passing here.**
+
+**The general trigger, of which re-issue is one instance.** **If
+resolving an apparent inconsistency requires a construction the
+specification does not describe, that is a stop-before-push and a
+request for authorization — not a resolution.** Re-issue is the worked
+example below; the next instance will not be a re-issue.
 
 ### 6. Reporting honesty for merges
 
@@ -327,6 +462,34 @@ which was then corrected. **That is precisely the case the
 primary/secondary split exists for**: forcing it into a single category
 would either hide the registry error or misdescribe the stop.
 
+**Amendment I, adopted 2026-08-09 — mid-task authority changes require reviewer-visible provenance.**
+
+**A specification author who amends a task mid-execution MUST record
+the amendment where the reviewers read.**
+
+**Narrative explanation does not itself create execution authority or
+governance status.** An account of why a change is reasonable is not
+the change's authorization.
+
+**The amendment MUST exist in a durable reviewer-visible record that
+is part of the task's issued authority** — at minimum an amended or
+re-issued specification, or another repository-defined amendment
+record cited by it. **Not a chat message the reviewer happens to see**,
+which is the thing this amendment exists to stop.
+
+**`DECISION_LOG.md` is additionally required only where the amendment
+itself creates or changes a programme-level decision or governance
+state.** A path typo, a manifest count, a corrected command syntax or
+a clarified acceptance criterion needs reviewer-visible authority
+**without entering the decision log** — and requiring it would both
+dilute that log and collide with any task whose scope does not
+authorize modifying it.
+
+**The record MUST identify what prior instruction is superseded, the
+replacement instruction, and the scope of that replacement.** Without
+those three, a reviewer can follow the reasoning and still not know
+which line of authority changed.
+
 ### 9. Outcome-based task specification
 
 A task specification MUST define **what must be true when the task is
@@ -409,6 +572,58 @@ different purpose (detecting whether a registry commit had touched a
 draft), and the first diagnosis — a line-ending artefact — was itself
 wrong; `core.autocrlf` was already `false`. Two round trips were spent
 before the actual cause was identified.
+
+**Amendment G, adopted 2026-08-09 — structural changes propagate.**
+
+**When a specification gains, splits, or re-layers a structure — a
+stage, a layer, a conditional branch, a state, a commit-order
+constraint — every acceptance criterion, invariant, report-contract
+item and objective statement MUST be re-read against the new
+structure before issue.**
+
+For each, ask two questions: **how does this clause read under the new
+structure**, and **does it now require a quantity the new structure
+permits to be undefined?**
+
+**Propagation is TRANSITIVE.** Revising one structural element
+requires checking every clause whose meaning or satisfiability depends
+on it, **not only clauses that name it directly**. A new stage changes
+the sequence, which changes commit ordering, which changes evidence
+layering, which changes scope timing, which changes the report
+contract, which changes what is post-report evidence.
+
+**Residual clauses from the old structure do not lapse. They become
+contradictions**, and a correct executor will stop.
+
+**Layer boundaries must be drawn by what each layer actually requires,
+not by where a statement intuitively belongs.** A statement placed in
+a layer that does not supply its premises invalidates the layering.
+
+**Amendment L, adopted 2026-08-09 — consumed conventions must be discoverable through the conventions index.**
+
+**A convention or decision that a computation CONSUMES MUST be
+discoverable from the governing conventions index, not only from a
+chronological decision log.**
+
+**The index may point to the authoritative ruling rather than
+duplicate it.** This requirement governs discoverability and
+provenance; **it does not prescribe the machine-readable storage
+format**, which remains an open design question.
+
+**Index discoverability does not by itself make prose a stable machine
+interface.** A computation that parses a convention must consume a
+representation **whose machine-facing identifier or lookup contract is
+explicitly governed.** The storage format and the synchronisation
+mechanism remain separate design questions.
+
+**The incident below has two layers. This amendment closes the
+governance obligation for BOTH, while leaving the machine-readable
+implementation of the second open**: a human should find the ruling
+from the conventions index; **and a script should not depend on
+mutable prose headings as a semantic API.** **Adding an index pointer
+does not by itself discharge the second obligation** — the lookup
+contract must still be governed, and how it is represented is the
+deferred design question.
 
 ### 10. Self-correction authority and its limit
 
@@ -530,6 +745,35 @@ Recording the evidence base does NOT by itself freeze the execution
 base. Where base identity is load-bearing, it must ALSO appear
 explicitly as an invariant in part (c). Rule 7 (evidence precedence) applies to the authoring of
 specifications as much as to the reporting of results.
+
+**Amendment F, adopted 2026-08-09 — mutation tests must prove reach.**
+
+**A mutation test MUST establish three things, separately:**
+
+    1  the mutation was injected
+    2  the dependency point was REACHED
+    3  the expected downstream consequence was observed — either the
+       dependent quantity changed in the expected causal direction, or
+       the mutation caused the specifically expected failure AT OR
+       AFTER the dependency point
+
+**The expected consequence MUST be one that could not occur under the
+un-mutated input.** Reach plus a consequence is not enough if the
+consequence was available anyway: **a mutation flipping a sign in a
+channel whose coefficient is zero proves reach and nothing else.**
+
+**"The output changed" is too narrow.** Mutating a required convention
+may correctly produce a STOP at the parsing or validation point rather
+than a different final value; that establishes the dependency just as
+well. **What must be excluded is an unrelated earlier STOP being
+counted as coverage.**
+
+**Demonstrating that the program stopped is not sufficient.** A
+program can stop before the mutation is consumed, for an unrelated
+reason, and a test that only asserts a stop will pass while covering
+nothing.
+
+**Stop behaviour is tested separately** from mutation reach.
 
 ### 13. Execution environment
 
@@ -656,6 +900,26 @@ tests. The executor reported this as a qualified condition rather than
 as a pass, which was correct, but the acceptance criterion had no
 vocabulary for the outcome.
 
+**Amendment E, adopted 2026-08-09 — a failed observation is not a negative result.**
+
+**A failure to observe MUST NOT be recorded, mapped, or acted upon as
+an observed negative result.**
+
+Where a check can fail to produce an observation, its outcome model
+MUST distinguish — **whether by explicit states or by equivalent
+evidence** — at least: **observed positive**, **observed negative**,
+and **not observed**.
+
+**This does not require every tool to expose a three-valued enum.**
+The requirement is that the distinction be recoverable, not that it be
+encoded in a particular form. A tool exit status, acceptance criterion, or
+state machine that maps "could not determine" onto the same value as
+"determined to be false" is a defect.
+
+**The two require opposite responses:** a failed observation calls for
+repairing the measurement; an observed negative calls for stopping and
+investigating.
+
 ### 15. Governing artifacts are committed
 
 **A specification, a pre-execution review, a task report, and any
@@ -675,3 +939,52 @@ proceeds.** A report is committed by the task that produced it.
 
 **Prospective only.** Records created before this rule are not
 retrospectively non-conforming, and are not to be back-filled.
+
+### 16. Accumulated reading
+
+**A task that adds a MATERIAL artifact bearing on a question already
+addressed by other authoritative or reviewable artifacts MUST state
+what the assembled set does NOT establish.**
+
+**"Material artifact, same question" is the trigger**, not "any
+artifact in any chain" — otherwise every report gains a boilerplate
+paragraph.
+
+**An integration task that brings previously separate artifacts into
+one authoritative branch MUST perform that assessment again against
+the MERGED state.**
+
+Individual artifacts may each be scrupulous while their accumulation
+reads as a stronger conclusion than any of them states. **The
+responsibility is two-layered**: the producing task assesses the local
+accumulated reading; **the integration task assesses the authoritative
+one**, because the strongest misleading inference sometimes becomes
+available only once separate branches sit on one `main`.
+
+**This does not require repeating every earlier limitation.** **At
+each required assessment, the responsible task must identify only the
+limitations whose omission would materially change the natural reading
+of the assembled evidence** — not reproduce every earlier caveat.
+
+**The assessment MUST name the junction or report a search.** Either
+name the artifact pair and the specific inference their combination
+makes available, **or state that a search was performed, describe it,
+and report that none was found.** Without this, "the accumulation was
+assessed" is unfalsifiable and every report gains a paragraph saying
+so. **The one finding this rule has actually produced came from
+hunting a junction — three artifacts, one named inference — not from a
+general assurance.**
+
+**"The responsible task", not "the latest artifact"**: an integration
+may produce only its own report, yet it is the task that owes the
+assembled-state assessment.
+
+### 17. Integrations do not add epistemic or governance classifications
+
+**An integration, derivation, or any task that carries reviewed
+results forward MUST NOT add a governance or epistemic classification
+the reviewed results did not carry.**
+
+Recording what a result did not establish is required. **Assigning it
+to an open item, a gate, a status, or a category it was never assigned
+to is not.**
