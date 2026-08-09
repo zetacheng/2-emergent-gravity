@@ -1,0 +1,68 @@
+{
+  "gate": "P2-PHASE-01 (open item: generator-sum criticality)",
+  "frozen_inputs": {
+    "Tr_Id4": "4",
+    "hartree_factor": "2",
+    "generator_normalisation": "Tr(lam^A lam^B) = 2*delta_AB",
+    "singlet": "lam^0 = sqrt(2/N)*Id_N"
+  },
+  "control_singlet_only": {
+    "gap_singlet_only_in_GN": "Eq(1, 8*G_N*I0)",
+    "G_channel_equals": "4*G_N",
+    "prefactor_channel": "2",
+    "Gc_channel": "1/(2*I0)",
+    "reproduces_P2_GAP_01": true
+  },
+  "generator_sum_symbolic": {
+    "gap_equation": "1 = (8/N) * G * I0",
+    "Gc_canonicalG": "N/(8*I0)",
+    "ratio_Gc_gen_over_singlet_symbolic": "N",
+    "exploratory_correction_factor_symbolic": "N/4",
+    "case": "N-dependent"
+  },
+  "per_N": [
+    {
+      "N": 2,
+      "basis_size": 4,
+      "normalisation_2deltaAB": true,
+      "completeness_verified": true,
+      "singlet_projection_factor": "2",
+      "gap_prefactor_generator_sum_canonicalG": "4",
+      "gap_equation_generator_sum": "1 = (4) * G * I0",
+      "Gc_generator_sum_canonicalG": "1/(4*I0)",
+      "gap_prefactor_singlet_coeff_in_front": "8",
+      "Gc_singlet_coeff_in_front": "1/(8*I0)",
+      "ratio_Gc_gen_over_singlet": "2",
+      "exploratory_correction_factor_vs_half_I0": "1/2"
+    },
+    {
+      "N": 3,
+      "basis_size": 9,
+      "normalisation_2deltaAB": true,
+      "completeness_verified": true,
+      "singlet_projection_factor": "2",
+      "gap_prefactor_generator_sum_canonicalG": "8/3",
+      "gap_equation_generator_sum": "1 = (8/3) * G * I0",
+      "Gc_generator_sum_canonicalG": "3/(8*I0)",
+      "gap_prefactor_singlet_coeff_in_front": "8",
+      "Gc_singlet_coeff_in_front": "1/(8*I0)",
+      "ratio_Gc_gen_over_singlet": "3",
+      "exploratory_correction_factor_vs_half_I0": "3/4"
+    },
+    {
+      "N": 4,
+      "basis_size": 16,
+      "normalisation_2deltaAB": true,
+      "completeness_verified": true,
+      "singlet_projection_factor": "2",
+      "gap_prefactor_generator_sum_canonicalG": "2",
+      "gap_equation_generator_sum": "1 = (2) * G * I0",
+      "Gc_generator_sum_canonicalG": "1/(2*I0)",
+      "gap_prefactor_singlet_coeff_in_front": "8",
+      "Gc_singlet_coeff_in_front": "1/(8*I0)",
+      "ratio_Gc_gen_over_singlet": "4",
+      "exploratory_correction_factor_vs_half_I0": "1"
+    }
+  ],
+  "verdict": "G_c = 1/(2 I0) is the trace-absorbed channel-coupling result of the singlet-only gap; it does NOT transfer to the canonical coupling G of the generator sum, where 1 = (8/N) G I0 and G_c = N/(8 I0). Ratio (coefficient-in-front) = N; equals 1 only at N=1. The exploratory G/G_c positions carry an N/4 factor."
+}
