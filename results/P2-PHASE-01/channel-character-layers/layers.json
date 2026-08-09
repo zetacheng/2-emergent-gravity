@@ -1,0 +1,195 @@
+{
+  "G_c_does_not_enter": "the generator-sum criticality result concerns the critical coupling, not a channel coefficient; no reconciliation is attempted",
+  "authority": "specs/2026-08-09T0300Z_attraction-ruling-and-layers.md",
+  "composite_vector": "no statement is made about whether a composite vector exists. A channel-character label is not a bound-state or pole calculation, and the ruling forbids that inference explicitly.",
+  "conditionality": "Layer 1b and Layer 2 are conditional on two PI rulings of 2026-08-08, both parsed from DECISION_LOG.md by this script and neither derived from the frozen material; they are a chain, and reversing the exponent mapping reverses every label",
+  "derivation_note": "derivations/P2-PHASE-01_channel_character_layers.md",
+  "diquark": {
+    "all_pp_operator_definitions_fixed": false,
+    "channel_picture_is_not_complete": true,
+    "still_unfrozen": {
+      "charge_conjugated_field_definition_eta": false,
+      "diquark_operator_normalisation": false,
+      "particle_particle_grassmann_ordering": false
+    },
+    "touched_by_this_task": false,
+    "why_the_rulings_do_not_unblock_it": "the exponent mapping and the sign-to-label rule supply a mapping and a naming convention; neither is a particle-particle operator definition, and eta appears once in the paired product and flips the coefficient sign"
+  },
+  "exclusions_confirmed": {
+    "historical_Finding_5_extraction": "NOT READ",
+    "quarantined_-3.2(5)": "NOT READ",
+    "suspended_P2-BETAV-CIRC-01_result": "NOT READ"
+  },
+  "gate_status": "P2-PHASE-01 remains PROPOSED",
+  "input_sha256": {
+    "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md": "fe68b9c645c80287afa45288d7c3e0490328b76663aafbe78af20dfc12a4e67a",
+    "derivations/P2-PHASE-01_channel_character.md": "380bb11171f7084e4eb30bfd3c393a4ff1c7d8d22063eb56ce3e05e3d8152c5f",
+    "results/P2-PHASE-01/channel-character/channel_character.json": "093d20c0e01dc5626cafb4da9b5a0d0e5e95edbd0a8853bbc562248a5b36ee7f",
+    "scripts/p2_channel_character.py": "521dfd0ba8585dbaabe731bcb231a19ea599a54e975682b819f8da8d0f6e1126"
+  },
+  "layer_1a_control": {
+    "comparisons": {
+      "induced_A_singlet": {
+        "normalisation_L": {
+          "equal": true,
+          "pinned": "-G/4",
+          "recomputed": "-G/4",
+          "symbolic_difference": "0"
+        },
+        "normalisation_P": {
+          "equal": true,
+          "pinned": "-G/(2*N)",
+          "recomputed": "-G/(2*N)",
+          "symbolic_difference": "0"
+        },
+        "sign": {
+          "equal": true,
+          "pinned": -1,
+          "recomputed": -1
+        }
+      },
+      "induced_V_singlet": {
+        "normalisation_L": {
+          "equal": true,
+          "pinned": "-G/4",
+          "recomputed": "-G/4",
+          "symbolic_difference": "0"
+        },
+        "normalisation_P": {
+          "equal": true,
+          "pinned": "-G/(2*N)",
+          "recomputed": "-G/(2*N)",
+          "symbolic_difference": "0"
+        },
+        "sign": {
+          "equal": true,
+          "pinned": -1,
+          "recomputed": -1
+        }
+      },
+      "scalar_singlet_direct": {
+        "normalisation_L": {
+          "equal": true,
+          "pinned": "G/(2*N)",
+          "recomputed": "G/(2*N)",
+          "symbolic_difference": "0"
+        },
+        "normalisation_P": {
+          "equal": true,
+          "pinned": "G/N**2",
+          "recomputed": "G/N**2",
+          "symbolic_difference": "0"
+        },
+        "sign": {
+          "equal": true,
+          "pinned": 1,
+          "recomputed": 1
+        }
+      }
+    },
+    "control_passes": true,
+    "gating": "disagreement is a STOP; everything downstream is a function of c",
+    "layer": "1a \u2014 frozen algebraic coefficient; UNCONDITIONAL",
+    "method": "re-executed layer_1a() of the pinned scripts/p2_channel_character.py, which reads the frozen basis block and matrix_rational, and compared every coefficient as an exact symbolic difference against the pinned results/P2-PHASE-01/channel-character/channel_character.json"
+  },
+  "layer_1b": {
+    "basis": {
+      "decision_log_entry": "## 2026-08-08 \u2014 Euclidean exponent mapping: the canonical interaction is written in the exponent",
+      "factor": 2,
+      "relation": "g = +2c",
+      "statement_found": "g = +2c"
+    },
+    "channels": {
+      "induced_A_singlet": {
+        "c_in_normalisation_L": "-G/4",
+        "c_in_normalisation_P": "-G/(2*N)",
+        "g_in_normalisation_L": "-G/2",
+        "g_in_normalisation_P": "-G/N",
+        "real_linear_HS_field_admissible": false,
+        "sign_of_g": -1
+      },
+      "induced_V_singlet": {
+        "c_in_normalisation_L": "-G/4",
+        "c_in_normalisation_P": "-G/(2*N)",
+        "g_in_normalisation_L": "-G/2",
+        "g_in_normalisation_P": "-G/N",
+        "real_linear_HS_field_admissible": false,
+        "sign_of_g": -1
+      },
+      "scalar_singlet_direct": {
+        "c_in_normalisation_L": "G/(2*N)",
+        "c_in_normalisation_P": "G/N**2",
+        "g_in_normalisation_L": "G/N",
+        "g_in_normalisation_P": "2*G/N**2",
+        "real_linear_HS_field_admissible": true,
+        "sign_of_g": 1
+      }
+    },
+    "g_is_exponent_level": "g is not the same kind of object as c; it equals 2c here because the exponent mapping ruling says so, not by identity",
+    "identity": "exp[(g/2) J^2] = Integral dPhi exp[-Phi^2/(2g) + Phi J], convergent only for g > 0",
+    "layer": "1b \u2014 exponent / HS coefficient; CONDITIONAL on the mapping",
+    "real_HS_meaning": "whether the standard linear Hubbard-Stratonovich representation with a real Gaussian auxiliary field converges; it is not a statement about two-body forces, and False is not the absence of an interaction in the channel"
+  },
+  "layer_2": {
+    "basis": {
+      "decision_log_entry": "## 2026-08-08 \u2014 Attraction/repulsion sign convention: the label is assigned to the sign of g",
+      "labels": {
+        "+1": "ATTRACTIVE",
+        "-1": "REPULSIVE"
+      },
+      "statements_found": [
+        "g > 0 is labelled ATTRACTIVE",
+        "g < 0 is labelled REPULSIVE"
+      ]
+    },
+    "basis_is_not_a_derivation": "the ruling assigns a name to a sign; nothing here is derived from the frozen material, and reversing the exponent mapping reverses every label",
+    "channels": {
+      "induced_A_singlet": {
+        "label": "REPULSIVE",
+        "sign_of_g": -1
+      },
+      "induced_V_singlet": {
+        "label": "REPULSIVE",
+        "sign_of_g": -1
+      },
+      "scalar_singlet_direct": {
+        "label": "ATTRACTIVE",
+        "sign_of_g": 1
+      }
+    },
+    "layer": "2 \u2014 physical label; assigned to the sign of g by ruling",
+    "scope_limit": "the label characterises the sign of the interaction in the specified channel; it does not establish that condensation occurs, nor the existence or absence of a two-body bound state, resonance or composite excitation"
+  },
+  "open_ac_1": {
+    "channels_admitting_a_real_linear_auxiliary_field": [
+      "scalar_singlet_direct"
+    ],
+    "channels_not_admitting_one": [
+      "induced_V_singlet",
+      "induced_A_singlet"
+    ],
+    "conditional_on": [
+      "## 2026-08-08 \u2014 Euclidean exponent mapping: the canonical interaction is written in the exponent",
+      "## 2026-08-08 \u2014 Attraction/repulsion sign convention: the label is assigned to the sign of g"
+    ],
+    "status": "untouched; no Hubbard-Stratonovich channel is selected here",
+    "what_this_is": "evidence, not a recommendation: it narrows which of the three particle-hole channels computed here could carry the standard real linear representation, and says nothing about the particle-particle channel, which is not computed"
+  },
+  "repository_inputs_read": [
+    "DECISION_LOG.md",
+    "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md",
+    "derivations/P2-PHASE-01_channel_character.md",
+    "results/P2-PHASE-01/channel-character/channel_character.json",
+    "scripts/p2_channel_character.py"
+  ],
+  "scalar_control": {
+    "control_passes": true,
+    "expected_label": "ATTRACTIVE",
+    "gate": "P2-GAP-01",
+    "gating": "a scalar label other than the positive-sign label means the chain from c through g to the label is wrong, and the V and A results cannot be trusted either",
+    "observed_label": "ATTRACTIVE",
+    "what_this_does_not_test": "it does not re-derive G_c = 1/(2 I_0) and does not lift P2-GAP-01 to the generator-sum interaction; G_c does not enter this computation at all"
+  },
+  "status": "DERIVATION; a computation, not a ruling; no gate registered, no status changed, no frozen or pinned artifact modified, no Hubbard-Stratonovich channel selected, no diquark convention frozen, no programme registry row changed",
+  "study": "P2-PHASE-01 channel character \u2014 Layer 1b and Layer 2"
+}
