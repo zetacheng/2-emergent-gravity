@@ -1389,3 +1389,129 @@ gate and changes no gate status.
 `fix/exponent-mapping-ruling`;
 `DECISION_LOG.md`,
 `specs/2026-08-08T1634Z_exponent-mapping-ruling.md`.
+
+## 2026-08-08 — Attraction/repulsion sign convention: the label is assigned to the sign of g
+
+Date: 2026-08-08
+Decision owner: Principal Investigator
+Effect: supplies a convention absent from the frozen material
+
+### Decision
+
+The PI ruling of 2026-08-08, reproduced verbatim:
+
+> **PI ruling, 2026-08-08 — attraction/repulsion sign convention.**
+>
+> Under the Euclidean exponent mapping ruling of the same date, a channel
+> whose Hubbard–Stratonovich coefficient satisfies **`g > 0` is labelled
+> ATTRACTIVE**; **`g < 0` is labelled REPULSIVE**.
+>
+> **The basis, in three separated steps.** Under the Euclidean exponent
+> mapping, a channel term with coefficient `g` appears as
+> `exp(+(g/2)J²)`. For `g > 0` the standard linear
+> Hubbard–Stratonovich representation uses a real Gaussian auxiliary
+> field; for `g < 0` that real contour is not available — **that is the
+> algebraic fact.** **The programme adopts ATTRACTIVE as the label for
+> the `g > 0` sign and REPULSIVE for the `g < 0` sign** — that is the
+> convention. This is consistent with `P2-GAP-01`'s description of its
+> positive-coupling scalar channel as attractive — that is the
+> consistency check. **The naming is not derived from
+> Hubbard–Stratonovich admissibility; it is assigned to that sign.**
+>
+> **`J = ψ̄Γψ` is a Grassmann composite.** Before bosonisation there is
+> no c-number configuration space on which "larger `|J|`" can be
+> compared pointwise, so **no appeal to enhanced configurations is made
+> here.** An earlier formulation did make one and was wrong to.
+>
+> **This ruling depends on the exponent mapping ruling of the same
+> date.** If that mapping were reversed, every channel's `g` reverses
+> and so does every label this ruling assigns. **The two are a chain,
+> not independent constraints**, and neither is derived from the frozen
+> material.
+>
+> **Scope limit.** The label characterises the sign of the interaction
+> in the specified Hubbard–Stratonovich channel. It is conventionally
+> associated with an attractive or repulsive tendency in that channel;
+> **it does not establish that condensation actually occurs.** Whether
+> it does depends on the full quadratic kernel — `Γ⁽²⁾(0) = 1/g − Π(0)`
+> — the fermion determinant, stability, and the critical coupling.
+> **Nor does it by itself establish the existence or absence of a
+> two-body bound state, resonance, or composite excitation.**
+>
+> **In particular: REPULSIVE in a `ψ̄ψ` channel does NOT imply that a
+> composite vector is absent.** That question requires its own
+> bound-state or pole analysis, and may also involve a differently
+> paired channel. **A channel-character label is not a pole
+> calculation.**
+>
+> **This supplies a convention for the item currently recorded in the
+> programme registry as `NOT DEFINED`. It is not a derivation.**
+
+### Reason
+
+The channel-character derivation withheld its Layer-2 verdict as
+`ATTRACTIVE/REPULSIVE NOT DEFINED BY THE FROZEN MATERIAL`, having
+searched the frozen material for a rule mapping the sign of a channel
+coefficient to one of those two names and found none. The Euclidean
+exponent mapping ruling of the same date makes the coefficient itself
+computable — `g = +2c` — but a computable sign is not yet a label. This
+ruling supplies the missing half.
+
+The naming is a convention assigned to a sign, and the ruling says so in
+its own words. The algebraic fact it is assigned alongside — that the
+standard real linear Hubbard–Stratonovich representation is available
+for `g > 0` and not for `g < 0` — is stated separately from the naming,
+and the consistency check against `P2-GAP-01`'s positive-coupling scalar
+channel is stated separately again. The three are deliberately not run
+together.
+
+An earlier formulation of this ruling argued from configurations of
+larger `|J|` being enhanced. That argument was wrong, because
+`J = ψ̄Γψ` is a Grassmann composite and there is no c-number
+configuration space on which the comparison can be made before
+bosonisation. It is withdrawn by the text above rather than quietly
+dropped.
+
+### Consequences
+
+Layer 1b and Layer 2 of the channel character become computable: the
+sign of `g` follows from the exponent mapping ruling, and this ruling
+names it. Performing that recomputation is the authorized task of
+`specs/2026-08-09T0300Z_attraction-ruling-and-layers.md`.
+
+The label is a channel-character statement and nothing more. It does not
+establish that condensation occurs, which depends on the full quadratic
+kernel, the fermion determinant, stability and the critical coupling;
+and it does not establish the existence or absence of a two-body bound
+state, resonance or composite excitation. In particular a repulsive
+label in a `ψ̄ψ` channel licenses no statement about whether a composite
+vector exists — that requires its own bound-state or pole analysis, and
+may involve a differently paired channel.
+
+This ruling depends on the exponent mapping ruling of 2026-08-08 and
+inherits its status. Reversing that mapping reverses every `g` and every
+label assigned here. Neither is derived from the frozen material.
+
+This ruling **selects no Hubbard-Stratonovich channel**. `OPEN-AC-1`
+remains open and is the PI's. The three diquark-definition gaps — `η`,
+the particle–particle Grassmann ordering, and the diquark normalisation
+— are untouched and remain unfrozen.
+
+The programme registry row `Sign convention for attraction and
+repulsion` is **not** changed here. It is to record a convention that
+has been used, not one only declared, and updating it is a separate
+`0-programme` task that should follow the recomputation.
+
+No gate status changes. `P2-GAP-01` remains `PASS` and `P2-PHASE-01`
+remains `PROPOSED`.
+
+### Related gate
+
+None. This ruling supplies a convention; it registers no gate and
+changes no gate status.
+
+### Related branch and files
+
+`gate/p2-attraction-ruling-and-layers`;
+`DECISION_LOG.md`,
+`specs/2026-08-09T0300Z_attraction-ruling-and-layers.md`.
