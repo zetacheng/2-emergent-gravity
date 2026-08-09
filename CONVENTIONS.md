@@ -147,6 +147,57 @@ state, made from recollection of prior sessions rather than from inspection,
 were found on checking to be incorrect. Verification against artifacts is not
 optional courtesy; it is the governing evidential rule.
 
+**Amendment A, adopted 2026-08-09 — mid-task authorizations are reproduced verbatim in the task report.**
+
+Where a task specification is amended mid-task, the amendment's text
+MUST be reproduced verbatim in the task report, together with: the
+**authorizing authority**; the **time or sequence point** at which it
+was issued, so that "before the commits" can be distinguished from
+"after them"; and the specific **acceptance criterion, scope manifest,
+invariant or prohibition** it superseded or extended. A report that
+omits any of these is incomplete regardless of how correct the
+repository state is.
+
+**Where the amendment changes a frozen path manifest, authorizes an
+otherwise prohibited repository modification, or changes an expected
+governance outcome, the report MUST reproduce the amended manifest or
+criterion IN FULL**, not summarise it.
+
+**Prior authorization and retrospective ratification are different
+things and MUST be named differently.** An instruction issued BEFORE
+the affected action is a *mid-task amendment* or *authorization*. An
+instruction issued AFTER it is a *retrospective ratification*, and
+**MUST NOT be described as prior authorization**. The report records
+the two distinctly.
+
+**Retrospective ratification may affect the task's disposition, but it
+does not make the earlier action authorized at the time it occurred.**
+This is the same principle as Rule 14's: an acceptance changes what is
+done about a fact, never the fact.
+
+No separate amendment artifact is required: a committed task report
+carrying all of the above is a sufficient audit chain, and requiring a
+file per amendment would multiply artifacts without adding evidence.
+
+*Incident.* Two commits in the integration task were explicitly
+authorized mid-task — a digest correction and the addition of a task
+record to the frozen scope manifest. Neither authorization existed
+anywhere except in conversation. The independent reviewer, reading only
+the final report, could not distinguish an authorized amendment from an
+executor expanding its own scope, and correctly raised both as possible
+violations. Resolving them required the specifier to supply evidence
+after the fact.
+
+*Why verbatim.* A summary of an amendment is not the amendment. What a
+later auditor needs is the wording the executor was actually working to,
+so that the executed result can be checked against it rather than
+against a paraphrase written once the outcome was known.
+
+**This does not require mid-task amendments to be reviewed before
+issue** — the PI may amend a task in flight without a review cycle. It
+requires only that the amendment become visible in the artifact the
+reviewers read.
+
 ## Role separation and outcome-based task specification
 
 These rules extend, and do not replace, rules 1–7 above. They bind
@@ -216,6 +267,66 @@ acceptance criteria are reviewed BEFORE the task; the resulting state
 is reviewed AFTER it. Individual implementation steps are not
 submitted for review.
 
+**Amendment B, adopted 2026-08-09 — every task report carries a "Stops and clarifications" section.**
+
+Every task report MUST contain a section recording each stop, with:
+where it stopped (stage and acceptance criterion) and the exact
+output — **reproduced in the report, or stored in a committed,
+content-digested artifact that the report identifies by path,
+revision and digest. The report MUST still reproduce the lines that
+establish the stop.** This permits bulk raw output to live in an
+auditable attachment; it does not permit a summary in place of
+evidence; whether the stop was correct; the defect's category; and the
+clarification or amendment that followed, naming the specific wording
+or value it changed.
+
+The category is one of exactly five:
+
+- `SPECIFICATION_DEFECT` — the task specification's criterion, scope,
+  literal, prohibition or workflow is wrong, contradictory,
+  unsatisfiable, or broader than its purpose.
+- `ENVIRONMENT` — execution identity, runtime, ACL, filesystem,
+  package, or harness.
+- `OBSERVATION_METHOD_ERROR` — repository state is correct, but the
+  inspecting command, path, hashing method, worktree, or parsing was
+  wrong.
+- `REPOSITORY_DEFECT` — the repository's actual state violates a
+  frozen requirement, or an artifact is itself wrong.
+- `UNRESOLVED_GOVERNANCE_OR_EVIDENCE_AMBIGUITY` — the authoritative
+  text or evidence cannot uniquely determine the outcome, and the
+  executor has no authority to decide it.
+
+**Each stop has exactly one PRIMARY category. Secondary findings
+discovered through that stop MAY be recorded separately and classified
+independently.**
+
+*Why the classification is normative.* Across recent tasks the great
+majority of stops were specification defects — prohibitions written
+more broadly than their purpose, criteria unsatisfiable as written,
+literals mangled in transcription. A record showing "stopped eleven
+times" without categories invites the reader to infer executor
+unreliability, when the executor's stops were correct in every case.
+The distribution is itself the finding.
+
+*Why five and not four.* A fourfold scheme has no place for the
+`P2-PHASE-01` Phase-A/Phase-B dependency stop: the task specification
+was not wrong, the repository was not broken — the repository simply had
+not decided the question, and the executor was correctly forbidden from
+deciding it. That is a distinct and common class, and collapsing it into
+"specification defect" would misattribute the fault.
+
+*Why `REPOSITORY_DEFECT` rather than "genuine repository problem".* The
+looser name invites lumping together an unwelcome scientific result, an
+artifact nobody has yet promised to create, and an actual violation of a
+frozen requirement. Only the last is a defect.
+
+*Incident.* The integration task stopped three times. All three were
+primarily `OBSERVATION_METHOD_ERROR`; one of them surfaced a secondary
+`REPOSITORY_DEFECT` — a wrong digest already written into `GATES.md` —
+which was then corrected. **That is precisely the case the
+primary/secondary split exists for**: forcing it into a single category
+would either hide the registry error or misdescribe the stop.
+
 ### 9. Outcome-based task specification
 
 A task specification MUST define **what must be true when the task is
@@ -263,6 +374,41 @@ criterion allowed only one option.)
 Within the bounds of (c), the executor MAY choose its own method,
 explore alternatives, retry, and correct its own working artifacts.
 **It MUST NOT infer, extend, or relax (c).**
+
+**Amendment C, adopted 2026-08-09 — digest semantics and binary-safe computation.**
+
+A recorded SHA-256 digest is the SHA-256 of **the exact committed
+file-content bytes stored in the Git blob**. It is NOT the Git blob
+object ID, unless the record explicitly says "Git blob object ID" —
+the two are different quantities and are routinely confused.
+
+**Acceptable methods:** reading `git cat-file blob <revision>:<path>`
+through a binary-preserving subprocess API, or writing that byte
+stream to a binary file and hashing the file.
+
+**Prohibited:** any pipeline or shell construct that decodes the blob
+as text, performs line-oriented processing, uses command substitution,
+applies implicit encoding conversion, or otherwise fails to preserve
+the byte stream exactly. **The defect is not the pipe** — a genuinely
+binary subprocess pipe is fine; it is decoding, newline conversion and
+substitution. **PowerShell text pipelines are not presumed
+byte-preserving and MUST NOT be used for committed-content digests.**
+
+**The record MUST state the revision and path whose committed content
+was hashed** — `sha256(content of <rev>:<path>)`, not a bare filename
+and digest.
+
+A working-tree digest MAY be used for scratch diagnosis, but it MUST
+be labelled as such and **cannot satisfy an acceptance criterion that
+requires a committed-content digest**.
+
+*Incident.* Two draft digests recorded in `GATES.md` were wrong. The
+cause was hashing through a PowerShell pipeline that altered the byte
+stream. The error was found by an acceptance criterion designed for a
+different purpose (detecting whether a registry commit had touched a
+draft), and the first diagnosis — a line-ending artefact — was itself
+wrong; `core.autocrlf` was already `false`. Two round trips were spent
+before the actual cause was identified.
 
 ### 10. Self-correction authority and its limit
 
@@ -422,3 +568,110 @@ environment happens to be.
 `pyproject.toml`, tests, lint configuration and scripts are repository;
 interpreter, virtual environment, packages and permissions are environment. A
 failure in one is not evidence of a defect in the other.
+
+**Amendment D, adopted 2026-08-09 — execution location, and the process/harness layer.**
+
+Rule 13's diagnostic order is extended by a step before identity:
+
+(0) **execution location** — repository path, worktree identity,
+    current branch or detached state, and the **resolved HEAD commit
+    SHA**. A directory alone is not a location: the same worktree can
+    sit at different revisions.
+(1) execution identity; (2) interpreter availability;
+(3) permissions; (4) filesystem and workspace; (5) package
+    availability; (6) **process and harness lifecycle** — timeouts,
+    stdout/stderr pipe closure, plugin teardown, child-process
+    survival, signal or job-object termination.
+
+**Where a command evaluates a revision without checking it out, the
+report MUST distinguish the executing worktree's revision from the
+object revision being inspected.** Both are legitimate; conflating
+them is how "X is absent" gets asserted about the wrong revision.
+
+A conclusion of the form "X is absent" is not established until the
+location it was observed from has been established.
+
+*Why layer 6 exists.* Five validator files each reaching `[100%]` and
+each terminating at the same 120.2 s boundary is a process-lifecycle
+condition, not a package-availability one. Without its own layer, the
+most significant recent environment finding had nowhere in the
+diagnostic order to belong.
+
+*Incident.* The integration task stopped because the governance tools
+appeared to be missing. They were present at both pinned revisions. The
+observation had been made in the main worktree, which sits on its own
+branch and had never checked out the revision under test. The
+observation was accurate about that worktree and false about the
+revision, and nothing in the diagnostic order caught the difference.
+
+### 14. Validator outcome contract
+
+Unless a task specification states a stricter or explicitly different
+requirement, a validator PASSES only when all of the following hold:
+the intended validator process started successfully; it completed
+without timeout or external termination; it returned **exit status
+0**; and no required test, collection phase, or teardown phase was
+skipped or aborted.
+
+**Output showing `[100%]`, or the absence of an assertion failure,
+does NOT override a non-zero exit status.**
+
+A task specification may then simply say "validators must pass under
+Rule 14", rather than restating the exit contract each time. Where a
+task genuinely needs different semantics — an expected `exit 5`, a
+deselection, a known `xfail` — the specification states it explicitly.
+
+**Disposition vocabulary.** Three distinct dispositions:
+
+- **satisfied** — the criterion genuinely passed as written;
+- **not satisfied, PI-authorized exception** — the criterion was
+  evaluated, was not met, and the PI accepts the task nonetheless;
+- **waived** — the PI removed the obligation BEFORE its evaluation
+  deadline, so it was never evaluated.
+
+**A criterion already evaluated and found unsatisfied cannot later be
+reported as waived.** Its disposition is a retrospective exception, or
+task rejection. Waiving after the fact would erase an evaluation that
+actually happened.
+
+Every waiver and every exception records: the authorizing authority;
+the time or sequence point; the criterion affected; the specific
+evidence accepted; and whether it applies only to this task.
+Record an accepted timeout as:
+
+    A9: NOT SATISFIED
+    Disposition: PI-AUTHORIZED EXCEPTION
+    Evidence: all selected tests reached completion output with no
+              assertion failure; process exit 124 after 120.2 s.
+
+**An exception changes the disposition of the TASK, not the historical
+evaluation of the CRITERION.** A criterion that was not satisfied is
+never written back as passed.
+
+*Incident.* Five validator files each reached `[100%]` with no
+assertion failure and each terminated at ~120.2 s with exit 124.
+Because all five stopped at the same boundary regardless of their
+individual cost, the cost lies in process shutdown rather than in the
+tests. The executor reported this as a qualified condition rather than
+as a pass, which was correct, but the acceptance criterion had no
+vocabulary for the outcome.
+
+### 15. Governing artifacts are committed
+
+**A specification, a pre-execution review, a task report, and any
+manifest supplied to a checker are governing artifacts and are
+committed to the repository.** An artifact that determines what a task
+was authorised to do, or that records what it did, is not evidence
+while it exists only in a conversation.
+
+**Placement.** Specifications under `specs/`; task reports under
+`reports/`; pre-execution reviews under `reviews/<function>/`, using
+the existing directory for the reviewing party. Supplied manifests are
+reproduced in the report that used them.
+
+**Timing.** A specification is committed as the task's first commit.
+**A pre-execution review is committed before the work it authorises
+proceeds.** A report is committed by the task that produced it.
+
+**Prospective only.** Records created before this rule are not
+retrospectively non-conforming, and are not to be back-filled.

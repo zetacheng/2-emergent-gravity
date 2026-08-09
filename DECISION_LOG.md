@@ -1515,3 +1515,109 @@ changes no gate status.
 `gate/p2-attraction-ruling-and-layers`;
 `DECISION_LOG.md`,
 `specs/2026-08-09T0300Z_attraction-ruling-and-layers.md`.
+
+## 2026-08-09 — `CONVENTIONS.md` amendments A–D adopted; Rules 14 and 15 added
+
+Date: 2026-08-09
+Decision owner: Principal Investigator
+Effect: refines four execution-discipline rules and adds two new ones
+
+### Decision
+
+`CONVENTIONS.md`'s execution-discipline rules, which ran 1–13, now run
+1–15. Four existing rules are refined by amendment and two rules are
+added:
+
+    Amendment A  -> Rule 7    mid-task authorizations are reproduced
+                              verbatim in the task report
+    Amendment B  -> Rule 8    every task report carries a
+                              "Stops and clarifications" section
+    Amendment C  -> Rule 9    digest semantics and binary-safe
+                              computation
+    Amendment D  -> Rule 13   execution location, and the
+                              process/harness layer
+    Rule 14                   validator outcome and exception contract
+    Rule 15                   governing artifacts are committed
+
+**No rule was renumbered, reworded or reordered.** Rules 1–13 keep their
+numbers and titles, and their pre-existing text is unchanged apart from
+the four authorised insertions.
+
+### Two provenances, which are not the same
+
+**Amendments A–D and Rule 14 come from a previously approved amendment
+draft that had never been executed.** The draft is
+`DRAFT_amendment_reporting_and_digests.md`, SHA-256
+`bef29c4d0ef3d391f2caa2f17ab6336e11677c73a3c37cbf4acb17b23e566822`,
+supplied with the authorising specification. Each was derived from a
+named incident, and those incident records are landed with them.
+
+**Rule 15 does not come from that draft, and its text is not in it.**
+Rule 15 was approved by the PI separately, before this execution, and
+is supplied normatively by
+`specs/2026-08-09T1653Z_land-rules-14-15.md` §2. **That prior approval
+has no separate repository artifact; the authorising specification is
+the first durable record of it, and this entry is the second.** It is
+not recorded as extracted from an approved document, because it was
+not.
+
+### Reason
+
+The four amendments and Rule 14 were each written against a specific
+execution incident: mid-task authorizations that existed only in
+conversation and could not be distinguished by a reviewer from an
+executor expanding its own scope; stop records without a category, which
+invite the reader to infer executor unreliability from a count; two
+wrong digests in `GATES.md` caused by hashing through a text pipeline;
+an "X is absent" conclusion drawn from a worktree that had never checked
+out the revision under test; and five validators that each printed
+`[100%]` and each exited 124 at the same boundary, for which the
+acceptance criterion had no vocabulary.
+
+Rule 15 was written against a different finding. A read-only audit
+established that an integration task's repository state was correct in
+every respect, but that its scope manifest was never preserved, no
+merge-guard output was ever committed, and neither mid-task
+authorization appeared in the report verbatim. **The result was right;
+the authority under which it was produced could not be reconstructed.**
+Since then, specifications passed to the Reviewer as conversational text
+have led, on four occasions in one day, to review of a superseded
+version and to issues already fixed being raised again.
+
+### Consequences
+
+A task specification may now say "validators must pass under Rule 14"
+rather than restating the exit contract, and must state explicitly where
+it needs different semantics.
+
+**Rule 15 changes how the Reviewer function works, not only the
+Executor.** Pre-execution reviews are to be committed under
+`reviews/<function>/` before the work they authorise proceeds. That is a
+new step for the reviewing party and is stated here so it is visible
+rather than discovered later.
+
+**All of it binds prospectively only.** Records created before this
+adoption are not retrospectively non-conforming and are **not to be
+back-filled**. No `reviews/` record was created by this task, because
+creating one would be the back-filling Rule 15 forbids.
+
+**This task is governed by the rules in force at its evidence base.**
+Rule 15 becomes operative only after integration and does not
+retroactively require this task's own pre-execution review to be
+committed. That is ordering, not exemption.
+
+No gate status changes. No science, no gate, no result is touched.
+`AGENTS.md` is not modified: its research rules are a different
+numbering from `CONVENTIONS.md`'s execution-discipline rules, and this
+adoption touches only the latter.
+
+### Related gate
+
+None. This adoption changes governance text; it registers no gate and
+changes no gate status.
+
+### Related branch and files
+
+`governance/land-rules-14-15`;
+`CONVENTIONS.md`, `DECISION_LOG.md`,
+`specs/2026-08-09T1653Z_land-rules-14-15.md`.
