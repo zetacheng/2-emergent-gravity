@@ -1515,3 +1515,237 @@ changes no gate status.
 `gate/p2-attraction-ruling-and-layers`;
 `DECISION_LOG.md`,
 `specs/2026-08-09T0300Z_attraction-ruling-and-layers.md`.
+
+## 2026-08-09 — Mean-field channel for `P2-PHASE-01`: the scalar channel with a real auxiliary field
+
+Date: 2026-08-09
+Decision owner: Principal Investigator
+Effect: selects a route for mean-field work; defers an alternative
+
+### Decision
+
+The PI ruling of 2026-08-09, reproduced verbatim:
+
+> **PI ruling, 2026-08-09 — mean-field channel for `P2-PHASE-01`.**
+>
+> Mean-field work proceeds in the **scalar channel with a real auxiliary
+> field.** Under the 2026-08-08 rulings the scalar singlet has `g > 0`
+> and admits the standard real linear Hubbard–Stratonovich
+> representation; the induced V and A singlets have `g < 0` and do not.
+>
+> **This is a choice of direct route, not a judgement that the V/A
+> representation is wrong.** The programme's existing machinery — the
+> gap equation, `I_0`, the stationary-branch study — is built on a real
+> auxiliary field. **The V/A channel does not admit the standard real
+> linear HS contour that machinery uses, and would require a non-real
+> contour or an otherwise reformulated bosonisation apparatus.**
+>
+> **No evidence indicates the V/A representation is unphysical, and the
+> PI's position is that it may contain physically relevant information
+> and must be returned to. It is deferred, not excluded** — see
+> `DEFERRED-01`.
+>
+> **This does not close `OPEN-AC-1`.** It selects the channel for
+> mean-field work; the Fierz ambiguity — that channels equivalent as
+> operators are inequivalent after truncation — is unaffected by which
+> one is used.
+
+### Reason
+
+The Layer-1b recomputation of 2026-08-09 established which of the three
+particle-hole channels admits the standard real linear
+Hubbard–Stratonovich representation: the scalar singlet has `g > 0` and
+does; the induced V and A singlets have `g = -G/2 < 0` and do not. The
+programme's existing mean-field machinery — the gap equation, `I_0`, the
+scalar stationary-branch study — is built on a real auxiliary field, so
+the scalar channel is the route that machinery can already take.
+
+The ruling is a selection among available routes, not a finding about
+either channel. **No calculation in this repository bears on whether the
+V/A representation is physically correct**, and none was performed for
+this decision.
+
+### Consequences
+
+Mean-field work for `P2-PHASE-01` proceeds in the scalar channel with a
+real auxiliary field.
+
+The V/A representation is entered in the deferred-items register as
+`DEFERRED-01`, deferred and not excluded, with the PI's position
+recorded there that it may contain physically relevant information and
+must be returned to.
+
+`OPEN-AC-1` is **not** closed. The Fierz ambiguity — that channels
+equivalent as operators are inequivalent after mean-field truncation —
+is a property of the truncation and is unaffected by which channel is
+used.
+
+No gate status changes. `P2-PHASE-01` remains `PROPOSED` and
+`P2-GAP-01` remains `PASS`.
+
+### Related gate
+
+None. This ruling selects a route; it registers no gate and changes no
+gate status.
+
+### Related branch and files
+
+`fix/pi-decisions-and-deferred`;
+`DECISION_LOG.md`, `derivations/P2-DEFERRED-ITEMS.md`,
+`specs/2026-08-09T0430Z_pi-decisions-and-deferred.md`.
+
+## 2026-08-09 — The charge-conjugation phase `eta` is not selected; both signs are computed
+
+Date: 2026-08-09
+Decision owner: Principal Investigator
+Effect: declines to select a convention; prescribes a two-sign evaluation
+
+### Decision
+
+The PI ruling of 2026-08-09, reproduced verbatim:
+
+> **PI ruling, 2026-08-09 — `η` is not selected; both signs are
+> computed.**
+>
+> The diquark rearrangement requires `ψ̄^c = η ψ^T C⁻¹`. **The frozen
+> material fixes no value of `η`, and unlike the exponent mapping no
+> executed calculation constrains it.**
+>
+> **For the SIGN AMBIGUITY exposed by the channel-character derivation,
+> the programme evaluates both the `η = +1` and the `η = −1`
+> representative rather than selecting between them.** This does not
+> assert that the full convention space is exactly two elements — the
+> residual phase freedom has not been characterised — only that the
+> ambiguity shown to affect the paired product is a sign, and both signs
+> are to be carried through and reported.
+>
+> **The reason is diagnostic.** If both signs give the same channel
+> character, **the exposed `η = ±1` sign ambiguity does not affect that
+> character, and that sign question closes** — the wider phase freedom
+> remains uncharacterised either way. **If they give opposite
+> characters, then the diquark channel character depends on an
+> unresolved sign convention — and that is something the programme must
+> know rather than conceal behind a choice.**
+
+### Reason
+
+The channel-character derivation established that `η` appears once in
+the paired product and therefore flips the sign of the diquark channel
+coefficient, and that the frozen material fixes no value for it. Unlike
+the Euclidean exponent mapping, which an executed calculation
+constrains through `P2-GAP-01`'s real auxiliary field, **no executed
+calculation constrains `η`.**
+
+The alternative to this ruling is a diquark channel character that
+rests on an arbitrary sign. Computing both representatives costs one
+extra evaluation and converts an unresolved convention into a
+measurable question.
+
+### Consequences
+
+When the diquark channel character is computed, both the `η = +1` and
+the `η = -1` representative are to be evaluated and both reported.
+**That calculation is a separate authorized task and is not performed
+here.**
+
+If the two agree, the `η = ±1` sign ambiguity does not affect the
+diquark channel character and that sign question closes. If they
+disagree, the character depends on an unresolved sign convention, and
+the programme records that rather than concealing it behind a choice.
+
+**The residual phase freedom in `η` is not characterised by this
+ruling** in either outcome. The ruling addresses the sign ambiguity the
+channel-character derivation exposed, not the full convention space.
+
+The particle–particle Grassmann ordering and the diquark operator
+normalisation remain unfrozen and are untouched here.
+
+No gate status changes.
+
+### Related gate
+
+None. This ruling declines to select a convention; it registers no gate
+and changes no gate status.
+
+### Related branch and files
+
+`fix/pi-decisions-and-deferred`;
+`DECISION_LOG.md`,
+`specs/2026-08-09T0430Z_pi-decisions-and-deferred.md`.
+
+## 2026-08-09 — The negative-mass stationary branch is DEFERRED, not excluded
+
+Date: 2026-08-09
+Decision owner: Principal Investigator
+Effect: declines to classify; records a consequence for SI-1
+
+### Decision
+
+The PI ruling of 2026-08-09, reproduced verbatim:
+
+> **PI ruling, 2026-08-09 — the negative-mass branch is DEFERRED, not
+> excluded.**
+>
+> The exploratory study found a second stable stationary branch at
+> `M̂ ≈ −7.59`, the exact Wilson complement of the trivial branch, stable
+> including below `G_c`.
+>
+> **It is not classified as a lattice artifact.** The complement
+> relation and sub-critical stability **tie the branch structurally to
+> the Wilson term; they do not establish that it lacks physical
+> content.** Under the substrate reading there is no continuum limit, so
+> **the standard continuum-decoupling argument cannot by itself classify
+> this branch as an unphysical lattice artifact.**
+>
+> **The PI's position is that a stable solution corresponds to something
+> real.** The branch is deferred pending the main line — see
+> `DEFERRED-02`.
+>
+> **Consequence for SI-1, recorded now so it is not met by surprise.**
+> `P2-PHASE-01`'s kill criterion asks whether any admissible phase exists
+> in the frozen space. **With this branch neither admitted nor excluded,
+> that criterion's quantifier range is undetermined**, and the SI-1
+> specification must state whether the branch falls inside it. **This
+> ruling does not answer that; it records that the question is now
+> unavoidable.**
+
+### Reason
+
+The exploratory scalar stationary study reported a second stationary
+root at `M̂ ≈ -7.59`, the exact Wilson complement of the trivial branch
+under `I_0(M̂) = I_0(-8-M̂)`, with positive restricted curvature at
+`G/G_c` values below `1`.
+
+Both facts tie the branch to the Wilson term. **Neither shows the
+branch carries no physical content.** The argument that would ordinarily
+classify such a branch as an unphysical lattice artifact is
+continuum decoupling, and under the substrate reading there is no
+continuum limit for it to appeal to.
+
+### Consequences
+
+The branch is entered in the deferred-items register as `DEFERRED-02`,
+neither admitted nor excluded, with the PI's position recorded there.
+
+**`P2-PHASE-01`'s kill criterion asks whether any admissible phase
+exists in the frozen space. With this branch neither admitted nor
+excluded, the range of that quantifier is undetermined**, and the SI-1
+specification will have to state whether the branch falls inside it.
+**This ruling does not answer that question and does not amend the SI-1
+gate text.** It records that the question can no longer be left
+implicit.
+
+No gate status changes. `P2-PHASE-01` remains `PROPOSED` and
+`P2-GAP-01` remains `PASS`. No exploratory result, branch-depth table
+row, or line of the parameter-domain draft is altered.
+
+### Related gate
+
+`P2-PHASE-01`, whose status is unchanged at `PROPOSED`. This entry
+registers no gate and changes no gate status.
+
+### Related branch and files
+
+`fix/pi-decisions-and-deferred`;
+`DECISION_LOG.md`, `derivations/P2-DEFERRED-ITEMS.md`,
+`specs/2026-08-09T0430Z_pi-decisions-and-deferred.md`.
