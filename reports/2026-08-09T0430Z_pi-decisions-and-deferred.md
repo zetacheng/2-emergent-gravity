@@ -1,51 +1,120 @@
 # Execution report — record three PI decisions and open a deferred-items register
 
-Specification: `specs/2026-08-09T0430Z_pi-decisions-and-deferred.md`
+Specification: `specs/2026-08-09T0430Z_pi-decisions-and-deferred.md` (re-issued)
 Specification evidence base: `f309f61c9c14b0e2c63e078f9c0d0809422742e7`
 Branch: `fix/pi-decisions-and-deferred`
-Pre-report head: `869e625df44e92abbf3883064275f1ff11054b92`
+Pre-report head: `5daa04fdfe9ebc4e79794e9ac10711d2dfaf9839`
 
 **Outcome.** Three separate `DECISION_LOG.md` entries and the register
-are landed. Nothing was computed, no gate status changed, no frozen or
-pinned artifact was touched, and the SI-1 gate text was not amended.
-`DECISION_LOG.md` is append-only with zero deleted lines. All four
-validators pass.
+are landed. Both defects reported against the first issue are gone: all
+six pins verify, `DEFERRED-02`'s evidence is in the pinned material, and
+every required phrase is satisfiable without touching a ruling. Nothing
+was computed, no gate status changed, no frozen or pinned artifact was
+touched, and the SI-1 gate text was not amended. Net diff against the
+evidence base is **3 additions and 1 modification, zero deleted lines.**
+All four validators pass.
 
-**One finding the Reviewer must see before anything else, because it
-concerns A2's stop condition. `DEFERRED-02`'s evidence is NOT in the
-material A1 pins.** The pinned exploratory note is the
-pre-registration document; it contains neither `M̂ ≈ −7.59`, nor the
-Wilson-complement relation, nor any curvature value. **The evidence is
-real, and I located and quoted it** — from two other artifacts fixed by
-the specification's own evidence base. **I did not stop.** §3 sets out
-the reading, and §12 records it as a `SPECIFICATION_DEFECT` in the pin
-list. **If the Reviewer holds that A2 meant the four-file list
-literally, this task stopped and the register must not be integrated
-until A1 is amended.** That call is the PI's, not mine, and the
-material to make it is in §3.
+**One thing the Reviewer must read first, because it is a governance
+decision I made and can be reversed.** This specification is the
+**second issue** of a task whose first issue I executed and pushed to
+`fix/pi-decisions-and-deferred` at `59c763ab…`. **The branch already
+existed.** §1 sets out the collision, the four constraints that appear
+to conflict, and the construction that satisfies all of them without a
+force-push and without destroying the superseded record. **If the PI
+intended something else, nothing is lost** — the first issue's commits
+remain reachable in this branch's history.
 
 ---
 
-## 1. A8 — refs, read from the remote
+## 1. The branch already existed, and what I did about it
 
-    refs/remotes/origin/main    f309f61c9c14b0e2c63e078f9c0d0809422742e7
-    remote refs/heads/main      f309f61c9c14b0e2c63e078f9c0d0809422742e7
-    local  refs/heads/main      0f7961747abe2a18b436c0b1e5b928f425ea4d9a
+### 1.1 The collision
 
-Both remote refs resolve to the evidence base. **Local `main` is stale
-by design and was not repaired.** The branch was created from
-`f309f61c…` in a separate worktree; no `main` ref was moved.
-`review/role-model-and-executors` is untouched. **No branch was
-deleted.**
+The first issue of this specification was executed and pushed:
 
-**`{HHMM}Z` was fixed once by commit 1 as `0430`** and reused for the
-report path.
+    fix/pi-decisions-and-deferred   59c763abcfd406bf6757859825c17bff4e4a0c25
 
-## 2. A1 — pinned inputs, verified before use
+carrying the superseded specification, an earlier `DECISION_LOG.md`
+triple, an earlier register, and an execution report — all at the same
+four paths this issue names, because `{HHMM}Z` was fixed as `0430` and
+this issue does not change it.
 
-Digests read from the git objects at the evidence base and from the
-working tree; all four matched the specification and the two readings
-agree.
+**Four constraints of this specification appear to conflict:**
+
+    A6   final base-to-head scope is exactly 3 additions and 1 modification
+    A8   create the branch from f309f61c…, push the task branch
+    §4   branch naming: use fix/pi-decisions-and-deferred
+    §4   no force-push, no history rewrite
+
+**A fresh `{HHMM}Z` token fails A6** — the tree would carry both the old
+and the new specification and both reports, five or six additions, and
+removing the old ones needs `delete`, which A6 lists as a forbidden
+operation. **A different branch name violates §4.** **Resetting the
+branch and force-pushing violates §4** and would destroy an unmerged
+record, which this programme's own policy treats as destroying content
+rather than a name.
+
+### 1.2 The construction that satisfies all four
+
+**`git diff base head` compares trees, not history.** Building the
+re-issued content *on top of* `59c763ab…`, at the same four paths, makes
+the net base-to-head scope exactly what A6 demands, while the branch
+still descends from `f309f61c…` and every earlier commit stays
+reachable.
+
+    commit 1  overwrites specs/2026-08-09T0430Z_… with the re-issued text
+    commit 2  rebuilds DECISION_LOG.md as (evidence-base blob) + (three
+              re-issued entries), and rewrites the register
+    commit 3  overwrites reports/2026-08-09T0430Z_… with this report
+
+**`DECISION_LOG.md` was rebuilt from the evidence-base blob**, not
+edited in place: the file was written as the base blob followed by the
+three new entries, so the superseded triple is absent from the final
+tree and the base-to-head diff is append-only with **zero deletions**.
+Verified in §5.1.
+
+**No force-push. No history rewrite. No `delete` operation. The
+superseded record is preserved** in the branch's own history at
+`59c763ab…` and its parents.
+
+### 1.3 What this costs, stated plainly
+
+**The first issue's specification and report are no longer in the
+final tree** — they are only in git history. That is the price of
+reusing the path, and reusing the path is what A6's three-addition
+scope forces once `delete` is forbidden.
+
+**I did not treat this as a stop.** §4 says to stop and report when
+instructions are inconsistent; the construction above means they are
+not inconsistent, because all four are satisfied simultaneously. **But
+the PI may have intended a reset, or a fresh branch, or may not have
+known the branch existed.** All three remain available and nothing here
+prevents them:
+
+    to reset      the branch history holds every superseded commit
+    to rename     no ref outside this branch was touched
+    to keep       nothing further is required
+
+## 2. A8 — refs, read from the remote
+
+    refs/remotes/origin/main                  f309f61c9c14b0e2c63e078f9c0d0809422742e7
+    remote refs/heads/main                    f309f61c9c14b0e2c63e078f9c0d0809422742e7
+    local  refs/heads/main                    0f7961747abe2a18b436c0b1e5b928f425ea4d9a
+    remote refs/heads/fix/pi-decisions-and-deferred
+                                              59c763abcfd406bf6757859825c17bff4e4a0c25  (before this task)
+
+Both remote `main` refs resolve to the evidence base. **Local `main` is
+stale by design and was not repaired.** No `main` ref was moved. The
+task branch descends from `f309f61c…`, confirmed by
+`git merge-base --is-ancestor`. `review/role-model-and-executors` is
+untouched at `10c260b9…`. **No branch was deleted.**
+
+**`{HHMM}Z` is `0430`**, carried over from the first issue's commit 1
+for the reason in §1.2.
+
+## 3. A1 — pinned inputs, six of them, verified before use
+
+Digests read from the git objects at the evidence base; all six matched.
 
     derivations/P2-PHASE-01_scalar_stationary_exploratory.md
       80586e33ef07e307729af4597f72b48f6ecee74fc6a0f396b593f735ef322599   MATCH
@@ -55,16 +124,26 @@ agree.
       4cea53a7163ccc6aadadd0fca276714c16d805ad8aed3594d64d66d412606711   MATCH
     results/P2-PHASE-01/channel-character-layers/layers.json
       fe343c74389cc996e42567d7dd510f479f1e7ed01cba81de61ff1d6f7e9d1542   MATCH
+    reports/2026-08-05_p2-phase-01_scalar-stationary-exploratory.md
+      70ab88eda32483420c0bfd522babd2ca4a73941bc2d2d20f8414976641756cbe   MATCH
+    results/P2-PHASE-01/exploratory-scalar-stationary/scalar_stationary.json
+      a4537efad3b46e5e429b5310baad8b4dbf36d9c95582873dbfa0b03cc44d7028   MATCH
 
-## 3. A2 — cited evidence, verified and quoted
+**The last two are the pins added by this issue**, and they are what
+makes A2 satisfiable from A1's enumerated set. The digests match the
+ones I supplied in the first issue's report, which is the expected
+outcome of a correct amendment rather than an independent confirmation
+— they came from the same two files at the same commit.
 
-### 3.1 `DEFERRED-01` — found in the pinned material, exactly as cited
+## 4. A2 — cited evidence, verified and quoted, all from pinned material
+
+### 4.1 `DEFERRED-01`
 
 **Cited:** `g_V = g_A = -G/2`, no real linear HS field admissible
 (channel-character layers derivation).
 
-**Found**, in `derivations/P2-PHASE-01_channel_character_layers.md`
-§3.2 — pinned, digest `4cea53a7…`:
+**Found** in `derivations/P2-PHASE-01_channel_character_layers.md` §3.2
+— pinned, `4cea53a7…`:
 
     channel                     g_L          g_P        sign(g)   real HS
     scalar_singlet_direct         G/N    2*G/N**2         +1        yes
@@ -72,38 +151,24 @@ agree.
     induced_A_singlet            -G/2       -G/N          -1        no
 
 and in `results/P2-PHASE-01/channel-character-layers/layers.json` —
-pinned, digest `fe343c74…`:
+pinned, `fe343c74…`:
 
-    layer_1b.channels.induced_V_singlet.g_in_normalisation_L        "-G/2"
+    layer_1b.channels.induced_V_singlet.g_in_normalisation_L              "-G/2"
     layer_1b.channels.induced_V_singlet.real_linear_HS_field_admissible   false
-    layer_1b.channels.induced_A_singlet.g_in_normalisation_L        "-G/2"
+    layer_1b.channels.induced_A_singlet.g_in_normalisation_L              "-G/2"
     layer_1b.channels.induced_A_singlet.real_linear_HS_field_admissible   false
 
-**Both values and both admissibility flags are present in pinned
-material. No stop.**
+**Both values and both flags present in pinned material. No stop.**
 
-### 3.2 `DEFERRED-02` — the evidence is real, but not in A1's four files
+### 4.2 `DEFERRED-02`
 
-**Cited:** exact Wilson complement `I_0(M) = I_0(-8-M)`; stable below
-`G_c` (exploratory scalar stationary study).
+**Cited:** exact Wilson complement `I_0(M) = I_0(-8-M)`; positive
+restricted curvature below `G_c` (exploratory scalar stationary study
+report and results artifact).
 
-**Not found in the pinned exploratory note.** I searched
-`derivations/P2-PHASE-01_scalar_stationary_exploratory.md` at digest
-`80586e33…` for `complement`, `-8`, `7.59`, `negative`, `stable` and
-`sub-critical`. **The note is 86 lines long and is the
-pre-registration document**: it fixes the reduced scalar calculation
-*before* any numerical output, and by design contains no roots, no
-curvature values and no complement relation. Its only bearing on the
-question is a pre-registration that the symmetry would be *tested*:
-
-> The Wilson term enters `W` additively. The study therefore tests,
-> rather than assumes, whether `I₀(M̂) = I₀(−M̂)`. Positive and negative
-> algebraic roots are reported as distinct unless an exact symmetry is
-> demonstrated.
-
-**The evidence exists, in the study's other two artifacts.** From
-`reports/2026-08-05_p2-phase-01_scalar-stationary-exploratory.md`,
-verified as an exact substring after whitespace normalisation:
+**Found** in `reports/2026-08-05_p2-phase-01_scalar-stationary-exploratory.md`
+— pinned, `70ab88ed…`, verified as an exact substring after whitespace
+normalisation:
 
 > There is instead an exact Wilson-complement relation
 > `I0(Mhat)=I0(-8-Mhat)`, induced by `p_mu -> pi-p_mu`; numerical
@@ -112,61 +177,42 @@ verified as an exact substring after whitespace normalisation:
 > negative roots are therefore not declared phase-equivalent.
 
 and, from the same report's finest-offset root table, the sub-critical
-rows:
+rows, each verified as an exact row of the source table:
 
     G/Gc    Mhat_left    Mhat_right   curvature(left)   curvature(right)
     0.80    -7.589264     -0.410736         0.417872          -0.022615
     0.90    -7.813202     -0.186798         0.400036          -0.009564
     0.98    -7.966034     -0.033966         0.404749          -0.001725
 
-**Positive curvature on the complement branch at `G/G_c` below `1` is
-the "stable below `G_c`" of the cited line**, and `-7.589264` is the
-`M̂ ≈ −7.59` of the entry title. Corroborated in
-`results/P2-PHASE-01/exploratory-scalar-stationary/scalar_stationary.json`:
+**Positive curvature on the complement branch at `G/G_c < 1` is the
+"positive restricted curvature below `G_c`" of the cited line**, and
+`-7.589264` is the `M̂ ≈ -7.59` of the entry title.
+
+Corroborated in
+`results/P2-PHASE-01/exploratory-scalar-stationary/scalar_stationary.json`
+— pinned, `a4537efa…`:
 
     symmetry.wilson_complement_relation
       "I0(Mhat) = I0(-8 - Mhat), from p_mu -> pi-p_mu; numerically checked below."
-    symmetry.complement_pairs   4 pairs, max |difference| = 1.1102230246251565e-16
+    symmetry.complement_pairs
+      4 pairs, max |difference| = 1.1102230246251565e-16
 
-**Digests of the two unpinned sources**, supplied so A1 can be amended
-without re-deriving them:
+**Both halves of the evidence line are in pinned material. No stop.**
 
-    reports/2026-08-05_p2-phase-01_scalar-stationary-exploratory.md
-      70ab88eda32483420c0bfd522babd2ca4a73941bc2d2d20f8414976641756cbe
-    results/P2-PHASE-01/exploratory-scalar-stationary/scalar_stationary.json
-      a4537efad3b46e5e429b5310baad8b4dbf36d9c95582873dbfa0b03cc44d7028
+**And the qualifier is verified too.** The `Evidence strength:` field
+quotes the pinned derivation note
+`derivations/P2-PHASE-01_scalar_stationary_exploratory.md` —
+`80586e33…`:
 
-### 3.3 Why I did not stop, stated so the Reviewer can overrule it
+> Neither curvature is a full condensate-space Hessian or a
+> phase-admissibility statement.
 
-**A2's literal text** says to locate the statement "in the pinned
-material" and to STOP if it is not there. **A2's stated reason** is
-that "a register entry whose evidence line points at nothing is worse
-than no register."
+confirmed as an exact substring of that note. **The pinned note is a
+pre-registration document and carries no roots or curvature values**;
+that is why it is the source of the qualifier and not of the numbers,
+and why this issue pins the other two files as well.
 
-**The entry's evidence line does not point at nothing.** It points at
-the exploratory scalar stationary *study*, which §1 names as the
-source, and the statement is in that study — in its report and its
-results artifact rather than in its pre-registration note.
-
-**And the material is pinned.** The specification's evidence base
-`f309f61c9c14b0e2c63e078f9c0d0809422742e7` fixes every byte in the
-tree. Both quotations above were read at that commit. **They are
-therefore quotations from material the specification pinned** — just
-not from A1's enumerated subset of it.
-
-**Under that reading A2's stop condition is not met**, and stopping
-would have withheld three PI decisions and a register over a defect in
-a list of four filenames whose remedy is two additional digests.
-
-**Under the strict reading it is met**, and I have not hidden that:
-this is the first substantive section of the report, it is flagged in
-the summary above, and §12 records it as a `SPECIFICATION_DEFECT`.
-**Nothing is merged; this is a branch.** If the PI holds the strict
-reading, the correct action is to amend A1 with the two digests in
-§3.2 and re-run A2, and the landed content needs no change to survive
-that.
-
-### 3.4 `DEFERRED-03` — absence of evidence is content, not a failed lookup
+### 4.3 `DEFERRED-03` — absence of evidence is content
 
 A2 requires, for this entry, that it **states `Evidence: none` and
 supplies no evidentiary citation.** Verified in the landed register:
@@ -177,41 +223,44 @@ supplies no evidentiary citation.** Verified in the landed register:
 
 **No lookup was attempted and none should be.** Treating this as a
 failed evidence check would be the confusion between *not observed* and
-*observed negative* that this programme has met repeatedly — here it
-would be worse, because the absence is the PI's deliberate content.
+*observed negative*.
 
-## 4. A3 — three `DECISION_LOG.md` entries, one per decision
+## 5. A3 — three `DECISION_LOG.md` entries, one per decision
 
 Three separate top-level entries, **not one combined entry**:
 
     1519  ## 2026-08-09 — Mean-field channel for `P2-PHASE-01`: the scalar channel with a real auxiliary field
     1597  ## 2026-08-09 — The charge-conjugation phase `eta` is not selected; both signs are computed
-    1676  ## 2026-08-09 — The negative-mass stationary branch is DEFERRED, not excluded
+    1677  ## 2026-08-09 — The negative-mass stationary branch is DEFERRED, not excluded
 
-Each reproduces its §0 ruling **verbatim**, copied programmatically
-from the specification and compared line by line after insertion:
+Each reproduces its §0 ruling **verbatim**, copied programmatically from
+the specification and compared line by line after insertion:
 
     Decision 1   23 lines   identical
     Decision 2   22 lines   identical
-    Decision 3   25 lines   identical
+    Decision 3   38 lines   identical
 
 Structural metadata (`Date:`, `Decision owner:`, `Effect:`, and the
 `### Reason`, `### Consequences`, `### Related gate`,
-`### Related branch and files` sections the file's format requires) was
-added around each, not inside it.
+`### Related branch and files` sections) was added around each, not
+inside it.
 
-### 4.1 Append-only
+### 5.1 Append-only
 
-    git diff --numstat f309f61c… 869e625d… -- DECISION_LOG.md
-      234     0       DECISION_LOG.md
+    git diff --numstat f309f61c… 5daa04fd… -- DECISION_LOG.md
+      256     0       DECISION_LOG.md
 
     deleted lines across the entire base-to-head diff (^-[^-]):  0
 
-**234 added, zero deleted.** The file grew from 1517 to 1751 lines, and
-the new blob has the old blob as an exact byte prefix with 9464
-characters appended.
+**256 added, zero deleted**, and the final file is byte-identical to the
+evidence-base blob followed by the three entries — by construction, not
+by inspection: §1.2's rebuild wrote it that way. The file grew from 1517
+to 1773 lines.
 
-### 4.2 Required phrases, checked against normalised text
+**Only three `## 2026-08-09` headings exist in the final file.** The
+superseded triple is not present alongside them.
+
+### 5.2 Required phrases, checked against normalised text
 
 Blockquote prefixes `> ` stripped, `**` and backticks stripped, all
 whitespace collapsed to single spaces, en dashes left as they are.
@@ -224,40 +273,32 @@ whitespace collapsed to single spaces, en dashes left as they are.
     --- entry 2 ---
       PASS count=1  'the programme evaluates both the'
       PASS count=1  'rather than selecting between them'
-      PASS count=1  'rests on an arbitrary sign'
+      PASS count=2  'depends on an unresolved sign convention'
     --- entry 3 ---
       PASS count=2  'DEFERRED, not excluded'
-      PASS count=1  'they do not establish that it lacks physical content'
+      PASS count=1  'they do not establish full condensate-space stability, phase admissibility, or absence of physical content'
       PASS count=1  'cannot by itself classify this branch as an unphysical lattice artifact'
       PASS count=1  "that criterion's quantifier range is undetermined"
     ALL PRESENT: True
 
-**One of these required handling, and it is a specification defect.**
-`rests on an arbitrary sign` **does not occur anywhere in §0's Decision
-2 text**, in any wrapping or normalisation. The verbatim ruling
-therefore cannot contain it, and A3 requires both that the ruling be
-verbatim and that the entry contain the phrase.
+**Every required phrase is now inside the verbatim ruling text**, with
+`Date:`-style metadata not required this time. The first issue's
+unsatisfiable `rests on an arbitrary sign` has been replaced by
+`depends on an unresolved sign convention`, which Decision 2's ruling
+contains in its own words: *"then the diquark channel character depends
+on an unresolved sign convention"*. **No ruling text was edited to make
+a check pass, and none needed to be.**
 
-**Resolved the way A3 itself permits**, and identically to the same
-defect met on the exponent-mapping task: the phrase is in the entry's
-own `### Reason` prose, which is the structural metadata A3 allows
-around the verbatim text. The sentence is
+The second occurrence of `depends on an unresolved sign convention` in
+entry 2 is in my `### Consequences` prose, which paraphrases the
+ruling's diagnostic; the required occurrence is the one in the ruling.
 
-    The alternative to this ruling is a diquark channel character that
-    rests on an arbitrary sign.
+### 5.3 The three entries, quoted
 
-**The blockquote was not altered to make a check pass.** Had I edited
-the ruling to insert the phrase, the entry would have satisfied A3 and
-falsified the record, which is the failure mode the verbatim
-requirement exists to prevent.
+Each is reproduced with its ruling blockquote in full; the file carries
+the prose sections complete.
 
-### 4.3 The three entries, quoted
-
-Each is reproduced here with its ruling blockquote in full and its
-prose sections summarised; the file carries them complete.
-
-**Entry 1** — `## 2026-08-09 — Mean-field channel for P2-PHASE-01: the
-scalar channel with a real auxiliary field`, `Date: 2026-08-09`,
+**Entry 1** — `Date: 2026-08-09`,
 `Decision owner: Principal Investigator`,
 `Effect: selects a route for mean-field work; defers an alternative`.
 
@@ -286,14 +327,13 @@ scalar channel with a real auxiliary field`, `Date: 2026-08-09`,
     > one is used.
 
 Its `### Reason` records that the Layer-1b recomputation established
-which channels admit the real contour, and states plainly that **no
-calculation in this repository bears on whether the V/A representation
-is physically correct.** Its `### Consequences` record the route, the
+which channels admit the real contour, and states that **no calculation
+in this repository bears on whether the V/A representation is
+physically correct.** Its `### Consequences` record the route, the
 `DEFERRED-01` entry, that `OPEN-AC-1` is not closed, and that no gate
 status changes.
 
-**Entry 2** — `## 2026-08-09 — The charge-conjugation phase eta is not
-selected; both signs are computed`, `Date: 2026-08-09`,
+**Entry 2** — `Date: 2026-08-09`,
 `Decision owner: Principal Investigator`,
 `Effect: declines to select a convention; prescribes a two-sign
 evaluation`.
@@ -321,34 +361,46 @@ evaluation`.
     > unresolved sign convention — and that is something the programme must
     > know rather than conceal behind a choice.**
 
-Its `### Consequences` record that the two-sign evaluation is a
-separate authorized task and **is not performed here**, that the
-residual phase freedom remains uncharacterised in either outcome, and
-that the particle–particle Grassmann ordering and the diquark
-normalisation remain unfrozen.
+Its `### Consequences` record that the two-sign evaluation is a separate
+authorized task and **is not performed here**, that the residual phase
+freedom remains uncharacterised in either outcome, and that the
+particle–particle Grassmann ordering and the diquark normalisation
+remain unfrozen.
 
-**Entry 3** — `## 2026-08-09 — The negative-mass stationary branch is
-DEFERRED, not excluded`, `Date: 2026-08-09`,
+**Entry 3** — `Date: 2026-08-09`,
 `Decision owner: Principal Investigator`,
 `Effect: declines to classify; records a consequence for SI-1`.
 
     > **PI ruling, 2026-08-09 — the negative-mass branch is DEFERRED, not
     > excluded.**
     >
-    > The exploratory study found a second stable stationary branch at
-    > `M̂ ≈ −7.59`, the exact Wilson complement of the trivial branch, stable
-    > including below `G_c`.
+    > The exploratory study found a second stationary branch at
+    > `M̂ ≈ −7.59`, the exact Wilson complement of the trivial branch, **with
+    > positive restricted curvature in the explored one-dimensional
+    > stationary analysis, including below `G_c`.**
+    >
+    > **"Restricted", not "stable", is the accurate word.** The pinned
+    > exploratory note states of exactly that quantity: *"Neither curvature
+    > is a full condensate-space Hessian or a phase-admissibility
+    > statement."* **A bare "stable" would let a later reader take the
+    > premise as stronger than the evidence.**
     >
     > **It is not classified as a lattice artifact.** The complement
-    > relation and sub-critical stability **tie the branch structurally to
-    > the Wilson term; they do not establish that it lacks physical
-    > content.** Under the substrate reading there is no continuum limit, so
+    > relation and the observed restricted stability **tie the branch
+    > structurally to the Wilson term; they do not establish full
+    > condensate-space stability, phase admissibility, or absence of
+    > physical content.** Under the substrate reading there is no continuum limit, so
     > **the standard continuum-decoupling argument cannot by itself classify
     > this branch as an unphysical lattice artifact.**
     >
-    > **The PI's position is that a stable solution corresponds to something
-    > real.** The branch is deferred pending the main line — see
-    > `DEFERRED-02`.
+    > **The PI's position is that a solution stable under the analysis
+    > actually performed corresponds to something that warrants physical
+    > interpretation rather than automatic dismissal.** The branch is
+    > deferred pending the main line — see `DEFERRED-02`.
+    >
+    > **The qualifier is load-bearing.** Written as *a stable solution
+    > corresponds to something real*, the position would quietly restore the
+    > stability claim narrowed two paragraphs above.
     >
     > **Consequence for SI-1, recorded now so it is not met by surprise.**
     > `P2-PHASE-01`'s kill criterion asks whether any admissible phase exists
@@ -358,14 +410,23 @@ DEFERRED, not excluded`, `Date: 2026-08-09`,
     > ruling does not answer that; it records that the question is now
     > unavoidable.**
 
-Its `### Consequences` state explicitly that the ruling **does not
-answer the SI-1 question and does not amend the SI-1 gate text**, and
-that no exploratory result, branch-depth row, or line of the
+Its `### Reason` explains why "restricted" is doing work and quotes the
+pinned note. Its `### Consequences` state explicitly that the ruling
+**does not answer the SI-1 question and does not amend the SI-1 gate
+text**, and that no exploratory result, branch-depth row, or line of the
 parameter-domain draft is altered.
 
-## 5. A4 — the register, quoted in full
+**This ruling closed the finding I raised against the first issue.** I
+reported that Decision 3's premise was one word stronger than the
+evidence — "stable" where the evidence supports "positive restricted
+curvature". The re-issued ruling narrows it in its own text, three
+times, and adds a paragraph saying the qualifier is load-bearing.
+**Nothing was left for the register to compensate for**, which is the
+right place for the correction to have been made.
 
-`derivations/P2-DEFERRED-ITEMS.md`, 180 lines, reproduced verbatim:
+## 6. A4 — the register, quoted in full
+
+`derivations/P2-DEFERRED-ITEMS.md`, 193 lines, reproduced verbatim:
 
     # Deferred-items register — `P2-PHASE-01`
 
@@ -398,6 +459,12 @@ parameter-domain draft is altered.
     deferred work is wrong, unphysical, or unnecessary. Where an entry
     records that a classification is *not* supported, that is a statement
     about the argument available, not about the object.
+
+    **An entry's evidence and its PI position are separate fields, and they
+    are not the same kind of claim.** The evidence is what was computed; the
+    position is what the PI holds in the light of it. Where the two differ
+    in strength, the entry says so in an `Evidence strength:` field rather
+    than letting the position borrow the evidence's authority.
 
     **Every entry states what it is blocking**, so that a reader planning
     work knows whether a deferral is inert or load-bearing.
@@ -435,10 +502,12 @@ parameter-domain draft is altered.
     `g_in_normalisation_L: "-G/2"` and
     `real_linear_HS_field_admissible: false`.
 
-    **Both are conditional** on the two PI rulings of 2026-08-08 — the
-    Euclidean exponent mapping and the attraction/repulsion labels — as the
-    source note records. Reversing the mapping reverses which channels
-    admit the real contour.
+    **Evidence strength.** The coefficients are exact symbolic quantities,
+    reproduced from the frozen material by a gating control. **They are
+    conditional** on the two PI rulings of 2026-08-08 — the Euclidean
+    exponent mapping and the attraction/repulsion labels — as the source
+    note records. Reversing the mapping reverses which channels admit the
+    real contour.
 
     **Blocks:** nothing. The scalar route proceeds independently of this
     item.
@@ -451,14 +520,30 @@ parameter-domain draft is altered.
 
     **Reason.** The main line proceeds first.
 
-    **PI position.** A stable solution corresponds to something real.
+    **Evidence strength.** Positive **restricted** one-dimensional
+    curvature. The pinned exploratory note
+    `derivations/P2-PHASE-01_scalar_stationary_exploratory.md` states of
+    exactly that quantity:
+
+    > Neither curvature is a full condensate-space Hessian or a
+    > phase-admissibility statement.
+
+    **"Restricted", not "stable", is the accurate word**, and this entry
+    uses it throughout. What was measured is the curvature of the reduced
+    one-dimensional scalar potential along the uniform `M̂` ansatz. **Full
+    condensate-space stability was not computed, and phase admissibility
+    was not assessed.**
+
+    **PI position.** A solution stable under the analysis actually performed
+    warrants physical interpretation rather than automatic dismissal.
     Classifying this branch as a lattice artifact is not supported: under
     the substrate reading there is no continuum limit, so the standard
     continuum-decoupling argument cannot by itself classify it as an
     unphysical lattice artifact.
 
     **Evidence.** An exact Wilson-complement relation
-    `I_0(M̂) = I_0(-8-M̂)`, and stability at couplings below `G_c`. From
+    `I_0(M̂) = I_0(-8-M̂)`, and positive restricted curvature at couplings
+    below `G_c`. From
     `reports/2026-08-05_p2-phase-01_scalar-stationary-exploratory.md`:
 
     > There is instead an exact Wilson-complement relation
@@ -476,23 +561,12 @@ parameter-domain draft is altered.
         0.90    -7.813202         0.400036       -0.186798       -0.009564
         0.98    -7.966034         0.404749       -0.033966       -0.001725
 
-    The corroborating artifact is
+    Corroborated by
     `results/P2-PHASE-01/exploratory-scalar-stationary/scalar_stationary.json`,
     whose `symmetry.wilson_complement_relation` reads
     `I0(Mhat) = I0(-8 - Mhat), from p_mu -> pi-p_mu; numerically checked
     below.` with four `complement_pairs` whose absolute differences are at
     most `1.1102230246251565e-16`.
-
-    **A scope note the evidence carries with it.** The curvature above is
-    the restricted one-dimensional curvature of the reduced scalar
-    potential. The pinned derivation note
-    `derivations/P2-PHASE-01_scalar_stationary_exploratory.md` states of it:
-
-    > Neither curvature is a full condensate-space Hessian or a
-    > phase-admissibility statement.
-
-    **The branch is stable in that restricted sense**, which is what
-    "stable below `G_c`" means here.
 
     **Blocks:** the quantifier range of the SI-1 kill criterion. That
     criterion asks whether any admissible phase exists in the frozen space;
@@ -548,14 +622,13 @@ parameter-domain draft is altered.
     register by an executor; an item that is taken up again is recorded as
     resumed, so that the deferral and its reason remain readable afterwards.
 
-## 6. Does the register read as open questions, or as consciously deferred work?
+## 7. Does the register read as open questions, or as consciously deferred work?
 
-**The specification asks this because it is the register's reason for
-existing, and the honest answer is: it reads as deferred work, but only
-because the distinction is stated and then carried in every entry.
-Without those, the format alone would not have done it.**
+**It reads as consciously deferred work, and this issue made it read
+more clearly than the last one did.** The distinction is carried by
+structure, not by the opening paragraph alone.
 
-**What carries the distinction.**
+**What carries it.**
 
 - **The purpose statement is quoted verbatim at the top**, and a
   paragraph after it names where open questions actually live in this
@@ -564,38 +637,44 @@ Without those, the format alone would not have done it.**
   can check the boundary rather than take it on trust.**
 - **Every entry has a `Reason:` and a `PI position:`.** An open
   question has neither. A reason for deferring is only writable about
-  something already understood, and a position is only holdable about
+  something already understood; a position is only holdable about
   something already examined.
+- **`Evidence strength:` is new in this issue and does more than it
+  looks.** It separates what was computed from what the PI holds in
+  light of it, and by existing at all it tells a reader that the two
+  are different kinds of claim. **A list of open questions has no such
+  field, because it has nothing to grade.** `DEFERRED-01` now carries
+  one too, recording that its coefficients are exact but conditional on
+  the two 2026-08-08 rulings.
 - **Every entry states what it blocks.** `DEFERRED-01` blocks nothing;
   `DEFERRED-02` blocks the quantifier range of the SI-1 kill criterion.
   **A list of open questions does not know its own load-bearing
   status.**
 - **`Status:` lines say what kind of non-answer each is** — "deferred,
-  not excluded" and "neither admitted nor excluded" are refusals to
+  not excluded", "neither admitted nor excluded". Those are refusals to
   classify, which is a different act from not having looked.
 
 **Where it is weakest, stated plainly.** `DEFERRED-03` is a hypothesis
-with no evidence, and a hypothesis is closer to an open question than
-either of the others. **The register would read less clearly if that
-entry were not marked.** It is marked four ways: `Status: PI
-HYPOTHESIS, UNTESTED` in capitals, `Evidence: none` as its own line, an
-explicit paragraph saying it "does not have the standing of the two
-above" and that "nothing here may be cited as a finding", and a "what
-would be needed to test it" paragraph that states no such calculation
-exists. **With those it reads as a recorded hypothesis. Remove any one
-of them and it starts to read like an item nobody has got to yet.**
+with no evidence, and a hypothesis sits closer to an open question than
+either of the others. It is marked four ways: `Status: PI HYPOTHESIS,
+UNTESTED` in capitals, `Evidence: none` on its own line, a paragraph
+saying it "does not have the standing of the two above" and that
+"nothing here may be cited as a finding", and a "what would be needed to
+test it" paragraph recording that no such calculation exists. **With
+those it reads as a recorded hypothesis. Remove any one and it starts to
+read like an item nobody has got to yet.**
 
-**One structural risk I would flag rather than fix.** The register lives
-under `derivations/`, alongside notes that do contain derivations. A
-reader arriving from a directory listing may expect derived content.
-The file's first line says `**Kind:** a register. It records decisions,
-computes nothing`, which is the only thing standing between the
-location and the wrong expectation. **A `registers/` location, or an
-entry in `derivations/README.md`, would carry it structurally instead of
-textually** — but `derivations/README.md` is a protected path under A5
-and I did not touch it.
+**One structural risk I flag rather than fix.** The register lives under
+`derivations/`, alongside notes that do contain derivations, and
+`derivations/README.md` states what a derivation note must contain —
+a contract this file does not meet and should not. Its first line says
+`**Kind:** a register. It records decisions, computes nothing`, which is
+the only thing standing between the location and the wrong expectation.
+**A `registers/` location, or an exemption in `derivations/README.md`,
+would carry it structurally instead of textually** — but that file is
+protected under A5 and I did not touch it.
 
-## 7. A5 — nothing else touched
+## 8. A5 — nothing else touched
 
 Blob and tree hashes read from the git objects, evidence base against
 pre-report head:
@@ -617,9 +696,12 @@ evidence base and compared one by one:
 
     29 pre-existing derivations files checked, 0 differ
 
-and the only change to the directory:
+and the only change to that directory:
 
     A   derivations/P2-DEFERRED-ITEMS.md
+
+**All six pinned artifacts are inside those identical trees**, so no
+pinned or frozen artifact was modified.
 
 **No gate status changed.** `GATES.md` is blob-identical, its `^## P2-`
 anchor count is 14 at both ends, `P2-GAP-01` still reads `Status: PASS
@@ -633,10 +715,11 @@ not edited.
 other than the governance tools and `pytest`; no results artifact was
 written or regenerated.
 
-## 8. A6 — scope
+## 9. A6 — scope
 
 **Manifest template** (SHA-256
-`0a540d745378ef37bec9a313d695caf3d9bb835e6c714fb2275667dab5e0c485`):
+`0a540d745378ef37bec9a313d695caf3d9bb835e6c714fb2275667dab5e0c485`,
+unchanged from the first issue because the path set is unchanged):
 
     {
       "base": "f309f61c9c14b0e2c63e078f9c0d0809422742e7",
@@ -655,15 +738,15 @@ written or regenerated.
 **Intended final resolution:** `head` set to the pushed head, all four
 records required — **3 additions and 1 modification.** A fifth path
 would be a defect. `derivations/P2-DEFERRED-ITEMS.md` does not exist at
-the evidence base and is confirmed an `add`, not a `modify`.
+the evidence base and is confirmed an `add`.
 
-**Pre-report scope check** at `869e625d…`, with the report record
-removed because the report does not yet exist — checker output verbatim:
+**Scope check at the pre-report head** `5daa04fd…`, checker output
+verbatim:
 
     {
       "base": "f309f61c9c14b0e2c63e078f9c0d0809422742e7",
       "failures": [],
-      "head": "869e625df44e92abbf3883064275f1ff11054b92",
+      "head": "5daa04fdfe9ebc4e79794e9ac10711d2dfaf9839",
       "mode": "exact",
       "observed_operations": [
         {
@@ -676,6 +759,10 @@ removed because the report does not yet exist — checker output verbatim:
         },
         {
           "operation": "add",
+          "path": "reports/2026-08-09T0430Z_pi-decisions-and-deferred.md"
+        },
+        {
+          "operation": "add",
           "path": "specs/2026-08-09T0430Z_pi-decisions-and-deferred.md"
         }
       ],
@@ -685,17 +772,25 @@ removed because the report does not yet exist — checker output verbatim:
 
     exit status 0
 
-Raw `git diff --name-status` at the same head, as an independent
-reading, and the line counts:
+**One honest wrinkle in reading that output.** Unlike the first issue,
+the report path is already an observed addition *at the pre-report
+head* — because the superseded report occupies it. **The check passes
+on the path set, not on the content at that path**, and the content
+there at `5daa04fd…` is still the first issue's report. Commit 3
+replaces it. **A reader must not take the pre-report check as evidence
+that this report existed when it ran.**
 
-    M   DECISION_LOG.md                                            234   0
-    A   derivations/P2-DEFERRED-ITEMS.md                           180   0
-    A   specs/2026-08-09T0430Z_pi-decisions-and-deferred.md        314   0
+Raw `git diff --name-status` at the same head, with line counts:
 
-**The final scope check at the pushed head is post-report evidence** and
-is returned to the Reviewer, not written back here.
+    M   DECISION_LOG.md                                            256   0
+    A   derivations/P2-DEFERRED-ITEMS.md                           193   0
+    A   reports/2026-08-09T0430Z_pi-decisions-and-deferred.md      894   0   (superseded content)
+    A   specs/2026-08-09T0430Z_pi-decisions-and-deferred.md        357   0
 
-## 9. A7-pre — validators at the pre-report head
+**Zero deletions on every path.** The final scope check at the pushed
+head is post-report evidence and is returned to the Reviewer.
+
+## 10. A7-pre — validators at the pre-report head
 
 Run individually with `python -m pytest <path>`, that exact invocation,
 since `pytest` on this host resolves to 9.0.2 while `python -m pytest`
@@ -710,17 +805,15 @@ resolves to 9.1.1.
 post-report evidence.**
 
 **No new test was written**, and none was required: this task computes
-nothing, so there is no computation to regression-lock. The register and
-the log entries are prose, and `test_repository_structure.py`'s required
-path list does not enumerate them.
+nothing, so there is no computation to regression-lock.
 
-## 10. A0 — commit order, SHAs and messages
+## 11. A0 — commit order, SHAs and messages
 
-    commit 1  61e7a87904655f6919c4de2e20c77045579cbaf3
+    commit 1  a08817a6aab05b8289463002541dede0d3d07f93
               specs/2026-08-09T0430Z_pi-decisions-and-deferred.md
-              "spec: record three PI decisions and open a deferred-items register"
+              "spec: re-issued specification for the PI decisions and deferred register"
 
-    commit 2  869e625df44e92abbf3883064275f1ff11054b92
+    commit 2  5daa04fdfe9ebc4e79794e9ac10711d2dfaf9839
               DECISION_LOG.md, derivations/P2-DEFERRED-ITEMS.md
               "docs: record three PI decisions and open the deferred-items register"
 
@@ -728,9 +821,10 @@ path list does not enumerate them.
 task performs no derivation and `AGENTS.md` rule 3 governs production
 code, of which there is none.
 
-**The specification file is byte-identical to the specification as
-issued**, with a single trailing newline added because the issued text
-did not end in one and every other file in `specs/` does.
+**The specification file is byte-identical to the re-issued
+specification as received**, with a single trailing newline added
+because the issued text did not end in one and every other file in
+`specs/` does. 357 lines.
 
 ### Commit-message hygiene
 
@@ -750,33 +844,36 @@ was prepared the same way, with the same two suppressed:
 
     docs: report the three PI decisions and the deferred-items register
 
-    Records three separate DECISION_LOG.md entries, each reproducing its
-    PI ruling of 2026-08-09 verbatim, and the deferred-items register
-    with DEFERRED-01, DEFERRED-02 and DEFERRED-03.
+    Records the re-issued specification's execution: three separate
+    DECISION_LOG.md entries reproducing their PI rulings verbatim, and
+    the deferred-items register with DEFERRED-01, DEFERRED-02 and
+    DEFERRED-03.
 
-    Reports one specification defect that did not stop execution and one
-    that did not require it. DEFERRED-02's cited evidence is not in the
-    four files A1 pins; it is in the exploratory study's report and
-    results artifact, both fixed by the specification's evidence base,
-    and both are quoted with digests supplied so A1 can be amended. The
-    phrase A3 requires in entry 2 does not occur in the verbatim ruling
-    and was placed in the entry's Reason prose, which A3 permits; the
-    blockquote was not altered.
+    Both defects reported against the first issue are gone. All six
+    pins verify and DEFERRED-02's evidence is in the pinned material;
+    every required phrase is satisfied inside the verbatim rulings, so
+    no ruling was edited and no phrase needed placing in prose.
 
-## 11. Repository inputs actually read, by path
+    Reports the branch collision with the superseded first issue and
+    the construction used: the re-issued content was built on top at
+    the same four paths, and DECISION_LOG.md was rebuilt from the
+    evidence-base blob, so the net base-to-head scope is 3 additions
+    and 1 modification with zero deletions, without a force-push and
+    without destroying the superseded record.
+
+## 12. Repository inputs actually read, by path
 
     DECISION_LOG.md
     GATES.md
+    docs/BRANCHING_POLICY.md
     derivations/P2-PHASE-01_scalar_stationary_exploratory.md
     derivations/P2-PHASE-01_channel_character.md                (digest only)
     derivations/P2-PHASE-01_channel_character_layers.md
-    derivations/P2-PHASE-01_input_admissibility_contract_DRAFT.md
-    derivations/P2-PHASE-01_microscopic_parameter_domain_DRAFT.md
+    derivations/P2-DEFERRED-ITEMS.md                            (as landed here)
     results/P2-PHASE-01/channel-character-layers/layers.json
     results/P2-PHASE-01/exploratory-scalar-stationary/scalar_stationary.json
     reports/2026-08-05_p2-phase-01_scalar-stationary-exploratory.md
     scripts/governance_tools/scope_checker.py
-    tests/test_repository_structure.py
 
 **Exclusions.** The quarantined `−3.2(5)`, the suspended
 `P2-BETAV-CIRC-01` result, and the historical Finding 5 extraction were
@@ -784,36 +881,30 @@ was prepared the same way, with the same two suppressed:
 
 **Nothing was installed.**
 
-## 12. Stops and clarifications
+## 13. Stops and clarifications
 
-**No stop halted execution.** One condition arguably met a stop
-criterion; it is recorded here as the primary finding and the decision
-to continue is set out in §3.3 for the PI to overrule.
+**No stop occurred.** Both conditions that stopped or nearly stopped the
+first issue are resolved by this re-issue, and the one new condition —
+the branch collision — was satisfiable without violating any
+instruction.
 
 ### `SPECIFICATION_DEFECT`
 
-**Two, both in the specification, neither of my making.**
+**None in this issue.** For the record, both defects I raised against
+the first issue are fixed here and neither recurred:
 
-**(a) A1's pin list omits the artifacts carrying `DEFERRED-02`'s
-evidence.** The pinned exploratory note is the pre-registration
-document and contains no roots, no curvature, and no complement
-relation. The evidence is in
-`reports/2026-08-05_p2-phase-01_scalar-stationary-exploratory.md` and
-`results/P2-PHASE-01/exploratory-scalar-stationary/scalar_stationary.json`,
-whose digests are in §3.2. **A2's literal stop condition was met; its
-stated purpose was not.** I continued, on the reading that the
-specification's evidence base pins the whole tree and both quotations
-were read at it. §3.3 states the alternative reading and what to do
-under it. **Nothing is merged.**
+    A1 pinned only the exploratory derivation note, which is a
+    pre-registration and carries no roots or curvature
+      -> this issue pins the report and the results artifact as well,
+         and A2 is satisfiable from A1's enumerated set
 
-**(b) A3's required phrase `rests on an arbitrary sign` does not occur
-in §0's Decision 2 text.** The verbatim requirement and the phrase
-requirement cannot both be met inside the blockquote. Resolved by the
-mechanism A3 itself permits — the phrase is in the entry's `### Reason`
-prose. **The ruling text was not edited to make a check pass.** This is
-the second occurrence of this exact defect shape; the first was on the
-exponent-mapping task, where two required phrases were likewise absent
-from the verbatim source.
+    A3 required `rests on an arbitrary sign`, absent from the ruling
+      -> this issue requires `depends on an unresolved sign
+         convention`, which the ruling contains verbatim
+
+**The re-issue also states the general rule** that a required phrase may
+live in surrounding prose where the ruling does not contain it, which
+removes the class of defect rather than only the instance.
 
 ### `ENVIRONMENT`
 
@@ -821,14 +912,7 @@ None. Nothing was installed.
 
 ### `OBSERVATION_METHOD_ERROR`
 
-None reached an output. One near-miss is recorded because the class
-matters: the first search for `DEFERRED-02`'s evidence was
-case-insensitive over the pinned note for `complement`, `stable` and
-`-8`, and returned one hit — `survive the finest refinement as stable`
-— which is about numerical digits, not about a branch. **A grep hit is
-not a located statement.** The note was then read in full, 86 lines,
-which is what established that the evidence is genuinely not there
-rather than merely not matched.
+None.
 
 ### `REPOSITORY_DEFECT`
 
@@ -836,59 +920,53 @@ None.
 
 ### `UNRESOLVED_GOVERNANCE_OR_EVIDENCE_AMBIGUITY`
 
-**One, and it is §12(a) viewed from the other side.** Whether A2's
-"pinned material" means A1's four files or the evidence base is not
-resolved by the specification, and I did not resolve it — I acted under
-one reading and documented the other. **The PI decides which was
-meant.**
+**One, and it is §1.** The specification names a branch that already
+carries a superseded execution of itself, and does not say whether to
+replace, extend, or rename. I did not resolve that by choosing among
+the four apparently conflicting constraints; **I found the construction
+that satisfies all four** and reported it. **But whether the PI wanted
+the superseded specification and report to remain in the tree is a
+question the specification does not answer, and §1.3 records that they
+do not.** Reversible in every direction.
 
-## 13. Secondary findings, and what I would have specified differently
+## 14. Secondary findings, and what I would have specified differently
 
-**1. Decision 3's premise is stronger than the pinned evidence, in one
-word.** The ruling says the exploratory study found "a second **stable**
-stationary branch". The evidence establishes positive **restricted
-one-dimensional** curvature of the reduced scalar potential, and the
-pinned note states of exactly that quantity: "Neither curvature is a
-full condensate-space Hessian or a phase-admissibility statement."
-**The branch is stable in the restricted sense, which is not the same as
-stable.** The ruling is not wrong — deferral does not depend on the
-strength of the word — but a later reader could take "stable" as
-established more broadly than it is. **The register carries the scope
-note explicitly** under `DEFERRED-02`, which is where I could put it
-without altering the ruling.
+**1. A re-issued specification needs to say what to do with the first
+issue's branch.** This is now a recurring shape: a specification is
+executed, the executor reports defects, the specification is re-issued
+with the same branch name and the same `{HHMM}Z`-derived paths. **The
+re-issue should state whether the branch is replaced, extended, or
+renamed**, because A6's exact scope, the `delete` prohibition, and the
+force-push prohibition together leave exactly one construction, and an
+executor who does not find it will stop with nothing delivered.
 
-**2. `DEFERRED-02`'s `Blocks:` line is the most consequential thing in
-this task, and it is easy to miss.** It states that the SI-1 kill
-criterion's quantifier range is undetermined. That is a live constraint
-on a future gate specification, recorded in a register that nothing
-currently points at. **`GATES.md`'s `P2-PHASE-01` entry does not
-reference it**, and `GATES.md` is protected here. **I would specify a
-follow-up that adds a pointer from the gate to the register** — not a
-change to the criterion, just a cross-reference, so the constraint is
-found by someone reading the gate rather than only by someone reading
-the register.
+**2. Reusing `{HHMM}Z` across issues is what makes the construction
+work, and it is nowhere stated.** A0 says the token is "fixed once by
+commit 1", which for a re-issue is ambiguous — commit 1 of which issue?
+**Fixing it once per task rather than once per issue is the reading that
+satisfies A6**, and I would say so explicitly.
 
-**3. The register has no location in the repository's index.**
-`derivations/README.md` states what a derivation note must contain;
-this file is not a derivation note and does not meet that contract, nor
-should it. It sits in `derivations/` because A0 put it there. **I would
-have specified either a `registers/` directory or an explicit exemption
-in `derivations/README.md`**, so that a reader checking the directory's
-own rules does not find a file that fails them.
+**3. `DEFERRED-02`'s `Blocks:` line is still the most consequential
+output of this task, and nothing points at it.** It states that the SI-1
+kill criterion's quantifier range is undetermined — a live constraint on
+a future gate specification, recorded in a register that `GATES.md` does
+not reference, and `GATES.md` is protected here. **A follow-up adding a
+cross-reference from the gate to the register** would put the constraint
+where someone reading the gate will find it. I raised this against the
+first issue and it is unchanged.
 
-**4. Recurring, and raised for the sixth time.** The `CONVENTIONS.md`
+**4. Recurring, and raised for the seventh time.** The `CONVENTIONS.md`
 index entry deferred by
 `specs/2026-08-08T1702Z_integrate-exponent-mapping-ruling.md` §0(b) is
 still unwritten. There are now **five** conventions and decisions living
-only as dated `DECISION_LOG.md` entries — the exponent mapping, the
-attraction/repulsion labels, and the three landed today — and one
-merged script already locates two of them by exact heading text.
-**Every entry added raises the cost of the index task and the risk of
-the next executor concluding, again, that something is not defined.**
+only as dated `DECISION_LOG.md` entries, and one merged script already
+locates two of them by exact heading text. **Every entry added raises
+the cost of the index task and the risk of the next executor
+concluding, again, that something is not defined.**
 
-**5. What I would have specified differently.** A2 should say which
-reading of "pinned material" governs, and should distinguish *the
-evidence is absent* from *the pin list is wrong*. Those need different
-responses — the first is a stop, the second is a two-line amendment —
-and a criterion that maps them to the same action will keep producing
-stops that deliver nothing.
+**5. A small thing the re-issue does well, recorded because it is worth
+repeating.** Decision 3 does not merely use the narrower word; it
+contains a paragraph saying *why* the qualifier is load-bearing and what
+the loose wording would have restored. **A correction that explains its
+own mechanism survives paraphrase**, and this one will still be intact
+after someone summarises the entry.
