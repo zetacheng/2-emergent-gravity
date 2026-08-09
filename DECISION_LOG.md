@@ -1621,3 +1621,127 @@ changes no gate status.
 `governance/land-rules-14-15`;
 `CONVENTIONS.md`, `DECISION_LOG.md`,
 `specs/2026-08-09T1653Z_land-rules-14-15.md`.
+
+## 2026-08-09 — `CONVENTIONS.md` amendments E–L adopted; Rules 16 and 17 added
+
+Date: 2026-08-09
+Decision owner: Principal Investigator
+Effect: refines seven execution-discipline rules and adds two new ones
+
+### Decision
+
+`CONVENTIONS.md`'s execution-discipline rules, which ran 1–15, now run
+1–17. Seven existing rules are refined by amendment and two rules are
+added:
+
+    Amendment E  -> Rule 14   a failed observation is not a negative result
+    Amendment F  -> Rule 12   mutation tests must prove reach
+    Amendment G  -> Rule 9    structural changes propagate
+    Amendment H  -> Rule 3    literals are verified by execution
+    Amendment I  -> Rule 8    mid-task authority changes require
+                              reviewer-visible provenance
+    Amendment K  -> Rule 5    re-issuing an executed specification
+    Amendment L  -> Rule 9    consumed conventions must be discoverable
+                              through the conventions index
+
+    Rule 16                   accumulated reading
+    Rule 17                   integrations do not add epistemic or
+                              governance classifications
+
+**No rule was renumbered, reworded or reordered.** Rules 1–15 keep their
+numbers and titles, and their pre-existing text is unchanged apart from
+the seven authorised insertions.
+
+**Two amendments attach to Rule 9 and remain distinct.** G concerns
+structural propagation within a specification; L concerns whether a
+consumed convention is discoverable. They are landed as two separate
+blocks and are not merged.
+
+### The numbering resolution
+
+**The approved draft left the numbering of the two new rules open.** It
+labels the accumulated-reading rule "New Rule 16" and labels the
+integration-classification rule only "Amendment J (new)", with no
+number.
+
+**Resolved by `specs/2026-08-09T1801Z_land-amendments-e-to-l.md` §1:**
+the accumulated-reading rule keeps the number the approved draft gives
+it, **16**; the integration-classification rule becomes **17**. The
+alternative — renumbering the accumulated-reading rule to make room —
+would have changed a label the review settled.
+
+### Provenance
+
+**The reviewed source draft is committed** at
+`docs/amendments/2026-08-09_observation-and-propagation.md`, SHA-256
+`6368aff4ad66126f115be3fd0689e513db59e6061a28dd4e599b9bb5aa91c0e4`,
+byte-identical to the file supplied with the specification. **It is
+committed because the authorising specification requires it as the
+durable provenance of the reviewed amendments**, consistent with Rule
+15's governing-artifact principle. **Rule 15's own text does not name a
+reviewed source draft**: it names specifications, pre-execution reviews,
+task reports and supplied manifests, and asserting more than it says is
+what Rule 17 forbids.
+
+**The incident records that justify each amendment live in that draft
+and were deliberately not imported into `CONVENTIONS.md`.** The rules
+land; their justifications remain readable at a cited path.
+
+**This is the first task governed by Rule 15**, and its pre-execution
+review is committed at
+`reviews/chatgpt/2026-08-09T1801Z_land-amendments-e-to-l.md`, before the
+work it authorises proceeded. **The prospective exemption the Rules
+14/15 landing relied on is no longer available.**
+
+### Reason
+
+Each amendment applies one principle — **evidence must establish the
+property claimed, not merely a correlated proxy for it** — to a place
+where the proxy had been mistaken for the property: an exit status read
+as an observation; a stop counted as proof that a mutation was reached;
+a numerical disagreement treated as overturning an algebraic identity; a
+near-match accepted as a match; a citation treated as computational
+consumption; final-state scope compliance treated as history
+preservation.
+
+Rule 16 addresses a different failure: individual artifacts each
+scrupulous about what they do not establish, while their accumulation
+reads as a stronger conclusion than any of them states. Rule 17 records
+that supplying a classification the evidence does not support is
+forbidden to specification authors and integrators, not only to
+executors.
+
+### Consequences
+
+**All of it binds prospectively only.** Records created before this
+adoption are not retrospectively non-conforming and are not to be
+back-filled. **No existing review record was modified.**
+
+Rule 16 obliges a task adding a material artifact to a question already
+addressed elsewhere to state what the assembled set does not establish,
+and obliges an integration to repeat that assessment against the merged
+state, naming the junction or reporting the search.
+
+Rule 17 binds any task carrying reviewed results forward, including
+integrations and the specifications that authorise them.
+
+Amendment K's append-only measure — evaluated against the last pushed
+state of the branch as well as against the evidence base — applies to
+this entry itself.
+
+No gate status changes. No science, no gate, no result is touched.
+`AGENTS.md` is not modified: its research rules are a different
+numbering from `CONVENTIONS.md`'s execution-discipline rules.
+
+### Related gate
+
+None. This adoption changes governance text; it registers no gate and
+changes no gate status.
+
+### Related branch and files
+
+`governance/land-amendments-e-to-l`;
+`CONVENTIONS.md`, `DECISION_LOG.md`,
+`docs/amendments/2026-08-09_observation-and-propagation.md`,
+`reviews/chatgpt/2026-08-09T1801Z_land-amendments-e-to-l.md`,
+`specs/2026-08-09T1801Z_land-amendments-e-to-l.md`.
