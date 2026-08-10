@@ -1,0 +1,628 @@
+{
+  "ablation": {
+    "method_A_sum": {
+      "A": -0.5,
+      "P": 0.0,
+      "S": 0.0,
+      "T": 0.0,
+      "V": 0.5
+    },
+    "method_B_sum": {
+      "A": 0.0,
+      "P": -0.5,
+      "S": -0.5,
+      "T": -0.5,
+      "V": 0.0
+    },
+    "nothing_left_unaccounted": true,
+    "representation_is_not_causal": true,
+    "row_1_equals_method_B": true,
+    "row_4_equals_method_A": true,
+    "row_5_equals_method_A": true,
+    "row_6_equals_method_B": true,
+    "rows": [
+      {
+        "configuration": "B rep, no i on A/T, pseudoscalar Gamma = g5",
+        "pseudoscalar": {
+          "A": -0.25,
+          "P": -0.25,
+          "S": -0.25,
+          "T": -0.25,
+          "V": -0.25
+        },
+        "scalar": {
+          "A": 0.25,
+          "P": -0.25,
+          "S": -0.25,
+          "T": -0.25,
+          "V": 0.25
+        },
+        "sum": {
+          "A": 0.0,
+          "P": -0.5,
+          "S": -0.5,
+          "T": -0.5,
+          "V": 0.0
+        }
+      },
+      {
+        "configuration": "B rep, no i on A/T, pseudoscalar Gamma = i*g5",
+        "pseudoscalar": {
+          "A": 0.25,
+          "P": 0.25,
+          "S": 0.25,
+          "T": 0.25,
+          "V": 0.25
+        },
+        "scalar": {
+          "A": 0.25,
+          "P": -0.25,
+          "S": -0.25,
+          "T": -0.25,
+          "V": 0.25
+        },
+        "sum": {
+          "A": 0.5,
+          "P": 0.0,
+          "S": 0.0,
+          "T": 0.0,
+          "V": 0.5
+        }
+      },
+      {
+        "configuration": "B rep, i on A/T, pseudoscalar Gamma = g5",
+        "pseudoscalar": {
+          "A": 0.25,
+          "P": -0.25,
+          "S": -0.25,
+          "T": 0.25,
+          "V": -0.25
+        },
+        "scalar": {
+          "A": -0.25,
+          "P": -0.25,
+          "S": -0.25,
+          "T": 0.25,
+          "V": 0.25
+        },
+        "sum": {
+          "A": 0.0,
+          "P": -0.5,
+          "S": -0.5,
+          "T": 0.5,
+          "V": 0.0
+        }
+      },
+      {
+        "configuration": "B rep, i on A/T, pseudoscalar Gamma = i*g5",
+        "pseudoscalar": {
+          "A": -0.25,
+          "P": 0.25,
+          "S": 0.25,
+          "T": -0.25,
+          "V": 0.25
+        },
+        "scalar": {
+          "A": -0.25,
+          "P": -0.25,
+          "S": -0.25,
+          "T": 0.25,
+          "V": 0.25
+        },
+        "sum": {
+          "A": -0.5,
+          "P": 0.0,
+          "S": 0.0,
+          "T": 0.0,
+          "V": 0.5
+        }
+      },
+      {
+        "configuration": "A rep, i on A/T, pseudoscalar Gamma = i*g5",
+        "pseudoscalar": {
+          "A": -0.25,
+          "P": 0.25,
+          "S": 0.25,
+          "T": -0.25,
+          "V": 0.25
+        },
+        "scalar": {
+          "A": -0.25,
+          "P": -0.25,
+          "S": -0.25,
+          "T": 0.25,
+          "V": 0.25
+        },
+        "sum": {
+          "A": -0.5,
+          "P": 0.0,
+          "S": 0.0,
+          "T": 0.0,
+          "V": 0.5
+        }
+      },
+      {
+        "configuration": "A rep, no i on A/T, pseudoscalar Gamma = g5",
+        "pseudoscalar": {
+          "A": -0.25,
+          "P": -0.25,
+          "S": -0.25,
+          "T": -0.25,
+          "V": -0.25
+        },
+        "scalar": {
+          "A": 0.25,
+          "P": -0.25,
+          "S": -0.25,
+          "T": -0.25,
+          "V": 0.25
+        },
+        "sum": {
+          "A": 0.0,
+          "P": -0.5,
+          "S": -0.5,
+          "T": -0.5,
+          "V": 0.0
+        }
+      }
+    ],
+    "what_rows_1_to_2_isolate": "restoring i*gamma5 alone moves the surviving support from S,P,T to V,A",
+    "what_rows_2_to_4_isolate": "restoring the i on the A and T basis elements flips those two coefficients and leaves S, P and V untouched"
+  },
+  "case_decision": {
+    "case": "canonical construction itself: T_A^P != T_B^P",
+    "classification_is_by_earliest_divergence": true,
+    "downstream_quantities_also_differ": [
+      "L4",
+      "L5",
+      "L6"
+    ],
+    "implementation_defect_case_applies": false,
+    "ordering_index_map_case_applies": false,
+    "pseudoscalar_tensors_compared_separately": {
+      "differ_by_factor": -1,
+      "identical": false
+    },
+    "scalar_tensors_compared_separately": {
+      "identical": true,
+      "note": "identical literally and after mapping B into A's representation"
+    },
+    "why_not": "that case requires t_A == t_B and M_A == M_B; both differ, so no implementation defect in extraction or the solver may be asserted",
+    "why_not_ordering": "L3 is identical in the two methods, so this is not an ordering or index-map divergence and no promotion to dependence on the unfrozen pp ordering is licensed"
+  },
+  "deliverable": "adjudication of the diquark decomposition discrepancy",
+  "floating_tolerance": 1e-12,
+  "frozen_conventions": {
+    "canonical_pseudoscalar_line_quoted": "P^A(x) \u2261 \u03a3_{a,b=1}^{N} \u03a3_{\u03b1,\u03b2=1}^{4} \u03c8\u0304_{a\u03b1}(x) (\u03bb^A)_{ab} (i\u03b3\u2085)_{\u03b1\u03b2} \u03c8_{b\u03b2}(x)",
+    "check_type": "EXACT LITERAL SUBSTRING on raw UTF-8; no normalisation",
+    "conclusion": "the frozen material fixes the canonical pseudoscalar bilinear as carrying i*gamma5, and fixes the A and T family basis elements as carrying an explicit factor of i. Method A uses both frozen values; method B, as specified, uses neither.",
+    "literals": {
+      "A_element_machine_block": "\"basis_id\":\"A\",\"expression\":\"I*gamma(mu)*gamma5\"",
+      "A_family_basis_element": "A=I*gamma(mu)*gamma5",
+      "T_element_machine_block": "\"basis_id\":\"T\",\"expression\":\"I*(gamma(mu)*gamma(nu)-gamma(nu)*gamma(mu))/2\"",
+      "T_family_basis_element": "T=I*(gamma(mu)*gamma(nu)-gamma(nu)*gamma(mu))/2",
+      "canonical_pseudoscalar_bilinear_carries_i_gamma5": "(i\u03b3\u2085)_{\u03b1\u03b2}",
+      "canonical_pseudoscalar_machine_block": "bilinear(lam(A),I*gamma5)**2"
+    },
+    "occurrence_counts": {
+      "A_element_machine_block": 1,
+      "A_family_basis_element": 1,
+      "T_element_machine_block": 1,
+      "T_family_basis_element": 1,
+      "canonical_pseudoscalar_bilinear_carries_i_gamma5": 1,
+      "canonical_pseudoscalar_machine_block": 2
+    },
+    "this_is_established_by_quotation": "not by preference between methods"
+  },
+  "gate": "P2-PHASE-01",
+  "gate_status": "P2-PHASE-01 remains PROPOSED",
+  "independence_claim": {
+    "a_sensitivity_the_branch_did_not_state": "the family support V/A depends on the canonical pseudoscalar operator and on the A and T basis normalisation. Both are FROZEN, not free, so this is not a newly discovered unfrozen dependence -- but a reader of the branch would not have known its family support rests on those two frozen choices.",
+    "assessment": "the evidence supports independence, in the precise sense that this discrepancy is silent on it",
+    "branch_claim": "the verdict is independent of the two remaining unfrozen definitions (the pp Grassmann ordering and the diquark normalisation)",
+    "not_contradicted": true,
+    "not_further_supported": true,
+    "what_is_NOT_concluded": "that the particle-particle ordering is harmless. This adjudication tested no alternative slot map and provides no evidence either way about whether some other admissible ordering would move the family support.",
+    "why": "the divergence is upstream of the point where eta, s_pp and nu enter, and L3 -- the slot map -- is identical in the two methods, so the discrepancy bears on neither unfrozen definition"
+  },
+  "layer_comparison": {
+    "L1": {
+      "C_A": [
+        [
+          "(-0+0j)",
+          "(1+0j)",
+          "-0j",
+          "0j"
+        ],
+        [
+          "(-1+0j)",
+          "0j",
+          "0j",
+          "(-0+0j)"
+        ],
+        [
+          "(-0+0j)",
+          "(-0+0j)",
+          "(-0+0j)",
+          "(-1-0j)"
+        ],
+        [
+          "0j",
+          "-0j",
+          "(1-0j)",
+          "(-0+0j)"
+        ]
+      ],
+      "C_B": [
+        [
+          "-0j",
+          "(-1+0j)",
+          "(-0+0j)",
+          "-0j"
+        ],
+        [
+          "(1-0j)",
+          "-0j",
+          "-0j",
+          "(-0+0j)"
+        ],
+        [
+          "(-0+0j)",
+          "-0j",
+          "(-0+0j)",
+          "(-1+0j)"
+        ],
+        [
+          "-0j",
+          "-0j",
+          "(1-0j)",
+          "-0j"
+        ]
+      ],
+      "C_B_equals_g0_g2": true,
+      "C_antisymmetric": {
+        "A": true,
+        "B": true
+      },
+      "C_null_space_A": {
+        "method": "SVD of the full homogeneous system over a general complex 4x4 matrix; NOT a search over a 16-element basis",
+        "null_space_dimension_computed": 1,
+        "smallest_singular_values": [
+          1.9999999999999996,
+          1.9999999999999993,
+          1.999999999999999,
+          5.261981945710065e-16
+        ],
+        "system_shape": [
+          64,
+          16
+        ]
+      },
+      "C_null_space_B": {
+        "method": "SVD of the full homogeneous system over a general complex 4x4 matrix; NOT a search over a 16-element basis",
+        "null_space_dimension_computed": 1,
+        "smallest_singular_values": [
+          1.9999999999999993,
+          1.9999999999999993,
+          1.9999999999999993,
+          5.285920541313859e-16
+        ],
+        "system_shape": [
+          64,
+          16
+        ]
+      },
+      "clifford_checks_A": {
+        "all_gammas_hermitian": true,
+        "anticommutator_is_2_delta": true,
+        "gamma5_hermitian": true,
+        "gamma5_squared_is_identity": true
+      },
+      "clifford_checks_B": {
+        "all_gammas_hermitian": true,
+        "anticommutator_is_2_delta": true,
+        "gamma5_hermitian": true,
+        "gamma5_squared_is_identity": true
+      },
+      "family_element_ratios_representation_matched": {
+        "A": {
+          "proportional_elementwise": true,
+          "ratio_A_over_B": [
+            -3.912184928536902e-18,
+            0.9999999999999998
+          ]
+        },
+        "P": {
+          "proportional_elementwise": true,
+          "ratio_A_over_B": [
+            1.0,
+            0.0
+          ]
+        },
+        "S": {
+          "proportional_elementwise": true,
+          "ratio_A_over_B": [
+            1.0,
+            0.0
+          ]
+        },
+        "T": {
+          "proportional_elementwise": true,
+          "ratio_A_over_B": [
+            -1.4444474582904269e-34,
+            1.0
+          ]
+        },
+        "V": {
+          "proportional_elementwise": true,
+          "ratio_A_over_B": [
+            0.9999999999999998,
+            3.912184928536902e-18
+          ]
+        }
+      },
+      "method_A_representation": "repository gamma_factory, metric (1,1,1,1)",
+      "method_B_representation": "g0=kron(s1,s1) g1=kron(s1,s2) g2=kron(s1,s3) g3=kron(s2,I2)",
+      "representations_are_equivalent": {
+        "maps_every_gamma": true,
+        "maps_gamma5": true,
+        "null_space_dimension": 1,
+        "why_dimension_one_is_expected": "two irreducible four-dimensional Clifford representations are equivalent, and the intertwiner is unique up to scale"
+      },
+      "verdict": "DIFFERS elementwise; the representation difference is NOT causal (see the ablation), but the factor of i on the A and T family elements IS"
+    },
+    "L2": {
+      "index_positions": "T[a,b,c,d] = Gamma[a,b] Gamma[c,d]; a,c are the psibar indices and b,d the psi indices",
+      "method_A_operators": {
+        "pseudoscalar": "I*g5",
+        "scalar": "I4"
+      },
+      "method_B_operators": {
+        "pseudoscalar": "g5",
+        "scalar": "I4"
+      },
+      "pseudoscalar_equals_minus_the_other": true,
+      "pseudoscalar_literal_identical": false,
+      "pseudoscalar_max_difference": 2.0,
+      "pseudoscalar_representation_matched_identical": false,
+      "scalar_literal_identical": true,
+      "scalar_max_difference_representation_matched": 2.220446049250313e-16,
+      "scalar_representation_matched_identical": true,
+      "verdict": "scalar IDENTICAL; pseudoscalar DIFFERS by exactly -1",
+      "why_compared_separately": "one term matching while the other does not is the diagnostic; a summed comparison would have hidden the scalar agreement"
+    },
+    "L3": {
+      "column_index_pair": "(b,d) the psi pair",
+      "diquark_grouping": "(psibar_a psibar_c)(psi_b psi_d)",
+      "eta_or_s_pp_or_nu_applied_before_projection": {
+        "A": false,
+        "B": false
+      },
+      "grassmann_sign_applied_before_projection": {
+        "A": false,
+        "B": false
+      },
+      "permutation_parity": -1,
+      "row_index_pair": "(a,c) the psibar pair",
+      "source_ordering": "psibar_a psi_b psibar_c psi_d",
+      "verdict": "IDENTICAL",
+      "why_this_matters_most": "the possibility the specification exists to probe -- two self-consistent results from two DIFFERENT pp orderings -- is not what is happening; the slot map does not differ"
+    },
+    "L4": {
+      "definition": "L2's tensor after L3's map, flattened as (a,c,b,d)",
+      "pseudoscalar_identical": false,
+      "scalar_identical": true,
+      "verdict": "DIFFERS, inherited from L2 and from nowhere else, because L3 is identical"
+    },
+    "L5": {
+      "both_full_rank_so_f_is_unique": true,
+      "columns": "(Gamma_p C) \u2297 (C^-1 Gamma_q), 256 of them",
+      "differs_on_families": [
+        "A",
+        "T"
+      ],
+      "mechanism": "f_pp carries Gamma_p in BOTH factors, so multiplying Gamma_p by i multiplies f_pp by i^-2 = -1; the A and T diagonal coefficients flip and nothing else moves",
+      "rank_A": 256,
+      "rank_B": 256,
+      "verdict": "DIFFERS on the A and T columns only, by exactly a factor of i per basis element"
+    },
+    "L6": {
+      "method_A_pseudoscalar": {
+        "max_abs_off_family_coefficient": 5.294318072677495e-16,
+        "max_reconstruction_residual": 1.352323415781132e-15,
+        "per_component_by_family": {
+          "A": -0.25,
+          "P": 0.25,
+          "S": 0.25,
+          "T": -0.25,
+          "V": 0.25
+        },
+        "rank": 256
+      },
+      "method_A_scalar": {
+        "max_abs_off_family_coefficient": 4.666244927938625e-16,
+        "max_reconstruction_residual": 1.3200459782497383e-15,
+        "per_component_by_family": {
+          "A": -0.25,
+          "P": -0.25,
+          "S": -0.25,
+          "T": 0.25,
+          "V": 0.25
+        },
+        "rank": 256
+      },
+      "method_A_sum": {
+        "A": -0.5,
+        "P": 0.0,
+        "S": 0.0,
+        "T": 0.0,
+        "V": 0.5
+      },
+      "method_B_pseudoscalar": {
+        "max_abs_off_family_coefficient": 2.6575963651964685e-15,
+        "max_reconstruction_residual": 6.162771531849335e-15,
+        "per_component_by_family": {
+          "A": -0.25,
+          "P": -0.25,
+          "S": -0.25,
+          "T": -0.25,
+          "V": -0.25
+        },
+        "rank": 256
+      },
+      "method_B_scalar": {
+        "max_abs_off_family_coefficient": 2.068014579126083e-15,
+        "max_reconstruction_residual": 4.906078923797832e-15,
+        "per_component_by_family": {
+          "A": 0.25,
+          "P": -0.25,
+          "S": -0.25,
+          "T": -0.25,
+          "V": 0.25
+        },
+        "rank": 256
+      },
+      "method_B_sum": {
+        "A": 0.0,
+        "P": -0.5,
+        "S": -0.5,
+        "T": -0.5,
+        "V": 0.0
+      },
+      "verdict": "DIFFERS"
+    },
+    "first_diverging_layer": "L2",
+    "first_diverging_layer_note": "L1 differs elementwise but the representation difference is shown non-causal; the first divergence that changes the answer is L2, the raw canonical pseudoscalar tensor, with L5 contributing a second, independent difference"
+  },
+  "method_A_internal_consistency": {
+    "least_squares_on_method_A_own_system": {
+      "pseudoscalar": {
+        "max_abs_off_family_coefficient": 5.294318072677495e-16,
+        "max_reconstruction_residual": 1.352323415781132e-15,
+        "per_component_by_family": {
+          "A": -0.25,
+          "P": 0.25,
+          "S": 0.25,
+          "T": -0.25,
+          "V": 0.25
+        },
+        "rank": 256
+      },
+      "scalar": {
+        "max_abs_off_family_coefficient": 4.666244927938625e-16,
+        "max_reconstruction_residual": 1.3200459782497383e-15,
+        "per_component_by_family": {
+          "A": -0.25,
+          "P": -0.25,
+          "S": -0.25,
+          "T": 0.25,
+          "V": 0.25
+        },
+        "rank": 256
+      }
+    },
+    "method_A_trace_formula_values": {
+      "pseudoscalar": {
+        "A": -0.25,
+        "P": 0.25,
+        "S": 0.25,
+        "T": -0.25,
+        "V": 0.25
+      },
+      "scalar": {
+        "A": -0.25,
+        "P": -0.25,
+        "S": -0.25,
+        "T": 0.25,
+        "V": 0.25
+      }
+    },
+    "trace_formula_agrees_with_least_squares": true,
+    "why_this_was_checked": "the absence of a licence to assert an implementation defect is not the same as the absence of one"
+  },
+  "method_A_reproduction": {
+    "deterministic_over_the_complete_payload": true,
+    "no_field_ignored": true,
+    "per_component_sum": {
+      "A": "-1/2",
+      "P": "0",
+      "S": "0",
+      "T": "0",
+      "V": "1/2"
+    },
+    "recorded_per_component_sum": {
+      "A": "-1/2",
+      "P": "0",
+      "S": "0",
+      "T": "0",
+      "V": "1/2"
+    },
+    "reproduces_its_committed_artifact": true,
+    "run_1_payload_sha256": "5875d9a66a6a673acad303ea162b88ec3faf7f553ffb1f44900596bf1ecd52d4",
+    "run_2_payload_sha256": "5875d9a66a6a673acad303ea162b88ec3faf7f553ffb1f44900596bf1ecd52d4",
+    "script_loaded_from": "bc1e5c7:scripts/p2_diquark_both_eta.py",
+    "script_modified": false
+  },
+  "pinned_inputs": {
+    "branch_commit": "bc1e5c743aada004c52dc7ab7ce2af61de439955",
+    "commit_pinned_measured": {
+      "derivations/P2-PHASE-01_diquark_both_eta.md": {
+        "bytes": 18499,
+        "exists_at_branch_commit": true,
+        "measured_sha256": "50e935f888d48bb1cf48cdbf721a3ec6ff11f08c2149bd033f7d61731a7528a9"
+      },
+      "results/P2-PHASE-01/diquark-both-eta/diquark.json": {
+        "bytes": 16921,
+        "exists_at_branch_commit": true,
+        "measured_sha256": "deda121c98a5ed5ba31b288dca583bb92bba4ac34268a331e805f7c58c7305d1"
+      },
+      "scripts/p2_diquark_both_eta.py": {
+        "bytes": 36540,
+        "exists_at_branch_commit": true,
+        "measured_sha256": "8da0411d108ed45112ec93cd1135801e2d11765242df365b7f435409e2938586"
+      }
+    },
+    "digest_pinned_checked": {
+      "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md": {
+        "expected": "fe68b9c645c80287afa45288d7c3e0490328b76663aafbe78af20dfc12a4e67a",
+        "match": true,
+        "observed": "fe68b9c645c80287afa45288d7c3e0490328b76663aafbe78af20dfc12a4e67a"
+      },
+      "results/P2-CHANNEL-FREEZE/fierz_matrix.json": {
+        "expected": "5085463db1b3a21c0ea1ad2d0b0cdb5da3abb5fd8a78e9623c6b6942879667a9",
+        "match": true,
+        "observed": "5085463db1b3a21c0ea1ad2d0b0cdb5da3abb5fd8a78e9623c6b6942879667a9"
+      }
+    },
+    "why_the_distinction": "a digest supplied by a specification author is not evidence that a file says what the author believes; for the branch artifacts the commit is the pin and the digest is measured and recorded, not checked"
+  },
+  "repository_inputs": [
+    "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md",
+    "results/P2-CHANNEL-FREEZE/fierz_matrix.json",
+    "scripts/p2_diquark_both_eta.py  (at bc1e5c7)",
+    "results/P2-PHASE-01/diquark-both-eta/diquark.json  (at bc1e5c7)",
+    "derivations/P2-PHASE-01_diquark_both_eta.md  (at bc1e5c7)",
+    "scripts/P2-CHANNEL-FREEZE/gamma_algebra.py  (via method A's script)"
+  ],
+  "scope_limits": {
+    "branch_under_adjudication": {
+      "commit": "bc1e5c743aada004c52dc7ab7ce2af61de439955",
+      "disposition": "HOLD \u2014 MATERIAL RESULT DISCREPANCY",
+      "integrated": false,
+      "modified": false
+    },
+    "channel_character_result_produced": false,
+    "conventions_frozen_by_this_adjudication": [],
+    "defects_repaired": [],
+    "gate_status": "P2-PHASE-01 remains PROPOSED",
+    "not_consumed": [
+      "the quarantined -3.2(5) value",
+      "the suspended P2-BETAV-CIRC-01 result",
+      "the historical Finding 5 extraction"
+    ],
+    "still_unresolved": [
+      "whether a genuinely different but admissible particle-particle slot map -- as opposed to a reordering sign -- would move the family support. Neither the branch nor this adjudication tested one.",
+      "the particle-particle Grassmann ordering and the diquark operator normalisation remain unfrozen and are untouched here"
+    ]
+  }
+}
