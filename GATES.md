@@ -984,6 +984,11 @@ Stationary solutions `δΓ/δΦ_i = 0` of the full effective action, with all
 condensates drawn from the frozen channels, at finite density / `μ`, within
 the pre-registered microscopic parameter domain (policy §2, §4).
 
+`derivations/P2-DEFERRED-ITEMS.md` records, as `DEFERRED-02`, a stationary
+branch that is neither admitted nor excluded; whether it falls within the
+existential quantifier of this gate's scientific question is therefore
+undetermined.
+
 ### Locked assumptions
 `CONVENTIONS.md`; the Phase-A frozen channel basis and identification of
 scan-eligible microscopic coordinates from `P2-CHANNEL-FREEZE-01`.
