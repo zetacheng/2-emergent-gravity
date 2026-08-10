@@ -1,0 +1,417 @@
+{
+  "assembled_coefficients": {
+    "assumption_dependent": true,
+    "attraction_label_ruling": "2026-08-09, DECISION_LOG.md \u2014 the label is assigned to the sign of g",
+    "canonical_coefficient": "G/(2*N)",
+    "coefficients_with_symbols_carried": {
+      "A": "-G*eta*nu*s_pp/(2*N)",
+      "P": "0",
+      "S": "0",
+      "T": "0",
+      "V": "G*eta*nu*s_pp/(2*N)"
+    },
+    "evaluated_at_s_pp_minus_1_and_nu_plus_1": {
+      "eta=+1": {
+        "A": {
+          "c": "G/(2*N)",
+          "character": "ATTRACTIVE",
+          "g": "G/N"
+        },
+        "P": {
+          "c": "0",
+          "character": "no coefficient; no character defined",
+          "g": "0"
+        },
+        "S": {
+          "c": "0",
+          "character": "no coefficient; no character defined",
+          "g": "0"
+        },
+        "T": {
+          "c": "0",
+          "character": "no coefficient; no character defined",
+          "g": "0"
+        },
+        "V": {
+          "c": "-G/(2*N)",
+          "character": "REPULSIVE",
+          "g": "-G/N"
+        }
+      },
+      "eta=-1": {
+        "A": {
+          "c": "-G/(2*N)",
+          "character": "REPULSIVE",
+          "g": "-G/N"
+        },
+        "P": {
+          "c": "0",
+          "character": "no coefficient; no character defined",
+          "g": "0"
+        },
+        "S": {
+          "c": "0",
+          "character": "no coefficient; no character defined",
+          "g": "0"
+        },
+        "T": {
+          "c": "0",
+          "character": "no coefficient; no character defined",
+          "g": "0"
+        },
+        "V": {
+          "c": "G/(2*N)",
+          "character": "ATTRACTIVE",
+          "g": "G/N"
+        }
+      }
+    },
+    "every_label_above_is_conditional_on": "s_pp = -1 and nu = +1, neither of which is frozen; changing either flips all four labels",
+    "formula": "c_pp(family) = c_canonical * internal_weight * s_pp * eta * nu * f(family)",
+    "g_equals_2c_ruling": "2026-08-08, DECISION_LOG.md \u2014 the Euclidean exponent mapping",
+    "internal_weight": "2",
+    "symbols_carried": {
+      "eta": "the charge-conjugated-field phase; not selected, per the ruling",
+      "nu": "the diquark operator normalisation; unfrozen",
+      "s_pp": "the particle-particle Grassmann ordering sign; unfrozen"
+    }
+  },
+  "blockers": {
+    "all_three_confirmed_unfixed": true,
+    "counts": {
+      "Grassmann": {
+        "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md": 2,
+        "derivations/P2-PHASE-01_channel_character.md": 5
+      },
+      "charge conjugation": {
+        "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md": 0,
+        "derivations/P2-PHASE-01_channel_character.md": 2
+      },
+      "compound_index_order": {
+        "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md": 1,
+        "derivations/P2-PHASE-01_channel_character.md": 1
+      },
+      "diquark": {
+        "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md": 0,
+        "derivations/P2-PHASE-01_channel_character.md": 5
+      },
+      "eta": {
+        "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md": 4,
+        "derivations/P2-PHASE-01_channel_character.md": 13
+      },
+      "ordering": {
+        "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md": 0,
+        "derivations/P2-PHASE-01_channel_character.md": 5
+      }
+    },
+    "diquark_operator_normalisation_frozen": false,
+    "eta_frozen": false,
+    "eta_literal_value_occurrences": [
+      {
+        "classification": "CASE LABEL, not an assignment",
+        "containing_line": "and **flips its sign** for `eta = -1`. Nothing in the frozen material",
+        "line": 336,
+        "matched": "eta = -1",
+        "source": "derivations/P2-PHASE-01_channel_character.md"
+      }
+    ],
+    "eta_mentions_in_the_channel_character_note": [
+      "318:     psibar^c = eta psi^T C^-1          -> lambda^-1 psibar^c   (eta a sign convention)",
+      "334:   The sign/phase `eta` in `psibar^c = eta psi^T C^-1` appears **once**",
+      "335:   in the paired product, so it multiplies the pp coefficient by `eta`",
+      "336:   and **flips its sign** for `eta = -1`. Nothing in the frozen material",
+      "337:   fixes `eta`.",
+      "348: `eta` \u2014 changes the sign of the result, which is precisely the quantity",
+      "356: under the un-frozen charge-conjugated-field convention `eta`, and the",
+      "357: frozen material fixes neither `eta` nor the pp Grassmann ordering nor the",
+      "367: **Whether `C`, `eta` and the pp ordering should be frozen, and to what,"
+    ],
+    "method": "case-insensitive substring counts on raw UTF-8; no normalisation",
+    "particle_particle_grassmann_ordering_frozen": false,
+    "pinned_note_states_nothing_fixes_eta": true,
+    "what_the_freeze_does_fix": {
+      "applies_to": "the particle-hole exchange (alpha,beta,gamma,delta) -> (alpha,delta,gamma,beta); a particle-particle pairing is a different permutation of the same four Grassmann factors and no target ordering is declared for it",
+      "compound_index_order": [
+        "dirac_family",
+        "internal_family",
+        "component"
+      ],
+      "grassmann_crossing_sign": "-1"
+    },
+    "why_those_occurrences_do_not_mean_eta_is_fixed": "each is a case label inside a sentence about the ambiguity. The single occurrence is in the sentence that continues 'Nothing in the frozen material fixes eta'. A substring search for 'eta = +/-1' is a proxy for the wrong property and returns the opposite of the truth here."
+  },
+  "charge_conjugation": {
+    "C0_dagger_C0_is_identity": true,
+    "C0_transpose_equals_minus_C0": true,
+    "C_is_not_the_obstruction": true,
+    "defining_relation": "C gamma_mu^T C^-1 = -gamma_mu",
+    "defining_relation_holds_for_all_mu": true,
+    "determinant_is_one": true,
+    "representative_C0": [
+      [
+        "0",
+        "1",
+        "0",
+        "0"
+      ],
+      [
+        "-1",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "0"
+      ]
+    ],
+    "residual_scalar_cancels_in_the_paired_product": true,
+    "solution_space_complex_dimension": 1,
+    "what_this_does_not_license": "a settled C says nothing about eta, the particle-particle ordering, or the diquark normalisation; each is an independent convention",
+    "why": "a particle-particle rearrangement places C and C^-1 in the two conjugate factors exactly once each, so any Dirac structure between them carries lambda^{+1} lambda^{-1} = 1"
+  },
+  "deliverable": "diquark channel character, carrying both eta signs",
+  "diagnostic_verdict": {
+    "in_the_words_of_the_ruling": "the diquark channel character depends on an unresolved sign convention",
+    "not_well_defined": [
+      "whether the induced V diquark is attractive or repulsive",
+      "whether the induced A diquark is attractive or repulsive",
+      "the magnitude of either coefficient"
+    ],
+    "question": "do the two eta representatives give the same channel character or opposite ones?",
+    "ratio_c_eta_minus_over_c_eta_plus": {
+      "A": "-1",
+      "V": "-1"
+    },
+    "scope_limits": [
+      "the verdict requires nu real and nonzero; for complex nu there is no attractive/repulsive label to compare and no verdict is licensed",
+      "S, P and T vanish for both eta, so they have no character in either case \u2014 that is the absence of a quantity to compare, not a 'same' answer"
+    ],
+    "surviving_families": [
+      "V",
+      "A"
+    ],
+    "symbols_still_present_when_the_ratio_is_taken": [
+      "s_pp",
+      "nu"
+    ],
+    "verdict": "OPPOSITE",
+    "verdict_is_independent_of_the_two_remaining_unfrozen_definitions": true,
+    "well_defined_independently_of_eta_s_pp_and_nu": [
+      "S, P and T carry no induced diquark coefficient at all",
+      "V and A are the only surviving families",
+      "V and A always carry opposite characters to each other",
+      "flipping eta flips the character of every surviving family"
+    ],
+    "why": "each coefficient has the form c = K * eta with K containing every unfrozen quantity except eta, so for any real nonzero K the two signs are opposite whatever K is; s_pp and nu cancel in the ratio"
+  },
+  "diquark_normalisation_cases": {
+    "genuinely_complex_nu": {
+      "affects": "reality of the coefficient",
+      "channel_character": "a simple attractive/repulsive label is inapplicable, because the coefficient has no sign"
+    },
+    "positive_real_rescaling": {
+      "affects": "magnitude only",
+      "channel_character": "invariant"
+    },
+    "sign_or_phase_convention_with_nu_real_and_negative": {
+      "affects": "the sign",
+      "channel_character": "flips"
+    },
+    "why_kept_apart": "conflating them would send a magnitude question to an UNRESOLVED verdict it does not deserve"
+  },
+  "dirac_symmetry_and_internal_channel": {
+    "both_channels_carry_the_same_weight": true,
+    "internal_channel_weights": {
+      "N=2": {
+        "internal-antisymmetric": "2",
+        "internal-symmetric": "2"
+      },
+      "N=3": {
+        "internal-antisymmetric": "2",
+        "internal-symmetric": "2"
+      },
+      "N=4": {
+        "internal-antisymmetric": "2",
+        "internal-symmetric": "2"
+      },
+      "N=5": {
+        "internal-antisymmetric": "2",
+        "internal-symmetric": "2"
+      }
+    },
+    "internal_factor": "2 delta_ad delta_cb",
+    "per_family": {
+      "A": {
+        "C_inverse_Gamma_a": "antisym",
+        "Gamma_a_C": "antisym",
+        "internal_channel": "internal-symmetric"
+      },
+      "P": {
+        "C_inverse_Gamma_a": "antisym",
+        "Gamma_a_C": "antisym",
+        "internal_channel": "internal-symmetric"
+      },
+      "S": {
+        "C_inverse_Gamma_a": "antisym",
+        "Gamma_a_C": "antisym",
+        "internal_channel": "internal-symmetric"
+      },
+      "T": {
+        "C_inverse_Gamma_a": "sym",
+        "Gamma_a_C": "sym",
+        "internal_channel": "internal-antisymmetric"
+      },
+      "V": {
+        "C_inverse_Gamma_a": "sym",
+        "Gamma_a_C": "sym",
+        "internal_channel": "internal-antisymmetric"
+      }
+    },
+    "statistics": "psi_{b,beta} psi_{d,delta} is antisymmetric under simultaneous exchange, so Dirac-symmetric pairs with internal-antisymmetric and vice versa",
+    "the_load_bearing_fact": "the equality of SIGN between the two channels; the internal projection contributes no relative sign between families, so the relative sign of the V and A coefficients is the Dirac one. The magnitude is in any case subject to the unfrozen normalisation nu."
+  },
+  "earlier_attempt_comparison": {
+    "did_the_failure_mode_recur": false,
+    "earlier_exploratory_attempt": "a projection performed outside this repository returned zero in all four families and is recorded as a failed attempt, not a finding",
+    "how_close_it_is": "three of the five families do vanish, by exact cancellation between the scalar and pseudoscalar canonical terms. A projector wrong by one sign \u2014 one that gave the pseudoscalar term the scalar term's signs \u2014 would cancel V and A as well and return zero everywhere.",
+    "surviving_families": [
+      "V",
+      "A"
+    ],
+    "vanishing_families": [
+      "S",
+      "P",
+      "T"
+    ],
+    "what_distinguishes_them_here": [
+      "the particle-hole control runs first and reproduces known values",
+      "every decomposition is verified by reconstruction on all 256 tensor components rather than trusted from the trace formula",
+      "the frozen basis is checked trace-orthonormal on all 256 pairs"
+    ]
+  },
+  "eta_ruling": {
+    "check_type": "NORMALISED SUBSTANTIVE \u2014 one function applied to both sides: strip '> ' prefixes, strip ** and backticks, collapse whitespace; en dashes preserved",
+    "date": "2026-08-09",
+    "does_not_characterise": "the full convention space; the residual phase freedom beyond the eta = +/-1 sign is uncharacterised by the ruling and by this computation",
+    "heading": "## 2026-08-09 \u2014 The charge-conjugation phase `eta` is not selected; both signs are computed",
+    "located_by": "exact DECISION_LOG.md heading",
+    "prescribes": "both the eta = +1 and the eta = -1 representative are evaluated and both reported, rather than one being selected",
+    "required_phrases_present": {
+      "depends on an unresolved sign convention": true,
+      "rather than selecting between them": true,
+      "the programme evaluates both the": true
+    }
+  },
+  "gate": "P2-PHASE-01",
+  "gate_status": "P2-PHASE-01 remains PROPOSED",
+  "particle_hole_control": {
+    "canonical_coefficient_read_from_freeze": "G/(2*N)",
+    "contrast_with_the_particle_particle_channel": "here V and A survive with EQUAL coefficients; in the particle-particle rearrangement they survive with OPPOSITE ones. Different crossings of the same frozen interaction; there is no reason for them to agree.",
+    "direct_scalar_c_S": "G/(2*N)",
+    "expected_c_V_and_c_A": "-G/4",
+    "matrix_level": {
+      "A": "G/4",
+      "P": "0",
+      "S": "0",
+      "T": "0",
+      "V": "G/4"
+    },
+    "normalisation": "L \u2014 coefficient of (psibar lam(0) Gamma psi)^2",
+    "operator_level": {
+      "A": "-G/4",
+      "P": "0",
+      "S": "0",
+      "T": "0",
+      "V": "-G/4"
+    },
+    "reproduces_c_S_positive_and_c_V_equals_c_A_equals_minus_G_over_4": true,
+    "s_G_applied_once_at_operator_use": -1,
+    "sign_of_c_S": 1
+  },
+  "pp_dirac_decomposition": {
+    "basis_is_trace_orthonormal_on_all_256_pairs": true,
+    "decomposition": "Gamma_{alpha,beta} Gamma_{gamma,delta} = Sum_ab f_ab (Gamma_a C)_{alpha,gamma} (C^-1 Gamma_b)_{beta,delta}",
+    "decomposition_is_diagonal_in_the_family_basis": true,
+    "per_component_pseudoscalar_term": {
+      "A": "-1/4",
+      "P": "1/4",
+      "S": "1/4",
+      "T": "-1/4",
+      "V": "1/4"
+    },
+    "per_component_scalar_term": {
+      "A": "-1/4",
+      "P": "-1/4",
+      "S": "-1/4",
+      "T": "1/4",
+      "V": "1/4"
+    },
+    "per_component_sum": {
+      "A": "-1/2",
+      "P": "0",
+      "S": "0",
+      "T": "0",
+      "V": "1/2"
+    },
+    "reconstruction_exact_on_all_256_components": {
+      "pseudoscalar": true,
+      "scalar": true
+    },
+    "surviving_families": [
+      "V",
+      "A"
+    ],
+    "trace_formula": "f_ab = trace[(C^-1 Gamma_a Gamma)(Gamma Gamma_b C)^T] / 16",
+    "vanishing_families": [
+      "S",
+      "P",
+      "T"
+    ],
+    "why_S_P_and_T_vanish": "the frozen interaction is the chirally symmetric combination S^2 + P^2, and the two canonical terms cancel exactly in S, P and T while reinforcing in the chirally covariant V and A diquark structures"
+  },
+  "pp_ordering_alternatives": {
+    "not_an_enumeration": "the frozen material says no particle-particle ordering is fixed; it does not enumerate which are admissible. These are the alternatives this computation can define, not a claim that the admissible space consists only of them.",
+    "s_pp_by_target_ordering": {
+      "(psi_beta psi_delta)(psibar_alpha psibar_gamma)": -1,
+      "(psibar_alpha psibar_gamma)(psi_beta psi_delta)": -1,
+      "(psibar_alpha psibar_gamma)(psi_delta psi_beta)": 1,
+      "(psibar_gamma psibar_alpha)(psi_beta psi_delta)": 1
+    },
+    "source_ordering": "psibar_alpha psi_beta psibar_gamma psi_delta"
+  },
+  "repository_inputs": [
+    "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md",
+    "results/P2-CHANNEL-FREEZE/fierz_matrix.json",
+    "derivations/P2-PHASE-01_channel_character.md",
+    "derivations/P2-PHASE-01_channel_character_layers.md",
+    "results/P2-PHASE-01/channel-character-layers/layers.json",
+    "DECISION_LOG.md",
+    "scripts/P2-CHANNEL-FREEZE/gamma_algebra.py"
+  ],
+  "scope_limits": {
+    "conventions_frozen_by_this_computation": [],
+    "gate_status": "P2-PHASE-01 remains PROPOSED",
+    "no_hubbard_stratonovich_selection": "the 2026-08-09 ruling selected the scalar channel for mean-field work; that is untouched here",
+    "no_statement_about_a_massive_composite_vector": "a channel-character label is the sign of a coefficient in a rearranged interaction; a bound state or a pole is a different calculation, and computing the particle-particle channel does not change that. This is a disclaimer, not a result.",
+    "no_statement_that_the_channel_picture_is_complete": "one crossing of one frozen interaction is computed",
+    "not_consumed": [
+      "the quarantined -3.2(5) value",
+      "the suspended P2-BETAV-CIRC-01 result",
+      "the historical Finding 5 extraction"
+    ],
+    "still_unfrozen_after_this_computation": [
+      "eta \u2014 not selected; both representatives carried, per the ruling. The residual phase freedom beyond the eta = +/-1 sign remains uncharacterised.",
+      "the particle-particle Grassmann ordering \u2014 not selected; four orderings defined and evaluated, the admissible space not enumerated",
+      "the diquark operator normalisation \u2014 not selected; its three cases distinguished, not resolved"
+    ]
+  }
+}
