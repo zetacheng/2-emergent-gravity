@@ -2001,3 +2001,129 @@ registers no gate and changes no gate status.
 `fix/pi-decisions-v3`;
 `DECISION_LOG.md`, `derivations/P2-DEFERRED-ITEMS.md`,
 `specs/2026-08-09T1958Z_pi-decisions-v3.md`.
+
+## 2026-08-11 — `CONVENTIONS.md` Rule 18 added; `docs/BRANCHING_POLICY.md` gains a SUPERSEDED attribute and register
+
+Date: 2026-08-11
+Decision owner: Principal Investigator
+Effect: adds one execution-discipline rule and one branch attribute with
+its register; both are prospective
+
+### Decision
+
+Two governance additions, each recording a failure the programme has
+already had. **No science, no gate, no computation.**
+
+    Rule 18                   review supply protocol
+    SUPERSEDED (attribute)    docs/BRANCHING_POLICY.md, with a register
+                              of three branches
+
+**Rule 18 fixes how a pre-execution review reaches the executor.** Rule
+15 requires the review to be committed and says nothing about its
+supply. Rule 18 supplies the missing half: two delimiter lines whose
+exact text the specification states, **matched by COMPLETE LINE and
+never by first occurrence**; the committed artifact is all text strictly
+between them; **at most one leading and one trailing blank line are
+stripped as transport artifacts and no other byte is removed or
+normalised**; and any instruction or preamble must lie outside the
+block. **The executor classifies nothing — the delimiters decide** — and
+never infers a boundary, authors, edits, summarises or reformats a
+review.
+
+**SUPERSEDED is an ATTRIBUTE, not a fourth deletion state.** The
+Stage-1 deletion machine keeps its three outcomes — `PENDING_DELETE`,
+`NOT_AUTHORIZED`, `ABSENT_FROM_REMOTE` — and its closed count identity
+unchanged and byte-identical. **Two independent questions are kept
+independent:** whether a branch may be deleted, and whether it may be
+integrated. A superseded branch is present and unmerged, so it is
+correctly `NOT_AUTHORIZED` for deletion; the attribute answers the
+second question only.
+
+**No rule was renumbered or reworded.** Rules 1–17 keep their numbers
+and titles, and after removing the Rule 18 section the remaining text is
+byte-identical to the evidence-base version.
+
+### Reason
+
+**A supply convention rediscovered per task is not a convention.** The
+review-supply gap produced repeated failures across consecutive tasks,
+each patched in the next specification: a first-occurrence search
+finding the instruction that named the delimiter rather than the
+boundary; no delimiter supplied at all; a preamble sentence before the
+BEGIN line; and a leading blank line whose stripping was an executor
+decision with no rule behind it. **The one success depended on how the
+message happened to be composed, not on anything a specification did**
+— and a success that depends on the sender's habits is not a protocol.
+The blank-line clause is the one addition beyond prior practice; it
+exists because that decision had been made silently, **and a silent
+decision about the byte content of a governance record is what Rule 15
+exists to prevent.**
+
+**Amendment K already requires a superseded branch to be preserved,
+identified as superseded, and never integrated, and already records that
+`docs/BRANCHING_POLICY.md` had no way to express it** — "no state for
+superseded, never to be integrated — so a later integrator reading the
+branch list would see two branches claiming to land the same entries."
+Amendment K left the choice open: add the state, or state the
+prohibition where an integrator will meet it. **This entry records the
+resolution: neither a fourth state nor a bare prohibition, but an
+orthogonal attribute with a register**, placed immediately after the
+deletion machine it disclaims.
+
+### Prospective only
+
+**Both additions are prospective.** Records and reviews created before
+this entry are not retrospectively non-conforming and are not to be
+back-filled. **The register is a record of supersessions already
+established by durable artifacts, not a reclassification exercise**: a
+branch enters it only where a durable repository artifact explicitly
+records its re-issue, replacement or supersession and identifies the
+replacement or the reason. **Naming similarity, age and Git topology do
+not suffice**, and where evidence suggests supersession without
+establishing it the branch is left out pending a PI decision.
+
+### Consequences
+
+**Recorded, not enforced.** `CONVENTIONS.md` now carries eighteen rules
+and `docs/BRANCHING_POLICY.md` carries a superseded register, **but no
+test checks any of the eighteen rules**, and nothing mechanically
+prevents an integration task from merging a superseded branch without
+consulting the register. **That enforcement gap is a known open item and
+was deliberately not closed here**; this task added no test.
+
+The register's membership at this entry is three branches, each verified
+present on the remote at its recorded commit and none an ancestor of
+`main`. **`fix/pi-decisions-v3` is an ancestor of `main` and is the
+surviving instance of the pi-decisions line; it is NOT superseded.**
+
+**One further branch was examined and deliberately left out.**
+`review/role-model-and-executors` @ `10c260b9…` was rebuilt as
+`review/role-model-and-executors-clean` to remove undeclared commit
+trailers from the history entering `main`, and the durable specification
+authorising that rebuild names both the successor and the reason. **But
+no artifact calls that branch superseded or forbids its integration**,
+and it already carries a different durable disposition — permanently
+preserved as negative-provenance evidence. **Writing SUPERSEDED against
+it would be the first such classification, which is a decision rather
+than an observation**, so it is reported as unresolved and excluded
+pending PI authority.
+
+No gate status changes. No verdict, digest, or hash-pinned artifact is
+modified. `AGENTS.md`, `GATES.md`, `CLAIMS.md` and every path under
+`scripts/`, `results/`, `tests/` and `derivations/` are untouched.
+
+### Supersedes
+
+Nothing. Rule 18 is additive and Rules 1–17 are unchanged. The
+SUPERSEDED attribute adds to `docs/BRANCHING_POLICY.md` without altering
+its deletion states, their terminality, or the closed count identity.
+
+### Related gate
+
+None. This entry registers no gate and changes no gate status.
+
+### Related branch and files
+
+`governance/supply-protocol-and-superseded`;
+`CONVENTIONS.md`, `docs/BRANCHING_POLICY.md`, `DECISION_LOG.md`,
+`specs/2026-08-11T2337Z_supply-protocol-and-superseded.md`.

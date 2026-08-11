@@ -988,3 +988,43 @@ the reviewed results did not carry.**
 Recording what a result did not establish is required. **Assigning it
 to an open item, a gate, a status, or a category it was never assigned
 to is not.**
+
+### 18. Review supply protocol
+
+**A pre-execution review is supplied to the executor between two
+delimiter lines whose exact text is stated in the specification that
+requires the review.** The delimiters are:
+
+    === REVIEW ARTIFACT BEGINS ===
+    === REVIEW ARTIFACT ENDS ===
+
+**Matching is by COMPLETE LINE, never by first occurrence of the
+delimiter string.** A specification that states a delimiter contains it,
+as does any instruction accompanying the supply; **a substring search
+will find those instead of the boundary.**
+
+**The committed artifact is ALL text strictly between the delimiter
+lines.** **Any instruction accompanying the supply, and any preamble,
+MUST appear OUTSIDE the delimiter block.**
+
+**From the delimited text, at most one leading blank line and at most
+one trailing blank line are stripped as transport artifacts. No other
+byte is removed or normalised.**
+
+**The block is mechanically authoritative.** An earlier draft of this
+rule also excluded *"any instruction accompanying the supply"* from
+within the block — **which would have required the executor to decide
+which bytes are instruction, replacing a boundary judgement with a
+semantic one.** **The executor classifies nothing; the delimiters
+decide.**
+
+**If instruction text is found inside the block, that is a supply
+defect: STOP and report it.** Do not remove it.
+
+**If the supplied text is missing, carries no delimiter lines, or does
+not correspond to the specification, the executor STOPS and says
+which.** **The executor never infers a boundary**, and never authors,
+edits, summarises or reformats a review.
+
+**Placeholders inside a review's text stay as written.** Placeholders
+are resolved in the artifact's PATH only.

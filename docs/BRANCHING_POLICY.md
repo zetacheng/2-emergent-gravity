@@ -101,6 +101,74 @@ nothing to delete. A branch in the second state may be pushed later and
 would then be assessed afresh; a branch in the first will not become
 deletable by anything happening on the remote.
 
+## Superseded branches
+
+**A branch is SUPERSEDED when its work has been re-issued or replaced
+and it is preserved as evidence rather than for integration.**
+
+**A superseded branch MUST NOT be integrated.** Its content may remain
+correct — supersession is about integrability and task identity, not
+about correctness — **but the authoritative instance is the branch that
+replaced it.**
+
+**This is an attribute, not a deletion state.** A superseded branch
+still reaches exactly one Stage-1 deletion outcome, and the closed count
+identity above is unchanged. **The two questions are independent:
+whether a branch may be deleted, and whether it may be integrated.**
+Each entry below is present on the remote and unmerged, so each is
+`NOT_AUTHORIZED` for deletion; that is its deletion outcome, and it says
+nothing about integrability.
+
+**Supersession is recorded in the register below**, naming the branch,
+its commit, what replaced it, and why. **A Git ref carries no such
+marker, so the register is where it lives.**
+
+**The register:**
+
+```text
+fix/pi-decisions-and-deferred @ 52f651174dc1fef03b4fb9276078fa1f08d94bd7
+  superseded by  fix/pi-decisions-v2, then fix/pi-decisions-v3
+  reason         re-issued on a clean branch after the second
+                 execution overwrote the first execution's pushed
+                 records on the same branch
+  content        the substantive content was approved; the
+                 representation was not
+
+fix/pi-decisions-v2 @ ebd531ab568aaffabd86a4a94d925a711e62aa36
+  superseded by  fix/pi-decisions-v3
+  reason         stale base: main advanced through two governance
+                 landings and the branch lost conflict-free
+                 integrability
+  content        APPROVED and unchanged; only its integrability
+                 lapsed
+
+gate/p2-land-diquark-line @ d64cd912ca9ff78a85787f0e54f345f474cdb192
+  superseded by  gate/p2-land-diquark-line-v2
+  reason         the specification stated an impossible merge-base
+                 and the executor STOPPED at the pre-merge guard;
+                 the re-issue corrected the value
+  content        the branch carries a report of the stop and NO
+                 merge; it is the record of a correct refusal, not
+                 of failed work
+```
+
+**The third entry differs in kind from the first two and the register
+does not flatten that.** The first two carry approved work that was
+re-instantiated elsewhere. **The third carries no work at all** — its
+specification was defective, the executor stopped before any tree
+changed, and **what it preserves is the evidence that a stop happened
+and why.** **Supersession covers both; the register records which.**
+
+**Entry threshold.** **A branch is added to this register only where a
+durable repository artifact explicitly records its re-issue, replacement
+or supersession and identifies the replacement or the reason.** **Naming
+similarity, age, Git topology, or the mere existence of a later branch
+do NOT suffice**, singly or together. **Where evidence suggests
+supersession but does not establish it, the branch is left out pending a
+PI decision** and the evidence is reported. **Finding the artifact that
+already records a supersession is an observation; classifying a branch
+as superseded is a decision.**
+
 ## Remote refs are the sole deletion authority
 
 **`git ls-remote origin` is the sole authority for every deletion
