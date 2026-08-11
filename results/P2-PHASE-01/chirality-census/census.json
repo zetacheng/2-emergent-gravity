@@ -1,0 +1,519 @@
+{
+  "comparison_with_the_pinned_particle_hole_result": {
+    "agree": true,
+    "census_predicted_vanishing": [
+      "S",
+      "P",
+      "T"
+    ],
+    "note": "the pinned coefficients carry the canonical factor and s_G; the census predicts which families vanish, not their magnitude",
+    "pinned_dirac_row": [
+      "0",
+      "0",
+      "1/2",
+      "1/2",
+      "0"
+    ],
+    "pinned_operator_level_normalisation_L": {
+      "A": "-G/4",
+      "P": "0",
+      "S": "0",
+      "T": "0",
+      "V": "-G/4"
+    },
+    "pinned_vanishing_families": [
+      "S",
+      "P",
+      "T"
+    ]
+  },
+  "deliverable": "the chirality census",
+  "frozen_conventions": {
+    "canonical_pseudoscalar_line_quoted": "P^A(x) \u2261 \u03a3_{a,b=1}^{N} \u03a3_{\u03b1,\u03b2=1}^{4} \u03c8\u0304_{a\u03b1}(x) (\u03bb^A)_{ab} (i\u03b3\u2085)_{\u03b1\u03b2} \u03c8_{b\u03b2}(x)",
+    "check_type": "EXACT LITERAL SUBSTRING on raw UTF-8; no normalisation",
+    "literals": {
+      "A_element_machine_block": "\"basis_id\":\"A\",\"expression\":\"I*gamma(mu)*gamma5\"",
+      "A_family_element_carries_i": "A=I*gamma(mu)*gamma5",
+      "T_element_machine_block": "\"basis_id\":\"T\",\"expression\":\"I*(gamma(mu)*gamma(nu)-gamma(nu)*gamma(mu))/2\"",
+      "T_family_element_carries_i": "T=I*(gamma(mu)*gamma(nu)-gamma(nu)*gamma(mu))/2",
+      "canonical_pseudoscalar_carries_i_gamma5": "(i\u03b3\u2085)_{\u03b1\u03b2}",
+      "canonical_pseudoscalar_machine_block": "bilinear(lam(A),I*gamma5)**2",
+      "gamma5_definition": "\"gamma5_definition\":\"gamma(0)*gamma(1)*gamma(2)*gamma(3)\"",
+      "metric_signature": "\"metric_signature\":[\"1\",\"1\",\"1\",\"1\"]"
+    },
+    "occurrence_counts": {
+      "A_element_machine_block": 1,
+      "A_family_element_carries_i": 1,
+      "T_element_machine_block": 1,
+      "T_family_element_carries_i": 1,
+      "canonical_pseudoscalar_carries_i_gamma5": 1,
+      "canonical_pseudoscalar_machine_block": 2,
+      "gamma5_definition": 1,
+      "metric_signature": 1
+    }
+  },
+  "gate": "P2-PHASE-01",
+  "gate_status": "P2-PHASE-01 remains PROPOSED",
+  "pinned_inputs": {
+    "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md": {
+      "expected": "fe68b9c645c80287afa45288d7c3e0490328b76663aafbe78af20dfc12a4e67a",
+      "match": true,
+      "observed": "fe68b9c645c80287afa45288d7c3e0490328b76663aafbe78af20dfc12a4e67a"
+    },
+    "derivations/P2-PHASE-01_channel_character.md": {
+      "expected": "380bb11171f7084e4eb30bfd3c393a4ff1c7d8d22063eb56ce3e05e3d8152c5f",
+      "match": true,
+      "observed": "380bb11171f7084e4eb30bfd3c393a4ff1c7d8d22063eb56ce3e05e3d8152c5f"
+    },
+    "results/P2-PHASE-01/channel-character/channel_character.json": {
+      "expected": "093d20c0e01dc5626cafb4da9b5a0d0e5e95edbd0a8853bbc562248a5b36ee7f",
+      "match": true,
+      "observed": "093d20c0e01dc5626cafb4da9b5a0d0e5e95edbd0a8853bbc562248a5b36ee7f"
+    }
+  },
+  "repository_inputs": [
+    "derivations/P2-CHANNEL-FREEZE-01_phaseA_freeze.md",
+    "derivations/P2-PHASE-01_channel_character.md",
+    "results/P2-PHASE-01/channel-character/channel_character.json",
+    "results/P2-CHANNEL-FREEZE/fierz_matrix.json",
+    "scripts/P2-CHANNEL-FREEZE/gamma_algebra.py"
+  ],
+  "representation_independence": {
+    "C1_and_C2_agree_in_both": true,
+    "if_they_did_not": "the classification would be representation-dependent and the argument would fail; that would be reported rather than resolved by choosing one",
+    "representations": [
+      "frozen_factory",
+      "independent_kron"
+    ]
+  },
+  "scope_limits": {
+    "branches_not_read": [
+      "gate/p2-diquark-both-eta",
+      "gate/p2-diquark-adjudication"
+    ],
+    "census_does_not_explain_the_inter_channel_sign": true,
+    "coefficients_are_diagnostic_reproductions_only": true,
+    "conventions_frozen_by_this_task": [],
+    "gate_status": "P2-PHASE-01 remains PROPOSED",
+    "new_programme_coefficient_or_channel_character_result": false,
+    "no_composite_vector_statement": "this is a structural argument about which operators can form, not a bound-state calculation",
+    "no_diquark_channel_settled": "eta, the pp Grassmann ordering and the diquark normalisation remain unfrozen, and the branches carrying those coefficients are not integrated",
+    "no_hubbard_stratonovich_selection": true
+  },
+  "step_A_factorisation": {
+    "frozen_factory": {
+      "frozen_factorised": "2 [ P_R(x)P_L + P_L(x)P_R ]",
+      "frozen_residual_max": 0.0,
+      "frozen_source": "I(x)I + (i g5)(x)(i g5) = I(x)I - g5(x)g5",
+      "no_i_factorised": "2 [ P_R(x)P_R + P_L(x)P_L ]",
+      "no_i_residual_max": 0.0,
+      "no_i_source": "I(x)I + g5(x)g5",
+      "note_on_the_factor_four": "4 (psibar_L psi_R)(psibar_R psi_L) is an OPERATOR statement: the two bilinears are Grassmann-even and commute, so the two orderings are the same operator. It is NOT an identity on the ORDERED rank-4 tensor.",
+      "residual_against_4_P_R_kron_P_L": 2.0
+    },
+    "independent_kron": {
+      "frozen_factorised": "2 [ P_R(x)P_L + P_L(x)P_R ]",
+      "frozen_residual_max": 0.0,
+      "frozen_source": "I(x)I + (i g5)(x)(i g5) = I(x)I - g5(x)g5",
+      "no_i_factorised": "2 [ P_R(x)P_R + P_L(x)P_L ]",
+      "no_i_residual_max": 0.0,
+      "no_i_source": "I(x)I + g5(x)g5",
+      "note_on_the_factor_four": "4 (psibar_L psi_R)(psibar_R psi_L) is an OPERATOR statement: the two bilinears are Grassmann-even and commute, so the two orderings are the same operator. It is NOT an identity on the ORDERED rank-4 tensor.",
+      "residual_against_4_P_R_kron_P_L": 2.0
+    }
+  },
+  "step_BC_chirality_tables": {
+    "frozen_factory": {
+      "C1_particle_hole": {
+        "A": {
+          "type": "SAME-chirality",
+          "vanishes": {
+            "P_L_G_P_L": true,
+            "P_L_G_P_R": false,
+            "P_R_G_P_L": false,
+            "P_R_G_P_R": true
+          }
+        },
+        "P": {
+          "type": "OPPOSITE-chirality",
+          "vanishes": {
+            "P_L_G_P_L": false,
+            "P_L_G_P_R": true,
+            "P_R_G_P_L": true,
+            "P_R_G_P_R": false
+          }
+        },
+        "S": {
+          "type": "OPPOSITE-chirality",
+          "vanishes": {
+            "P_L_G_P_L": false,
+            "P_L_G_P_R": true,
+            "P_R_G_P_L": true,
+            "P_R_G_P_R": false
+          }
+        },
+        "T": {
+          "type": "OPPOSITE-chirality",
+          "vanishes": {
+            "P_L_G_P_L": false,
+            "P_L_G_P_R": true,
+            "P_R_G_P_L": true,
+            "P_R_G_P_R": false
+          }
+        },
+        "V": {
+          "type": "SAME-chirality",
+          "vanishes": {
+            "P_L_G_P_L": true,
+            "P_L_G_P_R": false,
+            "P_R_G_P_L": false,
+            "P_R_G_P_R": true
+          }
+        }
+      },
+      "C2_particle_particle": {
+        "A": {
+          "type": "OPPOSITE-chirality qq",
+          "vanishes": {
+            "LL": true,
+            "LR": false,
+            "RL": false,
+            "RR": true
+          }
+        },
+        "P": {
+          "type": "SAME-chirality qq",
+          "vanishes": {
+            "LL": false,
+            "LR": true,
+            "RL": true,
+            "RR": false
+          }
+        },
+        "S": {
+          "type": "SAME-chirality qq",
+          "vanishes": {
+            "LL": false,
+            "LR": true,
+            "RL": true,
+            "RR": false
+          }
+        },
+        "T": {
+          "type": "SAME-chirality qq",
+          "vanishes": {
+            "LL": false,
+            "LR": true,
+            "RL": true,
+            "RR": false
+          }
+        },
+        "V": {
+          "type": "OPPOSITE-chirality qq",
+          "vanishes": {
+            "LL": true,
+            "LR": false,
+            "RL": false,
+            "RR": true
+          }
+        }
+      },
+      "C_gamma5_relation_holds": true,
+      "C_null_space_dimension": 1,
+      "P_X_transpose_C_inverse_equals_C_inverse_P_X": true,
+      "classifications_are_inverted_in_field_labels": true,
+      "no_pp_coefficient_decomposition_performed": true,
+      "no_slot_map_chosen": true,
+      "placement_convention": {
+        "P_L": "(1 - g5)/2",
+        "P_R": "(1 + g5)/2",
+        "ph_translation": "psibar_X Gamma psi_Y  <->  P_Xbar Gamma P_Y",
+        "pp_translation": "psi_X^T C^-1 Gamma psi_Y  <->  P_X^T C^-1 Gamma P_Y",
+        "psibar_L": "psibar P_R  \u2014 the bar FLIPS the projector"
+      },
+      "projector_index_patterns_are_identical": true,
+      "what_the_inversion_actually_is": "the two projector tables have IDENTICAL non-zero patterns. The inversion is the bar-flip psibar_L = psibar P_R on the particle-hole side together with the ABSENCE of a flip on the particle-particle side. C g5^T C^-1 = +g5 is what delivers that absence: had it been -g5, the pp side would have flipped too and the two classifications would have AGREED in field labels."
+    },
+    "independent_kron": {
+      "C1_particle_hole": {
+        "A": {
+          "type": "SAME-chirality",
+          "vanishes": {
+            "P_L_G_P_L": true,
+            "P_L_G_P_R": false,
+            "P_R_G_P_L": false,
+            "P_R_G_P_R": true
+          }
+        },
+        "P": {
+          "type": "OPPOSITE-chirality",
+          "vanishes": {
+            "P_L_G_P_L": false,
+            "P_L_G_P_R": true,
+            "P_R_G_P_L": true,
+            "P_R_G_P_R": false
+          }
+        },
+        "S": {
+          "type": "OPPOSITE-chirality",
+          "vanishes": {
+            "P_L_G_P_L": false,
+            "P_L_G_P_R": true,
+            "P_R_G_P_L": true,
+            "P_R_G_P_R": false
+          }
+        },
+        "T": {
+          "type": "OPPOSITE-chirality",
+          "vanishes": {
+            "P_L_G_P_L": false,
+            "P_L_G_P_R": true,
+            "P_R_G_P_L": true,
+            "P_R_G_P_R": false
+          }
+        },
+        "V": {
+          "type": "SAME-chirality",
+          "vanishes": {
+            "P_L_G_P_L": true,
+            "P_L_G_P_R": false,
+            "P_R_G_P_L": false,
+            "P_R_G_P_R": true
+          }
+        }
+      },
+      "C2_particle_particle": {
+        "A": {
+          "type": "OPPOSITE-chirality qq",
+          "vanishes": {
+            "LL": true,
+            "LR": false,
+            "RL": false,
+            "RR": true
+          }
+        },
+        "P": {
+          "type": "SAME-chirality qq",
+          "vanishes": {
+            "LL": false,
+            "LR": true,
+            "RL": true,
+            "RR": false
+          }
+        },
+        "S": {
+          "type": "SAME-chirality qq",
+          "vanishes": {
+            "LL": false,
+            "LR": true,
+            "RL": true,
+            "RR": false
+          }
+        },
+        "T": {
+          "type": "SAME-chirality qq",
+          "vanishes": {
+            "LL": false,
+            "LR": true,
+            "RL": true,
+            "RR": false
+          }
+        },
+        "V": {
+          "type": "OPPOSITE-chirality qq",
+          "vanishes": {
+            "LL": true,
+            "LR": false,
+            "RL": false,
+            "RR": true
+          }
+        }
+      },
+      "C_gamma5_relation_holds": true,
+      "C_null_space_dimension": 1,
+      "P_X_transpose_C_inverse_equals_C_inverse_P_X": true,
+      "classifications_are_inverted_in_field_labels": true,
+      "no_pp_coefficient_decomposition_performed": true,
+      "no_slot_map_chosen": true,
+      "placement_convention": {
+        "P_L": "(1 - g5)/2",
+        "P_R": "(1 + g5)/2",
+        "ph_translation": "psibar_X Gamma psi_Y  <->  P_Xbar Gamma P_Y",
+        "pp_translation": "psi_X^T C^-1 Gamma psi_Y  <->  P_X^T C^-1 Gamma P_Y",
+        "psibar_L": "psibar P_R  \u2014 the bar FLIPS the projector"
+      },
+      "projector_index_patterns_are_identical": true,
+      "what_the_inversion_actually_is": "the two projector tables have IDENTICAL non-zero patterns. The inversion is the bar-flip psibar_L = psibar P_R on the particle-hole side together with the ABSENCE of a flip on the particle-particle side. C g5^T C^-1 = +g5 is what delivers that absence: had it been -g5, the pp side would have flipped too and the two classifications would have AGREED in field labels."
+    }
+  },
+  "step_C3_census": {
+    "frozen_factory": {
+      "coefficients": {
+        "frozen": {
+          "psibar_L psi_R x psibar_L psi_R": 0.0,
+          "psibar_L psi_R x psibar_R psi_L": 2.0,
+          "psibar_R psi_L x psibar_L psi_R": 2.0,
+          "psibar_R psi_L x psibar_R psi_L": 0.0
+        },
+        "no_i": {
+          "psibar_L psi_R x psibar_L psi_R": 2.0,
+          "psibar_L psi_R x psibar_R psi_L": 0.0,
+          "psibar_R psi_L x psibar_L psi_R": 0.0,
+          "psibar_R psi_L x psibar_R psi_L": 2.0
+        }
+      },
+      "frozen_census": "psibar_L, psi_R, psibar_R, psi_L \u2014 one of each",
+      "ll_rr_restriction_note": "the frozen source has exactly 0 in the doubled components, so projecting it onto an LL/RR-type sector and finding zero is close to tautological. Recorded for completeness; NOT offered as support. Step D carries the falsification.",
+      "no_i_census": "psibar_L, psi_R, psibar_L, psi_R \u2014 two of each, doubled (plus the L <-> R mirror term)"
+    },
+    "independent_kron": {
+      "coefficients": {
+        "frozen": {
+          "psibar_L psi_R x psibar_L psi_R": 0.0,
+          "psibar_L psi_R x psibar_R psi_L": 2.0,
+          "psibar_R psi_L x psibar_L psi_R": 2.0,
+          "psibar_R psi_L x psibar_R psi_L": 0.0
+        },
+        "no_i": {
+          "psibar_L psi_R x psibar_L psi_R": 2.0,
+          "psibar_L psi_R x psibar_R psi_L": 0.0,
+          "psibar_R psi_L x psibar_L psi_R": 0.0,
+          "psibar_R psi_L x psibar_R psi_L": 2.0
+        }
+      },
+      "frozen_census": "psibar_L, psi_R, psibar_R, psi_L \u2014 one of each",
+      "ll_rr_restriction_note": "the frozen source has exactly 0 in the doubled components, so projecting it onto an LL/RR-type sector and finding zero is close to tautological. Recorded for completeness; NOT offered as support. Step D carries the falsification.",
+      "no_i_census": "psibar_L, psi_R, psibar_L, psi_R \u2014 two of each, doubled (plus the L <-> R mirror term)"
+    }
+  },
+  "step_D_falsification": {
+    "all_predictions_correct": true,
+    "cases": {
+      "D0_frozen": {
+        "census": "one of each; exchange pairs (psibar_L psi_L) and (psibar_R psi_R), both SAME",
+        "computed_coefficients": {
+          "A": "-1/2",
+          "P": "0",
+          "S": "0",
+          "T": "0",
+          "V": "-1/2"
+        },
+        "computed_nonzero": [
+          "A",
+          "V"
+        ],
+        "computed_zero": [
+          "P",
+          "S",
+          "T"
+        ],
+        "interaction": "S^2 + P^2 with the frozen P = i*gamma5",
+        "predicted_nonzero": [
+          "V",
+          "A"
+        ],
+        "predicted_zero": [
+          "S",
+          "P",
+          "T"
+        ],
+        "prediction_correct": true,
+        "source_row_in_the_frozen_basis": [
+          1,
+          -1,
+          0,
+          0,
+          0
+        ]
+      },
+      "D1_no_i": {
+        "census": "doubled; exchange pairs (psibar_L psi_R) and (psibar_L psi_R), both OPPOSITE",
+        "computed_coefficients": {
+          "A": "0",
+          "P": "-1/2",
+          "S": "-1/2",
+          "T": "-1/2",
+          "V": "0"
+        },
+        "computed_nonzero": [
+          "P",
+          "S",
+          "T"
+        ],
+        "computed_zero": [
+          "A",
+          "V"
+        ],
+        "interaction": "S^2 + (gamma5 term)^2, the i dropped",
+        "predicted_nonzero": [
+          "S",
+          "P",
+          "T"
+        ],
+        "predicted_zero": [
+          "V",
+          "A"
+        ],
+        "prediction_correct": true,
+        "source_row_in_the_frozen_basis": [
+          1,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "D4_chosen": {
+        "census": "-g5(x)g5 = -P_R(x)P_R + P_R(x)P_L + P_L(x)P_R - P_L(x)P_L: BOTH one-of-each and doubled terms, so the third branch applies",
+        "computed_coefficients": {
+          "A": "-1/4",
+          "P": "1/4",
+          "S": "1/4",
+          "T": "1/4",
+          "V": "-1/4"
+        },
+        "computed_nonzero": [
+          "A",
+          "P",
+          "S",
+          "T",
+          "V"
+        ],
+        "computed_zero": [],
+        "interaction": "(psibar i*gamma5 psi)^2 only, with the frozen i",
+        "predicted_nonzero": [
+          "S",
+          "P",
+          "V",
+          "A",
+          "T"
+        ],
+        "predicted_zero": [],
+        "prediction_correct": true,
+        "source_row_in_the_frozen_basis": [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        "why_chosen": "the criterion's two exclusion branches are the easy ones; a criterion that only ever forbids things can look successful without discriminating. The no-exclusion branch is where a criterion fitted after seeing the answer would most likely fail, so that is the branch worth testing."
+      }
+    },
+    "channel_tested": "particle-hole ONLY",
+    "criterion": "Write the interaction's rank-4 tensor in the chiral projector basis as a sum of terms K1 (x) K2 with K in {P_L, P_R}. Each term fixes the chirality of the four fields psibar_a psi_b psibar_c psi_d. The particle-hole exchange re-pairs them as (psibar_a psi_d)(psibar_c psi_b). If every term gives SAME-chirality exchange pairs, only V and A can appear and S, P, T must vanish. If every term gives OPPOSITE-chirality exchange pairs, only S, P, T can appear and V, A must vanish. If terms of both kinds are present, no family is excluded.",
+    "evidence_of_ordering": "the predictions are in derivations/P2-PHASE-01_chirality_census.md, committed before this script",
+    "prediction_recorded_before_computation": true,
+    "s_G_applied_once": -1,
+    "why_not_particle_particle": "a particle-particle coefficient decomposition would require the unfrozen pp Grassmann ordering. The pp side is tested structurally, through C2 and C3, and no coefficient decomposition is performed."
+  },
+  "step_E_not_explained": {
+    "does_not_explain": [
+      "the inter-channel sign: V = +A in particle-hole against V = -A in particle-particle. A census counts fields; it does not distinguish them, and this task does not attempt it.",
+      "the magnitudes. The census says which families can form, not with what coefficient; -G/4 is not derived here.",
+      "the V/A degeneracy in the particle-hole channel: both exchange pairs are same-chirality and the census does not separate them.",
+      "anything about states. Which operators can form is not a bound-state or pole calculation.",
+      "the particle-particle coefficients, which are not computed here."
+    ]
+  }
+}
