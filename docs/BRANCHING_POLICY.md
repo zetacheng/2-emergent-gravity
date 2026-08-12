@@ -101,6 +101,133 @@ nothing to delete. A branch in the second state may be pushed later and
 would then be assessed afresh; a branch in the first will not become
 deletable by anything happening on the remote.
 
+## Superseded branches
+
+**A branch is SUPERSEDED when its work has been re-issued or replaced
+and it is preserved as evidence rather than for integration.**
+
+**A superseded branch MUST NOT be integrated.** Its content may remain
+correct — supersession is about integrability and task identity, not
+about correctness — **but the authoritative instance is the branch that
+replaced it.**
+
+**This is an attribute, not a deletion state.** A superseded branch
+still reaches exactly one Stage-1 deletion outcome, and the closed count
+identity above is unchanged. **The two questions are independent:
+whether a branch may be deleted, and whether it may be integrated.**
+Each entry below is present on the remote and unmerged, so each is
+`NOT_AUTHORIZED` for deletion; that is its deletion outcome, and it says
+nothing about integrability.
+
+**Supersession is recorded in the register below**, naming the branch,
+its commit, what replaced it, and why. **A Git ref carries no such
+marker, so the register is where it lives.**
+
+**The register:**
+
+```text
+fix/pi-decisions-and-deferred @ 52f651174dc1fef03b4fb9276078fa1f08d94bd7
+  superseded by  fix/pi-decisions-v2, then fix/pi-decisions-v3
+  reason         re-issued on a clean branch after the second
+                 execution overwrote the first execution's pushed
+                 records on the same branch
+  content        the substantive content was approved; the
+                 representation was not
+
+fix/pi-decisions-v2 @ ebd531ab568aaffabd86a4a94d925a711e62aa36
+  superseded by  fix/pi-decisions-v3
+  reason         stale base: main advanced through two governance
+                 landings and the branch lost conflict-free
+                 integrability
+  content        APPROVED and unchanged; only its integrability
+                 lapsed
+
+governance/supply-protocol-v2
+                          @ 40168469608618aef6812735ff70e32de0e3cbc8
+  superseded by  governance/supply-protocol-v3
+  reason         its A3 required the landed Rule 18 to contain
+                 delimiter literals and a blank-line clause, while
+                 the rule it directed abandoned both; the executor
+                 stopped at that inconsistency
+  content        no governance file was touched; the branch carries
+                 a stop report and the first successful live test of
+                 the file-supply rule
+
+governance/supply-protocol-and-superseded
+                          @ 7146a093c65788a57d63a747b71d86edb91eddc6
+  superseded by  governance/supply-protocol-v3
+  reason         its A2 required applying a Rule 18 whose own text
+                 forbade the only available action; the executor
+                 derived a boundary and continued where the
+                 standing inconsistency invariant required a stop
+  content        the governance work was correct and the committed
+                 review was byte-correct; what failed was the rule
+                 it was landing, which this version replaces
+
+review/role-model-and-executors
+                          @ 10c260b96882ac12610f78840aeeabd07be2d7cb
+  superseded by  review/role-model-and-executors-clean, merged
+  reason         rebuilt SOLELY to remove undeclared commit
+                 metadata from history; the clean-rebuild
+                 specification names the successor and the reason
+  content        VERIFIED CORRECT before the rebuild — seven
+                 declared paths, correct commit layering, protected
+                 paths unchanged, the role model landed as approved
+  note           this branch ALREADY carries a durable disposition:
+                 "permanently preserved ... the unmerged record of a
+                 commit-metadata defect, retained as
+                 negative-provenance evidence". That disposition
+                 stands unchanged. The two answer different
+                 questions -- permanently preserved means do not
+                 delete; superseded means do not integrate -- and
+                 the register exists because they are independent.
+
+gate/p2-land-diquark-line @ d64cd912ca9ff78a85787f0e54f345f474cdb192
+  superseded by  gate/p2-land-diquark-line-v2
+  reason         the specification stated an impossible merge-base
+                 and the executor STOPPED at the pre-merge guard;
+                 the re-issue corrected the value
+  content        the branch carries a report of the stop and NO
+                 merge; it is the record of a correct refusal, not
+                 of failed work
+```
+
+**The entries differ in kind and the register does not flatten that.**
+**Refer to them by BRANCH NAME, never by ordinal** — an ordinal is
+correct only until the list grows, and a paragraph of this register has
+already been wrong once for exactly that reason.
+
+```text
+approved work re-instantiated elsewhere
+  fix/pi-decisions-and-deferred
+  fix/pi-decisions-v2
+  review/role-model-and-executors
+
+no work at all: a defective specification, an executor that
+stopped, and the evidence that a stop happened and why
+  gate/p2-land-diquark-line
+  governance/supply-protocol-v2
+
+work completed but the execution contract breached, so not
+integrable although the content was correct
+  governance/supply-protocol-and-superseded
+```
+
+**Supersession covers all three kinds; the register records which.**
+
+**Entry threshold.** **A branch is added to this register only where a
+durable repository artifact records its re-issue, replacement or
+supersession and identifies the replacement or the reason.** **The
+artifact must record the FACT, not use a particular WORD** — a
+specification that says a branch was rebuilt and names both the
+successor and the reason satisfies this even if the word "superseded"
+never appears. **Naming similarity, age, Git topology, or the mere
+existence of a later branch do NOT suffice**, singly or together.
+**Where evidence suggests supersession but does not establish it, the
+branch is left out pending a PI decision** and the evidence is reported.
+**Finding the artifact that already records a supersession is an
+observation; classifying a branch as superseded is a decision.**
+
 ## Remote refs are the sole deletion authority
 
 **`git ls-remote origin` is the sole authority for every deletion

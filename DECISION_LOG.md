@@ -2001,3 +2001,145 @@ registers no gate and changes no gate status.
 `fix/pi-decisions-v3`;
 `DECISION_LOG.md`, `derivations/P2-DEFERRED-ITEMS.md`,
 `specs/2026-08-09T1958Z_pi-decisions-v3.md`.
+
+## 2026-08-12 — `CONVENTIONS.md` Rule 18 added; `docs/BRANCHING_POLICY.md` gains a SUPERSEDED attribute and register
+
+Date: 2026-08-12
+Decision owner: Principal Investigator
+Effect: adds one execution-discipline rule and one branch attribute with
+its register; both are prospective
+
+### Decision
+
+Two governance additions, each recording a failure the programme has
+already had. **No science, no gate, no computation.**
+
+    Rule 18                   review supply protocol
+    SUPERSEDED (attribute)    docs/BRANCHING_POLICY.md, with a register
+                              of six branches
+
+**Rule 18 fixes how a pre-execution review reaches the executor.** Rule
+15 requires the review to be committed and says nothing about its supply.
+**A review is supplied AS A FILE and its bytes are committed unchanged.**
+**No extraction, no delimiters, no normalisation** — there is no boundary
+to locate, so none can be inferred, and no transport artifact to strip.
+The specification **should** also arrive as a file; a pasted
+specification is permitted and is not a stop, **but the executor reports
+which way it arrived.** Before committing, the executor **verifies
+correspondence** — the review must identify the specification by digest
+or task name — and **stops** if it does not, if no file is supplied, or
+if it corresponds to a different specification.
+
+**SUPERSEDED is an ATTRIBUTE, not a fourth deletion state.** The Stage-1
+deletion machine keeps its three outcomes — `PENDING_DELETE`,
+`NOT_AUTHORIZED`, `ABSENT_FROM_REMOTE` — and its closed count identity
+unchanged and byte-identical. **Two independent questions are kept
+independent:** whether a branch may be deleted, and whether it may be
+integrated. Every register entry is present and unmerged, so each is
+correctly `NOT_AUTHORIZED` for deletion; the attribute answers the second
+question only.
+
+**No rule was renumbered or reworded.** Rules 1–17 keep their numbers and
+titles, and after removing the Rule 18 section the remaining text is
+byte-identical to the evidence-base version.
+
+### Reason
+
+**A supply convention rediscovered per task is not a convention.**
+Pasting a review between delimiters failed nine times across five modes:
+a first-occurrence search finding the instruction that named the
+delimiter; no delimiter supplied at all; a preamble before the BEGIN
+line; a leading blank line whose stripping was an unwritten executor
+choice; and finally a transport prefix fused to the BEGIN line, leaving
+zero complete-line matches for BEGIN and one for END. **The one success
+depended on how a message happened to be composed** — and a success that
+depends on the sender's habits is not a protocol.
+
+**The delimiter approach is abandoned rather than patched, because every
+one of those modes was an extraction problem.** A rule that patches
+extraction leaves a judgement point; **removing the need to extract
+leaves none.** A file has no boundary inside a shared stream. **The two
+transport-artifact clauses the delimiter protocol accumulated are
+therefore moot, not inherited** — they fixed real failures, but a file
+has no transport artifact to strip.
+
+**Amendment K already requires a superseded branch to be preserved,
+identified as superseded, and never integrated, and already records that
+`docs/BRANCHING_POLICY.md` had no way to express it** — "no state for
+superseded, never to be integrated — so a later integrator reading the
+branch list would see two branches claiming to land the same entries."
+Amendment K left the choice open: add the state, or state the prohibition
+where an integrator will meet it. **This entry records the resolution:
+neither a fourth state nor a bare prohibition, but an orthogonal
+attribute with a register**, placed immediately after the deletion
+machine it disclaims.
+
+### Prospective only
+
+**Both additions are prospective.** Records and reviews created before
+this entry are not retrospectively non-conforming and are not to be
+back-filled. **The register records supersessions already established by
+durable artifacts; it is not a reclassification exercise.** A branch
+enters it only where a durable repository artifact records its re-issue,
+replacement or supersession and identifies the replacement or the reason.
+**The artifact must record the FACT, not use a particular word** — a
+specification saying a branch was rebuilt, naming the successor and the
+reason, suffices even where "superseded" never appears. **Naming
+similarity, age and Git topology do not suffice**, and where evidence
+suggests supersession without establishing it the branch is left out
+pending a PI decision.
+
+**Register entries are referred to by BRANCH NAME, never by ordinal.** An
+ordinal is correct only until the list grows, and a paragraph of this
+register was wrong once for exactly that reason.
+
+### Consequences
+
+**Recorded, not enforced.** `CONVENTIONS.md` now carries eighteen rules
+and `docs/BRANCHING_POLICY.md` a superseded register, **but no test
+checks any of the eighteen rules**, and nothing mechanically prevents an
+integration task from merging a superseded branch without consulting the
+register. **That enforcement gap is a known open item and was
+deliberately not closed here**; this task added no test.
+
+The register's membership at this entry is six branches, each verified
+present on the remote at its recorded commit and none an ancestor of
+`main`. **`fix/pi-decisions-v3` is an ancestor of `main` and is the
+surviving instance of the pi-decisions line; it is NOT superseded.**
+
+**Two of the six entries are this rule's own earlier issues.** Rule 18
+took three attempts to land: the first version's rule forbade the only
+action available to its executor, who continued and disclosed it; the
+second version's rule worked on its first live use, but its A3 had been
+carried over from the delimiter version and contradicted the rule it
+accompanied, and that executor stopped. **The register records both, and
+their content was not at fault in either case.**
+
+**`review/role-model-and-executors` now appears in the register while its
+existing "permanently preserved" disposition stands unchanged.** The two
+answer different questions — do not delete, and do not integrate — and
+the register exists because they are independent. Its preservation entry
+was not edited, replaced or weakened.
+
+No gate status changes. No verdict, digest, or hash-pinned artifact is
+modified. `AGENTS.md`, `GATES.md`, `CLAIMS.md` and every path under
+`scripts/`, `results/`, `tests/` and `derivations/` are untouched.
+
+### Supersedes
+
+Nothing. Rule 18 is additive and Rules 1–17 are unchanged. The SUPERSEDED
+attribute adds to `docs/BRANCHING_POLICY.md` without altering its
+deletion states, their terminality, or the closed count identity. **No
+earlier Rule 18 was ever landed**, so this is a first landing rather than
+a replacement of committed text; the two superseded branches carry the
+earlier drafts and are not integrated.
+
+### Related gate
+
+None. This entry registers no gate and changes no gate status.
+
+### Related branch and files
+
+`governance/supply-protocol-v3`;
+`CONVENTIONS.md`, `docs/BRANCHING_POLICY.md`, `DECISION_LOG.md`,
+`specs/2026-08-12T0131Z_supply-protocol-v3.md`.
