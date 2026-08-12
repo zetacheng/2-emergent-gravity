@@ -1,5 +1,17 @@
 # `P2-PHASE-01` phase input / admissibility contract — DRAFT, NOT ADOPTED
 
+**Cross-reference.** `OPEN-AC-2` is **RESOLVED FOR ENUMERATION**:
+the negative-mass branch is included as a candidate, and is NOT
+certified as admissible or stable, by the PI ruling recorded in
+`derivations/P2-PHASE-01_microscopic_parameter_domain.md`.
+`OPEN-AC-5` is **CLOSED** — `Mhat = 1` is NOT an admissibility
+bound — by the same answer that closes `OPEN-PD-1` in that artifact.
+`OPEN-AC-1`, `OPEN-AC-3` and `OPEN-AC-4` **remain OPEN**.
+
+**`RESOLVED FOR ENUMERATION` is not `CLOSED`, and the difference is
+the point.** `OPEN-AC-2` asks whether the branch is physical; the
+ruling answers only where it may appear in an enumeration.
+
 ## Status and evidence boundary
 
 This is a **DRAFT, NOT ADOPTED** prerequisite artifact.  It does not define an

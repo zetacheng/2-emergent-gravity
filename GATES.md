@@ -1007,16 +1007,30 @@ Governance clarification `P2-SI1-UNBLOCK-01` (2026-07-20): phase enumeration
 may proceed without consuming the historical Finding 5 value `−3.2(5)`
 (quarantined as unreproduced). It is not blocked by `P2-BETAV-CIRC-01`.
 
-### Unsatisfied prerequisite — MICROSCOPIC PARAMETER DOMAIN
-Artifact state: **DRAFTED / NOT ADOPTED**. Prerequisite state:
-**UNSATISFIED**. Owner: Paper 2. Canonical label: **MICROSCOPIC PARAMETER
-DOMAIN**; not a gate ID. Draft:
-`derivations/P2-PHASE-01_microscopic_parameter_domain_DRAFT.md`
-(sha256 `d8e154690e0b3d8131260a9ed0ce0ef804dd5652d21c022c6b29677b90d3eba4`).
+### Satisfied prerequisite — MICROSCOPIC PARAMETER DOMAIN
+Artifact state: **ADOPTED**. Prerequisite state: **SATISFIED**,
+per the PI ruling recorded in §3a of
+`specs/2026-08-12T2258Z_adopt-parameter-domain.md`.
+Owner: Paper 2. Canonical label: **MICROSCOPIC PARAMETER DOMAIN**;
+not a gate ID. Adopted artifact:
+`derivations/P2-PHASE-01_microscopic_parameter_domain.md`
+(sha256 `c27e57f080ecf8a2472a7f614aedcc19c5c72622650f6ddd0bc802d3fced5003`).
+Superseded draft:
+`derivations/P2-PHASE-01_microscopic_parameter_domain_DRAFT.md`.
 
-The future artifact must decide and bound scan-eligible coupling `G`, and must
-decide whether cutoff ratios and finite-density `μ` are FIXED INPUTS or SCAN
-DIMENSIONS. Any admitted scan dimension must carry a frozen range.
+The adopted artifact bounds the scan-eligible coupling `G` to
+`G/Gc` in `[0.80, 3.00]` over sixteen pre-registered values, and
+answers finite-density `μ` as a FIXED INPUT at `0`. **For the
+lattice spacing `a` it answers NEITHER fixed input nor scan
+dimension**: `a` is left unfixed because no quantity computed at
+this gate depends on it, and every quantity is dimensionless.
+**That is a third answer to this gate's binary question and is
+recorded as such.** No scan dimension is admitted without a frozen
+range.
+
+**Adoption freezes where to look. It certifies no phase**, no root
+completeness, no full-space stability, no thermodynamic dominance,
+no exclusion of negative `G`, and no finite-density coverage.
 
 ### Unsatisfied prerequisite — PHASE INPUT / ADMISSIBILITY CONTRACT
 Artifact state: **DRAFTED / NOT ADOPTED**. Prerequisite state:

@@ -1,5 +1,9 @@
 # `P2-PHASE-01` microscopic parameter domain — DRAFT, NOT ADOPTED
 
+**SUPERSEDED.** Adopted as
+`derivations/P2-PHASE-01_microscopic_parameter_domain.md`. This file
+is retained as historical evidence and is not operative.
+
 ## Status and evidence boundary
 
 This is a **DRAFT, NOT ADOPTED** prerequisite artifact.  It does not define
