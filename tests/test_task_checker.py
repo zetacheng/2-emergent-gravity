@@ -27,13 +27,47 @@ SPEC_TEMPLATE = """# Task specification -- fixture
 **A4 -- Scope from the old main.** Base X, head Y: **9 additions and 3
 modifications**, mode exact.
 
-**A9 -- Scope**, {stated} additions:
+**A9 -- Scope**, {prose} additions:
 
+    stated: {declared}
+    base: X
+    head: Y
+    mode: exact
     add:
 {added}
+    modify: {modify}
+    forbidden_operations:
+      delete, rename
+"""
+
+# The prose sentences above are decoration under the declared-total grammar and
+# the fixtures below rely on that: the '9 additions and 3 modifications' of A4
+# and the '{prose} additions' of A9 are both ignored.
+WORD = {"zero": 0, "one": 1, "two": 2, "three": 3, "five": 5}
+
+# The binding regression fixture, written out rather than generated, because
+# the position of 'stated:' is the whole point of it. The old parser walked
+# backward from 'add:' to the nearest line carrying a count; with 'stated:'
+# BELOW the manifest that walk reaches A9's contradicting dry-run sentence and
+# the old parser fails. The declared-total grammar reads 'stated:' wherever in
+# the block it sits, ignores the sentence, and passes.
+DRY_RUN_SPEC = """# Task specification -- fixture
+
+## 6. Acceptance criteria
+
+**A9 -- Scope**, seven additions:
+
+    base: X
+    head: Y
+    mode: exact
+    add:
+      a
+      b
+      c
     modify: []
     forbidden_operations:
       delete, rename
+    stated: 3 additions, 0 modifications
 """
 
 
@@ -62,9 +96,31 @@ def commit(repo: Path, paths: dict[str, str], message: str) -> str:
     return run(repo, "rev-parse", "HEAD")
 
 
-def spec_text(stated: str, paths: list[str]) -> str:
+def spec_text(
+    stated: str,
+    paths: list[str],
+    modify: list[str] | None = None,
+    declared: str | None = None,
+) -> str:
+    """A fixture specification.
+
+    ``stated`` is the word an old-parser fixture put in A9's prose sentence.
+    It now sets BOTH the decorative prose and the declared ``stated:`` record,
+    so a call unchanged from before the declared-total grammar keeps its
+    meaning: 'five' against six paths disagreed then and disagrees now.
+    ``declared`` overrides the record alone, leaving the prose to contradict
+    it, which is how the malformed-declaration fixtures are written.
+    """
     body = "\n".join(f"      {p}" for p in paths)
-    return SPEC_TEMPLATE.format(stated=stated, added=body)
+    if modify is None:
+        modify_text = "[]"
+    else:
+        modify_text = "\n" + "\n".join(f"      {p}" for p in modify)
+    if declared is None:
+        declared = f"{WORD[stated]} additions, {len(modify or [])} modifications"
+    return SPEC_TEMPLATE.format(
+        prose=stated, declared=declared, added=body, modify=modify_text
+    )
 
 
 def base_repo(tmp_path: Path) -> tuple[Path, str]:
@@ -125,13 +181,18 @@ def prop(result: dict, ident: str) -> dict:
 # ---------------------------------------------------------------------------
 # P1 -- scope manifest arithmetic
 # ---------------------------------------------------------------------------
-def test_p1_passes_when_manifest_count_matches_governing_sentence(tmp_path):
+def test_p1_passes_when_the_declared_total_matches_the_manifest(tmp_path):
     repo, base = base_repo(tmp_path)
     commit(repo, {"specs/s.md": spec_text("two", ["a.py", "b.py"])}, "spec: fixture")
     assert prop(check(repo, base), "P1")["status"] == "PASS"
 
 
-def test_p1_fails_when_manifest_count_disagrees(tmp_path):
+def test_p1_fails_when_the_declared_total_disagrees(tmp_path):
+    """The planted five-versus-six defect, preserved on a declaring document.
+
+    The historical specification carrying that defect declares no total and is
+    now NOT_PARSEABLE, so the property it demonstrated lives here instead.
+    """
     repo, base = base_repo(tmp_path)
     commit(
         repo, {"specs/s.md": spec_text("five", ["a", "b", "c", "d", "e", "f"])},
@@ -142,20 +203,58 @@ def test_p1_fails_when_manifest_count_disagrees(tmp_path):
     assert result["overall"] == "FAIL"
 
 
-def test_p1_selects_the_governing_sentence_not_another_count(tmp_path):
-    """NAMED CASE: a specification with more than one count-bearing sentence.
-
-    A4's '9 additions and 3 modifications' precedes A9's sentence in the same
-    document. The grammar must take the nearest preceding count, not the first
-    or the largest.
-    """
-    text = spec_text("three", ["a", "b", "c"])
+def test_p1_fails_when_the_declared_categories_do_not_sum_to_the_manifest(tmp_path):
+    """A 'stated:' record whose two numbers do not sum to the paths listed."""
+    text = spec_text("three", ["a", "b", "c"], modify=["m"],
+                     declared="3 additions, 3 modifications")
     parsed = parse_scope_block(text)
     assert parsed["parse"] == "OK"
-    assert parsed["stated"] == 3
-    assert parsed["counted"] == 3
-    assert "A9" in parsed["governing_sentence"]
-    assert "9 additions" not in parsed["governing_sentence"]
+    assert (parsed["stated"], parsed["counted"]) == (6, 4)
+    repo, base = base_repo(tmp_path)
+    commit(repo, {"specs/s.md": text}, "spec: fixture")
+    assert prop(check(repo, base), "P1")["status"] == "FAIL"
+
+
+def test_p1_fails_when_only_one_category_disagrees(tmp_path):
+    """Per-category comparison: totals that agree while the split does not."""
+    text = spec_text("two", ["a", "b", "c"], modify=["m"],
+                     declared="2 additions, 2 modifications")
+    parsed = parse_scope_block(text)
+    assert parsed["stated"] == parsed["counted"] == 4
+    repo, base = base_repo(tmp_path)
+    commit(repo, {"specs/s.md": text}, "spec: fixture")
+    assert prop(check(repo, base), "P1")["status"] == "FAIL"
+
+
+def test_p1_consults_no_sentence_when_a_nearer_one_contradicts(tmp_path):
+    """NAMED CASE, and the defect this grammar exists to remove.
+
+    A dry-run count sits immediately before the block and contradicts it, which
+    is this repository's house style. The old grammar took that sentence; the
+    declared total must be read instead, and the document must PASS.
+    """
+    parsed = parse_scope_block(DRY_RUN_SPEC)
+    assert parsed["parse"] == "OK"
+    assert parsed["stated_record"] == "stated: 3 additions, 0 modifications"
+    assert (parsed["stated_add"], parsed["counted_add"]) == (3, 3)
+    assert (parsed["stated_modify"], parsed["counted_modify"]) == (0, 0)
+    repo, base = base_repo(tmp_path)
+    commit(repo, {"specs/s.md": DRY_RUN_SPEC}, "spec: fixture")
+    assert prop(check(repo, base), "P1")["status"] == "PASS"
+
+
+def test_p1_reads_a_stated_record_placed_below_the_manifest(tmp_path):
+    """'stated:' is read from anywhere in the block, not from a fixed line."""
+    assert DRY_RUN_SPEC.index("stated:") > DRY_RUN_SPEC.index("modify:")
+    assert parse_scope_block(DRY_RUN_SPEC)["stated"] == 3
+
+
+def test_p1_passes_with_an_empty_modify_and_a_declared_zero(tmp_path):
+    text = spec_text("two", ["a", "b"], declared="2 additions, 0 modifications")
+    assert "modify: []" in text
+    repo, base = base_repo(tmp_path)
+    commit(repo, {"specs/s.md": text}, "spec: fixture")
+    assert prop(check(repo, base), "P1")["status"] == "PASS"
 
 
 def test_p1_reports_not_parseable_and_that_is_not_a_pass(tmp_path):
@@ -164,6 +263,63 @@ def test_p1_reports_not_parseable_and_that_is_not_a_pass(tmp_path):
     result = check(repo, base)
     assert prop(result, "P1")["status"] == "NOT_PARSEABLE"
     assert result["overall"] == "INCOMPLETE"
+
+
+def test_p1_reports_not_parseable_when_no_total_is_declared(tmp_path):
+    """A legacy specification: a well-formed block with no 'stated:' record."""
+    text = spec_text("two", ["a", "b"]).replace(
+        "    stated: 2 additions, 0 modifications\n", ""
+    )
+    assert "stated:" not in text
+    assert parse_scope_block(text)["detail"] == (
+        "no 'stated:' record in the scope block"
+    )
+    repo, base = base_repo(tmp_path)
+    commit(repo, {"specs/s.md": text}, "spec: fixture")
+    result = check(repo, base)
+    assert prop(result, "P1")["status"] == "NOT_PARSEABLE"
+    assert result["overall"] == "INCOMPLETE"
+
+
+def test_p1_distinguishes_a_malformed_declaration_from_an_absent_one(tmp_path):
+    """Number words are prose and are not accepted; the reason says which."""
+    parsed = parse_scope_block(
+        spec_text("three", ["a", "b", "c"], declared="three additions")
+    )
+    assert parsed["parse"] == "NOT_PARSEABLE"
+    assert parsed["detail"] == "malformed 'stated:' item: 'three additions'"
+    assert parsed["detail"] != "no 'stated:' record in the scope block"
+
+
+def test_p1_rejects_a_declaration_naming_a_category_twice(tmp_path):
+    parsed = parse_scope_block(
+        spec_text("one", ["a"], declared="1 additions, 2 additions")
+    )
+    assert parsed["detail"] == "'stated:' names additions twice"
+
+
+def test_p1_reports_not_parseable_for_a_non_path_token_under_modify(tmp_path):
+    """The live '(none)' incident: it was counted as a path and failed a merge."""
+    text = spec_text("one", ["a"], modify=["(none)"], declared="1 additions")
+    parsed = parse_scope_block(text)
+    assert parsed["parse"] == "NOT_PARSEABLE"
+    assert parsed["detail"] == "not a path under 'modify:': '(none)'"
+    repo, base = base_repo(tmp_path)
+    commit(repo, {"specs/s.md": text}, "spec: fixture")
+    result = check(repo, base)
+    assert prop(result, "P1")["status"] == "NOT_PARSEABLE"
+    assert result["overall"] == "INCOMPLETE"
+
+
+def test_p1_accepts_the_path_shapes_this_repository_writes(tmp_path):
+    """Braces, a leading dot, and a top-level name with no slash are paths."""
+    paths = ["GATES.md", ".github/workflows/ci.yml",
+             "specs/2026-08-XXT{HHMM}Z_a-task.md"]
+    parsed = parse_scope_block(
+        spec_text("three", paths, declared="3 additions, 0 modifications")
+    )
+    assert parsed["parse"] == "OK"
+    assert parsed["counted_set"] == paths
 
 
 def test_p1_partial_carries_its_limitation_in_the_json(tmp_path):

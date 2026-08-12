@@ -49,10 +49,11 @@ EXCLUSIVE = "EXCLUSIVE"
 
 DOES_NOT_ESTABLISH = {
     "P1": (
-        "Does not establish that the manifest is correct, only that its path "
-        "count matches the count in the sentence the grammar selects as "
-        "governing; a specification whose text does not admit the parse is "
-        "reported NOT_PARSEABLE, which is not a pass."
+        "Does not establish that the manifest is correct, only that the total "
+        "the specification declares in its 'stated:' record agrees, per "
+        "category, with the paths that record's block enumerates; a "
+        "specification declaring no total is reported NOT_PARSEABLE, which is "
+        "not a pass and is not a finding about that specification's scope."
     ),
     "P3": (
         "Does not establish which files are append-only; the declared set is a "
@@ -145,32 +146,59 @@ def _result(
 
 
 # ---------------------------------------------------------------------------
-# P1 — scope manifest arithmetic, under a stated grammar
+# P1 — scope manifest arithmetic, under a declared total
 # ---------------------------------------------------------------------------
-COUNT_WORDS = {
-    "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
-    "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11,
-    "twelve": 12,
-}
-_COUNT = re.compile(
-    r"\b(\d+|" + "|".join(COUNT_WORDS) + r")\b\s+"
-    r"(additions?|modifications?|paths?)\b",
-    re.I,
-)
+# The declared total is read from a ``stated:`` record inside the scope block
+# and from nowhere else. No sentence anywhere in the document is consulted,
+# which is why this module carries no prose-count pattern: "nearest preceding
+# count" selected an author's intermediate dry-run sentence often enough that
+# the property it tested was not the property it claimed.
+SCOPE_KEYS = ("stated", "base", "head", "mode", "add", "modify",
+              "forbidden_operations")
+_KEY = re.compile(r"^(" + "|".join(SCOPE_KEYS) + r"):")
+
+# A ``stated:`` value is a comma-separated list of "<decimal> <noun>" items,
+# each noun at most once. Number words are not accepted: a declaration read by
+# a machine is not prose.
+_STATED_ITEM = re.compile(r"^(\d+)\s+(additions?|modifications?)$")
+
+# PATH SHAPE: one or more slash-separated segments, each segment non-empty and
+# built only from ASCII letters, digits, '.', '_', '-', '{' and '}'. Braces are
+# admitted because this repository's manifests carry '{HHMM}' placeholders. A
+# single segment with no slash is a path: 'GATES.md' is one.
+_PATH = re.compile(r"^[A-Za-z0-9._{}-]+(?:/[A-Za-z0-9._{}-]+)*$")
 
 
-def _count_value(token: str) -> int:
-    token = token.lower()
-    return int(token) if token.isdigit() else COUNT_WORDS[token]
+def _unparseable(detail: str) -> dict[str, Any]:
+    return {"parse": "NOT_PARSEABLE", "detail": detail}
+
+
+def _parse_stated(value: str) -> tuple[dict[str, int] | None, str]:
+    """Read a ``stated:`` value into per-category counts, or say why not."""
+    items = [part.strip() for part in value.split(",")]
+    if not value.strip() or any(not part for part in items):
+        return None, f"malformed 'stated:' record: {value.strip()!r}"
+    counts: dict[str, int] = {}
+    for part in items:
+        match = _STATED_ITEM.match(part)
+        if not match:
+            return None, f"malformed 'stated:' item: {part!r}"
+        noun = "additions" if match.group(2).startswith("addition") else "modifications"
+        if noun in counts:
+            return None, f"'stated:' names {noun} twice"
+        counts[noun] = int(match.group(1))
+    return counts, ""
 
 
 def parse_scope_block(text: str) -> dict[str, Any]:
-    """Locate the scope block, its counted set, and its governing sentence.
+    """Locate the scope block, its counted set, and its DECLARED total.
 
-    The SCOPE BLOCK is the indented or fenced block carrying both an
-    ``add:`` and a ``modify:`` record. The COUNTED SET is the path records
-    under those two keys in THAT block. The GOVERNING SENTENCE is the
-    nearest preceding non-empty line stating a count, and no other.
+    The SCOPE BLOCK is the contiguous indented run of records containing the
+    document's single bare ``add:`` record; its extent runs from the highest
+    line above ``add:`` that is non-empty and no less indented, down to the
+    first dedent or trailing blank. The COUNTED SET is the path records under
+    ``add:`` and ``modify:`` in that block. The DECLARED TOTAL is the block's
+    ``stated:`` record, and no sentence is consulted.
     """
     lines = text.split("\n")
     starts = [
@@ -179,12 +207,22 @@ def parse_scope_block(text: str) -> dict[str, Any]:
         if re.match(r"^\s+add:\s*$", line) or re.match(r"^\s+add:\s*\[\]\s*$", line)
     ]
     if len(starts) != 1:
-        return {"parse": "NOT_PARSEABLE", "detail": f"{len(starts)} 'add:' records"}
+        return _unparseable(f"{len(starts)} 'add:' records")
     start = starts[0]
     indent = len(lines[start]) - len(lines[start].lstrip())
-    counted: list[str] = []
+    top = start
+    while top > 0:
+        above = lines[top - 1]
+        if not above.strip() or len(above) - len(above.lstrip()) < indent:
+            break
+        top -= 1
+    counted_add: list[str] = []
+    counted_modify: list[str] = []
+    bucket = {"add": counted_add, "modify": counted_modify}
+    stated_line = None
+    stated: dict[str, int] | None = None
     key = None
-    for n in range(start, len(lines)):
+    for n in range(top, len(lines)):
         line = lines[n]
         if not line.strip():
             if key is not None and n > start:
@@ -197,38 +235,43 @@ def parse_scope_block(text: str) -> dict[str, Any]:
         if cur < indent:
             break
         stripped = line.strip()
-        if re.match(r"^(add|modify|forbidden_operations):", stripped):
-            key = stripped.split(":", 1)[0]
-            tail = stripped.split(":", 1)[1].strip()
-            if key in ("add", "modify") and tail and tail != "[]":
-                counted.append(tail)
+        if _KEY.match(stripped):
+            key, tail = (part.strip() for part in stripped.split(":", 1))
+            if key == "stated":
+                if stated is not None:
+                    return _unparseable("two 'stated:' records in the scope block")
+                stated, why = _parse_stated(tail)
+                if stated is None:
+                    return _unparseable(why)
+                stated_line = stripped
+                continue
+            if key in bucket and tail and tail != "[]":
+                if not _PATH.match(tail):
+                    return _unparseable(f"not a path under '{key}:': {tail!r}")
+                bucket[key].append(tail)
             continue
-        if key in ("add", "modify"):
-            counted.append(stripped)
-    governing = None
-    governing_line = None
-    for n in range(start - 1, -1, -1):
-        if not lines[n].strip():
-            continue
-        match = _COUNT.search(lines[n])
-        if match:
-            governing = match
-            governing_line = n
-            break
-        if lines[n].strip().startswith("#"):
-            break
-    if governing is None:
-        return {"parse": "NOT_PARSEABLE", "detail": "no governing count sentence"}
-    stated_total = 0
-    for token, _noun in _COUNT.findall(lines[governing_line]):
-        stated_total += _count_value(token)
+        if key in bucket:
+            if not _PATH.match(stripped):
+                return _unparseable(f"not a path under '{key}:': {stripped!r}")
+            bucket[key].append(stripped)
+    if stated is None:
+        return _unparseable("no 'stated:' record in the scope block")
     return {
         "parse": "OK",
-        "counted_set": counted,
-        "counted": len(counted),
-        "governing_sentence": lines[governing_line].strip(),
-        "stated": stated_total,
+        "counted_set": counted_add + counted_modify,
+        "counted": len(counted_add) + len(counted_modify),
+        "counted_add": len(counted_add),
+        "counted_modify": len(counted_modify),
+        "stated_record": stated_line,
+        "stated_add": stated.get("additions", 0),
+        "stated_modify": stated.get("modifications", 0),
+        "stated": stated.get("additions", 0) + stated.get("modifications", 0),
     }
+
+
+def _p1_agrees(finding: dict[str, Any]) -> bool:
+    return (finding["counted_add"] == finding["stated_add"]
+            and finding["counted_modify"] == finding["stated_modify"])
 
 
 def check_p1(repo: Path, specs: list[str], head: str) -> dict[str, Any]:
@@ -246,7 +289,7 @@ def check_p1(repo: Path, specs: list[str], head: str) -> dict[str, Any]:
         findings.append(parsed)
     if any(f["parse"] != "OK" for f in findings):
         return _result("P1", "scope manifest arithmetic", "NOT_PARSEABLE", findings)
-    bad = [f for f in findings if f["counted"] != f["stated"]]
+    bad = [f for f in findings if not _p1_agrees(f)]
     status = "FAIL" if bad else "PASS"
     return _result("P1", "scope manifest arithmetic", status, findings)
 
