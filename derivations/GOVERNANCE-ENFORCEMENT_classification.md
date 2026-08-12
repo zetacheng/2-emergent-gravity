@@ -1,0 +1,281 @@
+# Governance enforcement — classification of every rule and amendment
+
+Evidence base: `8939ff4a46445d88c6470fb4f27eec71f2f39172`
+Source: `CONVENTIONS.md`, SHA-256
+`928dea15d7a2699384510240381f6bc9f86fd9bb3a7cbfaff5370839b430ce2d`
+
+**Counts measured before classifying, and they govern:** **18 numbered
+rules** (`^### N.`) and **11 lettered amendments** — A, B, C, D, E, F, G,
+H, I, K, L. **There is no Amendment J.** 29 objects.
+
+## The categories
+
+    MECHANICAL     a machine can decide it from repository objects
+    PARTIAL        a necessary condition is checkable; the rule is not
+    JUDGEMENT      deciding it requires reading for meaning
+
+**A rule is classified MECHANICAL or PARTIAL only where a property in
+this document actually checks it.** "Could be checked by some tool" is
+not the test — a classification that says MECHANICAL with nothing behind
+it is exactly the mislabelling this task exists to prevent. **Where a
+rule admits no check, it is JUDGEMENT and the one-sentence reason says
+why, and proposes no mechanism.**
+
+**For every PARTIAL, the sentence stating what the check does NOT
+establish is reproduced in the checker's JSON**, not only here. A reader
+of the tool's output must meet the limit without consulting this file.
+
+---
+
+## 1. The properties the checker implements
+
+Nine, of which **four are MECHANICAL and five are PARTIAL**. §2 of the
+specification listed seven; **P8 and P9 are added**, and the reasons are
+under each.
+
+| id | property | class | enforces |
+|---|---|---|---|
+| P1 | scope manifest arithmetic | PARTIAL | Rule 12 (instance) |
+| P2 | Rule 15 commit order — review precedes first work commit | MECHANICAL | Rule 15 (timing) |
+| P3 | append-only on both measures | PARTIAL | no rule; a recurring criterion |
+| P4 | superseded branches are not merged | MECHANICAL | Amendment K |
+| P5 | merge parentage against freshly recomputed facts | PARTIAL | Rule 5 (part) |
+| P6 | commit-message hygiene | PARTIAL | **no rule** — see §3 |
+| P7 | gate integrity | PARTIAL | Rule 3 (part) |
+| P8 | Rule 15 placement and specification-first | MECHANICAL | Rule 15 (placement) |
+| P9 | every report carries "Stops and clarifications" | MECHANICAL | Amendment B |
+
+### What each PARTIAL does not establish
+
+**These sentences are the checker's `does_not_establish` field verbatim.**
+
+- **P1** — *Does not establish that the manifest is correct, only that
+  its path count matches the count in the sentence the grammar selects as
+  governing; a specification whose text does not admit the parse is
+  reported NOT_PARSEABLE, which is not a pass.*
+- **P3** — *Does not establish which files are append-only; the declared
+  set is a caller-supplied parameter and the check is silent about
+  whether that set is the right one, or complete.*
+- **P5** — *Does not establish that the executor derived the parentage
+  values independently; three correct values are equally consistent with
+  fresh recomputation and with one field copied into another. The
+  diquark task's shared-rationale defect would pass this check.*
+- **P6** — *Does not establish absence of "session identifier" or "tool
+  attribution", which no repository document defines; only
+  `Co-Authored-By` trailers and URLs are matched, and the author and
+  committer identity fields are not message content and are out of
+  scope.*
+- **P7** — *Does not establish which gate sections were authorised to
+  change; the authorised set is a caller-supplied parameter, and an empty
+  set means "nothing may change", never "nothing to check".*
+
+### P8 and P9, added, with reasons
+
+**P8 — Rule 15 placement and specification-first.** Rule 15's *Placement*
+and *Timing* paragraphs are pure path and ordering facts: specifications
+under `specs/`, reports under `reports/`, reviews under
+`reviews/<function>/`, and the specification committed as the task's
+first commit. **§2 commissioned no property for them and they are the
+most mechanical thing in the whole document**, so leaving them
+unenforced while P2 enforces Rule 15's other half would have been an
+arbitrary gap.
+
+**P9 — Amendment B.** Every task report must contain a "Stops and
+clarifications" section. **The presence of a heading is decidable from
+the blob.** What that section must *contain* is not, so P9 checks
+presence only and says so — it is MECHANICAL about the heading and makes
+no claim about the section's adequacy.
+
+---
+
+## 2. The eighteen rules
+
+**Rule 1 — Contradiction-stop.** `JUDGEMENT`. Deciding that an
+instruction contradicts a rule requires reading both for meaning, which
+is the same act the rule asks a human to perform.
+
+**Rule 2 — Scope precedence.** `JUDGEMENT`. It resolves a conflict, and
+detecting the conflict is the semantic step; a machine that could see the
+conflict would already have decided Rule 1.
+
+**Rule 3 — Declared frozen scope is normative.** `PARTIAL` via **P7**.
+The necessary condition checked is that no `## P2-` gate section outside
+a caller-supplied authorised set changes byte-for-byte and that the
+section count is unchanged. **It does not establish that the declared
+frozen set was the right one**, nor does it reach any frozen file outside
+`GATES.md`.
+
+**Rule 4 — Execution prompts are evidence.** `PARTIAL` via **P8**. That a
+specification exists under `specs/` and is the task's first commit is
+mechanical; **that the committed prompt is the one that actually governed
+the run is not a fact about any repository object.**
+
+**Rule 5 — Minimum mandatory merge discipline.** `PARTIAL` via **P5**.
+Parent 1, parent 2 and a freshly recomputed merge-base are checkable
+against the merge object. **The rule's substance — that the discipline
+was followed rather than reconstructed afterwards — is not**, and P5's
+limitation sentence says so.
+
+**Rule 6 — Reporting honesty for merges.** `JUDGEMENT`. It requires a
+report to distinguish two states of the world in prose; no repository
+object records which distinction the author intended.
+
+**Rule 7 — Evidence precedence.** `JUDGEMENT`. It tells a reader which
+source wins when three disagree, and detecting the disagreement is
+semantic.
+
+**Rule 8 — Responsibility separation.** `JUDGEMENT`. Whether an executor
+made a decision reserved to the specification author is a fact about
+authorship of a choice, not about a diff.
+
+**Rule 9 — Outcome-based task specification.** `JUDGEMENT`. Whether a
+specification states outcomes rather than procedures requires reading it.
+
+**Rule 10 — Self-correction authority and its limit.** `JUDGEMENT`.
+Whether a change was a permitted self-correction depends on what the
+specification authorised, which is prose.
+
+**Rule 11 — Task granularity and integration boundary.** `JUDGEMENT`. It
+is a `SHOULD` about how much work belongs in one task.
+
+**Rule 12 — Acceptance criteria must be mechanically checkable.**
+`PARTIAL` via **P1**. **One recurring instance is decidable** — a scope
+manifest's path count against the sentence that governs it — and that
+instance is the defect shape which recurred four times in this
+programme. **Whether every criterion in a specification has a
+machine-executable verification is not decidable**; P1 checks one
+criterion's internal arithmetic, not the rule.
+
+**Rule 13 — Execution environment.** `JUDGEMENT`. It governs which
+diagnostic order an executor follows on failure, and **it carries two
+conflicting orders**, so no machine could decide conformance even in
+principle without first resolving that. **This is a known open item and
+is recorded in §4 as unenforceable as written.**
+
+**Rule 14 — Validator outcome contract.** `JUDGEMENT`. It is about the
+disposition of a process run — started, completed, exit status, nothing
+skipped — and **no repository object records that a validator ran, let
+alone how it terminated.** The disposition vocabulary (satisfied /
+PI-authorized exception / waived) is a reporting obligation.
+
+**Rule 15 — Governing artifacts are committed.** `MECHANICAL` via **P2**
+and **P8**. Placement is a path predicate; specification-first and
+review-before-work are commit-order predicates over a range. **This is
+the only rule in the document that is mechanical without qualification**,
+and it is so because its text is entirely about paths and order.
+
+**Rule 16 — Accumulated reading.** `JUDGEMENT`. It requires naming an
+inference a reader could draw from a set of artifacts, which is the
+definition of reading for meaning.
+
+**Rule 17 — Integrations do not add epistemic or governance
+classifications.** `JUDGEMENT`. Deciding that a classification is *new*
+requires understanding what the reviewed results already carried.
+
+**Rule 18 — Review supply protocol.** `JUDGEMENT`, and **no check stands
+behind it.** **How a review file reached the executor is not recoverable
+from repository objects** — a byte-identical blob is consistent with a
+file supply, a paste, and a reconstruction. §3 of the specification
+states this and forbids inventing a check; none is written.
+
+## 3. The eleven amendments
+
+**Amendment A — mid-task authorizations reproduced verbatim in the
+report.** `JUDGEMENT`. Whether the reproduction is verbatim requires the
+original, which exists only in a conversation.
+
+**Amendment B — every task report carries a "Stops and clarifications"
+section.** `MECHANICAL` via **P9**, for the heading's presence only. **What
+the section must contain — each stop, its output, whether it was correct,
+its category — is `JUDGEMENT`**, and P9 makes no claim about it.
+
+**Amendment C — digest semantics and binary-safe computation.**
+`JUDGEMENT`. Whether a digest was computed binary-safe is a fact about
+the command that produced it, not about the value.
+
+**Amendment D — execution location, and the process/harness layer.**
+`JUDGEMENT`. Where a command ran is not recorded in any object.
+
+**Amendment E — a failed observation is not a negative result.**
+`JUDGEMENT`. It governs how an executor may describe an observation that
+failed, which is a claim about prose.
+
+**Amendment F — mutation tests must prove reach.** `JUDGEMENT`. Whether a
+mutation test reaches the code it claims to cover requires running it and
+reading what it asserts.
+
+**Amendment G — structural changes propagate.** `JUDGEMENT`. **§0 of the
+specification uses this as its worked example and is right**: that a
+structural change was propagated everywhere it should have been cannot be
+decided from a diff, because "should have been" is semantic.
+
+**Amendment H — literals are verified by execution.** `JUDGEMENT`.
+Whether a recorded literal was measured or asserted is a fact about the
+author's process. **This task found a false `MEASURED` line in its own
+commissioning document** (§4), which is exactly the failure no machine
+catches.
+
+**Amendment I — mid-task authority changes require reviewer-visible
+provenance.** `JUDGEMENT`. **§0's second worked example**: whether a
+provenance record is adequate is a judgement about sufficiency.
+
+**Amendment K — re-issuing an executed specification.** `PARTIAL` via
+**P4**. **One clause is mechanical** — a superseded branch must not be
+integrated, which is an ancestry test against the register. **The rest is
+not**: that a re-issue used new task-identity paths, that the superseded
+branch was preserved untouched, and that the re-issue mechanism was
+supplied rather than derived are not decidable from a commit range.
+
+**Amendment L — consumed conventions must be discoverable through the
+conventions index.** `JUDGEMENT`. Whether a convention is discoverable is
+a claim about a reader's path through documents.
+
+## 4. Rules unenforceable as written — findings, not licence to change
+
+**This section reports; it changes nothing.** `CONVENTIONS.md` is not
+modified by this task.
+
+**Rule 13 carries two conflicting diagnostic orders.** No conformance
+check is possible until one is chosen, and this is a long-standing open
+item that every report in this line has had to note rather than resolve.
+
+**P6 enforces no rule at all.** **`CONVENTIONS.md` contains zero
+occurrences of "Co-Authored-By", "session identifier", "tool attribution"
+or "trailer".** Commit-message hygiene has been an acceptance criterion
+in every recent specification and **is nowhere a standing rule**. The
+check is implemented because the criterion recurs, but the classification
+must not pretend it enforces a convention. **Two of the four forbidden
+categories have no delimited vocabulary anywhere in the repository**,
+which is why P6 is PARTIAL rather than MECHANICAL.
+
+**Rule 15's "Prospective only" has no stated boundary commit.** The rule
+says records created before it are not retrospectively non-conforming,
+but nothing in the repository states *which commit* that is. **The
+checker therefore takes the boundary as a parameter and refuses to assume
+one**, and runs both the INCLUSIVE and EXCLUSIVE readings so the
+difference is measured rather than chosen.
+
+**Amendment B's requirement is stronger than any check.** It demands the
+lines that establish a stop be reproduced. **P9 checks a heading**, and
+saying otherwise would be the proxy substitution this task exists to
+detect.
+
+## 5. The count that matters
+
+    MECHANICAL   Rule 15                                          1 rule
+                 Amendment B (heading presence only)              1 amendment
+    PARTIAL      Rules 3, 4, 5, 12                                4 rules
+                 Amendment K                                      1 amendment
+    JUDGEMENT    Rules 1, 2, 6, 7, 8, 9, 10, 11, 13, 14, 16,
+                 17, 18                                          13 rules
+                 Amendments A, C, D, E, F, G, H, I, L             9 amendments
+    -----------------------------------------------------------------------
+                 18 rules + 11 amendments                        29 objects
+
+**Two of twenty-nine objects are mechanical, and one of those only in
+part.** **Five more have a necessary condition behind them.** **Twenty-two
+have no machine behind them at all.**
+
+**A suite that claimed to enforce eighteen rules while enforcing one and
+a half would be worse than one that enforces what it enforces and says
+so.** That is the whole of this document's purpose.
