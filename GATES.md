@@ -1014,7 +1014,7 @@ per the PI ruling recorded in §3a of
 Owner: Paper 2. Canonical label: **MICROSCOPIC PARAMETER DOMAIN**;
 not a gate ID. Adopted artifact:
 `derivations/P2-PHASE-01_microscopic_parameter_domain.md`
-(sha256 `c27e57f080ecf8a2472a7f614aedcc19c5c72622650f6ddd0bc802d3fced5003`).
+(sha256 `a481955be9bfa248b925ef7bf49f0f57cc462799ee72278507f71f99ac70cfc8`).
 Superseded draft:
 `derivations/P2-PHASE-01_microscopic_parameter_domain_DRAFT.md`.
 
@@ -1037,7 +1037,7 @@ Artifact state: **DRAFTED / NOT ADOPTED**. Prerequisite state:
 **UNSATISFIED**. Owner: Paper 2. Canonical label: **PHASE INPUT /
 ADMISSIBILITY CONTRACT**; not a gate ID. Draft:
 `derivations/P2-PHASE-01_input_admissibility_contract_DRAFT.md`
-(sha256 `a3ec0cb6f7968cf92528e2197f34aedd86882eed08bfc58410142fdb875a9e73`).
+(sha256 `e373efcb0d14db641604537c6a264e2c48536ab516162b7fef6a995cbd11d1cb`).
 No operational stability or admissibility rule is presently frozen.
 
 ### Integrated exploratory evidence
