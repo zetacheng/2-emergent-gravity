@@ -988,3 +988,35 @@ the reviewed results did not carry.**
 Recording what a result did not establish is required. **Assigning it
 to an open item, a gate, a status, or a category it was never assigned
 to is not.**
+
+### 18. Review supply protocol
+
+**A pre-execution review is supplied to the executor AS A FILE, not as
+text pasted into a prompt.** The executor commits that file's bytes
+unchanged.
+
+**No extraction, no delimiters, no normalisation.** There is no boundary
+to locate, so **no boundary can be inferred**; there are no transport
+artifacts to strip, so **no stripping rule is needed.**
+
+**The specification SHOULD also be supplied as a file.** It is committed
+at a frozen path by the task's first commit, so **a pasted specification
+makes commit 1's bytes the executor's transcription with no supplied file
+to digest against** — verifiable in the way commit 2 now is only if it
+too arrives as a file.
+
+**A pasted specification is permitted and is not a STOP**, because it is
+instruction rather than an artifact whose exact bytes carry authority.
+**But the executor reports which way it arrived**, and where it was
+pasted, says so.
+
+**The executor verifies correspondence before committing**: the supplied
+review must identify the specification it reviews, by digest or by task
+name. **If it does not, or if no file is supplied, or if the file
+corresponds to a different specification, STOP and say which.**
+
+**The executor never authors, edits, summarises or reformats a review**,
+and never reconstructs one from a conversation.
+
+**Placeholders inside a review's text stay as written.** Placeholders are
+resolved in the artifact's PATH only.
