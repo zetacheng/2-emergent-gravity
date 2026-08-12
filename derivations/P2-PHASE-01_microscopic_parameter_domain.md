@@ -1,15 +1,19 @@
-# `P2-PHASE-01` microscopic parameter domain — DRAFT FOR ADOPTION
+# `P2-PHASE-01` microscopic parameter domain — ADOPTED
 
 **Status: ADOPTED.** Adopted by
-`specs/2026-08-12T2258Z_adopt-parameter-domain.md`. This artifact
-is written for PI confirmation and reviewer scrutiny. **Adoption requires
-a task with its own specification and pre-execution review**; nothing
-here is in force until that task lands.
+`specs/2026-08-12T2258Z_adopt-parameter-domain.md`, under the
+pre-execution review committed alongside it. **This artifact is in
+force.** It was written for PI confirmation and reviewer scrutiny,
+both of which it received; **the sentences that described it as
+awaiting them were left behind by an anchored substitution that
+repaired only the status line, and are corrected here.**
 
-**It supersedes nothing.** `derivations/P2-PHASE-01_microscopic_parameter_domain_DRAFT.md`
-deliberately adopted no domain and retained five open items. **This
-artifact answers four of them and leaves one open**, and says which is
-which.
+**It supersedes one artifact.**
+`derivations/P2-PHASE-01_microscopic_parameter_domain_DRAFT.md`
+deliberately adopted no domain and retained five open items; **it is
+now marked SUPERSEDED and is retained as historical evidence.** **This
+artifact answers four of those items and leaves one open**, and says
+which is which.
 
 **Evidence base:** `1cb5550f6db0c95c7faa9f22b7864ff7d80f9bab`.
 Every numerical statement below was read from
