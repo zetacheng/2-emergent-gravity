@@ -1014,7 +1014,7 @@ per the PI ruling recorded in §3a of
 Owner: Paper 2. Canonical label: **MICROSCOPIC PARAMETER DOMAIN**;
 not a gate ID. Adopted artifact:
 `derivations/P2-PHASE-01_microscopic_parameter_domain.md`
-(sha256 `a481955be9bfa248b925ef7bf49f0f57cc462799ee72278507f71f99ac70cfc8`).
+(sha256 `4a3bd8211502d36f9e950086b766ef6ef587f1f4504661d1565962213cd3d214`).
 Superseded draft:
 `derivations/P2-PHASE-01_microscopic_parameter_domain_DRAFT.md`.
 
