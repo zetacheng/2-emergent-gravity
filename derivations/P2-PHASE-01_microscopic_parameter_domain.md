@@ -82,7 +82,12 @@ as physics.
 
 ## 3. The domain
 
-**RECOMMENDATION, for PI adoption.**
+**ADOPTED.** The domain below was proposed by the Researcher and
+**adopted by the PI**; it is the operative content of this artifact
+and it binds. **An earlier version of this line read
+`RECOMMENDATION, for PI adoption`, which line 28 defines as binding
+nobody** — a label left behind when the artifact's status changed,
+and the last of four such labels to be corrected.
 
     coordinate     G, expressed as the dimensionless ratio G/Gc
     range          G/Gc in [0.80, 3.00], CLOSED
