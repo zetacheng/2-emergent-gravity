@@ -1018,13 +1018,34 @@ The future artifact must decide and bound scan-eligible coupling `G`, and must
 decide whether cutoff ratios and finite-density `μ` are FIXED INPUTS or SCAN
 DIMENSIONS. Any admitted scan dimension must carry a frozen range.
 
-### Unsatisfied prerequisite — PHASE INPUT / ADMISSIBILITY CONTRACT
-Artifact state: **DRAFTED / NOT ADOPTED**. Prerequisite state:
-**UNSATISFIED**. Owner: Paper 2. Canonical label: **PHASE INPUT /
-ADMISSIBILITY CONTRACT**; not a gate ID. Draft:
-`derivations/P2-PHASE-01_input_admissibility_contract_DRAFT.md`
-(sha256 `a3ec0cb6f7968cf92528e2197f34aedd86882eed08bfc58410142fdb875a9e73`).
-No operational stability or admissibility rule is presently frozen.
+### Satisfied prerequisite — PHASE INPUT / ADMISSIBILITY CONTRACT
+Artifact state: **ADOPTED**. Prerequisite state: **SATISFIED**.
+Owner: Paper 2. Canonical label: **PHASE INPUT / ADMISSIBILITY
+CONTRACT**; not a gate ID. Adopted artifact:
+`derivations/P2-PHASE-01_input_admissibility_contract.md`
+(sha256 `e63f5a7f1db276ce7263c8954bd8afff8ed24a069b988b098c9fe28bf3a91af3`).
+Superseded draft:
+`derivations/P2-PHASE-01_input_admissibility_contract_DRAFT.md`.
+
+An operational admissibility standard is frozen: full
+condensate-space Hessian positivity transverse to symmetry-required
+flat directions; thermodynamic selection against the comparison set
+of stationary solutions satisfying the non-thermodynamic conditions
+C-i and C-iii, under a common normalisation; and symmetry accounting
+sufficient to identify those flat directions. Per PI ruling, a rule
+that can decide a candidate is operational whether or not its inputs
+presently exist.
+
+The comparison set is defined WITHOUT reference to admissibility,
+deliberately. A summary phrased as "no competing ADMISSIBLE solution
+deeper" would define admissibility in terms of itself; the adopted
+artifact does not, and this block must not.
+
+**This prerequisite being SATISFIED means a rule exists. It does not
+mean any candidate has been assessed, and it does not mean the
+evaluation inputs are complete.** Three remain open —
+`OPEN-AC-1`, `OPEN-AC-3`, `OPEN-AC-4` — and they are
+evaluation-input gaps, not rule-definition gaps.
 
 ### Integrated exploratory evidence
 The reviewed scalar stationary study is included in the integrated repository

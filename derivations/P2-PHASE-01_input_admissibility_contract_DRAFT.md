@@ -1,5 +1,12 @@
 # `P2-PHASE-01` phase input / admissibility contract — DRAFT, NOT ADOPTED
 
+**SUPERSEDED.** Adopted as
+`derivations/P2-PHASE-01_input_admissibility_contract.md`. This file
+is retained as historical evidence and is not operative. Its
+`OPEN-AC` entries are unchanged and remain OPEN; the adopted
+artifact reclassifies them as evaluation-input gaps without
+resolving any of them.
+
 ## Status and evidence boundary
 
 This is a **DRAFT, NOT ADOPTED** prerequisite artifact.  It does not define an
