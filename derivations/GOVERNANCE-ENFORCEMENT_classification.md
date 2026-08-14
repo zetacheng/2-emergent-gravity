@@ -37,11 +37,11 @@ under each.
 |---|---|---|---|
 | P1 | scope manifest arithmetic | PARTIAL | Rule 12 (instance) |
 | P2 | Rule 15 commit order — review precedes first work commit | MECHANICAL | Rule 15 (timing) |
-| P3 | append-only on both measures | PARTIAL | no rule; a recurring criterion |
+| P3 | append-only on both measures, over a set the specification declares | PARTIAL | no rule; a recurring criterion |
 | P4 | superseded branches are not merged | MECHANICAL | Amendment K |
 | P5 | merge parentage against freshly recomputed facts | PARTIAL | Rule 5 (part) |
 | P6 | commit-message hygiene | PARTIAL | **no rule** — see §3 |
-| P7 | gate integrity — every `## P2-` heading is parsed, and no unauthorised section changed | PARTIAL | Rule 3 (part) |
+| P7 | gate integrity — every `## P2-` heading is parsed, and no unauthorised section changed, over a set the specification declares | PARTIAL | Rule 3 (part) |
 | P8 | Rule 15 placement and specification-first | MECHANICAL | Rule 15 (placement) |
 | P9 | every report carries "Stops and clarifications" | MECHANICAL | Amendment B |
 
@@ -105,6 +105,45 @@ already carries. It still makes the run `INCOMPLETE` and exits non-zero.
 **`P7` remains `PARTIAL`, and for the unchanged reason:** the authorised set
 is still a caller-supplied parameter and the discovery problem behind it is
 untouched by this repair.
+
+**`P3` and `P7`, extended again — where the declared set now comes from.**
+The paragraphs below are **not** part of either `does_not_establish` field
+quoted above; they record what changed and what did not.
+
+**Both properties now read their declared set from the SPECIFICATION'S SCOPE
+BLOCK**, through the `append_only:` and `authorised_gates:` keys, and from the
+run-time config only as a fallback. **The config was written after the review**,
+so a reviewer approved a specification while something else decided what the
+checks were pointed at. **When the specification declares, it wins. When only
+config supplies, the check proceeds and the JSON names `config` as the
+source. When both declare and they DIFFER, the property returns
+`DECLARATION_CONFLICT` and the run is non-zero** — a config silently
+overriding a reviewed declaration would reproduce, one layer along, the defect
+this change removes.
+
+**`P3`'s reading of an empty set is corrected.** It formerly returned
+`NOT_APPLICABLE` for `[]` — the check switched OFF, not passed — and one
+landed integration supplied `append_only_paths: []` and went green on it.
+**An empty declared set now returns `DECLARED_EMPTY`**: not `NOT_APPLICABLE`,
+because the specification SAID the applicable set is empty and absence says
+nothing; and **not `PASS`, because nothing was checked** and a pass over
+nothing is the vacuous green this repository has met three times. **It does
+not make the run `INCOMPLETE`**, because unlike `NOT_DECLARED` it is a valid
+declaration.
+
+**Both remain `PARTIAL`, and the reason is narrowed rather than removed.**
+**A specification still declares its own sets, and a specification can declare
+wrongly.** Nothing verifies that a declared append-only set is complete, or
+that an authorised-gate set names only gates the task was authorised to
+change. **What changed is that the declaration is now inside the artifact a
+reviewer reads**, so a wrong declaration is visible at review time instead of
+being invented afterwards. **That is a narrower discovery problem, not an
+absent one.**
+
+**And nothing requires a specification to carry the keys at all.** A
+specification that declares neither still reaches `NOT_DECLARED`, exactly as
+before. **Making the declarations mandatory is `C2`**, which is unbuilt;
+**compliance therefore still rests on an authoring habit.**
 
 ### P8 and P9, added, with reasons
 
