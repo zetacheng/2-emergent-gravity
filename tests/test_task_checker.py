@@ -15,7 +15,12 @@ import subprocess
 from pathlib import Path
 
 from scripts.governance_tools.core import GOVERNANCE_FAILURE, TOOL_ERROR
-from scripts.governance_tools.task_checker import evaluate, parse_scope_block
+from scripts.governance_tools.task_checker import (
+    GATE_HEADING,
+    RAW_GATE_HEADING,
+    evaluate,
+    parse_scope_block,
+)
 from scripts.governance_tools.task_checker import main as checker_main
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -67,33 +72,52 @@ def spec_text(stated: str, paths: list[str]) -> str:
     return SPEC_TEMPLATE.format(stated=stated, added=body)
 
 
-def base_repo(tmp_path: Path) -> tuple[Path, str]:
-    """A repo with a gate file, a log and a register, ready for a task range."""
+FIXTURE_REGISTER = (
+    "# Branching Policy\n\n"
+    "## Superseded branches\n\n"
+    "```text\n"
+    "fix/old-thing @ " + "0" * 40 + "\n"
+    "  superseded by  fix/new-thing\n"
+    "```\n\n"
+    "## Remote refs\n\ntail\n"
+)
+
+FIXTURE_GATES = (
+    "# Gates\n\n"
+    "## P2-ALPHA-01 — Alpha gate\n\nStatus: PASS\n\nbody alpha\n\n"
+    "## P2-BETA-01 — Beta gate\n\nStatus: PROPOSED\n\nbody beta\n"
+)
+
+
+def base_repo_with_gates(tmp_path: Path, gates: str) -> tuple[Path, str]:
+    """``base_repo`` with the gate file's contents chosen by the caller.
+
+    The register and the log come from the same source as ``base_repo`` so a
+    P7 fixture cannot fail P4 or P3 for reasons of its own making.
+    """
     repo = new_repo(tmp_path)
-    gates = (
-        "# Gates\n\n"
-        "## P2-ALPHA-01\n\nStatus: PASS\n\nbody alpha\n\n"
-        "## P2-BETA-01\n\nStatus: PROPOSED\n\nbody beta\n"
-    )
-    register = (
-        "# Branching Policy\n\n"
-        "## Superseded branches\n\n"
-        "```text\n"
-        "fix/old-thing @ " + "0" * 40 + "\n"
-        "  superseded by  fix/new-thing\n"
-        "```\n\n"
-        "## Remote refs\n\ntail\n"
-    )
     base = commit(
         repo,
         {
             "GATES.md": gates,
-            "docs/BRANCHING_POLICY.md": register,
+            "docs/BRANCHING_POLICY.md": FIXTURE_REGISTER,
             "DECISION_LOG.md": "# Decision Log\n\nentry one\n",
         },
         "chore: fixture base",
     )
     return repo, base
+
+
+def base_repo(tmp_path: Path) -> tuple[Path, str]:
+    """A repo with a gate file, a log and a register, ready for a task range.
+
+    The gate headings carry titles because the real ones do. An earlier
+    version of this fixture used the bare ``## P2-ID`` shape, which no
+    heading in ``GATES.md`` has ever used -- and which was the only shape the
+    pre-repair grammar matched. The suite therefore confirmed the grammar
+    against a file shaped to suit it.
+    """
+    return base_repo_with_gates(tmp_path, FIXTURE_GATES)
 
 
 def reviewed_base(tmp_path: Path) -> tuple[Path, str]:
@@ -440,8 +464,8 @@ def test_p7_passes_when_no_gate_section_changes(tmp_path):
 def test_p7_fails_on_an_unauthorised_gate_body_edit(tmp_path):
     repo, base = base_repo(tmp_path)
     gates = (
-        "# Gates\n\n## P2-ALPHA-01\n\nStatus: PASS\n\nbody alpha EDITED\n\n"
-        "## P2-BETA-01\n\nStatus: PROPOSED\n\nbody beta\n"
+        "# Gates\n\n## P2-ALPHA-01 — Alpha gate\n\nStatus: PASS\n\nbody alpha EDITED\n\n"
+        "## P2-BETA-01 — Beta gate\n\nStatus: PROPOSED\n\nbody beta\n"
     )
     commit(repo, {"GATES.md": gates}, "docs: edit a gate body")
     record = prop(check(repo, base, authorised_modified_gates=[]), "P7")
@@ -452,7 +476,7 @@ def test_p7_fails_on_an_unauthorised_gate_body_edit(tmp_path):
 def test_p7_catches_a_deleted_section_that_keeps_the_body_of_another(tmp_path):
     """The count guards addition and removal; byte identity guards the rest."""
     repo, base = base_repo(tmp_path)
-    kept = "# Gates\n\n## P2-ALPHA-01\n\nStatus: PASS\n\nbody alpha\n"
+    kept = "# Gates\n\n## P2-ALPHA-01 — Alpha gate\n\nStatus: PASS\n\nbody alpha\n"
     commit(repo, {"GATES.md": kept}, "docs: delete a whole gate entry")
     record = prop(check(repo, base, authorised_modified_gates=[]), "P7")
     assert record["status"] == "FAIL"
@@ -462,8 +486,8 @@ def test_p7_catches_a_deleted_section_that_keeps_the_body_of_another(tmp_path):
 def test_p7_allows_an_authorised_gate_to_change(tmp_path):
     repo, base = base_repo(tmp_path)
     gates = (
-        "# Gates\n\n## P2-ALPHA-01\n\nStatus: PASS\n\nbody alpha EDITED\n\n"
-        "## P2-BETA-01\n\nStatus: PROPOSED\n\nbody beta\n"
+        "# Gates\n\n## P2-ALPHA-01 — Alpha gate\n\nStatus: PASS\n\nbody alpha EDITED\n\n"
+        "## P2-BETA-01 — Beta gate\n\nStatus: PROPOSED\n\nbody beta\n"
     )
     commit(repo, {"GATES.md": gates}, "docs: edit an authorised gate")
     assert prop(check(repo, base, authorised_modified_gates=["P2-ALPHA-01"]),
@@ -472,7 +496,7 @@ def test_p7_allows_an_authorised_gate_to_change(tmp_path):
 
 def test_p7_empty_authorised_set_means_nothing_may_change(tmp_path):
     repo, base = base_repo(tmp_path)
-    commit(repo, {"GATES.md": "# Gates\n\n## P2-ALPHA-01\n\nStatus: PASS\n\nedited\n"},
+    commit(repo, {"GATES.md": "# Gates\n\n## P2-ALPHA-01 — Alpha gate\n\nStatus: PASS\n\nedited\n"},
            "docs: change everything")
     assert prop(check(repo, base, authorised_modified_gates=[]),
                 "P7")["status"] == "FAIL"
@@ -484,6 +508,193 @@ def test_p7_without_a_declaration_is_not_declared_not_pass(tmp_path):
     result = check(repo, base)
     assert prop(result, "P7")["status"] == "NOT_DECLARED"
     assert result["overall"] == "INCOMPLETE"
+
+
+# ---------------------------------------------------------------------------
+# P7 -- the heading grammar, and the completeness invariant that guards it
+#
+# The grammar this repository shipped was ``^## (P2-[A-Z0-9-]+)\s*$``, which
+# matches a heading carrying no title. No heading in the real GATES.md has
+# that shape -- all fourteen are ``## <id> - <title>`` -- so gate_sections
+# returned {} at every revision and check_p7 compared two empty maps and
+# returned PASS, in every task that ran it. The fixtures above used the bare
+# shape too, which is why the suite confirmed the grammar instead of catching
+# it: they were shaped to suit the parser rather than to resemble the file.
+#
+# Every fixture below fails against the pre-repair code.
+# ---------------------------------------------------------------------------
+def gates_with(*headings: str) -> str:
+    """A gate file built from whole heading lines, given verbatim."""
+    body = "\n\n".join(f"{h}\n\nStatus: PASS\n\nbody for {n}"
+                       for n, h in enumerate(headings))
+    return "# Gates\n\n" + body + "\n"
+
+
+def test_gate_grammar_reads_every_heading_of_the_real_gates_file():
+    """The shipped GATES.md, not a fixture: fourteen raw, fourteen parsed."""
+    lines = (ROOT / "GATES.md").read_text(encoding="utf-8").split("\n")
+    raw = [line for line in lines if RAW_GATE_HEADING.match(line)]
+    parsed = [GATE_HEADING.match(line) for line in lines]
+    ids = [m.group(1) for m in parsed if m]
+    assert len(raw) == 14, f"expected 14 raw '## P2-' headings, found {len(raw)}"
+    assert len(ids) == len(raw), (
+        "the grammar does not read every heading of the real gate file: "
+        f"{len(ids)} parsed of {len(raw)} raw"
+    )
+    assert len(set(ids)) == len(ids), "duplicate gate id in GATES.md"
+
+
+def test_gate_grammar_rejects_the_bare_heading_the_old_grammar_accepted():
+    """A titleless ``## P2-ID`` is not a gate section, and that is deliberate.
+
+    It is the one shape the pre-repair grammar did match. Rejecting it means
+    a file written in that shape reports NOT_PARSEABLE rather than quietly
+    parsing, which is the honest answer for a registry that does not look
+    like the registry.
+    """
+    assert GATE_HEADING.match("## P2-ALPHA-01 — Alpha gate")
+    assert GATE_HEADING.match("## P2-ALPHA-01 – Alpha gate")
+    assert GATE_HEADING.match("## P2-ALPHA-01 - Alpha gate")
+    assert not GATE_HEADING.match("## P2-ALPHA-01")
+    assert not GATE_HEADING.match("## P2-ALPHA-01 ")
+    assert not GATE_HEADING.match("## P2-ALPHA-01 —")
+    # The raw counter must still see every one of them, or the invariant
+    # would have nothing to compare against.
+    for line in ("## P2-ALPHA-01", "## P2-ALPHA-01 — t", "## P2-lower-01"):
+        assert RAW_GATE_HEADING.match(line)
+
+
+def test_p7_is_not_parseable_when_the_grammar_reads_none_of_the_headings(
+    tmp_path,
+):
+    """The 0 / N case: headings present, grammar matches none.
+
+    This is the repository's actual defect, reproduced. The pre-repair code
+    returns PASS here.
+    """
+    repo, base = base_repo_with_gates(
+        tmp_path,
+        gates_with("## P2-ALPHA-01", "## P2-BETA-01", "## P2-GAMMA-01"),
+    )
+    commit(repo, {"notes.txt": "x\n"}, "chore: unrelated")
+    record = prop(check(repo, base, authorised_modified_gates=[]), "P7")
+    assert record["status"] == "NOT_PARSEABLE"
+    assert record["evidence"]["raw_heading_count_base"] == 3
+    assert record["evidence"]["section_count_base"] == 0
+
+
+def test_p7_is_not_parseable_when_one_heading_of_many_is_unread(tmp_path):
+    """The 14 / 15 case, and it is the point of the invariant.
+
+    A guard that fired only at zero would pass this: the fourteen the parser
+    sees are unchanged, and the fifteenth is invisible to it. One unseen gate
+    is enough.
+    """
+    good = [f"## P2-FIX-{n:02d} — Gate {n}" for n in range(1, 15)]
+    repo, base = base_repo_with_gates(
+        tmp_path, gates_with(*good, "## P2-lower-01")
+    )
+    commit(repo, {"notes.txt": "x\n"}, "chore: unrelated")
+    record = prop(check(repo, base, authorised_modified_gates=[]), "P7")
+    assert record["status"] == "NOT_PARSEABLE"
+    assert record["evidence"]["raw_heading_count_base"] == 15
+    assert record["evidence"]["section_count_base"] == 14
+    assert record["evidence"]["unrecognised_headings_base"] == ["## P2-lower-01"]
+
+
+def test_p7_is_not_parseable_when_a_heading_parses_at_base_but_not_at_head(
+    tmp_path,
+):
+    """The asymmetric case the invariant exists for: readable, then not."""
+    repo, base = base_repo_with_gates(
+        tmp_path, gates_with("## P2-ALPHA-01 — Alpha gate")
+    )
+    commit(repo, {"GATES.md": gates_with("## P2-ALPHA-01")},
+           "docs: drop the title from a gate heading")
+    record = prop(check(repo, base, authorised_modified_gates=[]), "P7")
+    assert record["status"] == "NOT_PARSEABLE"
+    assert record["evidence"]["section_count_base"] == 1
+    assert record["evidence"]["section_count_head"] == 0
+
+
+def test_p7_is_not_parseable_when_the_gate_file_has_no_headings_at_all(
+    tmp_path,
+):
+    """0 raw / 0 parsed. Equality holds and it is still not a pass.
+
+    A registry in which nothing readable was found has not been checked,
+    which is not the same as having been read and found clean.
+    """
+    repo, base = base_repo_with_gates(
+        tmp_path, "# Gates\n\nNothing here yet.\n"
+    )
+    commit(repo, {"notes.txt": "x\n"}, "chore: unrelated")
+    record = prop(check(repo, base, authorised_modified_gates=[]), "P7")
+    assert record["status"] == "NOT_PARSEABLE"
+    assert record["evidence"]["raw_heading_count_base"] == 0
+    assert record["evidence"]["section_count_base"] == 0
+
+
+def test_p7_zero_sections_is_not_a_pass_even_with_an_empty_authorised_set(
+    tmp_path,
+):
+    """``authorised_modified_gates: []`` is the strongest declaration.
+
+    It must not be reachable as a green over an unread registry, which is
+    exactly the combination every task in this repository has been running.
+    """
+    repo, base = base_repo_with_gates(
+        tmp_path, gates_with("## P2-ALPHA-01")
+    )
+    commit(repo, {"notes.txt": "x\n"}, "chore: unrelated")
+    record = prop(check(repo, base, authorised_modified_gates=[]), "P7")
+    assert record["status"] != "PASS"
+    assert record["status"] == "NOT_PARSEABLE"
+
+
+def test_p7_zero_sections_is_not_a_pass_when_base_and_head_are_identical(
+    tmp_path,
+):
+    """Nothing changed is not a defence: an unread registry is unread."""
+    repo, base = base_repo_with_gates(
+        tmp_path, gates_with("## P2-ALPHA-01")
+    )
+    commit(repo, {"notes.txt": "x\n"}, "chore: touches no gate file")
+    record = prop(check(repo, base, authorised_modified_gates=[]), "P7")
+    assert record["evidence"]["section_count_base"] == \
+        record["evidence"]["section_count_head"]
+    assert record["status"] == "NOT_PARSEABLE"
+
+
+def test_p7_not_parseable_makes_the_run_incomplete_and_exits_non_zero(
+    tmp_path,
+):
+    """NOT_PARSEABLE, not FAIL -- cannot judge is not judged wrong.
+
+    It must still be non-zero, or an unreadable registry would read as green.
+    """
+    repo, base = base_repo_with_gates(
+        tmp_path, gates_with("## P2-ALPHA-01")
+    )
+    commit(repo, {"reviews/chatgpt/r.md": "approved\n"}, "review: fixture")
+    result = check(repo, base, authorised_modified_gates=[])
+    assert prop(result, "P7")["status"] == "NOT_PARSEABLE"
+    assert result["overall"] == "INCOMPLETE"
+
+
+def test_p7_still_fails_on_an_unauthorised_change_it_can_read(tmp_path):
+    """The repair does not convert a real FAIL into a parse complaint."""
+    repo, base = base_repo(tmp_path)
+    edited = (
+        "# Gates\n\n"
+        "## P2-ALPHA-01 — Alpha gate\n\nStatus: PASS\n\nbody alpha EDITED\n\n"
+        "## P2-BETA-01 — Beta gate\n\nStatus: PROPOSED\n\nbody beta\n"
+    )
+    commit(repo, {"GATES.md": edited}, "docs: edit a gate body")
+    record = prop(check(repo, base, authorised_modified_gates=[]), "P7")
+    assert record["status"] == "FAIL"
+    assert record["evidence"]["raw_heading_count_base"] == 2
+    assert record["evidence"]["section_count_base"] == 2
 
 
 # ---------------------------------------------------------------------------

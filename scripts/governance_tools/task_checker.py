@@ -484,7 +484,23 @@ def check_p6(repo: Path, commits: list[str]) -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 # P7 — gate integrity
 # ---------------------------------------------------------------------------
-GATE_HEADING = re.compile(r"^## (P2-[A-Z0-9-]+)\s*$")
+# The real headings are ``## <id> <separator> <title>``. The separator is an
+# em dash in every heading of the landed ``GATES.md``; an en dash and a plain
+# hyphen are accepted as well so that a reasonable author is not silently
+# unread. A title is REQUIRED: a bare ``## P2-ID`` with nothing after it is
+# deliberately NOT matched, so that the shape the previous grammar accepted --
+# and which no real heading uses -- cannot pass as a gate section. Anything a
+# heading grammar fails to match is caught by the completeness invariant in
+# ``check_p7`` and reported NOT_PARSEABLE, never silently dropped.
+GATE_SEPARATORS = "—–-"  # EM DASH, EN DASH, HYPHEN-MINUS
+GATE_HEADING = re.compile(
+    r"^## (P2-[A-Z0-9-]+)[ \t]+[—–-][ \t]+\S.*$"
+)
+
+# Deliberately NOT written in terms of ``GATE_HEADING``. This is the cheap
+# independent signal the completeness invariant is measured against: a guard
+# expressed through the parser it protects would fail together with it.
+RAW_GATE_HEADING = re.compile(r"^## P2-")
 
 
 def gate_sections(repo: Path, revision: str, path: str) -> dict[str, str]:
@@ -499,6 +515,12 @@ def gate_sections(repo: Path, revision: str, path: str) -> dict[str, str]:
     return sections
 
 
+def raw_gate_headings(repo: Path, revision: str, path: str) -> list[str]:
+    """Every ``## P2-`` line, counted without consulting ``GATE_HEADING``."""
+    text = blob(repo, revision, path).decode("utf-8")
+    return [line for line in text.split("\n") if RAW_GATE_HEADING.match(line)]
+
+
 def check_p7(
     repo: Path, base: str, head: str, gates_path: str, authorised: Any
 ) -> dict[str, Any]:
@@ -511,6 +533,8 @@ def check_p7(
                        {"gates_path": gates_path}, "gate file absent at base")
     before = gate_sections(repo, base, gates_path)
     after = gate_sections(repo, head, gates_path)
+    raw_base = raw_gate_headings(repo, base, gates_path)
+    raw_head = raw_gate_headings(repo, head, gates_path)
     allowed = set(authorised)
     changed = [
         name
@@ -522,12 +546,54 @@ def check_p7(
     evidence = {
         "gates_path": gates_path,
         "authorised_modified": sorted(allowed),
+        "raw_heading_count_base": len(raw_base),
+        "raw_heading_count_head": len(raw_head),
         "section_count_base": len(before),
         "section_count_head": len(after),
         "unauthorised_changed": changed,
         "added_sections": added,
         "removed_sections": removed,
     }
+    # The completeness invariant, and it is checked BEFORE the comparison so
+    # that no arrangement of the authorised set, and no identity between base
+    # and head, can reach a PASS through an incompletely read registry.
+    #
+    # Zero readable gate headings is never a clean bill of health: a registry
+    # the grammar could not read has not been checked, which is not the same
+    # as having been read and found clean.
+    if not raw_base or not raw_head:
+        return _result(
+            "P7", "gate integrity", "NOT_PARSEABLE", evidence,
+            "no '## P2-' gate heading found at "
+            + ("base" if not raw_base else "head")
+            + "; the gate registry could not be read, which is not the same "
+              "as having been read and found unchanged",
+        )
+    # EQUALITY, not merely non-zero. A grammar that reads fourteen of fifteen
+    # headings would otherwise PASS on the fourteen it sees, while the one it
+    # misses stays invisible -- and one unseen gate is enough.
+    if len(before) != len(raw_base) or len(after) != len(raw_head):
+        evidence = dict(evidence)
+        for label, raw in (("base", raw_base), ("head", raw_head)):
+            matches = [GATE_HEADING.match(line) for line in raw]
+            evidence[f"unrecognised_headings_{label}"] = [
+                line for line, m in zip(raw, matches) if not m
+            ]
+            ids = [m.group(1) for m in matches if m]
+            # A heading the grammar reads twice collapses in the section map,
+            # so the counts can differ with nothing unrecognised.
+            evidence[f"duplicate_ids_{label}"] = sorted(
+                {name for name in ids if ids.count(name) > 1}
+            )
+        return _result(
+            "P7", "gate integrity", "NOT_PARSEABLE", evidence,
+            "parsed gate sections do not equal the independently counted "
+            "'## P2-' headings "
+            f"(base {len(before)}/{len(raw_base)}, "
+            f"head {len(after)}/{len(raw_head)}); the grammar cannot fully "
+            "read the gate registry, which is not a finding that a gate "
+            "changed without authorisation",
+        )
     ok = not changed and not added and not removed
     return _result("P7", "gate integrity", "PASS" if ok else "FAIL", evidence)
 
