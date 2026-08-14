@@ -8,6 +8,11 @@ defect occurred in ``3-vector-sector``).
 import re
 from pathlib import Path
 
+from scripts.governance_tools.task_checker import (
+    GATE_ID_TOKEN,
+    gate_heading_ids,
+)
+
 ROOT = Path(__file__).resolve().parents[1]
 
 REQUIRED_TOP_LEVEL_FILES = {
@@ -143,16 +148,22 @@ def _cited_gate_ids() -> set:
     for line in text.splitlines():
         if not line.strip().startswith("|"):
             continue
-        for tok in re.findall(r"P2-[A-Z]+(?:-[A-Z]+)*-\d+", line):
+        for tok in GATE_ID_TOKEN.findall(line):
             ids.add(tok)
     return ids
 
 
 def _gate_headings() -> set:
-    """Gate IDs that have a '## <ID>' heading in GATES.md."""
+    """Gate IDs that have a gate heading in GATES.md.
+
+    The grammar lives in ``scripts.governance_tools.task_checker`` and this
+    module no longer carries one. Two expressions used to read this registry
+    and agreed by coincidence; the shared helper is what replaces the
+    coincidence, and ``test_both_gate_heading_call_sites_agree`` is what
+    checks the replacement held.
+    """
     text = (ROOT / "GATES.md").read_text(encoding="utf-8")
-    pattern = r"^##\s+(P2-[A-Z]+(?:-[A-Z]+)*-\d+)"
-    return set(re.findall(pattern, text, flags=re.MULTILINE))
+    return set(gate_heading_ids(text))
 
 
 def test_every_cited_gate_id_has_a_gates_heading() -> None:
@@ -164,3 +175,56 @@ def test_every_cited_gate_id_has_a_gates_heading() -> None:
         f"CLAIMS.md cites gate IDs with no '## <ID>' heading in GATES.md: "
         f"{dangling}"
     )
+
+
+# ---------------------------------------------------------------------------
+# The agreement invariant that replaces a coincidence
+#
+# Two expressions used to read GATES.md -- the checker's and this module's --
+# and they agreed. Nothing checked that they agreed, so the agreement was a
+# coincidence that a convention change on either side would have ended
+# silently. Both call sites now share one helper, and this test is what
+# establishes that they still do.
+# ---------------------------------------------------------------------------
+def test_both_gate_heading_call_sites_agree() -> None:
+    """The checker and this module read the SAME id set from GATES.md.
+
+    The empty set must not pass. A test that agrees on nothing agrees, which
+    is the shape P7's completeness invariant and the pin validator's non-empty
+    assertion both already guard against -- this is the third instance and it
+    gets the same guard rather than a weaker one.
+    """
+    text = (ROOT / "GATES.md").read_text(encoding="utf-8")
+
+    # Call site 1: the checker's section parser, reached through the helper.
+    from_checker = set(gate_heading_ids(text))
+    # Call site 2: this module's own accessor, which now calls the same helper.
+    from_structure = _gate_headings()
+
+    assert from_checker, (
+        "no gate heading found in GATES.md: either the heading convention "
+        "changed or the shared grammar stopped matching, and in both cases "
+        "this invariant is comparing two empty sets and asserting nothing"
+    )
+    assert from_checker == from_structure, (
+        "the two gate-heading call sites disagree: "
+        f"only the checker sees {sorted(from_checker - from_structure)}, "
+        f"only the structure test sees {sorted(from_structure - from_checker)}"
+    )
+
+
+def test_the_shared_grammar_is_the_conjunction_of_the_two_it_replaced() -> None:
+    """The canonical language is tighter than both expressions it replaced.
+
+    These three shapes are what separated them, measured before the change.
+    Each is now rejected: the conjunction requires the strict id shape AND a
+    separator followed by a non-empty title.
+    """
+    for heading in (
+        "## P2-FOO2-01 — Title",   # a digit inside an id segment
+        "## P2-BAR-01",            # no separator, no title
+        "## P2-BAZ-01 — ",         # separator, empty title
+    ):
+        assert not gate_heading_ids(heading), heading
+    # And a well-formed heading is still read.
+    assert gate_heading_ids("## P2-FOO-01 — Title") == ["P2-FOO-01"]
