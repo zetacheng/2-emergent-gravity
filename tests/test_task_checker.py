@@ -19,6 +19,8 @@ from scripts.governance_tools.task_checker import (
     GATE_HEADING,
     RAW_GATE_HEADING,
     evaluate,
+    gate_heading_id,
+    gate_heading_ids,
     parse_scope_block,
 )
 from scripts.governance_tools.task_checker import main as checker_main
@@ -434,7 +436,7 @@ def test_p3_passes_when_the_declared_file_is_only_appended_to(tmp_path):
            "docs: append")
     record = prop(check(repo, base, append_only_paths=["DECISION_LOG.md"]), "P3")
     assert record["status"] == "PASS"
-    assert record["evidence"][0]["base_is_byte_prefix_of_head"] is True
+    assert record["evidence"]["paths"][0]["base_is_byte_prefix_of_head"] is True
 
 
 def test_p3_fails_on_a_deletion(tmp_path):
@@ -451,7 +453,7 @@ def test_p3_fails_on_a_rewrite_that_deletes_no_net_lines(tmp_path):
            "docs: rewrite one line and append another")
     record = prop(check(repo, base, append_only_paths=["DECISION_LOG.md"]), "P3")
     assert record["status"] == "FAIL"
-    assert record["evidence"][0]["base_is_byte_prefix_of_head"] is False
+    assert record["evidence"]["paths"][0]["base_is_byte_prefix_of_head"] is False
 
 
 def test_p3_not_told_a_file_is_append_only_must_not_silently_pass(tmp_path):
@@ -988,3 +990,192 @@ def test_real_history_register_is_read_from_the_shipped_policy(tmp_path):
         "review/role-model-and-executors",
         "gate/p2-land-diquark-line",
     }
+
+
+# ---------------------------------------------------------------------------
+# C1 -- one gate-heading grammar
+#
+# Two expressions read this registry and agreed by coincidence. The canonical
+# language is now the CONJUNCTION of the two, in one helper both call sites
+# use. It is strictly tighter than either, and anything it rejects surfaces
+# through P7's completeness invariant rather than disappearing -- which is the
+# property these fixtures exist to hold.
+# ---------------------------------------------------------------------------
+def test_the_helper_reads_the_real_gates_file():
+    """REGRESSION. The shipped GATES.md, through the helper: fourteen ids."""
+    text = (ROOT / "GATES.md").read_text(encoding="utf-8")
+    ids = gate_heading_ids(text)
+    assert len(ids) == 14, f"expected 14 gate headings, read {len(ids)}"
+    assert len(set(ids)) == 14, "duplicate gate id in GATES.md"
+
+
+def test_the_helper_is_the_conjunction_and_rejects_what_separated_the_two():
+    """CHANGE-DISCRIMINATING. Each shape was accepted by exactly one side."""
+    assert gate_heading_id("## P2-FOO2-01 — Title") is None   # digit in a segment
+    assert gate_heading_id("## P2-BAR-01") is None             # no separator
+    assert gate_heading_id("## P2-BAZ-01 — ") is None          # empty title
+    assert gate_heading_id("## P2-FOO-01 — Title") == "P2-FOO-01"
+    assert gate_heading_id("## P2-A-B-01 — T") == "P2-A-B-01"
+
+
+def test_a_digit_inside_an_id_segment_surfaces_through_p7(tmp_path):
+    """CHANGE-DISCRIMINATING. Tightening is safe because P7 reports the loss."""
+    repo, base = base_repo_with_gates(
+        tmp_path,
+        gates_with("## P2-ALPHA-01 — Alpha gate", "## P2-FOO2-01 — Title"),
+    )
+    commit(repo, {"notes.txt": "x\n"}, "chore: unrelated")
+    record = prop(check(repo, base, authorised_modified_gates=[]), "P7")
+    assert record["status"] == "NOT_PARSEABLE"
+    assert record["evidence"]["raw_heading_count_base"] == 2
+    assert record["evidence"]["section_count_base"] == 1
+    assert record["evidence"]["unrecognised_headings_base"] == ["## P2-FOO2-01 — Title"]
+
+
+def test_a_heading_with_no_title_surfaces_through_p7(tmp_path):
+    """REGRESSION. The landed grammar already rejected this; it still does."""
+    repo, base = base_repo_with_gates(
+        tmp_path, gates_with("## P2-ALPHA-01 — Alpha gate", "## P2-BAZ-01 — ")
+    )
+    commit(repo, {"notes.txt": "x\n"}, "chore: unrelated")
+    record = prop(check(repo, base, authorised_modified_gates=[]), "P7")
+    assert record["status"] == "NOT_PARSEABLE"
+    assert record["evidence"]["section_count_base"] == 1
+
+
+# ---------------------------------------------------------------------------
+# C3 -- declared sets a reviewer sees
+#
+# P3's and P7's declared sets came from a run-time config written after the
+# review. They now come from the specification's scope block, where a reviewer
+# read them; config is a fallback, and disagreement is a conflict rather than
+# a silent override.
+# ---------------------------------------------------------------------------
+def declaring_spec(paths: list[str], append_only: str, gates: str = "[]") -> str:
+    """A fixture specification whose scope block declares its own sets."""
+    body = "\n".join(f"      {p}" for p in paths)
+    return f"""# Task specification -- fixture
+
+## 6. Acceptance criteria
+
+    stated: {len(paths)} additions, 0 modifications
+    base: X
+    head: Y
+    mode: exact
+    add:
+{body}
+    modify: []
+    append_only: {append_only}
+    authorised_gates: {gates}
+    forbidden_operations:
+      delete, rename
+"""
+
+
+def test_p3_uses_the_declaration_in_the_scope_block(tmp_path):
+    """CHANGE-DISCRIMINATING. No config at all, and P3 still has a subject."""
+    repo, base = base_repo(tmp_path)
+    spec = declaring_spec(["a.py"], "\n      DECISION_LOG.md")
+    commit(repo, {"specs/s.md": spec, "a.py": "x\n"}, "spec: fixture")
+    record = prop(check(repo, base), "P3")
+    assert record["status"] == "PASS"
+    assert record["evidence"]["declared_source"] == "specification"
+    assert record["evidence"]["declared"] == ["DECISION_LOG.md"]
+
+
+def test_p3_says_when_the_value_came_from_config(tmp_path):
+    """REGRESSION. Config-only still works, and now says so in the JSON."""
+    repo, base = base_repo(tmp_path)
+    commit(repo, {"notes.txt": "x\n"}, "chore: unrelated")
+    record = prop(check(repo, base, append_only_paths=["DECISION_LOG.md"]), "P3")
+    assert record["status"] == "PASS"
+    assert record["evidence"]["declared_source"] == "config"
+    assert record["evidence"]["declared_by_specification"] is None
+
+
+def test_a_specification_and_a_config_that_differ_is_a_conflict(tmp_path):
+    """CHANGE-DISCRIMINATING. Not a merge, not a silent override.
+
+    The range is ordered specification-then-review so P2 and P8 are both
+    satisfied and the conflict is the ONLY non-green result: the run is
+    INCOMPLETE *because of* the conflict and not incidentally.
+    """
+    repo, base = base_repo(tmp_path)
+    spec = declaring_spec(["specs/s.md"], "\n      DECISION_LOG.md")
+    commit(repo, {"specs/s.md": spec}, "spec: fixture")
+    commit(repo, {"reviews/chatgpt/r.md": "approved\n"}, "review: fixture")
+    result = check(repo, base, append_only_paths=["GATES.md"])
+    record = prop(result, "P3")
+    assert record["status"] == "DECLARATION_CONFLICT"
+    assert "disagree" in record["reason"]
+    assert record["evidence"]["declared_by_specification"] == ["DECISION_LOG.md"]
+    assert record["evidence"]["supplied_by_config"] == ["GATES.md"]
+    assert result["overall"] == "INCOMPLETE"
+
+
+def test_a_specification_and_a_config_that_agree_is_not_a_conflict(tmp_path):
+    """REGRESSION. Agreement is the ordinary case and must stay quiet."""
+    repo, base = base_repo(tmp_path)
+    spec = declaring_spec(["a.py"], "\n      DECISION_LOG.md")
+    commit(repo, {"specs/s.md": spec, "a.py": "x\n"}, "spec: fixture")
+    record = prop(
+        check(repo, base, append_only_paths=["DECISION_LOG.md"]), "P3")
+    assert record["status"] == "PASS"
+    assert record["evidence"]["declared_source"] == "specification"
+
+
+def test_an_empty_declaration_is_declared_empty_and_not_a_pass(tmp_path):
+    """CHANGE-DISCRIMINATING, and the point of C3.
+
+    The old code returned NOT_APPLICABLE for an empty set -- the check off,
+    not passed -- and one landed integration went green that way.
+    """
+    repo, base = base_repo(tmp_path)
+    spec = declaring_spec(["a.py"], "[]")
+    commit(repo, {"specs/s.md": spec, "a.py": "x\n"}, "spec: fixture")
+    result = check(repo, base)
+    record = prop(result, "P3")
+    assert record["status"] == "DECLARED_EMPTY"
+    assert record["status"] != "PASS"
+    assert record["status"] != "NOT_APPLICABLE"
+    assert "nothing was declared applicable" in record["reason"]
+    # A valid declaration, unlike NOT_DECLARED: the run continues.
+    assert result["overall"] != "INCOMPLETE"
+
+
+def test_no_declaration_anywhere_is_still_not_declared(tmp_path):
+    """REGRESSION. Absence and emptiness must not share an outcome."""
+    repo, base = reviewed_base(tmp_path)
+    commit(repo, {"DECISION_LOG.md": "# Decision Log\n"}, "docs: truncate")
+    result = check(repo, base)
+    record = prop(result, "P3")
+    assert record["status"] == "NOT_DECLARED"
+    assert record["evidence"]["declared_source"] == "none"
+    assert result["overall"] == "INCOMPLETE"
+
+
+def test_p7_reads_its_authorised_set_from_the_scope_block(tmp_path):
+    """CHANGE-DISCRIMINATING. P7's declared set is reviewable too."""
+    repo, base = base_repo(tmp_path)
+    edited = (
+        "# Gates\n\n"
+        "## P2-ALPHA-01 — Alpha gate\n\nStatus: PASS\n\nbody alpha EDITED\n\n"
+        "## P2-BETA-01 — Beta gate\n\nStatus: PROPOSED\n\nbody beta\n"
+    )
+    spec = declaring_spec(["a.py"], "[]", "\n      P2-ALPHA-01")
+    commit(repo, {"specs/s.md": spec, "a.py": "x\n", "GATES.md": edited},
+           "spec: fixture authorising one gate")
+    record = prop(check(repo, base), "P7")
+    assert record["status"] == "PASS"
+    assert record["evidence"]["declared_source"] == "specification"
+    assert record["evidence"]["authorised_modified"] == ["P2-ALPHA-01"]
+
+
+def test_a_non_gate_id_under_authorised_gates_is_not_parseable(tmp_path):
+    """CHANGE-DISCRIMINATING. The key has a shape and it is enforced."""
+    repo, base = base_repo(tmp_path)
+    spec = declaring_spec(["a.py"], "[]", "\n      not-a-gate")
+    commit(repo, {"specs/s.md": spec, "a.py": "x\n"}, "spec: fixture")
+    record = prop(check(repo, base), "P1")
+    assert record["status"] == "NOT_PARSEABLE"
+    assert "not a gate id" in record["evidence"][0]["detail"]

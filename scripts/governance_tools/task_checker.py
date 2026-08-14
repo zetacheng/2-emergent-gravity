@@ -12,11 +12,26 @@ Result vocabulary, deliberately wider than pass/fail:
 ``NOT_APPLICABLE``  the subject genuinely does not occur in the range
 ``NOT_DECLARED``    the subject set was not supplied by the caller
 ``NOT_PARSEABLE``   the input did not admit the property's grammar
+``DECLARED_EMPTY``  the subject set was declared, and is empty
+``DECLARATION_CONFLICT``
+                    the specification and the config both declared the
+                    subject set and they differ
 ``OUT_OF_SCOPE``    excluded by the prospectivity boundary
 
-``NOT_DECLARED`` and ``NOT_PARSEABLE`` make the run INCOMPLETE and exit
-non-zero: a missing subject must never read as green. ``NOT_APPLICABLE``
-does not, because a range with no merge genuinely has no P5 subject.
+``NOT_DECLARED``, ``NOT_PARSEABLE`` and ``DECLARATION_CONFLICT`` make the run
+INCOMPLETE and exit non-zero: a missing or contradicted subject must never
+read as green. ``NOT_APPLICABLE`` does not, because a range with no merge
+genuinely has no P5 subject.
+
+``DECLARED_EMPTY`` does NOT make the run INCOMPLETE, and the distinction is
+deliberate. It is a VALID declaration -- the specification said the applicable
+set is empty -- unlike ``NOT_DECLARED``, where the specification said nothing.
+The run continues. It is equally not ``PASS``: nothing was checked, and a
+``PASS`` over nothing is the vacuous green this repository has met three times
+(P7 over two empty maps, a pin validator that would have passed on zero pins,
+and P3's own former reading of ``[]`` as NOT_APPLICABLE). A reader of the JSON
+sees ``DECLARED_EMPTY`` and its reason, so a valid empty declaration cannot be
+mistaken for a successful non-empty verification.
 """
 
 from __future__ import annotations
@@ -81,7 +96,87 @@ DOES_NOT_ESTABLISH = {
 }
 
 PARTIAL_IDS = frozenset(DOES_NOT_ESTABLISH)
-NON_GREEN = frozenset({"NOT_DECLARED", "NOT_PARSEABLE"})
+NON_GREEN = frozenset({"NOT_DECLARED", "NOT_PARSEABLE", "DECLARATION_CONFLICT"})
+
+
+class Supply:
+    """Where a declared set came from, and whether the sources agree.
+
+    A specification declares its sets in its scope block, where a reviewer
+    reads them. A config supplies them at run time, after the review. **The
+    specification wins when both are present and agree.** When both are
+    present and DIFFER that is a conflict, not a merge and not a silent
+    override -- a config quietly overriding a reviewed declaration would
+    reproduce, one layer along, the defect this mechanism exists to remove.
+    """
+
+    def __init__(self, key: str, from_spec: Any, spec_paths: list[str],
+                 from_config: Any) -> None:
+        self.key = key
+        self.from_spec = from_spec
+        self.spec_paths = spec_paths
+        self.from_config = from_config
+        self.conflict = ""
+        if from_spec is not None and from_config is not None:
+            if [normalize_repo_path(str(v)) for v in from_spec] != [
+                normalize_repo_path(str(v)) for v in from_config
+            ]:
+                self.conflict = (
+                    f"'{key}' is declared by the specification as "
+                    f"{list(from_spec)!r} and supplied by config as "
+                    f"{list(from_config)!r}. A reviewed declaration and a "
+                    "run-time config disagree; this is a stop, not a merge, "
+                    "and not a silent override."
+                )
+            self.source = "specification"
+            self.value = from_spec
+        elif from_spec is not None:
+            self.source = "specification"
+            self.value = from_spec
+        elif from_config is not None:
+            self.source = "config"
+            self.value = from_config
+        else:
+            self.source = "none"
+            self.value = None
+
+    def evidence(self) -> dict[str, Any]:
+        return {
+            "declared_key": self.key,
+            "declared_source": self.source,
+            "declared_by_specification": self.from_spec,
+            "supplied_by_config": self.from_config,
+            "specification_paths_read": self.spec_paths,
+            "declared": self.value,
+        }
+
+
+def _declarations_from_specs(
+    repo: Path, specs: list[str], head: str, key: str
+) -> tuple[Any, list[str]]:
+    """The value ``key`` takes from the subject specifications, if any.
+
+    Two subject specifications declaring DIFFERENT values is the same conflict
+    as a specification differing from config, and is reported the same way.
+    """
+    seen: list[tuple[str, Any]] = []
+    for path in specs:
+        if not path_exists_at_revision(repo, head, path):
+            continue
+        parsed = parse_scope_block(blob(repo, head, path).decode("utf-8"))
+        if parsed.get("parse") != "OK":
+            continue
+        if parsed.get(key) is not None:
+            seen.append((path, parsed[key]))
+    if not seen:
+        return None, [p for p, _ in seen]
+    values = [v for _, v in seen]
+    if any(v != values[0] for v in values[1:]):
+        raise InputError(
+            f"subject specifications declare different '{key}' values: "
+            + "; ".join(f"{p}={v!r}" for p, v in seen)
+        )
+    return values[0], [p for p, _ in seen]
 
 
 def _commits(repo: Path, base: str, head: str) -> list[str]:
@@ -153,9 +248,21 @@ def _result(
 # which is why this module carries no prose-count pattern: "nearest preceding
 # count" selected an author's intermediate dry-run sentence often enough that
 # the property it tested was not the property it claimed.
+#
+# ``append_only`` and ``authorised_gates`` put P3's and P7's declared sets
+# INSIDE THE ARTIFACT A REVIEWER READS. They were previously supplied by a
+# run-time JSON config written after the review, so the reviewer approved a
+# specification and something else decided what the checks were pointed at.
 SCOPE_KEYS = ("stated", "base", "head", "mode", "add", "modify",
+              "append_only", "authorised_gates",
               "forbidden_operations")
 _KEY = re.compile(r"^(" + "|".join(SCOPE_KEYS) + r"):")
+
+#: Keys whose value is a declared SET: absent, explicitly empty, or a list.
+#: The three are distinguishable, which is the whole point -- ``[]`` is a
+#: declaration that the applicable set is empty, and absence is a declaration
+#: of nothing.
+DECLARED_SET_KEYS = ("append_only", "authorised_gates")
 
 # A ``stated:`` value is a comma-separated list of "<decimal> <noun>" items,
 # each noun at most once. Number words are not accepted: a declaration read by
@@ -190,6 +297,17 @@ def _parse_stated(value: str) -> tuple[dict[str, int] | None, str]:
     return counts, ""
 
 
+def _declared_item(key: str, value: str) -> tuple[str | None, str]:
+    """One item of a declared set, validated against that key's shape."""
+    if key == "append_only":
+        if not _PATH.match(value):
+            return None, f"not a path under 'append_only:': {value!r}"
+        return value, ""
+    if not re.fullmatch(GATE_ID, value):
+        return None, f"not a gate id under 'authorised_gates:': {value!r}"
+    return value, ""
+
+
 def parse_scope_block(text: str) -> dict[str, Any]:
     """Locate the scope block, its counted set, and its DECLARED total.
 
@@ -219,6 +337,10 @@ def parse_scope_block(text: str) -> dict[str, Any]:
     counted_add: list[str] = []
     counted_modify: list[str] = []
     bucket = {"add": counted_add, "modify": counted_modify}
+    # ``None`` means the key was absent; a list means it was declared, and an
+    # empty list means it was declared empty. Absence and emptiness must not
+    # collapse into one value here, because P3 gives them different outcomes.
+    declared: dict[str, list[str] | None] = {k: None for k in DECLARED_SET_KEYS}
     stated_line = None
     stated: dict[str, int] | None = None
     key = None
@@ -245,10 +367,26 @@ def parse_scope_block(text: str) -> dict[str, Any]:
                     return _unparseable(why)
                 stated_line = stripped
                 continue
+            if key in DECLARED_SET_KEYS:
+                if declared[key] is not None:
+                    return _unparseable(f"two '{key}:' records in the scope block")
+                declared[key] = []
+                if tail and tail != "[]":
+                    item, why = _declared_item(key, tail)
+                    if item is None:
+                        return _unparseable(why)
+                    declared[key].append(item)
+                continue
             if key in bucket and tail and tail != "[]":
                 if not _PATH.match(tail):
                     return _unparseable(f"not a path under '{key}:': {tail!r}")
                 bucket[key].append(tail)
+            continue
+        if key in DECLARED_SET_KEYS:
+            item, why = _declared_item(key, stripped)
+            if item is None:
+                return _unparseable(why)
+            declared[key].append(item)
             continue
         if key in bucket:
             if not _PATH.match(stripped):
@@ -266,6 +404,8 @@ def parse_scope_block(text: str) -> dict[str, Any]:
         "stated_add": stated.get("additions", 0),
         "stated_modify": stated.get("modifications", 0),
         "stated": stated.get("additions", 0) + stated.get("modifications", 0),
+        "append_only": declared["append_only"],
+        "authorised_gates": declared["authorised_gates"],
     }
 
 
@@ -337,16 +477,29 @@ def check_p2(repo: Path, commits: list[str], in_scope: list[str]) -> dict[str, A
 # P3 — append-only, on both measures
 # ---------------------------------------------------------------------------
 def check_p3(
-    repo: Path, base: str, head: str, commits: list[str], declared: Any
+    repo: Path, base: str, head: str, commits: list[str], supply: "Supply"
 ) -> dict[str, Any]:
+    if supply.conflict:
+        return _result("P3", "append-only on both measures",
+                       "DECLARATION_CONFLICT", supply.evidence(), supply.conflict)
+    declared = supply.value
     if declared is None:
-        return _result("P3", "append-only on both measures", "NOT_DECLARED", {},
-                       "no append_only_paths supplied; the set is not inferred")
+        return _result("P3", "append-only on both measures", "NOT_DECLARED",
+                       supply.evidence(),
+                       "no append-only set declared by the specification or "
+                       "supplied by config; the set is not inferred")
     paths = [normalize_repo_path(p) for p in declared]
     if not paths:
-        return _result("P3", "append-only on both measures", "NOT_APPLICABLE",
-                       {"declared": []},
-                       "caller declared an empty append-only set for this range")
+        # DECLARED_EMPTY, and deliberately neither NOT_APPLICABLE nor PASS.
+        # An empty declared set is something the specification SAID; absence is
+        # something it did not say, and the two must not share an outcome. It
+        # is not PASS either: nothing was checked, and PASS over nothing is the
+        # vacuous green this repository has now met three times.
+        return _result("P3", "append-only on both measures", "DECLARED_EMPTY",
+                       supply.evidence(),
+                       "nothing was checked because nothing was declared "
+                       "applicable: the declared append-only set is empty, "
+                       "which is a declaration and not an exemption")
     findings = []
     for path in paths:
         numstat = str(git(repo, "diff", "--numstat", base, head, "--", path))
@@ -385,7 +538,9 @@ def check_p3(
                          "base_is_byte_prefix_of_head": prefix, **sizes,
                          "status": "PASS" if ok else "FAIL"})
     status = "FAIL" if any(f["status"] == "FAIL" for f in findings) else "PASS"
-    return _result("P3", "append-only on both measures", status, findings)
+    evidence = supply.evidence()
+    evidence["paths"] = findings
+    return _result("P3", "append-only on both measures", status, evidence)
 
 
 # ---------------------------------------------------------------------------
@@ -527,18 +682,63 @@ def check_p6(repo: Path, commits: list[str]) -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 # P7 — gate integrity
 # ---------------------------------------------------------------------------
-# The real headings are ``## <id> <separator> <title>``. The separator is an
-# em dash in every heading of the landed ``GATES.md``; an en dash and a plain
-# hyphen are accepted as well so that a reasonable author is not silently
-# unread. A title is REQUIRED: a bare ``## P2-ID`` with nothing after it is
-# deliberately NOT matched, so that the shape the previous grammar accepted --
-# and which no real heading uses -- cannot pass as a gate section. Anything a
-# heading grammar fails to match is caught by the completeness invariant in
-# ``check_p7`` and reported NOT_PARSEABLE, never silently dropped.
+# THE ONE GATE-HEADING GRAMMAR.
+#
+# This repository carried TWO expressions reading the same registry: this one,
+# and ``tests/test_repository_structure.py``'s. They returned the same fourteen
+# ids and their symmetric difference was empty -- by coincidence, not by
+# construction. They were not the same language, and three shapes separated
+# them in both directions:
+#
+#     '## P2-FOO2-01 - Title'   this one accepted, the structure test rejected
+#     '## P2-BAR-01'            this one rejected, the structure test accepted
+#     '## P2-BAZ-01 - '         this one rejected, the structure test accepted
+#
+# Nothing compared them, so a convention changed on one side would have left
+# the other reading a different registry, silently.
+#
+# The canonical language is the CONJUNCTION of the two, and both call sites now
+# use this module. It is STRICTLY TIGHTER than either, so every heading it
+# accepts both former expressions already accepted: the consolidation cannot
+# admit anything neither side admitted. Each side contributed a real check --
+# the strict id shape encodes a naming convention, the title requirement
+# encodes that a registry entry without a title is not usable -- and dropping
+# either would have lost one.
+#
+# Anything the tightened grammar rejects does not disappear. ``check_p7``'s
+# completeness invariant compares parsed sections against the independent raw
+# ``^## P2-`` count and returns NOT_PARSEABLE when they differ, which is what
+# makes tightening safe.
+GATE_ID = r"P2-[A-Z]+(?:-[A-Z]+)*-\d+"
 GATE_SEPARATORS = "—–-"  # EM DASH, EN DASH, HYPHEN-MINUS
 GATE_HEADING = re.compile(
-    r"^## (P2-[A-Z0-9-]+)[ \t]+[—–-][ \t]+\S.*$"
+    rf"^## ({GATE_ID})[ \t]+[—–-][ \t]+\S.*$"
 )
+#: The gate id shape alone, for callers matching ids in running text rather
+#: than headings. Shares :data:`GATE_ID` with the heading grammar so the two
+#: cannot drift.
+GATE_ID_TOKEN = re.compile(GATE_ID)
+
+
+def gate_heading_id(line: str) -> str | None:
+    """The gate id this line declares as a heading, or ``None``.
+
+    The single entry point for "is this a gate heading, and which gate". Both
+    the checker and the repository-structure test call it; neither carries an
+    expression of its own.
+    """
+    match = GATE_HEADING.match(line)
+    return match.group(1) if match else None
+
+
+def gate_heading_ids(text: str) -> list[str]:
+    """Every gate id declared by a heading in ``text``, in file order.
+
+    Order is preserved and duplicates are kept: a registry declaring one id
+    twice is a defect ``check_p7``'s completeness invariant reports, and
+    de-duplicating here would hide it.
+    """
+    return [gid for gid in (gate_heading_id(l) for l in text.split("\n")) if gid]
 
 # Deliberately NOT written in terms of ``GATE_HEADING``. This is the cheap
 # independent signal the completeness invariant is measured against: a guard
@@ -565,12 +765,17 @@ def raw_gate_headings(repo: Path, revision: str, path: str) -> list[str]:
 
 
 def check_p7(
-    repo: Path, base: str, head: str, gates_path: str, authorised: Any
+    repo: Path, base: str, head: str, gates_path: str, supply: "Supply"
 ) -> dict[str, Any]:
+    if supply.conflict:
+        return _result("P7", "gate integrity", "DECLARATION_CONFLICT",
+                       supply.evidence(), supply.conflict)
+    authorised = supply.value
     if authorised is None:
-        return _result("P7", "gate integrity", "NOT_DECLARED", {},
-                       "no authorised_modified_gates supplied; the set is not "
-                       "inferred")
+        return _result("P7", "gate integrity", "NOT_DECLARED",
+                       supply.evidence(),
+                       "no authorised gate set declared by the specification "
+                       "or supplied by config; the set is not inferred")
     if not path_exists_at_revision(repo, base, gates_path):
         return _result("P7", "gate integrity", "NOT_APPLICABLE",
                        {"gates_path": gates_path}, "gate file absent at base")
@@ -587,6 +792,7 @@ def check_p7(
     added = sorted(set(after) - set(before))
     removed = sorted(set(before) - set(after))
     evidence = {
+        **supply.evidence(),
         "gates_path": gates_path,
         "authorised_modified": sorted(allowed),
         "raw_heading_count_base": len(raw_base),
@@ -741,17 +947,30 @@ def evaluate(repo: Path, config: dict[str, Any]) -> dict[str, Any]:
             and (inclusivity == INCLUSIVE or c != boundary_sha)
         ]
 
+    subject_specs = config.get("specification_paths") or _added_specs(
+        repo, commits)
+    # C3: the declared sets are read from the subject specifications FIRST --
+    # where a reviewer saw them -- and from the run-time config only as a
+    # fallback. Disagreement is a conflict, reported by the property.
+    spec_append, append_paths = _declarations_from_specs(
+        repo, subject_specs, head_sha, "append_only")
+    spec_gates, gates_paths = _declarations_from_specs(
+        repo, subject_specs, head_sha, "authorised_gates")
+    append_supply = Supply("append_only", spec_append, append_paths,
+                           config.get("append_only_paths"))
+    gates_supply = Supply("authorised_gates", spec_gates, gates_paths,
+                          config.get("authorised_modified_gates"))
+
     properties = [
-        check_p1(repo, config.get("specification_paths") or _added_specs(
-            repo, commits), head_sha),
+        check_p1(repo, subject_specs, head_sha),
         check_p2(repo, own, in_scope),
-        check_p3(repo, base_sha, head_sha, commits, config.get("append_only_paths")),
+        check_p3(repo, base_sha, head_sha, commits, append_supply),
         check_p4(repo, head_sha,
                  config.get("register_path", "docs/BRANCHING_POLICY.md")),
         check_p5(repo, own, config.get("recorded_merge_facts")),
         check_p6(repo, commits),
         check_p7(repo, base_sha, head_sha, config.get("gates_path", "GATES.md"),
-                 config.get("authorised_modified_gates")),
+                 gates_supply),
         check_p8(repo, in_scope),
         check_p9(repo, head_sha, in_scope),
     ]
