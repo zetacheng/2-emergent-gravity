@@ -50,9 +50,10 @@ under each.
 **These sentences are the checker's `does_not_establish` field verbatim.**
 
 - **P1** — *Does not establish that the manifest is correct, only that
-  its path count matches the count in the sentence the grammar selects as
-  governing; a specification whose text does not admit the parse is
-  reported NOT_PARSEABLE, which is not a pass.*
+  the total the specification declares in its `stated:` record agrees,
+  per category, with the paths that record's block enumerates; a
+  specification declaring no total is reported NOT_PARSEABLE, which is
+  not a pass and is not a finding about that specification's scope.*
 - **P3** — *Does not establish which files are append-only; the declared
   set is a caller-supplied parameter and the check is silent about
   whether that set is the right one, or complete.*
@@ -212,11 +213,27 @@ is a `SHOULD` about how much work belongs in one task.
 
 **Rule 12 — Acceptance criteria must be mechanically checkable.**
 `PARTIAL` via **P1**. **One recurring instance is decidable** — a scope
-manifest's path count against the sentence that governs it — and that
-instance is the defect shape which recurred four times in this
-programme. **Whether every criterion in a specification has a
-machine-executable verification is not decidable**; P1 checks one
-criterion's internal arithmetic, not the rule.
+manifest's path count against the total the block itself declares in a
+`stated:` record — and that instance is the defect shape which recurred
+four times in this programme. **No sentence is consulted**; a document
+that declares no total is not judged. **Whether every criterion in a
+specification has a machine-executable verification is not decidable**;
+P1 checks one criterion's internal arithmetic, not the rule.
+
+**P1's decidability is narrow, and it was measured, not assumed.** P1 is
+decidable only over specifications written in the declared-total syntax.
+**Forty-two fixtures did not establish behaviour over real documents; one
+corpus run did.** Over the twenty-nine specifications carrying exactly
+one scope block at `1cb5550f`, **the pre-repair pass rate was ten**, and
+the nineteen non-passes were not defects in those documents: sixteen
+found no count sentence at all, because the backward walk stopped at the
+nearest markdown heading, and three took an intermediate dry-run count
+for the manifest's. **After the repair those twenty-nine are
+`NOT_PARSEABLE`.** **`NOT_PARSEABLE` is not a pass and is not a failure;
+P1 has made no determination about those documents at all**, and a corpus
+reading `NOT_PARSEABLE` throughout has not been checked. **Adoption of
+the syntax by convention is a separate matter this classification does
+not record as done.**
 
 **Rule 13 — Execution environment.** `JUDGEMENT`. It governs which
 diagnostic order an executor follows on failure, and **it carries two
