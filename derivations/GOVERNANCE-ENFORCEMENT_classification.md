@@ -41,7 +41,7 @@ under each.
 | P4 | superseded branches are not merged | MECHANICAL | Amendment K |
 | P5 | merge parentage against freshly recomputed facts | PARTIAL | Rule 5 (part) |
 | P6 | commit-message hygiene | PARTIAL | **no rule** — see §3 |
-| P7 | gate integrity | PARTIAL | Rule 3 (part) |
+| P7 | gate integrity — every `## P2-` heading is parsed, and no unauthorised section changed | PARTIAL | Rule 3 (part) |
 | P8 | Rule 15 placement and specification-first | MECHANICAL | Rule 15 (placement) |
 | P9 | every report carries "Stops and clarifications" | MECHANICAL | Amendment B |
 
@@ -69,6 +69,42 @@ under each.
   change; the authorised set is a caller-supplied parameter, and an empty
   set means "nothing may change", never "nothing to check".*
 
+**P7's limitation, extended by measurement rather than by argument.** The
+paragraph below is **not** part of the `does_not_establish` field quoted
+above; it records what `P7` was found to be doing, and what now prevents it.
+
+**`P7` returned `PASS` while checking nothing, in every task that ran it.**
+Its heading grammar was `^## (P2-[A-Z0-9-]+)\s*$`, which requires the line to
+end after the gate id. **Every one of the fourteen headings in `GATES.md` is
+`## <id> — <title>`, so the expression matched none of them**: `gate_sections`
+returned an empty map at both base and head, `check_p7` compared two empty
+maps, found nothing changed, and returned `PASS`. **Among the tasks that
+green were two which modified `GATES.md` and one which flipped a gate
+prerequisite.** **An empty match returning True is the most dangerous kind of
+green, and it was demonstrated in the tool built to prevent it.**
+
+**What prevents the recurrence is the completeness invariant, not the new
+grammar.** A better grammar closes the instance; **only the invariant closes
+the class.** `check_p7` now counts `## P2-` lines through a pattern written
+independently of the grammar it guards, and returns **`NOT_PARSEABLE` unless
+the parsed section count EQUALS that raw count, at base and at head.**
+**Equality, not merely non-zero:** a guard firing only at zero would still
+pass a grammar that read fourteen of fifteen headings, because the fourteen
+it sees are unchanged and the fifteenth is invisible to it — and one unseen
+gate is enough. **A raw count of zero is `NOT_PARSEABLE` too**, because a
+registry the grammar could not read has not been checked, which is not the
+same as having been read and found clean. **Both hold when the authorised set
+is empty and when base and head are identical.**
+
+**`NOT_PARSEABLE` and not `FAIL`, deliberately.** The state means the grammar
+cannot fully read the gate registry, **not** that an unauthorised change has
+been shown. **Cannot judge is not judged wrong** — the distinction `P1`
+already carries. It still makes the run `INCOMPLETE` and exits non-zero.
+
+**`P7` remains `PARTIAL`, and for the unchanged reason:** the authorised set
+is still a caller-supplied parameter and the discovery problem behind it is
+untouched by this repair.
+
 ### P8 and P9, added, with reasons
 
 **P8 — Rule 15 placement and specification-first.** Rule 15's *Placement*
@@ -85,6 +121,42 @@ clarifications" section. **The presence of a heading is decidable from
 the blob.** What that section must *contain* is not, so P9 checks
 presence only and says so — it is MECHANICAL about the heading and makes
 no claim about the section's adequacy.
+
+### Validators — suite checks, and NOT properties of the checker
+
+**These are not among the nine and must never be numbered among them.** A
+property runs when someone invokes the checker with a config; a validator
+runs whenever anyone runs the suite. **They are listed here because the
+document's purpose is to say what has a machine behind it**, and a check that
+runs only in the suite still has one.
+
+| id | validator | class | what it guards |
+|---|---|---|---|
+| V1 | gate pin integrity — `tests/test_gate_pins.py` | MECHANICAL | that every artifact pinned by SHA-256 in `GATES.md` still hashes to its pin |
+
+**V1 — why it is a test and not a property.** The measured failure was that
+**the suite could not distinguish a stale pin from a correct one**:
+`python -m pytest` returned `280 passed, 2 deselected` across four
+consecutive revisions spanning a stale pin, a repaired pin, an edited
+artifact and a re-pinned one. **The count never moved.** **A suite invariant
+across the property in question is not testing that property.** The
+demonstrated gap was the suite's, so the repair went in the suite.
+
+**V1 fails on three things, and the third is the one that matters:** a pin
+whose target does not hash to it; a pin with no resolvable artifact path
+above it, which fails rather than being skipped; and **a `GATES.md` carrying
+no pin at all.** **A pin validator that passes over an empty pin set is the
+same defect `P7` carried, one level along**, and this programme has now met
+that shape twice.
+
+**What V1 does not establish.** It does not establish that the pinned
+digests are the *right* ones — only that the artifacts still match whatever
+`GATES.md` declares. **A pin that was wrong when it was written passes.**
+**Nor does anything currently detect V1 itself going vacuous:** its non-empty
+assertion is a guard written by the same hand as the guard it imitates, and
+if the pin notation drifted so that the pattern stopped matching, the
+non-empty assertion would be the thing that fires — which is why it exists,
+and is not a substitute for an independent check that does not exist.
 
 ---
 
