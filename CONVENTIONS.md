@@ -1402,3 +1402,5 @@ list of what was noticed across one working session, and several of its items
 were found only because a later task tripped over them. **A list assembled by
 noticing is not a survey**, and the absence of a rule here is not evidence
 that the corresponding failure cannot occur.
+
+**Governance debt is registered in `docs/GOVERNANCE-DEBT.md`** — an eleven-entry record of the known governance debt, each entry with its disposition and where its evidence sits. Nothing in that file binds either.
