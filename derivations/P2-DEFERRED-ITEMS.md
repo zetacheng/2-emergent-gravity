@@ -191,3 +191,63 @@ classification is made.
 **Entries are added by PI decision.** Nothing is removed from this
 register by an executor; an item that is taken up again is recorded as
 resumed, so that the deferral and its reason remain readable afterwards.
+
+---
+
+## `DEFERRED-04` — does `H(4)` dynamics remove or gap some microscopic species?
+
+**Added by PI decision**, recorded in the `D-pre-A` ruling on the canonical
+kinetic operator. **Placed after the scope section because `append_only`
+on this path is enforced as a strict byte prefix**, so an entry cannot be
+inserted among the others without failing that check.
+
+**Status:** deferred, neither admitted nor excluded.
+
+**The question, as a hypothesis.** Does the canonical `H(4)` dynamics
+naturally gap, decouple, pair, confine or otherwise remove some
+microscopic species from the low-energy observable spectrum?
+
+This is option `(b)` of `P2-LATTICE-ONTOLOGY-01` §4. That section records
+the obligation to either "(a) specify the canonical H(4) kinetic term and
+count its species as physics; or (b) demonstrate that H(4)'s structure
+dynamically removes or gaps the unwanted species", and states that until
+`(b)` is done, "(a) is the honest default".
+
+**The PI has ruled that `(b)` is a downstream hypothesis and not a
+definitional requirement.** It is registered here so that it is carried
+as an open physical question rather than assumed in either direction.
+
+**A NO answer does not make the microscopic theory inconsistent.** It
+means the theory's predicted infrared species content is what the
+selected kinetic operator implies, and phenomenology compares against
+that content. Nothing in the declaration requires the infrared spectrum
+to contain a preferred number of species.
+
+**A YES answer would be derived physics, not a definitional rescue.**
+That is the whole reason it is deferred rather than assumed: a
+demonstration that unwanted species gap dynamically is a computation
+about the declared theory, and reading it backwards — choosing the
+operator because its unwanted species could be argued away — is the
+selection criterion the ruling excludes.
+
+**Not a selection criterion.** The ruling states that the species content
+is the ledger implied by the selected operator, and that agreement with a
+desired species count is not an admissible ground for selecting it.
+**This entry therefore constrains no operator choice.**
+
+**Cross-reference: `DEFERRED-02`.** The negative-mass stationary branch
+at `M̂ ≈ -7.59` may be the same sector seen from the other side. The
+dossier `derivations/P2-LATTICE-MICROSPEC-01_kinetic-operator-dossier.md`
+§8 derives, for a Wilson candidate only, that the Brillouin-zone
+involution `p_μ → π − p_μ` generates the complement identity
+`I_0(M̂) = I_0(-8-M̂)` and maps the origin neighbourhood onto the all-`π`
+corner, and that the all-`π` branch is the one that becomes light as `M̂`
+approaches `-8`. **That association is conditional on a candidate the
+programme has not adopted**, and it is not evidence for this entry's
+hypothesis in either direction.
+
+**Blocks:** nothing. This entry registers a question and authorizes no
+computation.
+
+**Registers no gate and changes no status.** `P2-PHASE-01` remains
+`PROPOSED`. No frozen or pinned artifact is modified by this entry.
