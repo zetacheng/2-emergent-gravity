@@ -178,7 +178,7 @@ def test_collect_pins_reports_no_path_when_none_is_named(tmp_path: Path) -> None
 def test_a_stale_pin_is_detected(tmp_path: Path) -> None:
     """The digest comparison itself, on a file whose bytes are known."""
     artifact = tmp_path / "artifact.md"
-    artifact.write_text("content\n", encoding="utf-8")
+    artifact.write_text("content\n", encoding="utf-8", newline="")
     measured = hashlib.sha256(artifact.read_bytes()).hexdigest()
     assert measured != _HEX_A
     assert hashlib.sha256(b"content\n").hexdigest() == measured
