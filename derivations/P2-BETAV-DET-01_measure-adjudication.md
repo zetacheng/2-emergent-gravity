@@ -465,3 +465,52 @@ unaffected.**
   `G0 = diag(√g)`, and `RECON-01b` needs both.
 - **It evaluated no candidate before this verdict was committed, and it
   assembles no `k`-dependent quantity at any point.**
+
+---
+
+## 12. Post-freeze numerical appendix
+
+**ADDED AT COMMIT `3b`, AFTER `§0`–`§11` WERE COMMITTED AT `3a`. IT DID NOT
+ALTER THE VERDICT AND COULD NOT HAVE: the verdict is `NOT DETERMINABLE` because
+`CONVENTIONS.md` contains no measure convention, and no number can change what a
+file contains.**
+
+**It reports `logdet` values for individual objects. It assembles no
+`k`-dependent quantity, touches no scalar determinant, and forms no ratio.**
+
+**Purpose: `§7`'s argument (B) turns on the difference between the candidates
+being mass-independent, and `§7`'s argument (A) turns on `det G1` being
+ultralocal. Both were derived in `§2` from the definition of `G1`. Both are
+checkable, so they are checked.**
+
+    L = 4, curved background at amplitude 0.08
+
+     m²      logdet(D1+m²)      logdet(K1+m²G1)    difference        logdet(G1)
+     0.09     925.9542509006     924.8204050706   −1.133845829998  −1.133845829998
+     0.25    1208.0451629768    1206.9113171468   −1.133845829997  −1.133845829998
+     0.50    1413.9251043501    1412.7912585201   −1.133845829999  −1.133845829998
+     1.00    1643.0660491438    1641.9322033138   −1.133845829997  −1.133845829998
+     2.00    1911.8028799288    1910.6690340988   −1.133845829998  −1.133845829998
+
+    spread of the difference over m²          2.728e-12
+    spread of logdet(G1) over m²              0.000e+00
+    max |difference − logdet(G1)|             1.415e-12
+
+**(P2) CONFIRMED. The two candidate determinants differ by a constant as `m²`
+runs over a factor of twenty-two, and that constant is `logdet(G1)`.** The
+residual spread is at the level of the `LU` factorisation's accumulated error on
+a `1024 × 1024` matrix whose `logdet` is of order `10³`.
+
+    ULTRALOCALITY, checked directly
+      logdet(G1) from the full 1024 × 1024 matrix    −1.133845829998
+      Σ_x log det g(x), computed site by site        −1.133845829998
+      absolute difference                             1.688e-14
+
+**(P1) CONFIRMED. `det G1` is exactly the product over sites of `det g(x)`**, as
+`§2` derived from the block-diagonal construction.
+
+**WHAT THIS APPENDIX DOES NOT DO.** It does not compare any candidate to any
+target, does not assemble the determinant combination the gate names, and does
+not vary any determinant power. **It confirms two properties of the DIFFERENCE
+between the candidates; it says nothing about which candidate is right, which
+remains `NOT DETERMINABLE` per `§6`.**
