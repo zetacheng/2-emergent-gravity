@@ -1485,6 +1485,80 @@ tells a reader — and a reviewer — that a question does not arise. **There is
 nothing here to check, which is different from there being something to check
 that nobody has built.**
 
+### 22. Disposition of `INCONCLUSIVE` results
+
+**Mechanism marker: RULE + MECHANISM DEFERRED.**
+
+**PI RULING, adopted verbatim:**
+
+> An `INCONCLUSIVE` finding is not terminal when the assessment identifies a
+> finite, explicit set of missing bridges whose establishment could change the
+> result to a positive finding.
+
+**Every `INCONCLUSIVE` result carries one of two subclasses, assigned when the
+result is recorded:**
+
+    INCONCLUSIVE — CONSTRUCTIVE GAP IDENTIFIED
+        A candidate positive argument already exists, and what is missing is
+        a finite, explicit, separately investigable set of bridges.
+
+    INCONCLUSIVE — EVIDENCE INSUFFICIENT
+        No clear next step is identified.
+
+**Assigning a subclass is required, not optional.**
+
+**The required field.** Every `INCONCLUSIVE` assessment answers, as a named
+field:
+
+    Resolution path
+        What is the minimum additional derivation, measurement,
+        construction, or evidence that would be sufficient to RESOLVE this
+        finding?
+
+**The executor defines the path. The executor does not walk it.** Supplying the
+missing bridge is theory construction and remains prohibited within a
+verification task.
+
+**The path is symmetric, and this is deliberate.** Resolving a finding may
+upgrade it and may equally refute it. A field asking only what would make a
+finding positive would bias the definition of the gap toward the answer wanted
+— the failure mode this governance exists to prevent, arriving from the other
+side. **A `Resolution path` naming only the confirming outcome is incomplete.**
+
+**The workflow this enables.**
+
+    verification
+      -> INCONCLUSIVE with subclass and Resolution path
+      -> constructive-gap extraction
+      -> bounded derivation or measurement task
+      -> re-verification
+
+The bounded task is separate from the verification that identified the gap.
+**Its outcome is not predetermined**: it may return a negative result, and that
+is a completed task, not a failure of the mechanism.
+
+**What this does NOT change.** **The prohibition on promoting a result that
+fails a pre-registered test stands unchanged.** A test returning `INCONCLUSIVE`
+because a required part was unsatisfied must continue to return `INCONCLUSIVE`.
+**Nothing here licenses relaxing a criterion after seeing the evidence.** The
+gap being closed is on the disposition side, not the verdict side.
+
+**Prospective.** Existing `INCONCLUSIVE` records are not retroactively
+subclassified by the task that adopted this rule. The audit that classifies
+them is a separate task, and **its result is not assumed here**: how many
+existing records carry a constructive gap is unmeasured and is not estimated.
+
+**Why `MECHANISM DEFERRED`.** The rule imposes two obligations a machine could
+test — that an `INCONCLUSIVE` record carries a subclass, and that it carries a
+`Resolution path` field. **No such check exists.** The rule records what should
+happen and relies on an author remembering to do it.
+
+*Provenance, because it bears on how the rule was reached.* The Researcher
+proposed the mechanism with a different pair of subclasses, turning on whether
+the path was known rather than on whether a candidate positive argument exists.
+**The PI's distinction supersedes that proposal and is the one adopted here.**
+The decision record is `decisions/2026-08-19-inconclusive-disposition.md`.
+
 ## Consolidation record — `C-a`
 
 **This section is a record, not a principle.** It exists so that the coverage
@@ -1542,4 +1616,4 @@ were found only because a later task tripped over them. **A list assembled by
 noticing is not a survey**, and the absence of a rule here is not evidence
 that the corresponding failure cannot occur.
 
-**Governance debt is registered in `docs/GOVERNANCE-DEBT.md`** — an eleven-entry record of the known governance debt, each entry with its disposition and where its evidence sits. Nothing in that file binds either.
+**Governance debt is registered in `docs/GOVERNANCE-DEBT.md`** — a fifteen-entry record of the known governance debt, each entry with its disposition and where its evidence sits. Nothing in that file binds either.
