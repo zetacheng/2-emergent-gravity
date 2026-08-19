@@ -2,9 +2,9 @@
 
     KIND        MEASUREMENT + DOCUMENTARY. No landing.
     BASE        968e726a5a4322eecf4254ff69b25832f263c155
-    STATE       PRE-REGISTRATION COMMIT. §5 and §6 carry NO RESULT yet.
-                The parameters of §4 are fixed here, before any number
-                exists, and the result is added in a later commit.
+    STATE       COMPLETE. §4's parameters were committed at 9cb63733,
+                before the diagnostic script existed and before any number
+                was produced; §5 and §6 are added here.
 
 **This artifact sets no threshold, no pass band, and no criterion.** PI ruling
 2 is measure-first, and a criterion written before the magnitude is known would
@@ -172,12 +172,135 @@ and none will be added later.
 
 ## 5. `M5` — RESULT
 
-**NOT YET MEASURED.** This section is completed in a later commit. The
-parameters it will be measured at are fixed above and are not revisable.
+**Measured at the `§4` parameters, which were committed at `9cb63733` before
+the script that produced these numbers existed.** Reported as measured, in the
+direction it falls.
+
+### 5.1 Per component
+
+| component | description | group | `q²` coefficient | share of the ten-component sum | scaling exponent |
+|---|---|---|---|---|---|
+| `R1` | `(h11 − h22)/√2` | retained | `+2.223856432e-02` | `+28.80%` | `1.9887` |
+| `R2` | `(h11 + h22 − 2h33)/√6` | retained | `+2.223856432e-02` | `+28.80%` | `1.9887` |
+| `R3` | the `(1,2)` direction | retained | `+2.180202143e-02` | `+28.24%` | `1.9894` |
+| `R4` | the `(1,3)` direction | retained | `+2.180202143e-02` | `+28.24%` | `1.9894` |
+| `R5` | the `(2,3)` direction | retained | `+2.180202143e-02` | `+28.24%` | `1.9894` |
+| `D1` | `h00` | **discarded** | `−2.215669317e-02` | `−28.69%` | `1.9982` |
+| `D2` | the `(0,1)` direction | **discarded** | `−7.265655290e-03` | `−9.41%` | `1.9940` |
+| `D3` | the `(0,2)` direction | **discarded** | `−7.265655290e-03` | `−9.41%` | `1.9940` |
+| `D4` | the `(0,3)` direction | **discarded** | `−7.265655290e-03` | `−9.41%` | `1.9940` |
+| `D5` | the spatial trace `(h11 + h22 + h33)/√3` | **discarded** | `+1.128540201e-02` | `+14.62%` | `1.9898` |
+
+**All ten discarded components enumerated in `§2.1` are present. None is
+omitted.**
+
+### 5.2 Group sums
+
+    sum over all ten                   +7.721493588e-02
+    sum over the five retained         +1.098831929e-01     share  +142.31%
+    sum over the five discarded        -3.266825703e-02     share   -42.31%
+
+    mean over the five retained        +2.197663858e-02
+    mean over the five discarded       -6.533651406e-03
+
+    |sum discarded| / |sum retained|    0.297300
+    largest |discarded| / mean retained 1.008193
+
+### 5.3 Reading these numbers, with the caveats that belong to them
+
+**The shares are SIGNED and are not bounded in `[0, 1]`.** The retained group
+sums to `+142%` and the discarded group to `−42%` because the two groups carry
+opposite signs and the denominator is their sum. **A share outside `[0,1]` is
+not an error; it is what a signed decomposition with cancellation produces**,
+and reporting only the magnitudes would hide the cancellation while reporting
+only the shares would suggest a bound that does not exist. Both are given.
+
+**The discarded components are the same order of magnitude as the retained
+ones.** `D1` alone has `|q²| coefficient` `1.008` times the mean retained
+component — **larger than the average retained component, not smaller.**
+
+**Every component scales as `q²`.** The observed exponents lie in
+`[1.9887, 1.9982]`, so `§8.4`'s question is answered for this parameter point:
+the `q²` coefficient is a meaningful extraction for the discarded components
+and not an artefact of fitting a `q²` form to something that does not scale
+that way.
+
+**The symmetry structure is a consistency check and it holds.** `R1 = R2`
+exactly, `R3 = R4 = R5` exactly, and `D2 = D3 = D4` exactly, to every printed
+digit — the hypercubic symmetry of the 3-space transverse to `q ∥ e₀` acting on
+components that symmetry relates. **Nothing enforces this in the code**; the
+ten components are evaluated independently.
+
+### 5.4 Cross-check against `CIRC-01`, reported after the fact
+
+**The mean over the five retained components is `+2.1977e-02`.**
+`CIRC-01`'s `total` row — the same bubble without an internal `T/L` split,
+averaged over the five recipes — is stated at
+`derivations/P2-BETAV-CIRC-01_determinant-decomposition.md:45` as `≈ +2.20e-2`,
+with scaling exponent `≈ 1.99`.
+
+**These agree to the precision `CIRC-01` states**, and the exponents agree.
+**This is reported as a validation that the diagnostic reproduces the reference
+object, not as a new result**, and it was computed after the parameters were
+fixed, not tuned to reach it.
 
 ## 6. `M6` — computation provenance
 
-**NOT YET RECORDED.** Completed with `§5`.
+**The code that produced `§5`:**
+`scripts/diagnostics/ext01_discarded_external_space.py`, added by this task
+under a path that names it a diagnostic and **outside `scripts/recon2026/`**.
+**No existing file under `scripts/` was modified.**
+
+### 6.1 Every module imported, with its path and target status
+
+| module | path | under `scripts/recovered_2026/`? | carries an analytic target? |
+|---|---|---|---|
+| `proca_loop` | `scripts/recovered_2026/proca_loop.py` | **yes** | **YES — see §6.2** |
+| `mlog_coeff` | `scripts/recovered_2026/mlog_coeff.py` | **yes** | no target literal in the module; it states a convention-free continuum benchmark ratio at its `:8` |
+| `seagull_check` | `scripts/recovered_2026/seagull_check.py` | **yes** | no |
+| `numpy` | site-packages | no | no |
+| `json`, `sys`, `pathlib`, `inspect` | standard library | no | no |
+
+**Three of the imports are recovered-pipeline modules.** That is disclosed
+rather than avoided: the object being diagnosed **is** the recovered bubble,
+and `A3` of the governing specification makes it an abort to reach it by
+modifying an existing file instead.
+
+### 6.2 The target-bearing import, recorded
+
+**`scripts/recovered_2026/proca_loop.py:18` carries an analytic target in its
+module docstring**, stating a species-ratio value for the physical determinant
+power. **This artifact does not restate that line's numeral**, and the
+diagnostic does not read, print, store or compare against it.
+
+**What is used from that module:** `derivsV` (the geometric derivatives of
+`√g g⁻¹⊗g⁻¹` and `√g g⁻¹`), `G_flat` (the flat Proca propagator), `avec`,
+`kin_form` (the kinetic bilinear form) and `EPSF`. **None of these carries or
+returns the target**, and the docstring is not executed.
+
+### 6.3 Where the determinant power enters, measured
+
+**Measured by inspecting the call signatures rather than describing them:**
+
+    component_bubble   ["q0", "n", "m", "dJ2", "dJ", "recipes"]
+    derivsV            []
+    G_flat             ["kk", "m"]
+    avec               ["kk"]
+    kin_form           ["D", "ac", "b"]
+
+**None of the five takes the determinant power as an argument.** The object
+measured in `§5` is the bubble, and the power enters `Γ_k` downstream of it.
+**`K2` is satisfied not by refraining from a scan but because there is nothing
+here to scan over** — and that is recorded as a measurement of the code path,
+which is why `§4` pre-registered `k = 1` rather than assuming the question
+away.
+
+### 6.4 Output disposition
+
+**The diagnostic prints to standard output and writes no file.** Its results
+are transcribed into `§5` of this artifact. **No output path was added to the
+repository**, because the authorised manifest names none and writing one would
+have put a path outside it.
 
 ---
 
@@ -319,11 +442,24 @@ from the object under study is a normal thing for a reproduction to inherit.
    be constructed is not determined here.
 
 4. **Whether the discarded components' contributions are `q²`-scaling at all.**
-   The fit form of `§4` extracts a `q²` coefficient from every component
-   alike. **Whether that coefficient is meaningful for a component whose
-   contribution does not scale as `q²` is a question the fit does not answer**,
-   and `§5` will report the observed scaling exponent alongside each
-   coefficient so the question stays visible.
+   **ANSWERED at this parameter point and closed:** every observed exponent
+   lies in `[1.9887, 1.9982]`, so the `q²` coefficient is a meaningful
+   extraction for all ten. **It is answered for one `n`, one `m` and one
+   `q`-grid**, and whether it holds elsewhere is not measured.
+
+5. **What the ten-component sum means.** The denominator of `§5.2`'s shares is
+   the sum over an orthonormal basis of the external space — a basis-independent
+   trace. **Whether that trace is the right normaliser for judging what the
+   projection discards is a question this artifact does not answer**, and a
+   different normaliser (the retained sum, the largest single component, a
+   covariant invariant) would give different-looking shares from the same
+   measurement. The raw coefficients of `§5.1` are given so any normaliser can
+   be applied to them.
+
+6. **Why `D1` and the retained components are opposite in sign.** The
+   measurement records that they are. **No mechanism for it is offered**, and
+   whether the near-cancellation between `D1` and a retained component is
+   structural or coincidental at this parameter point is not determined here.
 
 ---
 
