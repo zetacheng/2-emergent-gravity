@@ -5,6 +5,37 @@ Store independent review records here, organised by author directory
 assignments rather than fixed agents; the operative model is in `AGENTS.md`
 and in `CONVENTIONS.md` rule 8.
 
+## What this directory holds, and what moved out
+
+**`reviews/` holds reviews of specifications.** The by-author layout above and
+the `Function:` header rule below are unchanged for what remains here.
+
+**Two kinds of record now live elsewhere:**
+
+    assumption reviews    in assumptions/, as PART 2 of the entry they review
+    PI decisions          in decisions/, as PART 1 with their review as PART 2
+
+**An assumption review is not a review of a specification**, and a PI decision
+is not a review at all. Filing each with the object it belongs to means a
+reader finds the entry and its review together, and can tell what kind of
+epistemic object a file is by where it sits:
+
+    CONVENTIONS.md    definitions and conventions
+    assumptions/      falsifiable or unestablished scientific propositions
+    decisions/        PI rulings
+    reviews/          reviews of specifications
+
+**Nothing already here is moved.** `reviews/pi/`'s three records — a PI
+authorization record, an amendment rationale record, and a PI amendment record
+— **remain valid historical evidence in place**, are not rewritten, and are not
+retrospectively reviewed. **PI decisions are filed under `decisions/` going
+forward.** This is the same treatment this README already gives records that
+predate the `Function:` header requirement.
+
+**The assumption review landed at `reviews/chatgpt/2026-08-19T1141Z_assumption-review_a-ext-01_h-ext-01.md`
+also remains in place**, as the landed original that
+`assumptions/H-EXT-01.md`'s Part 2 reproduces and pins.
+
 ## Records carry their function
 
 Because the Researcher and Reviewer functions are exchanged by PI

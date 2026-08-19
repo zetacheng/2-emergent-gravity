@@ -2421,3 +2421,84 @@ None. `P2-BETAV-RECON-01` is referenced and unchanged at `PROPOSED`.
 `science/recon-ext-01-discarded-space` @ `70f0e257b9afcd9f97445c5c2c62530fa742321e`;
 `derivations/P2-RECON-EXT-01_discarded-external-space.md`,
 `specs/2026-08-19T1141Z_integrate-recon-ext-01.md`.
+
+## 2026-08-19 — Registry split: assumptions and PI decisions get their own directories
+
+Date: 2026-08-19
+Decision owner: Principal Investigator
+Effect: creates two directories and relocates one entry's canonical location
+
+### Decision
+
+The ruling, reproduced verbatim:
+
+> 1. `reviews/` holds **reviews of specifications only**.
+> 2. Assumptions get their own directory.
+> 3. PI decisions get their own directory.
+> 4. An assumption's content and its review may live in **one file, as Part 1
+>    and Part 2**.
+> 5. **PI decisions are also to be reviewed.**
+
+### Reason
+
+Four kinds of epistemic object were mixed across repository files: definitional
+conventions, physical assumptions and hypotheses, PI decisions, and
+specification reviews. **A reader could not tell which kind a statement was
+from where its file sat.** The split gives each a canonical home:
+
+    CONVENTIONS.md    definitions and conventions
+    assumptions/      falsifiable or unestablished scientific propositions
+    decisions/        PI rulings
+    reviews/          reviews of specifications
+
+### Consequences
+
+**`H-EXT-01`'s canonical location is now `assumptions/H-EXT-01.md`.** **The
+entry dated 2026-08-19 above is NOT deleted and NOT rewritten** — this log is
+append-only, and that entry stands as the historical record of where the
+hypothesis was first landed. **The relocation is recorded here rather than by
+editing history**, so the repository does not read as though it always had this
+taxonomy.
+
+**`A-EXT-01` does not move.** It is a DEFINITIONAL CONVENTION, and
+`CONVENTIONS.md` is the Convention Registry. **No stub is created for it in
+`assumptions/`**, because `assumptions/` is scoped to falsifiable or
+unestablished propositions and a stub would re-admit a definition into the
+taxonomy the previous landing was written to keep it out of.
+`assumptions/README.md` cross-references `CONVENTIONS.md` so a reader looking
+for the pair finds both.
+
+**The `Review SHA` field is split into `Statement SHA` and `Review Artifact
+SHA`.** The field landed on 2026-08-19 under the single name `Review SHA`
+carried the digest of the exact-statement bytes — the name said review, the
+content was a statement binding. **The digests are unchanged and both
+re-verify**; only the labels changed, and a label change does not touch a pin
+taken over the statement.
+
+**Three `reviews/pi/` records remain in place** as historical evidence, not
+moved, not rewritten, not retrospectively reviewed.
+
+**When a PI decision takes effect, and whether its review is ever gating, is
+NOT settled by this entry.** `decisions/README.md` carries a **PROVISIONAL**
+execution-layer disposition — reviews are recorded, not gating — and names the
+adjudication as owed. **A gating review would place the Reviewer above the PI,
+inverting the authority model in `AGENTS.md`**, which is the ground for the
+provisional choice and not a substitute for the ruling.
+
+**No gate moves.** This entry registers no gate and changes no gate status, and
+a directory layout is not a scientific result.
+
+Stated once without markup, so the record carries the sentence plainly:
+H-EXT-01's original entry in this log is unchanged and remains the record of
+where it was first landed.
+
+### Related gate
+
+None.
+
+### Related branch and files
+
+`science/registry-split-01`;
+`assumptions/README.md`, `assumptions/H-EXT-01.md`,
+`decisions/README.md`, `reviews/README.md`, `CONVENTIONS.md`,
+`specs/2026-08-19T1723Z_registry-split-01.md`.
