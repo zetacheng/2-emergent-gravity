@@ -2237,3 +2237,187 @@ None. The milestone is named by the manuscript at
 `reports/2026-08-19T0223Z_pole-b0-milestone-scope.md`,
 `reports/2026-08-19T0448Z_pole-b0-integ-02_landing-record.md`,
 `specs/2026-08-19T0448Z_pole-b0-integ-02.md`.
+
+## 2026-08-19 — Physical hypothesis `H-EXT-01`: axis-TT completeness is UNESTABLISHED
+
+Date: 2026-08-19
+Decision owner: Principal Investigator
+Effect: registers a physical hypothesis and records that nothing assumes it
+
+### Decision
+
+The hypothesis, reproduced verbatim:
+
+> **`H-EXT-01` — physical completeness of the axis-TT projection.**
+>
+>     ID       H-EXT-01
+>     Type     PHYSICAL HYPOTHESIS — directional, falsifiable.
+>     Status   UNESTABLISHED — **NOT ASSUMED BY `RECON-01b`.**
+>
+> **Exact statement:**
+>
+> > The discarded external complement makes no contribution to the physically
+> > relevant gravitational observable, so that `Z_axis-TT = Z_physical`.
+>
+>     Scope    The axis-TT projection as the repository defines it, and the
+>              observable RECON-01b extracts.
+>
+>     What depends on it
+>              Nothing currently in the repository. No landed result asserts
+>              it and no pending task requires it.
+>
+>     What does NOT depend on it
+>              RECON-01b. **RECON-01b requires only the definition
+>              A-EXT-01; it does not require H-EXT-01 to be true, and does
+>              not assume it.** A reader who takes RECON-01b to presuppose
+>              H-EXT-01 has read the design backwards.
+>
+>     Evidence derivations/P2-RECON-EXT-01_discarded-external-space.md.
+>              The measurement bears on the hypothesis and does not settle
+>              it: it establishes that the discarded directions cannot be
+>              neglected on grounds of magnitude, and establishes nothing
+>              about whether they contribute to the physically relevant
+>              observable.
+>
+>     Falsifier or resolution condition
+>              REFUTED if the complement is shown to contribute irreducibly
+>              to the target observable. ESTABLISHED if the complement is
+>              derived to make no contribution to it. The adjudication is
+>              routed to RECON-PROJ-01 and is not performed by any landed
+>              task.
+>
+>     Review   reviews/chatgpt/2026-08-19T1141Z_assumption-review_a-ext-01_h-ext-01.md
+>     Review SHA
+>              e5dd8a28eaff7623af23ab11404ef2d43dc8053599807162863cf38aca239a47
+>              — the digest of the exact statement bytes above. The review
+>              artifact's own digest is
+>              e641d4877a15975f224e57320b7e28dcbcd5850fcfecdc8e95a7f716650a0953.
+>
+>     Date     2026-08-19
+>     Supersedes
+>              A single earlier draft that merged this hypothesis with the
+>              definition A-EXT-01 and treated the definition as itself
+>              falsifiable. That draft is superseded by the two-entry form.
+
+### Reason
+
+**A definition is not a falsifiable proposition and a physical hypothesis is.**
+The Researcher's earlier draft merged them, which made the definition look
+refutable and made the hypothesis look adopted. **The type error is the reason
+the two are registered separately and in different files:** `A-EXT-01` is a
+convention and lives in `CONVENTIONS.md`'s definitional-conventions section;
+`H-EXT-01` is a hypothesis and lives here, where this log already records open
+items as `UNESTABLISHED`.
+
+**The `Status` line is load-bearing.** Recording a hypothesis is not adopting
+it, and `NOT ASSUMED BY RECON-01b` is the part a later reader is most likely to
+drop.
+
+### Consequences
+
+**`RECON-01b` may proceed without settling this.** Its results are stated
+relative to `Z_axis-TT` and may not be promoted to the full gravitational `Z`
+unless `H-EXT-01` or an equivalent completeness result is independently
+established.
+
+**The βV/RECON line may not be cited as evidence for vanishing spin-1/0
+residues.** A calculation defined inside the axis-TT subspace cannot
+independently establish a channel separation that its own projection already
+imposes.
+
+**No gate moves.** `P2-PHASE-01` remains `Status: PROPOSED`. This entry
+registers no gate and changes no gate status.
+
+Stated once without markup, so the record carries the sentence plainly:
+RECON-01b does not assume that the axis-TT observable is the full physical Z.
+
+### Related gate
+
+`P2-BETAV-RECON-01`, whose status is unchanged at `PROPOSED`.
+
+### Related branch and files
+
+`science/recon-ext-01-discarded-space` @ `70f0e257b9afcd9f97445c5c2c62530fa742321e`;
+`CONVENTIONS.md` (the `A-EXT-01` entry),
+`derivations/P2-RECON-EXT-01_discarded-external-space.md`,
+`reviews/chatgpt/2026-08-19T1141Z_assumption-review_a-ext-01_h-ext-01.md`,
+`specs/2026-08-19T1141Z_integrate-recon-ext-01.md`.
+
+## 2026-08-19 — EXT-01 execution-layer dispositions and open findings
+
+Date: 2026-08-19
+Decision owner: Executor, adopted for the EXT-01 integration
+Effect: records three reversible dispositions and two open findings
+
+### Decision
+
+**`D-1` to `D-3` are execution-layer dispositions, adopted for that task and
+reversible by PI adjudication. They are NOT PI rulings and carry no PI-level
+scientific authority.** They are recorded so that they can be inspected and
+reversed rather than inherited silently.
+
+**`O-1` and `O-2` are open findings, not decisions. Nothing is settled by
+recording them.**
+
+> **`D-1` — NO CRITERION IS SET on the discarded space.**
+> Ground: the shares are signed, unbounded, and subject to cancellation, so a
+> threshold on them would fix an arbitrary choice of normaliser. The robust
+> quantities are the two ratios recomputed at this landing.
+> Status: MEASURED, NO CRITERION SET, with the reason recorded. **This is not
+> "awaiting a PI ruling"; it is a disposition open to reversal.**
+>
+> **`D-2` — EXTENSION IN MASS AND VOLUME IS DEFERRED, with reason.**
+> The measurement stands at one pre-registered point. Robustness of the ratios
+> in mass and in volume is unmeasured. Deferred to the `RECON-01b`
+> construction, where the same machinery is already required, rather than
+> opened as a separate task now. Recorded so that it attaches to that work and
+> is not lost.
+>
+> **`D-3` — THE PROJECTION QUESTION IS ROUTED TO `RECON-PROJ-01`**, not
+> settled here, and not settled by the magnitude. **Whether the complement
+> matters is a question for derivation, not for a ratio.**
+>
+> **`O-1` — EVIDENCE-ARCHITECTURE SEPARATION. Open finding.**
+> The βV/RECON line is a TT-conditioned reconstruction test. A test of the
+> manuscript's decisive claim — a spin-2 pole with vanishing spin-1/0 residues
+> — requires a calculation that does not project the other channels away before
+> measuring. Whether any current numerical pipeline performs the latter is
+> recorded as an open question. **This does not alter `POLE-B0`'s verdict.** It
+> records that the construction `POLE-B0` found unscoped may be the pipeline
+> the decisive claim requires. **Priority is a PI matter and is not set here.**
+>
+> **`O-2` — MAGNITUDE IS NOT CHANNEL STRUCTURE. Open finding.**
+> The measurement establishes that the discarded directions cannot be neglected
+> on grounds of magnitude. **It establishes nothing about whether those
+> directions carry physical poles, where any pole lies, or whether a residue
+> vanishes.** Recorded so that the magnitude result is not read as a
+> channel-structure result.
+
+### Reason
+
+Dispositions taken during execution are otherwise carried only in a task
+report, and a report is a record of one task. **Recorded here they can be
+found and reversed; left in a report they are inherited silently.**
+
+The identifiers `D-1` to `D-3` and `O-1`, `O-2` are the integration
+specification's own labels for these items. **This log's identifier sequence is
+its dated headings**, and the two entries dated 2026-08-19 above and here are
+this register's identifiers for them.
+
+### Consequences
+
+**Nothing is settled by these five items.** `D-1` sets no criterion, `D-2`
+opens no task, `D-3` decides no projection question, and `O-1` and `O-2` are
+findings without verdicts.
+
+**No gate moves.** This entry registers no gate and changes no gate status.
+
+### Related gate
+
+None. `P2-BETAV-RECON-01` is referenced and unchanged at `PROPOSED`.
+
+### Related branch and files
+
+`science/recon-ext-01-discarded-space` @ `70f0e257b9afcd9f97445c5c2c62530fa742321e`;
+`derivations/P2-RECON-EXT-01_discarded-external-space.md`,
+`specs/2026-08-19T1141Z_integrate-recon-ext-01.md`.

@@ -34,6 +34,120 @@ before any computation in gates `P2-HK-01`, `P2-GAP-01`, `P2-BETA-01`, and
 | Gap-equation integral `I_0` | `I_0` is defined by the linearization of the mean-field gap equation about zero condensate, `1 = 2 G_c I_0`; the precise integrand and the derivation of the relation `G_c = 1/(2I_0)` are given in the `P2-GAP-01` derivation note and script. |
 | Statistical-error convention | Numerical uncertainties are reported as spreads over discretization / fit-window / ansatz variations (systematic), not as formal fit errors alone. Convergence is demonstrated by grid refinement and half-shifted (offset) grid cross-checks. |
 
+## Definitional conventions with a recorded schema
+
+**This section carries definitional conventions adopted for a named line of
+work, in the field schema below. It is distinct from the locked-conventions
+table above**, which fixes the conventions of the independent-verification
+sweep; **no row of that table is added to, changed, or superseded by an entry
+here.**
+
+**Schema, adopted here and forward.** Each entry carries, as named fields:
+
+    ID / Type / Status / Exact statement / Scope / What depends on it /
+    What does NOT depend on it / Evidence / Falsifier or resolution
+    condition / Review / Review SHA / Date / Supersedes
+
+**`Type` distinguishes at minimum a DEFINITIONAL CONVENTION from a PHYSICAL
+HYPOTHESIS.** An entry whose `Type` is definitional **carries no falsifier**;
+its resolution-condition field records instead what would change its *scope*.
+
+**Binding rule for the `Review SHA` field.** A `Review SHA` binds to the
+**exact bytes reviewed**. **If an entry's statement is later edited, the
+pinned review no longer applies and a new review is required.** A review is
+never carried across a wording change — the same exact-byte principle the
+specification reviews already use.
+
+**Physical hypotheses are not entered here.** This is a convention registry; a
+hypothesis is not a convention. `H-EXT-01`, the physical counterpart of the
+entry below, is registered in `DECISION_LOG.md`.
+
+### `A-EXT-01` — the definitional axis-TT observable
+
+    ID          A-EXT-01
+    Type        DEFINITIONAL CONVENTION — working definition.
+                NOT a physical assumption.
+    Status      ADOPTED for the RECON line.
+
+**Exact statement:**
+
+> For `RECON-01b`, `Z_axis-TT` is defined as the coefficient extracted after
+> the repository's axis-TT projection. This is a definition of the observable
+> used by the reconstruction pipeline, not a derived statement that the
+> discarded external complement is physically negligible. All `RECON-01b`
+> results must therefore be stated relative to `Z_axis-TT`, and must not be
+> identified with the full gravitational response unless that equivalence is
+> independently established.
+
+    Scope       The RECON line. It names the observable that
+                RECON-01b extracts and does not extend to any other gate.
+
+    What depends on it
+                RECON-01b. Its results are stated relative to Z_axis-TT.
+
+    What does NOT depend on it
+                Nothing depends on the discarded complement being negligible.
+                That proposition is H-EXT-01 and is UNESTABLISHED; RECON-01b
+                does not require it to be true and does not assume it.
+
+    Evidence    derivations/P2-RECON-EXT-01_discarded-external-space.md,
+                which measures the retained/discarded decomposition and the
+                magnitude in the discarded space at one pre-registered point.
+                The definition is not derived from that measurement; the
+                measurement is what makes stating the definition necessary.
+
+    Falsifier or resolution condition
+                NONE — a definition is not a falsifiable proposition, and
+                A-EXT-01 cannot be refuted by any future calculation.
+                Z_axis-TT remains well defined whatever is later established.
+                RESOLUTION OF SCOPE: if H-EXT-01 is established, the scope of
+                A-EXT-01 widens in consequence — Z_axis-TT would then also be
+                the full physical response — and if H-EXT-01 is refuted, the
+                scope narrows to what it already states. Neither outcome makes
+                the definition wrong.
+
+    Review      reviews/chatgpt/2026-08-19T1141Z_assumption-review_a-ext-01_h-ext-01.md
+    Review SHA  ca8e5a870b5c7734321a9b6b97f3844046d8ceb689aece0ca65082b70a522378
+                — the digest of the exact statement bytes above, so that an
+                edit to the statement breaks the pin visibly. The review
+                artifact's own digest is
+                e641d4877a15975f224e57320b7e28dcbcd5850fcfecdc8e95a7f716650a0953.
+
+    Date        2026-08-19
+    Supersedes  Nothing. In particular it does not supersede the locked
+                table's `Definition of Z(m²)` row, which defines Z as the
+                induced axis/TT graviton kinetic coefficient. A-EXT-01 names
+                the extracted quantity Z_axis-TT and records that identifying
+                it with the full physical response is not established. The two
+                are consistent and the table row is unchanged.
+
+### The distinction between `A-EXT-01` and `H-EXT-01`, and why they are separate
+
+**A definition is not a falsifiable proposition.** `A-EXT-01` cannot be
+refuted by a future calculation; `Z_axis-TT` remains well-defined whatever is
+later established.
+
+**`H-EXT-01` is the falsifiable proposition.** If the complement is later
+derived to make no contribution to the target observable, what is upgraded to a
+theorem is *the physical completeness of the projection for this observable*.
+If the complement is shown to contribute irreducibly, **`H-EXT-01` is refuted
+and the outcome is not that `A-EXT-01` was wrong but that `Z_axis-TT` is not
+the full physical `Z`.**
+
+**Provenance.** The Researcher drafted a single entry that treated the
+definition as itself falsifiable — **a type error**. The present two-entry
+form, the directional wording of `H-EXT-01`, and its `NOT ASSUMED` status all
+follow an assumption review. **The correction is recorded, not silently
+absorbed.**
+
+### Consequence for how `RECON-01b` may be claimed
+
+> `RECON-01b` tests whether, on the axis-TT-defined observable, the clean-room
+> reconstruction recovers the pre-registered structure. It is a **conditional
+> spin-2-sector reconstruction test**. It may not be stated as having
+> reconstructed the full gravitational `Z`, and it may not be cited as
+> evidence for vanishing spin-1/0 residues.
+
 ## Change control
 
 Any change to a locked convention after a gate has been committed must be
