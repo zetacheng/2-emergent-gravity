@@ -212,6 +212,9 @@ added or this prohibition is stated where an integrator will meet it.**
 This is Amendment E(iii) again: a missing state forcing a
 conservative-but-wrong label.
 
+Branch-specific merge mode and allowed-ref policy are defined in
+`docs/BRANCHING_POLICY.md`.
+
 **Append-only and forbidden-delete are evaluated against the LAST
 PUSHED STATE OF THAT BRANCH, as well as against the evidence base.**
 A re-issue on a new branch starts from the original evidence base and
