@@ -252,8 +252,10 @@ question:
 registers scope themselves science-side — one to PI-deferred scientific work,
 one to the C-check line. **`docs/GOVERNANCE-DEBT.md` is the only register whose
 stated scope admits it**, and `:12-14` describes this item's discovery route
-exactly: *"Governance debt has been carried in task reports… Three of the
-eleven entries below were found only because a later task tripped over them."*
+exactly — quoted here **as it read at the base, before this task's own edit to
+its numerals**: *"Governance debt has been carried in task reports… Three of
+the eleven entries below were found only because a later task tripped over
+them."*
 
 **No location was coined and no vocabulary was invented.** The disposition
 `RULED` — *"a PI ruling settled it"* — is taken from the register's own list at
@@ -327,8 +329,10 @@ is a one-line move and this report is the record that it was a choice.
 
 ### Whether to update the register's two prose counts
 
-`docs/GOVERNANCE-DEBT.md:13` said *"Three of the eleven entries below"* and
-`:317` said *"Three of its eleven entries"*. **Adding `G-12` made both false.**
+At the base, `docs/GOVERNANCE-DEBT.md:13` said *"Three of the eleven entries
+below"* and `:274` said *"Three of its eleven entries"* — the latter now at
+`:317`, the added entry having moved it down. **Adding `G-12` made both
+false.**
 
 **I updated them to "Four of the twelve".** Two reasons, and the second is
 measured rather than editorial: both sentences are present-tense claims about
@@ -412,3 +416,22 @@ mapping from the specification's label to the register's ID is on the page
 rather than in this report alone. `G-1` would have read as a near-collision
 with `G-01`. §6 forbids coining a *location*; the ID follows the location's
 existing form, which is the opposite of coining one.
+
+---
+
+## Post-commit correction, recorded rather than rewritten
+
+**Commit 5 of this branch corrects two citations in the section above, and
+this note is part of that commit.**
+
+As first committed, the report quoted `docs/GOVERNANCE-DEBT.md:12-14` and
+`:317` with their **pre-edit** wording while giving **post-edit** line
+numbers — a report about citation precision citing imprecisely. The two
+sentences now say which state each figure belongs to.
+
+**The correction was made as a new commit and not by amending commit 4**,
+because §4 prohibits history rewrite and lists it separately from force-push.
+The cost is that the report's own commit is not its final text; the benefit is
+that nothing in this branch's history was rewritten to hide a slip. **Nothing
+substantive changed — no measurement, no criterion result, and no landed
+text.**
