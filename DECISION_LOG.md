@@ -2143,3 +2143,97 @@ None. This entry registers no gate and changes no gate status.
 `governance/supply-protocol-v3`;
 `CONVENTIONS.md`, `docs/BRANCHING_POLICY.md`, `DECISION_LOG.md`,
 `specs/2026-08-12T0131Z_supply-protocol-v3.md`.
+
+## 2026-08-19 — Open construction item: the POLE milestone's construction layer is UNESTABLISHED
+
+Date: 2026-08-19
+Decision owner: Principal Investigator
+Effect: opens an unscoped construction item
+
+### Decision
+
+The open item, reproduced verbatim:
+
+> **Open construction item — the POLE milestone's construction layer.**
+>
+> `POLE-B0` assessed what the manuscript's own decisive test would require —
+> a lattice measurement of the Barnes–Rivers–projected stress-tensor
+> correlator, checking for a single `p² = 0` pole in the spin-2 sector with
+> vanishing spin-1/0 residues (`paper/emergent_gr_paper_v2_15.tex:810-814`).
+> It returned `REQUIRES A CONSTRUCTION NOT YET SCOPED`, with
+> `TRACTABLE BUT BLOCKED PENDING A RULING` applying to part of the scope
+> only.
+>
+> **Status: UNESTABLISHED.** Twelve components were inventoried;
+> `N_both = 0`, and **six are neither implemented nor specified**: a
+> definition of `⟨·⟩`, an evaluation of `⟨TT⟩` beyond one loop, a
+> preregistered tensor-sector operator basis, finite-volume rules and the
+> massless limit, the numerical meaning of "vanishing", and an
+> artefact-versus-physics discriminator. **What the construction is has not
+> been defined.**
+>
+> **This is an OPEN item, not a DEFERRED one.**
+> `derivations/P2-DEFERRED-ITEMS.md` holds work that was examined and
+> consciously postponed. `POLE-B0`'s result is that the construction is not
+> yet scoped, which is a different epistemic state. **Filing it as deferred
+> would assert that it was considered and set aside, and it was not.** It
+> moves to the deferred side only if a future `POLE-C0` scopes the six
+> components and the PI then postpones them.
+>
+> **Roadmap as it stands:**
+>
+>     POLE-B0 scope
+>       -> POLE construction / specification layer
+>       -> executable pole test
+>
+> **The construction is itself constrained by the open `R1`–`R4` rulings**,
+> all four of which `POLE-B0` classified `DEPENDENCE ESTABLISHED`. **Clearing
+> the rulings is necessary and not sufficient**: ruling all four would leave
+> the six unscoped components exactly where they are.
+
+### Reason
+
+The item is an open programme-design / construction question — what the
+construction is has not been defined — rather than an open
+acceptance-criterion item, where the work is known and the criteria are not.
+That distinction determines which register admits it, and this log is the
+register whose stated scope covers an item opened as `UNESTABLISHED`.
+
+The other candidates were read and none admits it.
+`derivations/P2-DEFERRED-ITEMS.md` scopes itself to work considered and
+consciously postponed, and states that its entries are added by PI decision.
+`derivations/P2-PHASE-01_C-CHECK_OPEN-ITEMS.md` scopes itself to items
+arising from the `C1`–`C3` follow-up checks of the C-check line.
+`OPEN-AC-*` sits in the phase input / admissibility contract and holds
+acceptance-criterion items. `OPEN-PD-*` sits in the microscopic parameter
+domain and holds parameter-domain items. `docs/GOVERNANCE-DEBT.md` holds
+governance debt — gaps in rules and mechanisms — and this is a scientific
+construction question, not a rule gap.
+
+### Consequences
+
+**The decisive test may not be described as executable, or as blocked only by
+a ruling.** Both statements would be wrong, and in different directions.
+
+**No gate moves.** `P2-PHASE-01` remains `Status: PROPOSED`. This entry
+registers no gate and changes no gate status.
+
+Registering the item is not scoping it. **This entry defines no construction,
+chooses no numerical criterion, and orders no task against any other.**
+
+Stated once without markup, so the record carries the sentence plainly:
+ruling R1 through R4 in full would not make the pole milestone executable.
+
+### Related gate
+
+None. The milestone is named by the manuscript at
+`paper/emergent_gr_paper_v2_15.tex:810-814` and is covered by no section of
+`GATES.md`.
+
+### Related branch and files
+
+`science/pole-b0-milestone-scope` @ `3f78acfebd7e994460eb30ac54ffd31a5cf3c21f`;
+`derivations/P2-POLE-B0_milestone-scope.md`,
+`reports/2026-08-19T0223Z_pole-b0-milestone-scope.md`,
+`reports/2026-08-19T0448Z_pole-b0-integ-02_landing-record.md`,
+`specs/2026-08-19T0448Z_pole-b0-integ-02.md`.
