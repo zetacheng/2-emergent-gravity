@@ -10,7 +10,7 @@ Created by `C-c` at evidence base `80595d4cd575d1d024d1415b9b599947bf847677`.
 ## Why this file exists
 
 Governance debt has been carried in task reports. **A report is a record of
-one task**, and nothing aggregated them. Three of the eleven entries below
+one task**, and nothing aggregated them. Four of the twelve entries below
 were found only because a later task tripped over them.
 
 Two registers already existed at the evidence base and both are science-side:
@@ -37,11 +37,11 @@ mechanism shape is known, and no mechanism exists for any entry carrying it.
     REPAIRABLE            1     G-02
     SPECIFIABLE           3     G-04  G-05  G-06
     NOT REPAIRABLE HERE   1     G-01
-    RULED                 1     G-07
+    RULED                 2     G-07  G-12
     METHOD NOTE           1     G-11
     OPEN                  4     G-03  G-08  G-09  G-10
     ------------------------------------------------
-    entries              11
+    entries              12
 
 ---
 
@@ -255,6 +255,49 @@ field names. The unresolvable reference is recorded rather than dropped.
 
 ---
 
+## `G-12` — `science/` was an operational branch class the policy did not name
+
+**Disposition: RULED.**
+
+Recorded as this specification's `G-1` item. The identifier follows this
+register's own two-digit sequence; `G-1` is the specification's label for the
+item, not a register ID.
+
+**ONE entry for the class, not one per branch.**
+
+Through pre-amendment `main` `11af14a7`, `docs/BRANCHING_POLICY.md` named five
+branch prefixes — `gate/`, `paper/`, `review/`, `fix/`, `archive/` — and
+`science/` was not among them. The word `science` did not occur in the file.
+The policy also carried no merge-mode rule for any branch class: `--no-ff`,
+`fast-forward` and `rebase` each returned zero, and the only `squash` hit was
+`Never squash scientific derivation history`, a prohibition on one mode rather
+than a selection among the others.
+
+**MEASURED at `11af14a7`: 37 remote `science/*` refs were already ancestors of
+`main`.** Counted by running `git merge-base --is-ancestor` against
+`11af14a7` for every ref returned by
+`git ls-remote --heads origin 'refs/heads/science/*'`, which is the authority
+`docs/BRANCHING_POLICY.md`'s own remote-refs clause requires. 40 remote
+`science/*` refs existed in total.
+
+**The PI ruled that these remain accepted, and that no retrospective rewrite
+or re-merge is authorized.** The amendment landed by this task is prospective;
+it takes effect with the amendment, which is strictly later than `11af14a7`.
+
+**How it was found, and why it sat unnoticed.** Every integration
+specification before `P2-POLE-B0-INTEG-01` stated its own merge mode inline.
+`P2-POLE-B0-INTEG-01` instead delegated the mode to the policy — and the
+lookup failed, producing an `A4` abort with no landing. **The gap was not
+created by that task; it was made visible by the first task that asked the
+policy the question.** `G-03`'s reservation applies with force here: nothing
+would have detected this, and nothing detects the next one.
+
+**Evidence.** `reports/2026-08-19T0319Z_pole-b0-integ-01.md`, the `A4` abort
+and its §4 search record; `specs/2026-08-19T0419Z_branching-science-01.md`,
+which transcribes the PI ruling; the taxonomy block and
+`## Science branch integration` section of `docs/BRANCHING_POLICY.md` as
+landed by this task.
+
 ## Not entered here — `D4`
 
 The classification's `D4`, the unresolved mechanism behind the bit-exact
@@ -271,7 +314,7 @@ an entry that has gone stale. **`G-03`'s reservation applies to this file as
 much as to the `CORRECTIONS.md` it describes** — the objection that nothing
 would keep such a file updated is not answered by this file existing.
 
-**It is a list of what was noticed, not a survey.** Three of its eleven entries
+**It is a list of what was noticed, not a survey.** Four of its twelve entries
 were found only because a later task tripped over them. **The absence of an
 entry is not evidence that the corresponding debt does not exist**, and no
 survey was performed.

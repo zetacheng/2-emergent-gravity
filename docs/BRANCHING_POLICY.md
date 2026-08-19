@@ -8,6 +8,7 @@ paper/<paper-version>
 review/<review-topic>
 fix/<issue>
 archive/<retired-route>
+science/<scientific-task>
 ```
 
 ## Rules
@@ -20,6 +21,30 @@ archive/<retired-route>
 - Tags mark accepted scientific milestones.
 - One branch corresponds to one scientific gate or one paper-edit task.
 - Paper branches may update `.tex` only after reviewer acceptance.
+
+## Science branch integration
+
+`science/*` is a recognized scientific-task branch class.
+
+Approved science branches integrate by `--no-ff` into a dedicated
+integration branch.
+
+Squash/rebase integration prohibited.
+
+During landing, only the integration branch and `refs/heads/main` may be
+pushed.
+
+Source branch, session branches and unrelated refs must not move.
+
+`main` advances only by fast-forward from its reviewed evidence base to the
+completed integration head.
+
+### Retroactive note
+
+Through pre-amendment `main` `11af14a7`, `science/*` was used operationally
+but absent from the formal branch taxonomy and had no policy-level
+merge-mode rule. Historical landed science branches remain accepted; no
+retrospective rewrite or re-merge is authorized.
 
 ## Branch lifecycle
 
