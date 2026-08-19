@@ -46,21 +46,38 @@ here.**
 
     ID / Type / Status / Exact statement / Scope / What depends on it /
     What does NOT depend on it / Evidence / Falsifier or resolution
-    condition / Review / Review SHA / Date / Supersedes
+    condition / Review / Statement SHA / Review Artifact SHA / Date /
+    Supersedes
 
 **`Type` distinguishes at minimum a DEFINITIONAL CONVENTION from a PHYSICAL
 HYPOTHESIS.** An entry whose `Type` is definitional **carries no falsifier**;
 its resolution-condition field records instead what would change its *scope*.
 
-**Binding rule for the `Review SHA` field.** A `Review SHA` binds to the
-**exact bytes reviewed**. **If an entry's statement is later edited, the
-pinned review no longer applies and a new review is required.** A review is
-never carried across a wording change — the same exact-byte principle the
-specification reviews already use.
+**The two SHA fields, disambiguated.**
+
+    Statement SHA          SHA-256 of the exact-statement bytes.
+                           THIS IS THE BINDING PIN.
+    Review Artifact SHA    SHA-256 identifying the review artifact.
+                           Provenance, not a pin.
+
+> **Editing the exact statement invalidates the attached review and requires
+> re-review.** Editing Part 2, the field labels, or any other field does not.
+
+**The pin is over the statement and not over the file.** Where an entry and its
+review live in one file, a file digest would break on every review edit and
+survive nothing that matters. A review is never carried across a wording change
+— the same exact-byte principle the specification reviews already use.
 
 **Physical hypotheses are not entered here.** This is a convention registry; a
-hypothesis is not a convention. `H-EXT-01`, the physical counterpart of the
-entry below, is registered in `DECISION_LOG.md`.
+hypothesis is not a convention. **`H-EXT-01`, the physical counterpart of the
+entry below, is canonical in `assumptions/H-EXT-01.md`**, and was first landed
+as a `DECISION_LOG.md` entry which stands unchanged as historical record.
+
+**The field labels below were disambiguated after this section was first
+landed.** The entry carried a single field named `Review SHA` whose content was
+in fact the statement digest — the name said review, the content was a
+statement binding. **The digests are unchanged**; only the labels are, and a
+label change does not touch the pin.
 
 ### `A-EXT-01` — the definitional axis-TT observable
 
@@ -107,11 +124,16 @@ entry below, is registered in `DECISION_LOG.md`.
                 the definition wrong.
 
     Review      reviews/chatgpt/2026-08-19T1141Z_assumption-review_a-ext-01_h-ext-01.md
-    Review SHA  ca8e5a870b5c7734321a9b6b97f3844046d8ceb689aece0ca65082b70a522378
-                — the digest of the exact statement bytes above, so that an
-                edit to the statement breaks the pin visibly. The review
-                artifact's own digest is
-                e641d4877a15975f224e57320b7e28dcbcd5850fcfecdc8e95a7f716650a0953.
+
+    Statement SHA
+                ca8e5a870b5c7734321a9b6b97f3844046d8ceb689aece0ca65082b70a522378
+                THIS IS THE BINDING PIN — the SHA-256 of the exact-statement
+                bytes above, and of nothing else, so that an edit to the
+                statement breaks the pin visibly.
+
+    Review Artifact SHA
+                e641d4877a15975f224e57320b7e28dcbcd5850fcfecdc8e95a7f716650a0953
+                Provenance, not a pin. It identifies the review artifact.
 
     Date        2026-08-19
     Supersedes  Nothing. In particular it does not supersede the locked
