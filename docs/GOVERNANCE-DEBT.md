@@ -343,6 +343,127 @@ bindings. The discovery is a by-product of a correct refusal.
 `reports/2026-08-19T2303Z_gov-housekeep-01.md`, the stop report;
 `reports/2026-08-19T2324Z_gov-housekeep-02.md`, this task's `M6`.
 
+### Correction, added beneath this entry and altering none of it
+
+**Added by `P2-ADJUDICATION-SOURCE-02`.** The ruled text above is unchanged, the
+existing evidence section is unchanged, and this entry's disposition is
+otherwise unchanged: `G-13` remains `OPEN`.
+
+**The block quoted above under `PI RULING, registered verbatim:` differs from
+the PI-confirmed adjudication source in what the item decides.** Both texts are
+recorded here in full, as measured.
+
+**AS LANDED, above at `:307-312`:**
+
+    `CONVENTIONS.md` contains programme-level definitional records, including
+    review-bound statements carrying a `Statement SHA`. The repository does not
+    presently specify the protection model for such reviewed entries. The open
+    question is whether a reviewed definitional statement may be edited in
+    place, or instead requires supersession, a new `Statement SHA`, and a new
+    review.
+
+**AS IT STANDS IN THE PI-CONFIRMED SOURCE**, whose digest is
+`8c730eacc673153c2cd3b27fa9537186d2151f9c99d42a782cbb2219fb87daf1`:
+
+    Agreed. Record that `CONVENTIONS.md` contains programme-level definitional
+    records, including review-bound statements, but the repository does not
+    presently specify the protection model for such reviewed entries.
+
+    Do not infer append-only status and do not settle the protection model in
+    this task.
+
+    The open question is whether a reviewed definitional statement may be edited
+    in place or instead requires supersession, a new `Statement SHA`, and a new
+    review.
+
+**Two of the differences are substantive.** The landed text carries a
+restrictive qualifier the source does not — `carrying a Statement SHA` — and the
+landed text omits the source's directive sentence `Do not infer append-only
+status and do not settle the protection model in this task.` The remainder is
+framing and rendering.
+
+**The qualifier is load-bearing, and its reach is measurable.** `Statement SHA`
+occurs three times in `CONVENTIONS.md` — at `:49` in the schema field list, at
+`:58` in the field definition, and at `:128` in a populated record. **Exactly
+one record in that file carries one, `A-EXT-01`.** So the landed wording states
+the open question over a one-member class within that file, while the source
+states it unqualified.
+
+---
+
+**THE THREE LEVELS, WHICH ARE DIFFERENT QUESTIONS AND ARE NOT INTERCHANGEABLE.**
+
+    LEVEL 1 — HISTORICAL EXACT TEXT
+    NOT DETERMINED   The exact byte-level wording of the original session
+                     cannot be established. No stored transcript exists; the
+                     transcription asserts no byte-identity; and the landed
+                     block's own label cannot be taken as evidence of the
+                     source it claims to reproduce. Neither text is
+                     established as reproducing the original bytes.
+                     **This level is not resolved here, and nothing below
+                     resolves it.**
+
+    LEVEL 2 — RETROSPECTIVE SOURCE OF RECORD
+    DETERMINED       For the retrospective provenance record created by
+                     `P2-ADJUDICATION-SOURCE-02`, the PI-confirmed source
+                     wording governs the substantive adjudication content of
+                     this divergent item. **This is the ground on which that
+                     record reproduces the source's words for this item.**
+                     It asserts neither that the source reproduces the
+                     original bytes nor that it reproduces the original
+                     formatting; Level 1 leaves both open.
+
+    LEVEL 3 — FORWARD OPERATIVE SCOPE
+    DETERMINED       The open protection question applies to review-bound
+                     statements generally, and not only to those carrying a
+                     particular field.
+
+**Level 2 is about which text is authoritative for a record being made now.
+Level 1 is about what happened. Neither answers the other**, and neither is to
+be read as the other.
+
+**The ground for Level 3 is forward-looking, not archaeological.** It does not
+rest on which text was issued. It rests on measurement made since, whose values
+are read here rather than carried:
+
+- Landed specifications under `specs/` carry live review bindings.
+  `specs/2026-08-19T1723Z_registry-split-01.md`, sha256
+  `6a90c815d4e1912c431e827e0887eb723f2d6bde507782e6245238ad94a49bad`, is bound
+  at `reviews/chatgpt/2026-08-19T1723Z_registry-split-01.md:4`.
+- A single specification's digest is pinned by several documents.
+  `specs/2026-08-19T1141Z_integrate-recon-ext-01.md`, sha256
+  `ac0ec0b59e96094bf285d7d1c2e2ebe0528ab425ceb46699c783ee3c0cda4697`, is named
+  by digest in **three documents besides its own review** — a second review
+  artifact at
+  `reviews/chatgpt/2026-08-19T1141Z_assumption-review_a-ext-01_h-ext-01.md:21`
+  and `:146`, the landed assumption record `assumptions/H-EXT-01.md:106`, and
+  its own task report.
+
+**Neither of those records carries a `Statement SHA`**, and both are review-bound.
+That is why the question reaches beyond the class the landed qualifier names.
+
+**The evidence section above already conceded the point**, in a sentence the
+qualifier is what made necessary — that the question "arises for a second class
+the ruling does not name". **Level 3 removes the need for that workaround
+rather than adding to it.** The evidence section is left as landed.
+
+---
+
+**THE LABEL ON THE BLOCK ABOVE IS NOT SUPPORTED BY THE EVIDENCE.**
+`PI RULING, registered verbatim:` asserts that the quotation reproduces what was
+ruled. **The measurement above shows that it differs from the PI-confirmed
+source in what the item decides**, and no evidence establishes that the landed
+wording is what was ruled.
+
+**The block is retained exactly as landed and is NOT relabelled in place.** Its
+bytes are the evidence of what was registered and when. Relabelling it would
+replace that evidence with a later reading of it, and would settle by practice
+the very protection question this entry records as open.
+
+**Whether other blocks carrying such a label hold is not answered here.** It is
+a question for the provenance census, and it is registered as `R-12` in
+`DECISION_LOG.md`.
+
 ## `G-14` — three historical PI records are each owed a retrospective review
 
 **Disposition: RULED.**
