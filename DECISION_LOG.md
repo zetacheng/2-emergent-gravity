@@ -2502,3 +2502,90 @@ None.
 `assumptions/README.md`, `assumptions/H-EXT-01.md`,
 `decisions/README.md`, `reviews/README.md`, `CONVENTIONS.md`,
 `specs/2026-08-19T1723Z_registry-split-01.md`.
+
+## 2026-08-20 — OBS-IDENT open records, registered and none answered
+
+Date: 2026-08-20
+Decision owner: Executor, adopted for the OBS-IDENT integration
+Effect: registers four open records; answers none; settles nothing
+
+### Decision
+
+**`R-1` to `R-4` are OPEN RECORDS, not decisions and not findings with
+verdicts. Nothing is settled by recording them.** They are the consequences
+that follow from `P2-OBS-IDENT-01`'s `PROXY ONLY` outcome, and **the
+integration that landed that outcome is forbidden by Rule 17 from drawing
+them**: a consequence drawn from a reviewed result is not the reviewed result.
+
+They are recorded here so that they can be found and taken up, rather than
+inherited from a landing record.
+
+> **`R-1` — `D-2`'s PURPOSE IS UNDECIDED.**
+> `P2-OBS-IDENT-01`'s governing specification made re-specification of `D-2`
+> conditional on the audit's outcome. **The condition is now met by
+> measurement rather than by expectation.** Whether `D-2` is re-specified, and
+> as what, is not decided. `D-2` as recorded on 2026-08-19 above stands
+> unaltered.
+>
+> **`R-2` — THE SCOPE OF `GAP-B`, `MM-1`, `MM-3` AND `MM-5` IS UNDECIDED.**
+> Each reasons about the object the audit has now related to the target
+> observable. **None is declared invalid by that relation**, and no rescoping
+> is performed. What each is about, given the relation, is not decided here.
+>
+> **`R-3` — WHETHER ANY LANDED DESCRIPTION OF `EXT-01`'s MEASUREMENT REQUIRES
+> NARROWING IS UNDECIDED**, and so is the mechanism if one does. Landed
+> reviewed records are not edited in place, so a narrowing — if warranted —
+> would need a mechanism this record does not choose. **No landed description
+> was altered by the task that registered this.**
+>
+> **`R-4` — THE `A-EXT-01` AMBIGUITY IS OPEN.** Its exact statement does not
+> disambiguate between the two extraction levels at the point where it is
+> load-bearing. **Whether a definitional convention silent at that point
+> requires supersession is not decided**, and supersession would need a new
+> exact statement and a new review. **The statement is unaltered and its
+> `Statement SHA` is unchanged.**
+
+**`R-4` is adjacent to `G-13` of `docs/GOVERNANCE-DEBT.md` and is NOT
+duplicated there.** `G-13` asks whether a reviewed definitional statement **may
+be** edited in place or instead requires supersession — a question of
+permission. `R-4` asks whether **this** statement's silence at its load-bearing
+point **requires** supersession — a question of necessity about one instance.
+**They are different questions and a second register entry would create a
+second place for one status to drift**, which `docs/GOVERNANCE-DEBT.md`'s own
+`## Not entered here — D4` section warns against.
+
+### Reason
+
+The consequences of a relation are otherwise carried only in a landing record,
+and a landing record is a record of one task. **Recorded here they can be found
+and taken up; left in a landing record they are inherited silently** — which is
+the reasoning the 2026-08-19 EXT-01 entry above gives for the same choice.
+
+**This log's stated scope admits them.** Its head requires the entry template,
+and the 2026-08-19 entry above is the precedent: `O-1` and `O-2` were
+registered there as open findings by an executor for an integration, with
+"Nothing is settled by recording them" stated in the same words.
+
+### Consequences
+
+**Nothing is settled by these four records.** `R-1` re-specifies nothing,
+`R-2` rescopes nothing, `R-3` narrows nothing and alters no landed
+description, and `R-4` amends no definitional statement.
+
+**No gate moves.** `P2-BETAV-RECON-01` remains `PROPOSED`. `Q1`, `GAP-A`,
+`GAP-B`, `A-EXT-01` and `H-EXT-01` are unchanged in status.
+
+**`EXT-01` is not invalidated by any of these records**, and none of them
+concludes anything about whether the discarded external space matters for the
+target coefficient.
+
+### Related gate
+
+None. `P2-BETAV-RECON-01` is referenced and unchanged at `PROPOSED`.
+
+### Related branch and files
+
+`science/obs-ident-01` @ `612817cb9ffa75ca02341e4f408f5fc952000557`;
+`derivations/P2-OBS-IDENT-01_observable-identity.md`,
+`reports/2026-08-20T1050Z_obs-ident-01.md`,
+`specs/2026-08-20T1113Z_obs-ident-integ.md`.
