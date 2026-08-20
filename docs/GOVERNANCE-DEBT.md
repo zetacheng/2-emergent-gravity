@@ -39,9 +39,9 @@ mechanism shape is known, and no mechanism exists for any entry carrying it.
     NOT REPAIRABLE HERE   1     G-01
     RULED                 3     G-07  G-12  G-14
     METHOD NOTE           1     G-11
-    OPEN                  6     G-03  G-08  G-09  G-10  G-13  G-16
+    OPEN                  7     G-03  G-08  G-09  G-10  G-13  G-16  G-17
     ------------------------------------------------
-    entries              16
+    entries              17
 
 ---
 
@@ -481,6 +481,45 @@ inconclusive result; the two vocabularies are not merged.
 `reports/2026-08-20T0042Z_proj-01-class-01.md` §`S-3`, where the question was
 raised and left open; `specs/2026-08-20T0104Z_proj-01-integ.md` §6 `O-4`, which
 required this entry.
+
+## `G-17` — no rule says a scoped result must be cited with its scope
+
+**Disposition: OPEN.**
+
+**THIS IS AN OPEN QUESTION, NOT A FINDING, AND NO RULE IS CREATED BY ITS BEING
+WRITTEN HERE.**
+
+**The occasion.** `P2-GAPA-BRIDGE-01` produced a positive structural result
+that holds under a stated condition: the identification of the Barnes–Rivers
+spin-2 block with the span of `TT_RECIPES` holds for `q ∥ e₀` and fails by
+`O(1)` at every other direction tested. **The condition is part of the
+statement.** Cited without it, the result says something the derivation did not
+establish.
+
+**The gap.** **No rule in `CONVENTIONS.md` requires a scoped result to be cited
+with its scope**, and nothing detects a citation that drops one. The
+repository's existing protections are of a different kind: Rule 17 stops an
+integration adding a classification, Rule 19 re-pins a modified artifact, and
+Rule 22 requires an `INCONCLUSIVE` result to carry a subclass and a
+`Resolution path`. **None of them constrains how a landed positive result is
+quoted downstream.**
+
+**The question, registered undecided.** Whether a standing citation rule should
+require a scope condition to accompany the result it qualifies wherever the
+result is cited. **`P2-GAPA-INTEG` did not create such a rule and was forbidden
+to**: a rule of that form is governance the reviewed result does not carry, and
+Rule 17 reserves it. The reviewed result's own sentence about what it does not
+license was transported verbatim instead.
+
+**Not asserted here:** that the risk has materialised. **No citation dropping
+the condition has been observed.** The entry records a gap, not an incident.
+
+**Evidence.** `derivations/P2-GAPA-BRIDGE-01_basis-identification.md` §7 and
+§8, where the condition and the `O(1)` failure magnitudes are measured;
+`specs/2026-08-20T0345Z_gapa-integ.md` §1a and §6 `R-1`, which register the
+question and forbid answering it;
+`reports/2026-08-20T0345Z_gapa-integ_landing-record.md`, which transports the
+condition with the outcome.
 
 ## Not entered here — `D4`
 
