@@ -2589,3 +2589,65 @@ None. `P2-BETAV-RECON-01` is referenced and unchanged at `PROPOSED`.
 `derivations/P2-OBS-IDENT-01_observable-identity.md`,
 `reports/2026-08-20T1050Z_obs-ident-01.md`,
 `specs/2026-08-20T1113Z_obs-ident-integ.md`.
+
+## 2026-08-20 — R-5: the homeless-obligation enumeration, measured
+
+Date: 2026-08-20
+Decision owner: Executor, adopted for the GAP-B integration
+Effect: records one open finding; places no obligation; settles nothing
+
+### Decision
+
+**`R-5` is an OPEN RECORD, not a decision. Nothing is settled by recording
+it**, and **no obligation is placed by it.**
+
+> **`R-5` — THE STANDING CLAIM THAT NO REGISTER ADMITS THESE OBLIGATIONS IS
+> FALSE AS MEASURED.**
+> Three landing records — `P2-PROJ-01-INTEG`, `P2-RECON-01B-B0-INTEG` and
+> `P2-GAPA-INTEG` — state that no register's stated scope admits `O-1`, `O-2`,
+> `O-3` or `P2-GAPA-INTEG`'s `R-2`. **Measured against this log's stated scope
+> and its own 2026-08-19 precedent, all four are ADMITTED.** None is "not
+> admitted" and none is "not determinable from the stated scope".
+> **This log was not among the registers those three tasks enumerated.**
+>
+> **A second figure does not survive the same enumeration.** Those records
+> carry a count alongside the claim. Measured: `O-3` was discharged by the
+> same task that restated the count, `O-2` is discharged by the landing this
+> record accompanies, and `P2-GAPA-INTEG`'s `R-2` restates `O-2` rather than
+> adding to it. **One of the four is outstanding: `O-1`.**
+>
+> **WHETHER ANY OBLIGATION IS NOW PLACED HERE, AND BY WHAT AUTHORITY, IS
+> UNDECIDED.** Admission and placement are different acts, and the task that
+> measured the first was not authorised to perform the second.
+
+### Reason
+
+The claim was this line's own repeated assertion, made three times without the
+measurement that would test it. **Leaving it standing while landing another
+artifact that could inherit it would propagate it a fourth time.**
+
+**This log's stated scope admits this record** on the same ground as the
+2026-08-19 EXT-01 entry and the 2026-08-20 OBS-IDENT entry: an open record,
+adopted by an executor for an integration, settling nothing.
+
+### Consequences
+
+**Nothing is settled by this record.** No obligation is placed, no register
+entry is created for any of the four, and the three landing records that carry
+the claim are **not amended** — they are landed reviewed records, and whether
+any needs correction is not decided here.
+
+**No gate moves.** `Q1`, `GAP-A`, `GAP-B`, `A-EXT-01` and `H-EXT-01` are
+unchanged in status.
+
+### Related gate
+
+None.
+
+### Related branch and files
+
+`science/gapb-bridge-01` @ `46b4791152fd87ced7e718df5ec3d91d394883ac`;
+`reports/2026-08-20T0104Z_proj-01-integ_landing-record.md`,
+`reports/2026-08-20T0324Z_recon-01b-b0-integ_landing-record.md`,
+`reports/2026-08-20T0345Z_gapa-integ_landing-record.md`,
+`specs/2026-08-20T1139Z_gapb-integ.md`.
