@@ -2651,3 +2651,118 @@ None.
 `reports/2026-08-20T0324Z_recon-01b-b0-integ_landing-record.md`,
 `reports/2026-08-20T0345Z_gapa-integ_landing-record.md`,
 `specs/2026-08-20T1139Z_gapb-integ.md`.
+
+## 2026-08-20 — Adjudication-source records, five registered and none answered
+
+Date: 2026-08-20
+Decision owner: Executor, adopted for the adjudication-source landing
+Effect: registers five open records; answers none; settles nothing
+
+### Decision
+
+**`R-8` to `R-12` are OPEN RECORDS, not decisions and not findings with
+verdicts. Nothing is settled by recording them.**
+
+> **`R-8` — THE CITING ARTIFACTS ARE ENUMERATED, AND THE CITATION FORM IS
+> AMBIGUOUS.**
+> The landed artifacts citing or relying on an item of the adjudication
+> document are: `specs/2026-08-19T2214Z_recon-proj-01.md:8`, which cites item 5
+> by number; `specs/2026-08-19T2324Z_gov-housekeep-02.md`, whose §5 transcribes
+> items 1, 2 and 4 and whose §7 disposes of item 7;
+> `specs/2026-08-19T1723Z_registry-split-01.md:7`, which cites the ruling
+> without a number as its `Origin`; `decisions/README.md:70-71` and `:87`;
+> `docs/GOVERNANCE-DEBT.md:461`; and the reports and reviews bound to those
+> specifications.
+>
+> **The form `PI ruling N` does not identify a unique ruling set.**
+> `derivations/P2-RECON-EXT-01_discarded-external-space.md` cites `PI ruling 4`
+> at `:14`, `:421` and `:437` as reserving the `TT_RECIPES` governance
+> question, and `PI ruling 2` at `:471` as deferring a criterion until the
+> magnitude is known; `reports/2026-08-19T0649Z_recon-ext-01-discarded-space.md`
+> does the same at `:143` and `:332`. **Neither matches this document's item 2
+> or item 4**, which concern the `CONVENTIONS.md` protection model and the
+> retrospective reviews of `reviews/pi/` records. Two different numbered ruling
+> sets are cited in the same form.
+>
+> **No citation is edited, and whether any needs amendment is not decided
+> here.**
+>
+> **`R-9` — ONE ITEM'S SUBSTANTIVE QUESTION HAS SINCE MOVED.**
+> Item 6 directs that the discarded-external-space diagnostic be extended, and
+> frames it as a measurement task rather than a prerequisite. It was framed
+> before `P2-OBS-IDENT-01`'s observable-identity finding, and `R-1` above
+> already records that `D-2`'s purpose is undecided in consequence. **The item
+> is landed in its stated words regardless**, and that the question has moved
+> is recorded beside it, undecided.
+>
+> **`R-10` — WHETHER ANY ITEM'S EFFECTIVE DATE SHOULD BE FIXED, AND TO WHAT,
+> IS OPEN.** The decision record states that the surviving evidence settles it
+> in neither direction, and it fixes no date.
+>
+> **`R-11` — WHETHER THE UNNUMBERED BLOCK IS AN ITEM OF THE DOCUMENT IS OPEN.**
+> The source carries one bold block, `Priority / sequencing`, that carries no
+> number. It is recorded in the decision record as the reading returned it and
+> is **not classified** either way.
+>
+> **`R-12` — A BLOCK ASSERTING IT REPRODUCES WHAT WAS RULED WAS FOUND NOT TO.**
+> `docs/GOVERNANCE-DEBT.md:305`'s label `PI RULING, registered verbatim:`
+> introduces a quotation that differs from the PI-confirmed source in what its
+> item decides. **Whether other such labels hold is a question for the
+> provenance census**, and is not answered here. No other label was measured.
+
+**Which register admits each record, read from the registers' stated scopes.**
+
+    DECISION_LOG.md
+        ADMITS all five. Its head requires the entry template and
+        append-only treatment, and the 2026-08-19 EXT-01 entry, the
+        2026-08-20 OBS-IDENT entry and the 2026-08-20 R-5 entry are the
+        precedent: open records adopted by an executor for an integration,
+        each stating that nothing is settled by recording them.
+
+    derivations/P2-DEFERRED-ITEMS.md
+        DOES NOT ADMIT any of the five. It holds work CONSIDERED and
+        consciously POSTPONED, carrying the PI's position at deferral, and
+        its entries are added by PI decision. Its own text routes open
+        questions elsewhere, naming `DECISION_LOG.md` entries that open an
+        item as UNESTABLISHED.
+
+    derivations/P2-PHASE-01_C-CHECK_OPEN-ITEMS.md
+        DOES NOT ADMIT any of the five. It holds open items arising from the
+        C-check line — `C1`, `C2`, `C3`. None of these arises from it.
+
+    docs/GOVERNANCE-DEBT.md
+        ADMITS `R-12`, and would admit `R-8`'s citation-form finding, both
+        being governance-side. **Neither is entered there**, and the reason is
+        that file's own `## Not entered here — D4`: a second entry would
+        create a second place for one status to drift. The five are recorded
+        once, here, in the series they continue.
+
+### Reason
+
+The records are consequences of a provenance landing, and Rule 17 forbids the
+landing from drawing them. **Recorded here they can be found and taken up;
+left in a landing record they are inherited silently.**
+
+### Consequences
+
+**Nothing is settled by these five records.** `R-8` edits no citation, `R-9`
+re-specifies nothing, `R-10` fixes no date, `R-11` classifies nothing, and
+`R-12` relabels nothing and audits no other label.
+
+**No gate moves.** `Q1`, `GAP-A`, `GAP-B`, `A-EXT-01` and `H-EXT-01` are
+unchanged in status. `G-13` remains `OPEN` and its disposition is unchanged.
+
+**No count is incremented.** `R-9` restates a question `R-1` already carries,
+and is recorded as restating it.
+
+### Related gate
+
+None.
+
+### Related branch and files
+
+`science/adjudication-source-02`;
+`decisions/2026-08-20-adjudication-source.md`,
+`docs/GOVERNANCE-DEBT.md`,
+`specs/2026-08-20T1705Z_adjudication-source-02.md`,
+`reports/2026-08-20T1705Z_adjudication-source-02.md`.
