@@ -39,9 +39,9 @@ mechanism shape is known, and no mechanism exists for any entry carrying it.
     NOT REPAIRABLE HERE   1     G-01
     RULED                 3     G-07  G-12  G-14
     METHOD NOTE           1     G-11
-    OPEN                  5     G-03  G-08  G-09  G-10  G-13
+    OPEN                  6     G-03  G-08  G-09  G-10  G-13  G-16
     ------------------------------------------------
-    entries              15
+    entries              16
 
 ---
 
@@ -439,6 +439,48 @@ are `M3`'s measurement, not a carried figure.
 **Evidence.** `specs/2026-08-19T2324Z_gov-housekeep-02.md` §7;
 `reports/2026-08-19T2303Z_gov-housekeep-01.md`, which stopped rather than
 redirect the ruling; `reports/2026-08-19T2324Z_gov-housekeep-02.md`, `M3`.
+
+## `G-16` — rule 22's retrospective reach is unsettled, and the audit is owed
+
+**Disposition: OPEN.**
+
+**THIS IS AN OBLIGATION AND AN OPEN QUESTION, NOT A FINDING.** Nothing is
+settled by its being written here, and this register discharges nothing.
+
+**The obligation.** `CONVENTIONS.md` rule 22 requires every `INCONCLUSIVE`
+result to carry a subclass and a `Resolution path`. The rule is prospective by
+its own text, and the audit of existing `INCONCLUSIVE`, `NOT ESTABLISHED`,
+`SPECIFICATION ONLY`, `BLOCKED` and equivalent records has not been performed.
+It is owed.
+
+**The unsettled question the audit meets immediately.** Rule 22 says a subclass
+is assigned "when the result is recorded". **It does not say who may assign one
+to a result recorded before the rule existed, nor what label such an assignment
+carries.** `P2-PROJ-01-CLASS-01` answered both for a single case, by being its
+own reviewed task and by carrying a `RETROSPECTIVE CLASSIFICATION` label
+modelled on ruling 4's treatment of the historical `reviews/pi/` records.
+**That answer was a construction of one specification and is not in rule 22.**
+
+**Whether every retrospective classification must be its own reviewed task, or
+whether the audit may classify in bulk, is not decided here** and was not
+decided by the task that raised it. **The integration that registered this
+entry is forbidden by rule 17 from deciding it**, because it is a governance
+interpretation neither reviewed result carried.
+
+**A separation the audit must preserve, recorded because conflating it would
+corrupt the measurement.** An executed-and-never-integrated result is a
+workflow carry-forward; an inconclusive finding with a constructive gap is an
+epistemic state. `P2-RECON-01B-B0` is the first kind and `Q1` is the second.
+Counting them together would misreport what the audit exists to measure.
+Likewise `SPECIFICATION ONLY` is a readiness classification and not an
+inconclusive result; the two vocabularies are not merged.
+
+**Evidence.** `CONVENTIONS.md` rule 22 and its prospective clause;
+`decisions/2026-08-19-inconclusive-disposition.md`;
+`derivations/P2-PROJ-01-CLASS-01_q1-classification.md`, the single case;
+`reports/2026-08-20T0042Z_proj-01-class-01.md` §`S-3`, where the question was
+raised and left open; `specs/2026-08-20T0104Z_proj-01-integ.md` §6 `O-4`, which
+required this entry.
 
 ## Not entered here — `D4`
 
