@@ -2766,3 +2766,114 @@ None.
 `docs/GOVERNANCE-DEBT.md`,
 `specs/2026-08-20T1705Z_adjudication-source-02.md`,
 `reports/2026-08-20T1705Z_adjudication-source-02.md`.
+
+## 2026-08-21 — Census-integration records, three registered and none answered
+
+Date: 2026-08-21
+Decision owner: Executor, adopted for the provenance-census integration
+Effect: registers three open records; answers none; settles nothing
+
+### Decision
+
+**`R-13` to `R-15` are OPEN RECORDS, not decisions and not findings with
+verdicts. Nothing is settled by recording them.** They are consequences and
+by-products of `P2-PROVENANCE-CENSUS-01`'s measured result, and Rule 17
+forbids the integration that carried that result forward from drawing them.
+
+> **`R-13` — THE PROVENANCE-TIER QUESTION IS OPEN.**
+> The census measured provenance as a binary: an adjudication either has a
+> landed record or it does not. In the course of that measurement it
+> distinguished a third state — **an adjudication a register knows to have
+> been ruled, and whose words that register does not carry**, pointing
+> elsewhere for them. Four of the twenty-three landed adjudications are in
+> that state, and one of them, `G-08`, points at a specification as the place
+> its ruling is recorded.
+>
+> **The binary result is NOT revised.** Whether the model should be, and
+> whether a register record that states an adjudication occurred without
+> carrying its words is sufficient provenance, is **not decided here**.
+>
+> **`R-14` — THE CITATION-FORM FINDING IS OPEN.**
+> Both the numbered and the named citation forms were measured non-unique.
+> `PI ruling N` resolves to two distinct ruling sets; `PI ruling of this
+> session` resolves to three distinct referents across four artifacts. **At
+> least one citation resolves to nothing**: `derivations/P2-DEFERRED-ITEMS.md:199`
+> names the `D-pre-A` ruling on the canonical kinetic operator as the
+> authority for `DEFERRED-04`, and no such ruling is landed in the searched
+> scope.
+>
+> **No citation is amended and no rule is proposed.** Whether either form
+> should change is not decided here.
+>
+> **`R-15` — A METHOD FINDING, RECORDED FOR ADOPTION AND NOT ADOPTED.**
+> **Set identities all evaluating true does not establish that the parser
+> populated the sets correctly.** The census's own verification of its set
+> relations passed while wrong: a character-class error dropped every member
+> of one set from the parse, after which every relation held trivially — the
+> empty set is a subset of anything, and subtracting it changes nothing. The
+> error was caught because a cardinality was implausible, not because a
+> relation failed.
+>
+> **Census-class verification therefore requires cardinality sanity, an
+> independently written parser, or sentinel cases**, none of which the
+> executor's check had. **This is recorded as a finding for adoption. It is
+> not adopted here**, no rule is amended, and no existing verification is
+> re-run under it.
+
+**Which register admits each record, read from the registers' stated scopes.**
+
+    DECISION_LOG.md
+        ADMITS all three. Its head requires the entry template and
+        append-only treatment, and the 2026-08-19 EXT-01 entry and the three
+        2026-08-20 entries at :2506, :2593 and :2655 are the precedent: open
+        records adopted by an executor for an integration, each stating that
+        nothing is settled by recording them.
+
+    derivations/P2-DEFERRED-ITEMS.md
+        DOES NOT ADMIT any of the three. It holds work CONSIDERED and
+        consciously POSTPONED, carrying the PI's position at deferral, and
+        its entries are added by PI decision. None of these three is
+        postponed work and none carries a PI position.
+
+    derivations/P2-PHASE-01_C-CHECK_OPEN-ITEMS.md
+        DOES NOT ADMIT any of the three. It holds open items arising from the
+        C-check line — `C1`, `C2`, `C3`. None of these arises from it.
+
+    docs/GOVERNANCE-DEBT.md
+        ADMITS `R-13` and `R-14`, both being governance-side, and would admit
+        `R-15` under its `METHOD NOTE` disposition. **None is entered there**,
+        for the reason that file's own `## Not entered here — D4` gives: a
+        second entry would create a second place for one status to drift. The
+        three are recorded once, here, in the series they continue.
+
+### Reason
+
+The records are consequences and by-products of a reviewed measurement, and
+Rule 17 forbids the integration carrying that measurement forward from adding
+a classification the reviewed result did not carry. **Recorded here they can
+be found and taken up; left in a landing record they are inherited silently.**
+
+### Consequences
+
+**Nothing is settled by these three records.** `R-13` revises no census value
+and resolves no tier question, `R-14` amends no citation and proposes no rule,
+and `R-15` adopts no method and re-runs no verification.
+
+**No gate moves.** `Q1`, `GAP-A`, `GAP-B`, `A-EXT-01` and `H-EXT-01` are
+unchanged in status. `G-13` remains `OPEN`.
+
+**No count is incremented.** `R-13` restates no existing obligation; `R-14`
+restates the citation-form finding already carried as `R-8` and is recorded as
+restating it, not as adding to it.
+
+### Related gate
+
+None.
+
+### Related branch and files
+
+`science/provenance-census-01` @ `f69c1a1df5a7d9658ec4e9077cea3894300a1e16`;
+`derivations/P2-PROVENANCE-CENSUS-01_census.md`,
+`decisions/2026-08-21-specification-is-not-provenance.md`,
+`specs/2026-08-21T0503Z_provenance-census-integ.md`,
+`reports/2026-08-21T0503Z_provenance-census-integ.md`.
