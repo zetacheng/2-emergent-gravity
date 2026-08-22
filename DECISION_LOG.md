@@ -2877,3 +2877,112 @@ None.
 `decisions/2026-08-21-specification-is-not-provenance.md`,
 `specs/2026-08-21T0503Z_provenance-census-integ.md`,
 `reports/2026-08-21T0503Z_provenance-census-integ.md`.
+
+## 2026-08-21 — Mass-log measurement records, three registered and none answered
+
+Date: 2026-08-21
+Decision owner: Executor, adopted for the external-component measurement integration
+Effect: registers three open records; answers none; settles nothing
+
+### Decision
+
+**`R-16` to `R-18` are OPEN RECORDS, not decisions and not findings with
+verdicts. Nothing is settled by recording them.** They are consequences and
+by-products of `P2-BETAV-EXTCOMP-01`'s measured result, and Rule 17 forbids
+the integration that carried that result forward from drawing them.
+
+> **`R-16` — INTERPRETATION IS OWED.**
+> The measurement bears on `H-EXT-01`, which asks whether the axis-TT
+> observable is the full physical response, and on `GAP-B`'s mismatches. **No
+> task has read it against either.** Reading it is a separate task and is not
+> performed at integration.
+>
+> **Nothing about the statuses changes by this record.** `H-EXT-01` remains
+> `UNESTABLISHED` and `NOT ASSUMED BY RECON-01b`; `Q1` remains as its reviewed
+> result left it; `GAP-A` and `GAP-B` are unchanged.
+>
+> **`R-17` — THE SIGN REVERSAL, AS A QUESTION ABOUT THE EXTRACTION.**
+> The retained aggregate changes sign between the two frozen mass windows, and
+> its spread across the frozen variant set exceeds the magnitude of either
+> endpoint. **Why is unexplained**, and the measurement recorded it open rather
+> than accounting for it.
+>
+> **Recorded with a constraint on how it may be approached: additional mass
+> windows are not the way.** A window chosen after seeing a reversal is an
+> estimator chosen on the evidence it is meant to test. **The question is prior
+> to any further window**, and no further window is opened, proposed or scoped
+> by this record.
+>
+> **`R-18` — A METHOD FINDING, RECORDED FOR ADOPTION AND NOT ADOPTED.**
+> Two acceptance checks in the measurement task reported false negatives. One
+> search term spanned a line break; one survived whitespace normalisation
+> because the target text carried backticks that the normalisation did not
+> strip. **The line-break case is a recorded lesson of this repository
+> recurring. The backtick case is a variant the recorded lesson does not
+> name.**
+>
+> **A normalisation that collapses whitespace but leaves markup delimiters in
+> place is not sufficient for a presence check over marked-up text.**
+> **Recorded as a finding for adoption. It is not adopted here**, no rule is
+> amended, and no existing check is re-run under it.
+
+**Which register admits each record, read from the registers' stated scopes.**
+
+    DECISION_LOG.md
+        ADMITS all three. Its head requires the entry template and
+        append-only treatment, and the 2026-08-19 EXT-01 entry together with
+        the entries at :2506, :2593, :2655 and :2770 are the precedent: open
+        records adopted by an executor for an integration, each stating that
+        nothing is settled by recording them.
+
+    derivations/P2-DEFERRED-ITEMS.md
+        DOES NOT ADMIT any of the three. It holds work CONSIDERED and
+        consciously POSTPONED, carrying the PI's position at deferral, and its
+        entries are added by PI decision. None of these three is postponed
+        work and none carries a PI position.
+
+    derivations/P2-PHASE-01_C-CHECK_OPEN-ITEMS.md
+        DOES NOT ADMIT any of the three. It holds open items arising from the
+        C-check line — `C1`, `C2`, `C3`. None of these arises from it.
+
+    docs/GOVERNANCE-DEBT.md
+        ADMITS `R-18`, which is governance-side and would sit under its
+        `METHOD NOTE` disposition. **It does not admit `R-16` or `R-17`**,
+        which are scientific questions about a measurement and not governance
+        debt. **`R-18` is not entered there**, for the reason that file's own
+        `## Not entered here — D4` gives: a second entry would create a second
+        place for one status to drift. The three are recorded once, here.
+
+### Reason
+
+The records are consequences and by-products of a reviewed measurement, and
+Rule 17 forbids the integration carrying that measurement forward from adding
+a classification the reviewed result did not carry. **Recorded here they can be
+found and taken up; left in a landing record they are inherited silently.**
+
+### Consequences
+
+**Nothing is settled by these three records.** `R-16` interprets nothing and
+reclassifies nothing, `R-17` explains nothing and opens no window, and `R-18`
+adopts no method and re-runs no check.
+
+**No gate moves.** `Q1`, `GAP-A`, `GAP-B`, `A-EXT-01` and `H-EXT-01` are
+unchanged in status. `P2-PHASE-01` does not advance.
+
+**No count is incremented.** `R-18` restates no existing obligation; it is
+adjacent to the observation-method defect class this repository already
+records, and is recorded as a new instance of it rather than as a new
+obligation.
+
+### Related gate
+
+None. `P2-BETAV-RECON-01` is referenced nowhere by these records and is
+unchanged at `PROPOSED`.
+
+### Related branch and files
+
+`science/betav-extcomp-01` @ `7035e0b7b4a6eaeefb91900eefc0a74e78f78fa0`;
+`derivations/P2-BETAV-EXTCOMP-01_external-component-mass-log.md`,
+`results/P2-BETAV-EXTCOMP-01/external_component_mlog.json`,
+`specs/2026-08-22T0021Z_betav-extcomp-integ.md`,
+`reports/2026-08-22T0021Z_betav-extcomp-integ.md`.
