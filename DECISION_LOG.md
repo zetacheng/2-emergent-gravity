@@ -2986,3 +2986,101 @@ unchanged at `PROPOSED`.
 `results/P2-BETAV-EXTCOMP-01/external_component_mlog.json`,
 `specs/2026-08-22T0021Z_betav-extcomp-integ.md`,
 `reports/2026-08-22T0021Z_betav-extcomp-integ.md`.
+
+## 2026-08-22 — XI line: observable, decomposition axis, and SI-2 ordering
+
+Date: 2026-08-22
+Decision owner: Principal Investigator
+Effect: settles the three items `P2-XI-B0a` returned for PI ruling; registers
+one H-type hypothesis as `UNESTABLISHED`
+
+### Decision
+
+**The ruling is an issued document, landed byte-exact. It is not reproduced
+here**, because a transcription is not the record:
+
+    Decision key   2026-08-22-xi-rulings-01
+    Issued file    decisions/P2-XI-RULINGS-01.issued.md
+    Issuance SHA-256
+                   1f39b0f9c5cf2cd54fd5a2a0b38fa05ae454bb47a8fd81160f34485a7a2f6941
+    git blob id    f793f9fd866f563480fbec6168553a2b967aea8f
+    Register record
+                   decisions/2026-08-22-xi-rulings-01.md
+
+The document's sections, named and not paraphrased: `RULING 1` (the observable
+the survival condition applies to), `RULING 2` (the ξ ledger's decomposition
+axis, and the separation of that language choice from the physical
+proposition), `RULING 3` (SI-2 ordering), `CROSS-RULING CONSISTENCY`, and
+`ROUTING`.
+
+**Document review verdict: `FIT FOR RECORDING`.** The artifact is
+`reviews/chatgpt/2026-08-22_document-review_p2-xi-rulings-01.md`, sha256
+`c96fc297c576b3d32954118161bd24799e6a28c6c52e64909afbe0fb3336b364`, self-bound
+to the issuance SHA-256 above. It is reproduced verbatim in PART 2 of the
+register record. **Under `decisions/README.md`'s adopted rule the review is
+mandatory and non-gating**, and the decision took effect on issuance.
+
+**One hypothesis registered, as `RULING 2`'s second `RULING` block directs:**
+
+    ID              H-XI-SIGN-01
+    File            assumptions/H-XI-SIGN-01.md
+    Type            PHYSICAL HYPOTHESIS — directional, falsifiable
+    Status          UNESTABLISHED — NOT ADJUDICATED BY P2-XI-RULINGS-01
+    Statement SHA   8731037c16e485fd40d279cef827421cd733bc438ff828f1408dbdbd15488e90
+    PART 2          REVIEW PENDING
+
+### Reason
+
+`P2-XI-B0a` completed a documentary scope assessment and returned three items
+for PI ruling: the `SI-2` overlap, and two model-level questions its `A4`
+fired on. **The executor did not decide them and could not**; the issued
+document is the PI deciding them.
+
+The hypothesis registration is directed by the ruling itself. The issued text
+separates the PI's authority over ledger language from the physical
+proposition, and states that the latter "cannot be established or refuted by PI
+ruling".
+
+### Evidence
+
+The issued bytes, verified against the issuance SHA-256 before any write
+(`M1`/`C1` of `specs/2026-08-22T2001Z_xi-rulings-landing_v2.md`). The carrier
+of the registered hypothesis is `results/recovered-2026/session_log_full.md`
+lines 177 and 197 at `main` `6da1f7cb`, extracted byte-exact and quoted
+verbatim in the entry with working translations identified as translations.
+
+### Consequences
+
+**No gate moves.** `P2-MULTIPHASE-GRAV-01` (SI-2), `P2-CHANNEL-FREEZE-01` and
+`P2-NORM-01` are unchanged in status. **No claim status changes.** **Nothing is
+computed.**
+
+**`RULING 2`'s forward-terminology effect was not exercised.** No existing
+repository text was reworded by this landing; any such rewording proceeds under
+the repository's clarification, erratum, or supersession mechanism, per the
+issued text.
+
+**`H-XI-SIGN-01` establishes nothing.** It is registered `UNESTABLISHED`, its
+falsifier defers operational definition of "coupling structure" to a later
+reviewed specification, and nothing landed depends on it.
+
+### Supersedes
+
+Nothing. The three items were open, not previously ruled.
+
+### Related gate
+
+`P2-MULTIPHASE-GRAV-01` (SI-2) is named by `RULING 3` and is unchanged at
+`PROPOSED`. No gate section was modified.
+
+### Related branch and files
+
+`science/xi-rulings-landing-01`, cut from `main` `6da1f7cb`;
+`decisions/P2-XI-RULINGS-01.issued.md`,
+`decisions/2026-08-22-xi-rulings-01.md`,
+`reviews/chatgpt/2026-08-22_document-review_p2-xi-rulings-01.md`,
+`assumptions/H-XI-SIGN-01.md`,
+`specs/2026-08-22T2001Z_xi-rulings-landing_v2.md`,
+`reports/2026-08-22T2021Z_xi-rulings-landing.md`.
+The assessment that returned the three items is on `science/xi-b0a` @
+`012bdff3`, which this task does not integrate.
