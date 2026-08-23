@@ -3084,3 +3084,70 @@ Nothing. The three items were open, not previously ruled.
 `reports/2026-08-22T2021Z_xi-rulings-landing.md`.
 The assessment that returned the three items is on `science/xi-b0a` @
 `012bdff3`, which this task does not integrate.
+
+## 2026-08-23 — INDEX: executor identity for `P2-XI-RULINGS-LANDING-01`
+
+Date: 2026-08-23
+Decision owner: Principal Investigator
+Effect: index entry only
+
+### Decision
+
+**This entry is a pointer, not the ruling's home.**
+
+    Decision key      2026-08-23-xi-landing-executor-identity
+    Canonical record  decisions/2026-08-23-xi-landing-executor-identity.md
+    Subject           Claude Code was the designated executor for
+                      P2-XI-RULINGS-LANDING-01 under AGENTS.md:86; the
+                      reviewed specification's "Codex only" label is
+                      superseded for executor identity only, for that
+                      execution only
+
+**The ruling's text is not transcribed here.** It is landed byte-identical in
+the canonical record above, extracted from the reviewed integration
+specification rather than retyped. Under the landed ruling that a
+specification transcribing an adjudication is evidence of its content and not
+that adjudication's canonical provenance record, a second transcription in
+this log would create a second place for one text to drift.
+
+### Reason
+
+`P2-XI-RULINGS-LANDING-01` recorded, at §6a of its execution report, that its
+reviewed specification named a different executor than the one the PI
+announced in session, and returned the divergence rather than deciding it. The
+PI confirmed. The confirmation needed a canonical home in `decisions/`, per the
+four-way separation; this log receives the index.
+
+### Evidence
+
+`reports/2026-08-22T2021Z_xi-rulings-landing.md` §6a, on the source branch and
+arriving in this integration. The ruling bytes as extracted from
+`specs/2026-08-23T0000Z_xi-rulings-landing-integ_v4.md` lines 89–93, sha256
+`ca6dbb3c30c37c99074594d4dcfb23692b230f146b800999d7287f36e84ff95f`.
+
+### Consequences
+
+**Nothing scientific changes.** No measurement, no scope, no acceptance
+criterion, and no re-execution — the ruling says so in its own words. **No gate
+moves and no claim status changes.**
+
+**The forward executor-field convention is NOT landed.** It is a Researcher
+authoring practice unless and until the PI issues it as a ruling.
+
+### Supersedes
+
+Nothing. It supersedes no landed decision. **Within its own scope it supersedes
+a specification field** — `specs/2026-08-22T2001Z_xi-rulings-landing_v2.md`'s
+`Execution` field, for executor identity only and for that execution only. That
+field is not rewritten and stands as the reviewed bytes it always was.
+
+### Related gate
+
+None. This is a governance record.
+
+### Related branch and files
+
+`science/integrate-xi-rulings-landing-01`, cut from `main` `6da1f7cb`;
+`decisions/2026-08-23-xi-landing-executor-identity.md`,
+`specs/2026-08-23T0000Z_xi-rulings-landing-integ_v4.md`,
+`reviews/chatgpt/2026-08-23T0000Z_xi-rulings-landing-integ_v4.md`.
