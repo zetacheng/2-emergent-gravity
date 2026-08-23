@@ -403,3 +403,84 @@ branch ONLY**, with `origin/main` remaining `H_integ`.
 **The source branch `science/xi-rulings-02-landing` must not move, and
 `science/xi-ledger-01` must not move by this task.** Both are re-verified
 against their `M1` values in the addendum.
+
+---
+
+# ADDENDUM — `M5`, `C4`'s second limb, and `C5`
+
+**On the integration branch ONLY.** Not on `main`; `origin/main` remains
+`H_integ`. It exists because `C4`'s second limb and `C5` observe objects that do
+not exist until `H_integ` is committed and pushed.
+
+## A1. `H_integ`
+
+    H_integ   6c1af3cace259663a288354b1725bdd923d3b1fc
+
+## A2. `C4`, second limb — measured, not asserted
+
+`git diff --stat` between the tested tree and `H_integ`:
+
+```
+ reports/2026-08-23T1903Z_xi-rulings-02-integ.md | 405 ++++++++++++++++++++++++
+ 1 file changed, 405 insertions(+)
+```
+
+`git diff --name-status`:
+
+```
+A	reports/2026-08-23T1903Z_xi-rulings-02-integ.md
+```
+
+    tested tree (post-merge)   ee2cabd3d5b5c683f2c5e1d267394d2781290a25
+    H_integ                    6c1af3cace259663a288354b1725bdd923d3b1fc
+    files changed              1 — the report artifact
+
+**`C4` PASSES on both limbs.**
+
+## A3. `M5` — push order executed
+
+    1  pushed science/integrate-xi-rulings-02  (new branch)
+    2  advanced refs/heads/main by fast-forward to H_integ:
+         9eefe4c..6c1af3c  6c1af3cace259663a288354b1725bdd923d3b1fc -> main
+    3  post-push ref audit, below
+    4  this addendum, committed and pushed to the integration branch only
+
+**`A3` did not fire.** `origin/main` was re-read as `9eefe4c8…` immediately
+before the push and confirmed a strict ancestor of `H_integ`; the push output
+carries the two-dot form `9eefe4c..6c1af3c`, which git prints only for a
+fast-forward.
+
+## A4. Post-push ref audit, from `git ls-remote origin`, full SHAs
+
+    6c1af3cace259663a288354b1725bdd923d3b1fc  refs/heads/main
+    6c1af3cace259663a288354b1725bdd923d3b1fc  refs/heads/science/integrate-xi-rulings-02
+    8f9edfead214b5bb3337924c18c5d241274e97c3  refs/heads/science/xi-ledger-01
+    6c7a1f7238273214f87fe0d9b76111a7e5f45a6c  refs/heads/science/xi-rulings-02-landing
+
+Against their `M1` values:
+
+    main                            now 6c1af3ca…  H_integ 6c1af3ca…   EQUAL
+    science/xi-rulings-02-landing   now 6c7a1f72…  M1 6c7a1f72…        UNMOVED
+    science/xi-ledger-01            now 8f9edfea…  M1 8f9edfea…        UNMOVED
+
+**`science/xi-ledger-01` did not move during this task**, which is what `C5`
+requires of it. **Any later movement by the separately authorized addendum task
+is that task's, not this one's, and does not affect the ruling subject pin** —
+the pin denotes a commit, not a branch tip.
+
+## A5. `C5`
+
+    C5  (M5)  PASS   origin/main equals H_integ; the source branch and
+                     science/xi-ledger-01 are unmoved from their M1 values; and
+                     this addendum commit is on the integration branch only,
+                     with origin/main remaining H_integ.
+
+## A6. `A4` — final confirmation
+
+    source branch unmoved                                     confirmed above
+    arriving files, re-measured at M3                          all six MATCH
+    arriving files, product blob vs source blob (M3b(b))       all seven EQUAL
+    DECISION_LOG.md: base bytes an exact prefix of the product True
+    P_overlap (both-changed class)                             empty
+    contributed paths/statuses outside the manifest            none
+    either authorized task begun, scheduled, or constrained    NO
