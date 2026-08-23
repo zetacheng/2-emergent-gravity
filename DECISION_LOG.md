@@ -3151,3 +3151,85 @@ None. This is a governance record.
 `decisions/2026-08-23-xi-landing-executor-identity.md`,
 `specs/2026-08-23T0000Z_xi-rulings-landing-integ_v4.md`,
 `reviews/chatgpt/2026-08-23T0000Z_xi-rulings-landing-integ_v4.md`.
+
+## 2026-08-23 — Q-M2 / Q-M3 disposition: routes declined, two tasks authorized
+
+Date: 2026-08-23
+Decision owner: Principal Investigator
+Effect: disposes the three routes offered at the `P2-XI-LEDGER-01` execution
+report; defers membership; authorizes two tasks
+
+### Decision
+
+**The ruling is an issued document, landed byte-exact. It is not transcribed
+here**, because a transcription is not the record:
+
+    Decision key   2026-08-23-xi-rulings-02
+    Issued file    decisions/P2-XI-RULINGS-02.issued.md
+    Issuance SHA-256
+                   ab2e90ddb6fa8c24c9b913a26b4b455809ca358d82cff2d2256f3526957ebbf5
+    git blob id    72a6b24c9289efde8a096e4e591ff01728323473
+    Register record
+                   decisions/2026-08-23-xi-rulings-02.md
+
+The document's sections, named and not paraphrased: `RULING 1` (routes declined;
+membership deferred), `RULING 2` (`Q-M3`: the undone dependence check is
+authorized), `RULING 3` (`Q-M2`: a scope assessment precedes any computation),
+`RULING 4` (ordering), and `ROUTING`.
+
+**Document review verdict: `FIT FOR RECORDING`.** The artifact is
+`reviews/chatgpt/2026-08-23_document-review_p2-xi-rulings-02.md`, sha256
+`d1d117f28572f8eb19f76a316147f111af96d048dc02559465590f704a984d49`, self-bound
+to the issuance SHA-256 above and reproduced verbatim in PART 2 of the register
+record. **Under `decisions/README.md`'s adopted rule the review is mandatory
+and non-gating**, and the decision took effect on issuance.
+
+### Reason
+
+`P2-XI-LEDGER-01` assembled a conditional total over two OPEN ledger rows and
+offered the PI three routes for their disposition. The executor did not choose
+among them and could not; the issued document is the PI choosing.
+
+### Evidence
+
+The issued bytes, verified against the review-declared identity before any
+write. The subject of the ruling's `SCOPE` is pinned by full SHA and its OPEN
+rows were read directly from the pinned commit.
+
+### Consequences
+
+**No gate moves.** `P2-MULTIPHASE-GRAV-01` (SI-2), `P2-CHANNEL-FREEZE-01` and
+`P2-NORM-01` are unchanged in status. **No claim status changes.** **Nothing is
+computed.**
+
+**The two OPEN ledger rows remain OPEN.** The issued document defers membership
+in its own `RULING 1`, and this landing adds no disposition.
+
+**The two authorized tasks are NOT specified, scheduled, or begun by this
+landing.** Each is a separate specification subject to the normal pre-execution
+review gate, and each will cite the ruling at its landed path.
+
+**Chronology, recorded as fact:** `P2-XI-LEDGER-01` exists as a completed
+reviewed measurement at `science/xi-ledger-01` @
+`8f9edfead214b5bb3337924c18c5d241274e97c3` and is **not** landed on `main` at
+this task's Base `9eefe4c85c646b96ce334426598bc0e405f6e3d5`; this landing does
+not integrate it.
+
+### Supersedes
+
+Nothing. The two rows were open, not previously ruled.
+
+### Related gate
+
+None directly. `P2-MULTIPHASE-GRAV-01` (SI-2) is named in the issued document's
+rationale only and is unchanged at `PROPOSED`. No gate section was modified.
+
+### Related branch and files
+
+`science/xi-rulings-02-landing`, cut from `main` `9eefe4c8`;
+`decisions/P2-XI-RULINGS-02.issued.md`,
+`decisions/2026-08-23-xi-rulings-02.md`,
+`reviews/chatgpt/2026-08-23_document-review_p2-xi-rulings-02.md`,
+`specs/2026-08-23T0900Z_xi-rulings-02-landing_v3.md`,
+`reviews/chatgpt/2026-08-23T0900Z_xi-rulings-02-landing_v3.md`,
+`reports/2026-08-23T1540Z_xi-rulings-02-landing.md`.
