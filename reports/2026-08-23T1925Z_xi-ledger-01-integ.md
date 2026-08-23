@@ -509,3 +509,99 @@ branch ONLY**, with `origin/main` remaining `H_integ`.
 **The source branch `science/xi-ledger-01` must not move, and
 `science/integrate-xi-rulings-02` must not move.** Both are re-verified against
 their `M1` values in the addendum.
+
+---
+
+# ADDENDUM — `M5`, `C4`'s second limb, and `C5`
+
+**On the integration branch ONLY.** Not on `main`; `origin/main` remains
+`H_integ`. It exists because `C4`'s second limb and `C5` observe objects that do
+not exist until `H_integ` is committed and pushed — and because §9 committed
+this report to not asserting its own commit SHA, which is recorded here now that
+the commit exists.
+
+## A1. `H_integ`
+
+    H_integ   9af94a4a11cd06e90ef2d24183565412b4043c6a
+
+That is the SHA §9 deliberately did not state.
+
+## A2. `C4`, second limb — measured, not asserted
+
+`git diff --stat` between the tested tree and `H_integ`:
+
+```
+ reports/2026-08-23T1925Z_xi-ledger-01-integ.md | 511 +++++++++++++++++++++++++
+ 1 file changed, 511 insertions(+)
+```
+
+`git diff --name-status`:
+
+```
+A	reports/2026-08-23T1925Z_xi-ledger-01-integ.md
+```
+
+    tested tree (post-merge)   2e36e3153518681a5fc6c9c42205daec4339f384
+    H_integ                    9af94a4a11cd06e90ef2d24183565412b4043c6a
+    files changed              1 — the report artifact
+
+**`C4` PASSES on both limbs.**
+
+## A3. `M5` — push order executed
+
+    1  pushed science/integrate-xi-ledger-01  (new branch)
+    2  advanced refs/heads/main by fast-forward to H_integ:
+         6c1af3c..9af94a4  9af94a4a11cd06e90ef2d24183565412b4043c6a -> main
+    3  post-push ref audit, below
+    4  this addendum, committed and pushed to the integration branch only
+
+**`A3` did not fire.** `origin/main` was re-read as `6c1af3ca…` immediately
+before the push and confirmed a strict ancestor of `H_integ`; the push output
+carries the two-dot form `6c1af3c..9af94a4`, which git prints only for a
+fast-forward.
+
+## A4. Post-push ref audit, from `git ls-remote origin`, full SHAs
+
+    9af94a4a11cd06e90ef2d24183565412b4043c6a  refs/heads/main
+    9af94a4a11cd06e90ef2d24183565412b4043c6a  refs/heads/science/integrate-xi-ledger-01
+    fd3a112df30eb43a58f4c264169104c6b847225b  refs/heads/science/integrate-xi-rulings-02
+    0101d65ea581b0f6b08f1b0ca62969a51a7a16d1  refs/heads/science/xi-ledger-01
+
+Against their `M1` values:
+
+    main                            now 9af94a4a…  H_integ 9af94a4a…   EQUAL
+    science/xi-ledger-01            now 0101d65e…  M1 0101d65e…        UNMOVED
+    science/integrate-xi-rulings-02 now fd3a112d…  M1 fd3a112d…        UNMOVED
+
+## A5. `C5`
+
+    C5  (M5)  PASS   origin/main equals H_integ; the source branch and
+                     science/integrate-xi-rulings-02 are unmoved from their M1
+                     values; and this addendum commit is on the integration
+                     branch only, with origin/main remaining H_integ.
+
+## A6. `A4` and `A5` — final confirmation
+
+    source branch unmoved                                      confirmed above
+    arriving files, re-measured at M3                           all nine MATCH
+    arriving files, product blob vs source blob (M3b(b))        all nine EQUAL
+    main-changed paths, product blob vs Base blob (M3b(c))      all ten EQUAL
+    ledger artifact byte-identical to the pin's (M3c(i))        True
+    pin's report bytes an exact prefix of the product's (M3c(ii))  True
+    both OPEN rows present and valueless (M3c(iii))             True
+    P_overlap (both-changed class)                              empty
+    contributed paths/statuses outside the manifest             none
+    either authorized task begun, scheduled, or constrained     NO
+    the conditional label relabelled or condition-stripped      NO
+
+## A7. What `main` now carries
+
+    the conditional analytic ξ ledger, Phase 1, with its two OPEN rows
+    the count addendum, appended to the ledger execution report
+    the issued PI ruling P2-XI-RULINGS-02 deferring their membership
+    no progress on either task that ruling authorizes
+
+**The ruling pin `8f9edfead214b5bb3337924c18c5d241274e97c3` is now an ancestor
+commit in `main`'s history**, so the ledger state the ruling was issued on is
+recoverable from `main` — while the addendum-bearing tip that also landed is not
+that state, as §0a records verbatim.
