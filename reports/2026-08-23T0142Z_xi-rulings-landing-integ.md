@@ -448,3 +448,107 @@ re-verified against their `M1` values in the addendum.
 
 **A stop hook may ask for the session branch to be pushed. It is declined**,
 per `docs/BRANCHING_POLICY.md:37`.
+
+---
+
+# ADDENDUM — `M6`, `C5`'s second limb, and `C6`
+
+**This addendum is on the integration branch ONLY.** It is not on `main`, and
+`origin/main` remains `H_integ`. It exists because `C5`'s second limb and `C6`
+are observations of objects that do not exist until `H_integ` is committed and
+pushed; **putting them in the pre-push body would have required the report to
+contain a measurement of itself.**
+
+## A1. `H_integ`
+
+    H_integ   d2428c4ce24b606e634bde20303085692569818e
+
+## A2. `C5`, second limb — measured, not asserted
+
+`git diff --stat` between the tested tree and `H_integ`:
+
+```
+ .../2026-08-23T0142Z_xi-rulings-landing-integ.md   | 450 +++++++++++++++++++++
+ 1 file changed, 450 insertions(+)
+```
+
+`git diff --name-status` over the same range:
+
+```
+A	reports/2026-08-23T0142Z_xi-rulings-landing-integ.md
+```
+
+    tested tree (post-M4)   e2109a74624525dd7eb49cbc77134e13799dbea4
+    H_integ                 d2428c4ce24b606e634bde20303085692569818e
+    files changed           1
+    the one file            the report artifact
+
+**`H_integ` differs from the tested tree only by the report artifact.**
+`C5` PASSES on both limbs.
+
+## A3. `M6` — push order executed
+
+    1  pushed science/integrate-xi-rulings-landing-01  (new branch)
+    2  advanced refs/heads/main by fast-forward to H_integ, NOT to M_merge:
+         6da1f7c..d2428c4  d2428c4ce24b606e634bde20303085692569818e -> main
+    3  post-push ref audit, below
+    4  this addendum, committed and pushed to the integration branch only
+
+**`A3` did not fire.** Immediately before the push, `origin/main` was re-read as
+`6da1f7cb8ea1d28d7deadb8a938c67365b28384c` and confirmed a strict ancestor of
+`H_integ`, so the advance was a fast-forward. The push output shows the
+two-dot form `6da1f7c..d2428c4`, which git prints only for a fast-forward.
+
+## A4. Post-push ref audit, from `git ls-remote origin`, full SHAs
+
+    d2428c4ce24b606e634bde20303085692569818e  refs/heads/main
+    d2428c4ce24b606e634bde20303085692569818e  refs/heads/science/integrate-xi-rulings-landing-01
+    012bdff3bac990344a1a0ad288b2665a5304b501  refs/heads/science/xi-b0a
+    190f61c4dde4068f1f5987cd555e0eff57f6bee0  refs/heads/science/xi-rulings-landing-01
+
+Compared against their `M1` values:
+
+    main             now d2428c4ce24b606e634bde20303085692569818e
+                     H_integ d2428c4ce24b606e634bde20303085692569818e   EQUAL
+    source branch    now 190f61c4dde4068f1f5987cd555e0eff57f6bee0
+                     M1  190f61c4dde4068f1f5987cd555e0eff57f6bee0       UNMOVED
+    science/xi-b0a   now 012bdff3bac990344a1a0ad288b2665a5304b501
+                     M1  012bdff3bac990344a1a0ad288b2665a5304b501       UNMOVED
+
+The remote carries 137 heads; the two refs this task was authorised to move are
+the integration branch and `refs/heads/main`, and no other ref was pushed.
+
+## A5. `C6`
+
+    C6  (M6)  PASS   origin/main equals H_integ; the source branch and
+                     science/xi-b0a are unmoved from their M1 values; and this
+                     addendum commit is on the integration branch only, with
+                     origin/main remaining H_integ after it — the state
+                     recorded in A6 below, measured after this commit is
+                     pushed.
+
+## A6. Final state, measured after this addendum is pushed
+
+Recorded in the commit message of the push that carries this addendum, and
+re-measurable at any time by `git ls-remote origin`:
+
+    refs/heads/main                                  d2428c4ce24b606e634bde20303085692569818e
+    refs/heads/science/integrate-xi-rulings-landing-01  advances to this addendum commit
+    refs/heads/science/xi-rulings-landing-01         190f61c4dde4068f1f5987cd555e0eff57f6bee0
+    refs/heads/science/xi-b0a                        012bdff3bac990344a1a0ad288b2665a5304b501
+
+**`main` does not move again.** The integration branch advancing past `H_integ`
+is what the specification's `M6` provides for, and is why the audit lives here
+rather than on `main`.
+
+## A7. `A4` — final confirmation
+
+**Nothing in this task modified the source branch, any file arriving from it,
+or any pre-existing `DECISION_LOG.md` byte.**
+
+    source branch unmoved                                      confirmed above
+    files arriving from the source, re-measured at M3           all MATCH
+    DECISION_LOG.md: base bytes an exact prefix of the product  True
+    DECISION_LOG.md: merge-product bytes an exact prefix        True
+    DECISION_LOG.md diff                                        67 insertions,
+                                                                0 deletions
