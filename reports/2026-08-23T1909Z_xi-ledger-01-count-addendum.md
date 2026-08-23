@@ -362,3 +362,51 @@ product is unchanged between the two commits.
 
 **The pin `8f9edfea` remains a commit in this branch's history and continues to
 denote the ledger state `P2-XI-RULINGS-02` was issued on.**
+
+---
+
+# ADDENDUM 2 — correction of `H_final`'s recorded value, and how it arose
+
+**The block above names `H_final` as `20750ad8701ab859b1eec802aad76fc4a0790b55`.
+That value is stale, and this block corrects it. The stale lines are left as
+they stand — the same method this task applies to the ledger report.**
+
+## What happened, measured
+
+    20750ad8701ab859b1eec802aad76fc4a0790b55   the report commit, BEFORE the amend
+    246b266044f84809f3873844bad555cf46c1afc1   the same commit AFTER the amend
+                                               that folded the C6 measurement in
+
+`C6` measures the diff between `H_addendum` and the final tip. **The measurement
+could only be taken after the report commit existed, and writing its result into
+that same report changed the commit that carried it.** The amend was made before
+any push, so no published SHA was rewritten.
+
+**This is the SELF-REFERENTIAL class again, in its SHA variant** — a report
+naming the identity of the commit that contains the naming. It is recorded here
+rather than smoothed, because this task's entire subject is that class.
+
+## The corrected values, measured against the pushed tip
+
+    H_addendum   f2d5ec1010b4deec26d067ea553e7014019e673d   (the M5-tested tree)
+    H_final      the pushed tip of science/xi-ledger-01, recorded in this
+                 commit's own push confirmation
+
+`git diff --name-status H_addendum <final tip>` returns one entry:
+
+```
+A	reports/2026-08-23T1909Z_xi-ledger-01-count-addendum.md
+```
+
+    files changed   1 — this execution-report artifact, and nothing else
+
+**`C6` holds under every candidate tip**, because each successive commit touches
+only this one file: the diff from `H_addendum` is one entry whether taken at
+`20750ad`, at `246b266`, or at the tip carrying this block.
+
+## What is unchanged
+
+**No measurement, verdict, membership status, or scientific content is affected
+by this correction**, and `M1`–`M5`'s outputs are exactly as recorded. `A4`
+holds: this block modifies only this task's own execution report, one of the
+four paths the task declares. `A5` holds: `main` is untouched.
