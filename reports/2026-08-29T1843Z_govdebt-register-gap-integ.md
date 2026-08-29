@@ -638,3 +638,77 @@ results and the post-push ref audit — are post-commit and go into the addendum
 commit on the integration branch only. `origin/main` remains at `H_integ`.
 
 END OF REPORT
+
+---
+
+# ADDENDUM — `M5`, post-push. BRANCH-ONLY.
+
+**This section exists only on `science/integrate-govdebt-register-gap`. It is
+not on `main`, and `origin/main` remains `H_integ`.** Everything below was
+measured after the report commit above, so it could not have been inside it.
+
+    H_integ   1852d17c6d2c8a0f7973c0316f5f59f7c4ce0841
+
+## `C5` first limb — `H_integ` against the tested tree
+
+    git diff --name-status 9ef48055ba3b935566dd4ea34476bab1ac3d19b4 H_integ
+    A	reports/2026-08-29T1843Z_govdebt-register-gap-integ.md
+
+**Exactly one path, the report artifact.** Measured, not asserted; re-measured
+after the push against `origin/main` with the same single-path result.
+
+## `A3` and the push order
+
+`A3` was evaluated before the main push, as a measurement:
+
+    git merge-base --is-ancestor origin/main H_integ   ->  0
+    origin/main at that moment  0c01fc7f26e91dd84b032dccde0feac61f61d8ea
+
+`origin/main` was an ancestor of `H_integ`, so the advance is a fast-forward and
+**`A3` did not fire.**
+
+Push order executed, integration branch first, then `main`:
+
+    git push -u origin science/integrate-govdebt-register-gap
+      * [new branch]      science/integrate-govdebt-register-gap -> science/integrate-govdebt-register-gap
+
+    git push origin 1852d17c6d2c8a0f7973c0316f5f59f7c4ce0841:refs/heads/main
+      0c01fc7..1852d17  1852d17c6d2c8a0f7973c0316f5f59f7c4ce0841 -> main
+
+`main` was advanced to **`H_integ`**, not to `M_merge` (`5301097f…`). The
+two-dot form in the push output is git's own abbreviation of the fast-forward it
+performed.
+
+## Post-push ref audit
+
+    refs/heads/main                                    1852d17c6d2c8a0f7973c0316f5f59f7c4ce0841
+    refs/heads/science/integrate-govdebt-register-gap  1852d17c6d2c8a0f7973c0316f5f59f7c4ce0841
+    refs/heads/science/govdebt-register-gap-01         e242a178bebb3ce8bbc8fce66d21a7f4a0257e13
+    refs/heads/science/xi-clar-01-landing              0b3c85cb158f6aae2dd661054d66bcd1f986878f
+    refs/heads/science/xi-ledger-01                    0101d65ea581b0f6b08f1b0ca62969a51a7a16d1
+    refs/heads/science/integrate-xi-clar-01            37a2f411ea1166134b3c153e15aab74af3f79bf6
+    refs/heads/science/xi-qm3-dep-01                   d55b6350a015d124f723d1fceb75b77cdcc112a9
+    refs/heads/science/xi-qm2-scope-01                 b133e6aab8a9f03a2c76345d5bd818898c6a1ab3
+    refs/heads/science/integrate-xi-rulings-02         fd3a112df30eb43a58f4c264169104c6b847225b
+
+    origin/main equals H_integ                                       PASS
+    origin/main is NOT M_merge                                       PASS
+    the integration branch equals H_integ                            PASS
+    science/govdebt-register-gap-01 unmoved from its M1 value        PASS
+    science/xi-clar-01-landing unmoved from its M1 value             PASS
+    science/xi-ledger-01 unmoved from its M1 value                   PASS
+    science/integrate-xi-clar-01 unmoved from its M1 value           PASS
+    science/xi-qm3-dep-01 unmoved                                    PASS
+    science/xi-qm2-scope-01 unmoved                                  PASS
+    science/integrate-xi-rulings-02 unmoved                          PASS
+
+**`C5` PASS on every limb.** The source branch did not move; no session, harness
+or unrelated ref moved. The only two refs this task moved are the two the
+specification authorizes.
+
+**This addendum commit is pushed to `science/integrate-govdebt-register-gap`
+only.** `origin/main` stays at `H_integ`; the addendum's own SHA is measured
+after this commit and is returned outside the repository, not written back into
+it.
+
+END OF ADDENDUM
