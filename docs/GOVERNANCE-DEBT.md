@@ -39,9 +39,9 @@ mechanism shape is known, and no mechanism exists for any entry carrying it.
     NOT REPAIRABLE HERE   1     G-01
     RULED                 3     G-07  G-12  G-14
     METHOD NOTE           1     G-11
-    OPEN                  7     G-03  G-08  G-09  G-10  G-13  G-16  G-17
+    OPEN                  8     G-03  G-08  G-09  G-10  G-13  G-16  G-17  G-18
     ------------------------------------------------
-    entries              17
+    entries              18
 
 ---
 
@@ -641,6 +641,238 @@ the condition has been observed.** The entry records a gap, not an incident.
 question and forbid answering it;
 `reports/2026-08-20T0345Z_gapa-integ_landing-record.md`, which transports the
 condition with the outcome.
+
+## `G-18` — no landed index of the repository's registers and their stated scopes
+
+**Disposition: OPEN.** The register's disposition definitions in full,
+`docs/GOVERNANCE-DEBT.md:25-31`:
+
+```text
+    REPAIRABLE            a repair is known and blocked only by scope
+    SPECIFIABLE           the mechanism is fully specifiable inside this
+                          repository and none exists
+    NOT REPAIRABLE HERE   the cause lies outside this repository
+    RULED                 a PI ruling settled it
+    METHOD NOTE           a practice, not a defect
+    OPEN                  none of the above
+```
+
+The one carried here is the last of them, `:31`, whose definition is *none of
+the above*, quoted verbatim:
+
+```text
+    OPEN                  none of the above
+```
+
+**`SPECIFIABLE` is not claimed.** Its definition, `:26-27`, is
+
+```text
+    SPECIFIABLE           the mechanism is fully specifiable inside this
+                          repository and none exists
+```
+
+and nothing recorded here establishes its first limb. What an index would have
+to cover, where it would live, and how a register's scope change would reach it
+are not settled by anything measured below. The register's own reading rule,
+`:34-35`, is why the weaker disposition is the one carried:
+
+```text
+**`SPECIFIABLE` means specifiable, not specified** — it records that a
+mechanism shape is known, and no mechanism exists for any entry carrying it.
+```
+
+**The gap.** **The repository holds no landed index of its registers and their
+stated scopes.** The measured consequence is that the same candidate-register
+reasoning was performed on 2026-08-19 and again on 2026-08-24, by different
+agents, and that the second omitted `DECISION_LOG.md`, which the first had
+identified and used. **The routing of the item that triggered the second
+performance has since been ruled by the PI, on 2026-08-24, for that item
+only** — no register's scope was extended and no general rule was made — and
+that ruling leaves the indexing gap exactly where it was.
+
+**Neither performance is recorded here as an error.** Both agents reasoned from
+what they had. The first recorded its conclusion inside one entry's `Reason`;
+nothing indexed it, and that is the debt.
+
+### The two records, side by side
+
+**2026-08-19 — `DECISION_LOG.md`.** The entry, at `:2147`:
+
+```text
+## 2026-08-19 — Open construction item: the POLE milestone's construction layer is UNESTABLISHED
+```
+
+Its `Reason`, `:2196-2211`, performs the candidate-register reasoning and names
+this log as the register whose stated scope covers an item opened as
+`UNESTABLISHED`:
+
+```text
+The item is an open programme-design / construction question — what the
+construction is has not been defined — rather than an open
+acceptance-criterion item, where the work is known and the criteria are not.
+That distinction determines which register admits it, and this log is the
+register whose stated scope covers an item opened as `UNESTABLISHED`.
+
+The other candidates were read and none admits it.
+`derivations/P2-DEFERRED-ITEMS.md` scopes itself to work considered and
+consciously postponed, and states that its entries are added by PI decision.
+`derivations/P2-PHASE-01_C-CHECK_OPEN-ITEMS.md` scopes itself to items
+arising from the `C1`–`C3` follow-up checks of the C-check line.
+`OPEN-AC-*` sits in the phase input / admissibility contract and holds
+acceptance-criterion items. `OPEN-PD-*` sits in the microscopic parameter
+domain and holds parameter-domain items. `docs/GOVERNANCE-DEBT.md` holds
+governance debt — gaps in rules and mechanisms — and this is a scientific
+construction question, not a rule gap.
+```
+
+**2026-08-24 — `reports/2026-08-24T0043Z_xi-clar-01-landing.md`**, on branch
+`science/xi-clar-01-landing` at commit
+`2936e967f7fb893e455547e348243bf49b56aff4`. **The measurement quoted below is
+that report's own and is attributed to it**, not made here. Its occasion was
+the registration direction landed at
+`decisions/P2-XI-RULINGS-02-CLARIFICATION-01.issued.md:32-40`, on that same
+branch and commit:
+
+```text
+CLARIFICATION   A family-wide representation-stability inquiry is NOT
+                part of this task. It is to be registered as a named
+                open item, linked to the representation-stability
+                disclosure of P2-FIERZSUM-01 §8, with the following
+                escalation condition: if the check returns DEPENDENT
+                and the term is subsequently found to grow with L, the
+                representation-stability inquiry escalates to required
+                status; otherwise it remains registered at ordinary
+                priority.
+```
+
+The report's register-by-register measurement, `:238-246`, records which
+registers its sweep covered and by what criterion:
+
+```text
+**Three registers exist at the Base.** The sweep that establishes this covered
+every Base file self-describing as a register and every file whose title line
+contains "register":
+
+    derivations/P2-DEFERRED-ITEMS.md              # Deferred-items register — `P2-PHASE-01`
+    derivations/P2-PHASE-01_C-CHECK_OPEN-ITEMS.md # `P2-PHASE-01` C-check line — register of open items
+    docs/GOVERNANCE-DEBT.md                       # Governance debt — an authoritative register
+
+**Each was tested against its own stated scope.**
+```
+
+Its three per-register findings, at `:248`, `:261` and `:278` respectively:
+
+```text
+### (A) `derivations/P2-PHASE-01_C-CHECK_OPEN-ITEMS.md` — DOES NOT ADMIT
+```
+
+```text
+### (B) `docs/GOVERNANCE-DEBT.md` — DOES NOT ADMIT
+```
+
+```text
+### (C) `derivations/P2-DEFERRED-ITEMS.md` — ADMITS THE KIND, WRONG LINE
+```
+
+**`DECISION_LOG.md` is not among the three that sweep covered.** The sweep's
+stated criterion was self-description as a register and a title line containing
+"register"; `DECISION_LOG.md` answers to neither, and the 2026-08-19 conclusion
+that it is the register for items opened as `UNESTABLISHED` sits inside one
+entry's `Reason`, where no index reaches it.
+
+### What the two candidate registers state of their own scope
+
+`derivations/P2-DEFERRED-ITEMS.md:1`, its title line:
+
+```text
+# Deferred-items register — `P2-PHASE-01`
+```
+
+`:19-26`, which routes open questions elsewhere and names the mechanism the
+2026-08-19 entry used:
+
+```text
+**How to tell the two apart in this repository.** Open questions live in
+the `OPEN-AC-*` and `OPEN-PD-*` items of the admissibility-contract and
+parameter-domain drafts, and in `DECISION_LOG.md` entries that open an
+item as `UNESTABLISHED`. Those record that something has not been
+settled. **An entry here records that something was looked at, was
+understood well enough to be set aside deliberately, and was set aside
+anyway** — with the reason, the evidence, and the PI's position at the
+time.
+```
+
+and `:191-193`, from its `Scope of this register` section:
+
+```text
+**Entries are added by PI decision.** Nothing is removed from this
+register by an executor; an item that is taken up again is recorded as
+resumed, so that the deferral and its reason remain readable afterwards.
+```
+
+`derivations/P2-PHASE-01_C-CHECK_OPEN-ITEMS.md:1`, its title line:
+
+```text
+# `P2-PHASE-01` C-check line — register of open items
+```
+
+and `:3-5`, its stated scope:
+
+```text
+**This is a register of open items arising from the C-check line** — the
+follow-up checks `C1`, `C2` and `C3` commissioned by
+`derivations/P2-PHASE-01_microscopic_parameter_domain.md`.
+```
+
+**These are scope statements, not an index.** Each register states its scope
+inside itself; no landed artifact collects them, and `DECISION_LOG.md`'s own
+role as the register for items opened as `UNESTABLISHED` is stated only in the
+`Reason` of one of its entries and in the routing sentence of another register.
+
+### What this entry is not
+
+**Nothing in this file binds, and nothing in this entry does.** The register
+says so of itself at `:3-6`:
+
+```text
+**Nothing in this file binds.** It records what the rules, amendments and task
+reports already carry, and it creates, modifies and explains no obligation.
+The rules and amendments in `CONVENTIONS.md` are what govern; this file is a
+place a reader meets the debt without reconstructing it from task reports.
+```
+
+**This entry records a missing mechanism. It does not register the open item,
+does not propose a register, does not create one, and does not express a
+preference among the resolutions of the indexing gap.** The registration the
+clarification directs belongs to the resumed landing task under the PI's
+2026-08-24 ruling, not to this entry; nothing here begins, schedules,
+constrains or prioritises that inquiry. **Recording a gap is not specifying its
+repair**, and `OPEN` asserts neither that a repair exists nor that one is
+specifiable.
+
+**This entry is not closed by being written down**, per this register's own
+rule at `:33`:
+
+```text
+**No entry is marked CLOSED.** Nothing here is closed by being written down.
+```
+
+**Evidence.** At the Base, `main @ 9af94a4a11cd06e90ef2d24183565412b4043c6a`:
+`docs/GOVERNANCE-DEBT.md:3-6`, `:25-31`, `:26-27`, `:33` and `:34-35`, this
+register's self-description, its disposition definitions and its reading rules;
+`DECISION_LOG.md:2147` and `:2196-2211`, the 2026-08-19 performance;
+`derivations/P2-DEFERRED-ITEMS.md:1`, `:19-26` and `:191-193`, and
+`derivations/P2-PHASE-01_C-CHECK_OPEN-ITEMS.md:1` and `:3-5`, the two candidate
+registers' scope statements. On branch `science/xi-clar-01-landing` at commit
+`2936e967f7fb893e455547e348243bf49b56aff4`, the commit at which that task
+stopped: `reports/2026-08-24T0043Z_xi-clar-01-landing.md:238-246`, `:248`,
+`:261` and `:278`, the register-by-register measurement, which is that report's
+and is attributed to it, and
+`decisions/P2-XI-RULINGS-02-CLARIFICATION-01.issued.md:32-40`, the registration
+direction, whose sha256 at that commit is
+`0e549c7c457f22d8e80b62fbca00cf362c410992771ddcee6cad13dc0d363f22`. The entry
+was required by `specs/2026-08-24T0600Z_govdebt-register-gap_v3.md`, which also
+forbids its going further.
 
 ## Not entered here — `D4`
 
