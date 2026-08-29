@@ -3233,3 +3233,182 @@ rationale only and is unchanged at `PROPOSED`. No gate section was modified.
 `specs/2026-08-23T0900Z_xi-rulings-02-landing_v3.md`,
 `reviews/chatgpt/2026-08-23T0900Z_xi-rulings-02-landing_v3.md`,
 `reports/2026-08-23T1540Z_xi-rulings-02-landing.md`.
+
+## 2026-08-24 — Open item: family-wide representation stability of the ξ ledger is UNESTABLISHED
+
+Date: 2026-08-24
+Decision owner: Principal Investigator
+Effect: opens the representation-stability inquiry as an open item
+
+### Decision
+
+The open item, reproduced from the clarification that directs its registration:
+
+> **Open item — family-wide representation stability of the induced ξ ledger.**
+>
+> `P2-XI-RULINGS-02-CLARIFICATION-01` scopes the `Q-M3` dependence check to the
+> landed decoupling — the Hubbard–Stratonovich transformation of the assembled
+> chain — and states that **a family-wide representation-stability inquiry is
+> NOT part of that task**, directing instead that it "is to be registered as a
+> named open item, linked to the representation-stability disclosure of
+> `P2-FIERZSUM-01 §8`".
+>
+> **The question, as the clarification states it and no broader:** whether the
+> ledger's representation is reliable across a decoupling family — in the
+> clarification's own words, "it concerns the reliability of the representation
+> across a decoupling family, whose membership is itself an unlanded
+> model-level choice".
+>
+> **Link.** `P2-FIERZSUM-01 §8`'s representation-stability disclosure, which
+> that gate lists at `derivations/P2-FIERZSUM-01.md:231-233` as deliverable 8 —
+> "how far `ξ_ind` moves under change of decoupling within a preregistered
+> family (§7, Route B) — reported as a number with its qualifications, never
+> asserted zero" — and whose scan `:464` names as producing `Δ_Fierz^(F)`.
+>
+> **Escalation condition, quoted BYTE-IDENTICAL from the clarification at
+> `decisions/P2-XI-RULINGS-02-CLARIFICATION-01.issued.md:36-40`:**
+>
+> ```text
+                escalation condition: if the check returns DEPENDENT
+                and the term is subsequently found to grow with L, the
+                representation-stability inquiry escalates to required
+                status; otherwise it remains registered at ordinary
+                priority.
+> ```
+>
+> **Its decoupling-family membership is an unlanded model-level choice.** The
+> clarification says so in the words quoted above; the family over which
+> stability would be assessed is not fixed by landed state.
+>
+> **Status: UNESTABLISHED. REGISTERED, NOT AUTHORIZED.**
+>
+> **Registration is not authorization.** Nothing in this entry begins,
+> schedules, constrains or prioritises this inquiry, the `Q-M3` dependence
+> check, or the `Q-M2` scope assessment. **The escalation condition is recorded,
+> not triggered:** it requires both that the check return `DEPENDENT` and that
+> the term be subsequently found to grow with `L`, and this entry establishes
+> neither.
+
+### Reason
+
+**Authority: the PI ruling recorded at
+`decisions/2026-08-24-xi-open-item-register-routing.md`, decision key
+`2026-08-24-xi-open-item-register-routing`.** That ruling determines that the
+applicable register for this item is `DECISION_LOG.md`'s `UNESTABLISHED` entry
+mechanism — the route `derivations/P2-DEFERRED-ITEMS.md`'s own text names for
+open questions.
+
+**The ruling's scope limit, stated as the ruling states it: for this item
+only.** It extends or modifies no register's scope, creates no register, and
+makes no general determination about where future XI-line open items are
+registered.
+
+The landing task's `M4` had stopped because no register's stated scope had been
+shown to admit the item; the measurement is at
+`reports/2026-08-24T0043Z_xi-clar-01-landing.md` §5. This entry is that stop's
+resolution, under the ruling, and follows the format of the landed
+`UNESTABLISHED` precedent at `DECISION_LOG.md:2147-2215`, whose own `Reason`
+records that "this log is the register whose stated scope covers an item opened
+as `UNESTABLISHED`".
+
+### Consequences
+
+**Nothing scientific changes.** No gate moves, no claim status changes, no
+measurement is made, and the two OPEN ledger rows of `P2-XI-LEDGER-01` remain
+`OPEN(Q-M2)` and `OPEN(Q-M3)`, valueless.
+
+**No task is authorized.** `P2-XI-RULINGS-02` authorizes the `Q-M3` check and
+the `Q-M2` scope assessment; this entry authorizes neither, and authorizes no
+representation-stability work.
+
+**`Q-M3` remains conditional on the landed Hubbard–Stratonovich decoupling**,
+per the clarification, and the family-wide residue stays here rather than
+attaching to that binary membership check.
+
+### Supersedes
+
+Nothing. The item was directed and unregistered; it is now registered.
+
+### Related gate
+
+None. `P2-FIERZSUM-01` is landed as a concept note, not registered, and is
+unchanged.
+
+### Related branch and files
+
+`science/xi-clar-01-landing`, resumed from `2936e967`;
+`decisions/P2-XI-RULINGS-02-CLARIFICATION-01.issued.md`,
+`decisions/2026-08-24-xi-rulings-02-clarification-01.md`,
+`decisions/2026-08-24-xi-open-item-register-routing.md`,
+`specs/2026-08-24T0900Z_xi-clar-01-landing_v3.md`,
+`reviews/chatgpt/2026-08-24T0900Z_xi-clar-01-landing_v3.md`.
+
+## 2026-08-24 — INDEX: Ruling-2 scope clarification, landed
+
+Date: 2026-08-24
+Decision owner: Principal Investigator
+Effect: index entry only
+
+### Decision
+
+**This entry is a pointer, not the clarification's home.**
+
+    Decision key      2026-08-24-xi-rulings-02-clarification-01
+    Issued file       decisions/P2-XI-RULINGS-02-CLARIFICATION-01.issued.md
+    Issuance SHA-256  0e549c7c457f22d8e80b62fbca00cf362c410992771ddcee6cad13dc0d363f22
+    git blob id       1786124bbe3bfa02809d83c2890d0800e0d3edd8
+    Register record   decisions/2026-08-24-xi-rulings-02-clarification-01.md
+    Document review   FIT FOR RECORDING
+                      reviews/chatgpt/2026-08-23_document-review_p2-xi-rulings-02-clarification-01.md
+                      sha256 c586f0a4c0ec5023705dcac88f4db4b88ff911b99fa3324b3973031b5cad3018
+    Open item registered by this landing
+                      the 2026-08-24 entry above — "Open item: family-wide
+                      representation stability of the ξ ledger is UNESTABLISHED"
+
+**The clarification's text is not transcribed here.** It is landed byte-exact
+in the issued file above, and quoted in the register record. Under the landed
+ruling that a specification transcribing an adjudication is evidence of its
+content and not that adjudication's canonical provenance record, a second
+transcription in this log would create a second place for one text to drift.
+
+### Reason
+
+`P2-XI-RULINGS-02-CLARIFICATION-01` fixes the representation on which the
+`Q-M3` dependence check is performed and directs the registration of one open
+item. The clarification needed a canonical home in `decisions/`, per the
+four-way separation; this log receives the index, and — separately, under the
+PI ruling recorded at
+`decisions/2026-08-24-xi-open-item-register-routing.md` — the open item itself.
+
+### Consequences
+
+**Nothing scientific changes.** No gate moves; no claim status changes; the two
+OPEN ledger rows of `P2-XI-LEDGER-01` remain OPEN. The clarification changes no
+ruling of `P2-XI-RULINGS-02`, issues no membership ruling, and authorizes no
+task — its own words.
+
+**No task was begun, scheduled, constrained or prioritised** by this landing:
+not the `Q-M3` check, not the `Q-M2` scope assessment, and not the registered
+representation-stability inquiry.
+
+**This landing does not make the clarification canonical on `main`.**
+Integration is a separate reviewed task and is not performed here.
+
+### Supersedes
+
+Nothing. It supersedes no landed decision.
+
+### Related gate
+
+None. This is a governance record.
+
+### Related branch and files
+
+`science/xi-clar-01-landing`;
+`decisions/P2-XI-RULINGS-02-CLARIFICATION-01.issued.md`,
+`decisions/2026-08-24-xi-rulings-02-clarification-01.md`,
+`decisions/2026-08-24-xi-open-item-register-routing.md`,
+`reviews/chatgpt/2026-08-23_document-review_p2-xi-rulings-02-clarification-01.md`,
+`specs/2026-08-24T0000Z_xi-clar-01-landing_v2.md`,
+`specs/2026-08-24T0900Z_xi-clar-01-landing_v3.md`,
+`reports/2026-08-24T0043Z_xi-clar-01-landing.md`.
