@@ -337,3 +337,60 @@ This review is bound exclusively to those exact bytes.
 ```
 
 **End of the reproduced review artifact.**
+
+---
+
+# ADDENDUM — 2026-08-24: §4's statement has been overtaken, and by what
+
+**Appended under `specs/2026-08-24T0900Z_xi-clar-01-landing_v3.md`. The §4
+statement above is NOT edited.** It is left exactly as written, and this note
+records what has changed since.
+
+## The temporal scope of §4's statement
+
+§4 is headed **"THE OPEN ITEM THE CLARIFICATION DIRECTS IS NOT YET
+REGISTERED"** and records that the landing's `M4` stopped because no register's
+stated scope had been shown to admit the item.
+
+**That was true when it was written, and its reasoning stands unchanged.** The
+register survey it reports was not wrong and has not been withdrawn: at that
+Base, `derivations/P2-PHASE-01_C-CHECK_OPEN-ITEMS.md` was scoped to the C-check
+line, `docs/GOVERNANCE-DEBT.md` was the governance-side register, and
+`derivations/P2-DEFERRED-ITEMS.md` admitted the kind but was scoped by its title
+and all four of its entries to `P2-PHASE-01`.
+
+**It is false as a statement about the present.** The item is now registered.
+
+## What registered it
+
+**A PI ruling supplied the mechanism the survey had not found.** It routes this
+one item to `DECISION_LOG.md`'s `UNESTABLISHED` entry mechanism — the route
+`derivations/P2-DEFERRED-ITEMS.md`'s own text names for open questions — and is
+recorded canonically at:
+
+    decisions/2026-08-24-xi-open-item-register-routing.md
+    decision key   2026-08-24-xi-open-item-register-routing
+
+**The ruling is for this item only.** It extends or modifies no register's
+scope, creates no register, and makes no general determination about where
+future XI-line open items are registered. **In particular
+`derivations/P2-DEFERRED-ITEMS.md` is not extended to the XI line**, and §4's
+finding about its scope stands as measured.
+
+## The entry that now carries the item
+
+    DECISION_LOG.md, entry dated 2026-08-24
+    "Open item: family-wide representation stability of the ξ ledger is
+     UNESTABLISHED"
+    Status: UNESTABLISHED. REGISTERED, NOT AUTHORIZED.
+
+**Registration is not authorization.** Nothing in that entry, in the ruling, or
+in this note begins, schedules, constrains or prioritises the
+representation-stability inquiry, the `Q-M3` check, or the `Q-M2` scope
+assessment. **The escalation condition is recorded, not triggered.**
+
+## What this note does not change
+
+**No measurement, no verdict, no membership status.** The two OPEN ledger rows
+remain `OPEN(Q-M2)` and `OPEN(Q-M3)`, valueless. The clarification's own bytes
+are untouched, and no sentence of PART 1 above is edited.
