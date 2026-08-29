@@ -486,3 +486,74 @@ Reviewer raises is returned in chat.
 `9af94a4a11cd06e90ef2d24183565412b4043c6a`. No merge, no fast-forward, no
 force-push, no branch deletion, no history rewrite. **Integration is a separate
 task and is not performed here.**
+
+---
+
+# ADDENDUM — `M6c`: `H_final`, the `C6` diff, and the push
+
+**On this branch ONLY.** `main` is not touched. This addendum exists because
+`C6`'s second limb observes an object that does not exist until the report is
+committed — and because §0 committed this report to not naming `H_final`, which
+is recorded here now that it exists.
+
+## A1. `H_final`
+
+    T          61b08811c5782bda7132530ac6ba39991d22cea4
+    H_final    ba9987a2cb5e11e4df975289e4da5ae463fe56a9
+
+That is the SHA the report deliberately did not state.
+
+## A2. `C6`, second limb — measured, not asserted
+
+`git diff --stat T H_final`:
+
+```
+ .../2026-08-29T1648Z_xi-clar-01-landing-resumed.md | 488 +++++++++++++++++++++
+ 1 file changed, 488 insertions(+)
+```
+
+`git diff --name-status`:
+
+```
+A	reports/2026-08-29T1648Z_xi-clar-01-landing-resumed.md
+```
+
+    files changed   1 — the M6b report artifact, and nothing else
+
+**`H_final` differs from `T` only by the report artifact. `C6` PASSES on both
+limbs.**
+
+## A3. The push
+
+    pushed   refs/heads/science/xi-clar-01-landing
+    main     NOT pushed, NOT touched — stands at
+             9af94a4a11cd06e90ef2d24183565412b4043c6a
+
+**Integration is a separate task and was not performed.**
+
+## A4. The branch, end to end
+
+    Base       2936e967f7fb893e455547e348243bf49b56aff4   the v2 stop tip
+    a564a68    + the v3 specification
+    B_task     498f8524e1e0938eb5f48bf10c6315ae3518a2ef   + its bound review
+    496ff0d    + M3b, the canonical record of the PI ruling
+    H_land     61b08811c5782bda7132530ac6ba39991d22cea4   + M4, M5, M5b
+    T          61b08811c5782bda7132530ac6ba39991d22cea4   = H_land
+    H_final    ba9987a2cb5e11e4df975289e4da5ae463fe56a9   + the M6b report
+
+## A5. Final state of what the task was for
+
+    the issued clarification        landed byte-exact, sha256 0e549c7c…0d363f22
+    its document review             landed byte-identical, FIT FOR RECORDING
+    its register record             landed, with the M5b note appended and its
+                                    original §4 unedited
+    the PI register ruling          landed byte-identical, PART 2 REVIEW PENDING
+    the directed open item          REGISTERED — DECISION_LOG.md, 2026-08-24,
+                                    "Open item: family-wide representation
+                                    stability of the ξ ledger is UNESTABLISHED"
+                                    Status: UNESTABLISHED. REGISTERED, NOT
+                                    AUTHORIZED.
+    the landing index               appended after it
+
+**Nothing is authorized.** The `Q-M3` check, the `Q-M2` scope assessment and the
+registered inquiry are all exactly where they were.
