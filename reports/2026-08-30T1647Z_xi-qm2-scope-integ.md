@@ -652,3 +652,76 @@ results and the post-push ref audit — are post-commit and go into the addendum
 commit on the integration branch only. `origin/main` remains at `H_integ`.
 
 END OF REPORT
+
+---
+
+# ADDENDUM — `M5`, post-push. BRANCH-ONLY.
+
+**This section exists only on `science/integrate-xi-qm2-scope-01`. It is not on
+`main`, and `origin/main` remains `H_integ`.** Everything below was measured
+after the report commit above, so it could not have been inside it.
+
+    H_integ   4a99e81ad16322e1152286df0158b648b75d18f3
+
+## `C5` first limb — `H_integ` against the tested tree
+
+    git diff --name-status 736286bb3587822dc0bb1e46620e20005f671d23 H_integ
+    A	reports/2026-08-30T1647Z_xi-qm2-scope-integ.md
+
+**Exactly one path, the report artifact.** Measured, not asserted; re-measured
+after the push against `origin/main` with the same single-path result.
+
+## `A3` and the push order
+
+`A3` was evaluated before the main push, as a measurement:
+
+    git merge-base --is-ancestor origin/main H_integ   ->  0
+    origin/main at that moment  08b46fb4a4e87f4db08a7f3b11b4086c9487b5c0
+
+`origin/main` was an ancestor of `H_integ`, so the advance is a fast-forward and
+**`A3` did not fire.**
+
+Push order executed, integration branch first, then `main`:
+
+    git push -u origin science/integrate-xi-qm2-scope-01
+      * [new branch]      science/integrate-xi-qm2-scope-01 -> science/integrate-xi-qm2-scope-01
+
+    git push origin 4a99e81ad16322e1152286df0158b648b75d18f3:refs/heads/main
+      08b46fb..4a99e81  4a99e81ad16322e1152286df0158b648b75d18f3 -> main
+
+`main` was advanced to **`H_integ`**, not to `M_merge` (`424cd412…`).
+
+## Post-push ref audit
+
+    refs/heads/main                                    4a99e81ad16322e1152286df0158b648b75d18f3
+    refs/heads/science/integrate-xi-qm2-scope-01       4a99e81ad16322e1152286df0158b648b75d18f3
+    refs/heads/science/xi-qm2-scope-01                 b133e6aab8a9f03a2c76345d5bd818898c6a1ab3
+    refs/heads/science/xi-qm3-dep-01                   d55b6350a015d124f723d1fceb75b77cdcc112a9
+    refs/heads/science/integrate-xi-qm3-dep-01         4afadd0e188874c65133679cc5638046b01a3cf5
+    refs/heads/science/govdebt-register-gap-01         e242a178bebb3ce8bbc8fce66d21a7f4a0257e13
+    refs/heads/science/integrate-govdebt-register-gap  963563ad16d6b289a53d8480d420a9aaac6a15a7
+    refs/heads/science/xi-clar-01-landing              0b3c85cb158f6aae2dd661054d66bcd1f986878f
+    refs/heads/science/xi-ledger-01                    0101d65ea581b0f6b08f1b0ca62969a51a7a16d1
+    refs/heads/science/integrate-xi-clar-01            37a2f411ea1166134b3c153e15aab74af3f79bf6
+
+    origin/main equals H_integ                                       PASS
+    origin/main is NOT M_merge                                       PASS
+    the integration branch equals H_integ                            PASS
+    science/xi-qm2-scope-01 unmoved from its M1 value                PASS
+    science/xi-qm3-dep-01 unmoved from its M1 value                  PASS
+    science/integrate-xi-qm3-dep-01 unmoved from its M1 value        PASS
+    science/govdebt-register-gap-01 unmoved from its M1 value        PASS
+    science/integrate-govdebt-register-gap unmoved                   PASS
+    science/xi-clar-01-landing unmoved                               PASS
+    science/xi-ledger-01 unmoved                                     PASS
+    science/integrate-xi-clar-01 unmoved                             PASS
+
+**`C5` PASS on every limb.** The source branch did not move; no session, harness
+or unrelated ref moved. The only two refs this task moved are the two the
+specification authorizes.
+
+**This addendum commit is pushed to `science/integrate-xi-qm2-scope-01` only.**
+`origin/main` stays at `H_integ`; the addendum's own SHA is measured after this
+commit and is returned outside the repository, not written back into it.
+
+END OF ADDENDUM
