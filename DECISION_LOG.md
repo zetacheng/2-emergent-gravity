@@ -3412,3 +3412,23 @@ None. This is a governance record.
 `specs/2026-08-24T0000Z_xi-clar-01-landing_v2.md`,
 `specs/2026-08-24T0900Z_xi-clar-01-landing_v3.md`,
 `reports/2026-08-24T0043Z_xi-clar-01-landing.md`.
+
+## 2026-08-31 — INDEX: R-1, the decoupling of the assembled chain, landed
+
+Date: 2026-08-31
+Decision owner: Principal Investigator
+Effect: index entry for a landed PI ruling; creates no obligation of its own
+
+    Decision key      2026-08-31-xi-rulings-03
+    Subject           extends the 2026-08-09 mean-field channel ruling to the
+                      assembled chain of the ξ ledger, records what the ruling
+                      does not supply, and authorizes one
+                      prescription-definition specification
+    Canonical record  decisions/2026-08-31-xi-rulings-03.md
+    Issued document   decisions/P2-XI-RULINGS-03.issued.md
+    Issuance SHA-256  1a982547f6c4a25ab29ec2d02e8ba54fa3e89c6871a80df395ac0d8b07418686
+    Document review   FIT FOR RECORDING
+
+**This entry is an index, not the ruling.** The ruling is the issued document at
+the SHA-256 above; the canonical record is the register entry beside it. Nothing
+here restates either.
